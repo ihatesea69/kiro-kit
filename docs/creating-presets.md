@@ -1,0 +1,248 @@
+# Creating Presets
+
+This guide covers how to author a new preset for kiro-kit, including the
+manifest schema, file conventions, and validation requirements.
+
+## Preset Directory Structure
+
+Every preset lives at `presets/<name>/` and follows this layout:
+
+```
+presets/<name>/
+  manifest.json           Required. Declares all files and metadata.
+  README.md               Required. Describes the preset.
+  agents/                 Agent persona files (*.md)
+  skills/                 Skill folders, each with SKILL.md
+  commands/               Command templates (*.md), up to 3 levels deep
+  hooks/                  Cross-platform hook scripts
+  workflows/              Always-on workflow documents (*.md)
+  steering/               Context-aware steering files (*.md)
+  settings.json           Settings template (statusline, hooks registration)
+  metadata.json           Preset metadata (version, description, buildDate)
+  statusline.js           Primary statusline script (Node)
+  statusline.sh           Unix statusline fallback
+  statusline.ps1          Windows statusline fallback
+  .mcp.json.example       MCP server configuration template
+  .env.example            Environment variable template
+  specs/_templates/        Spec scaffolding templates
+  docs/                   Documentation templates
+```
+
+## Manifest Schema
+
+`manifest.json` is the source of truth for a preset. It declares every file
+the preset will install and its metadata.
+
+```json
+{
+  "name": "my-preset",
+  "version": "1.0.0",
+  "description": "One-line description of the preset",
+  "category": "frontend",
+  "files": [
+    {
+      "source": "agents/researcher.md",
+      "target": ".kiro/agents/researcher.md",
+      "type": "agent"
+    },
+    {
+      "source": "statusline.sh",
+      "target": ".kiro/statusline.sh",
+      "type": "statusline",
+      "executable": true
+    }
+  ],
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${WORKSPACE_ROOT}"]
+    }
+  },
+  "hooks": {
+    "PreToolUse": [
+      { "matcher": ".*", "command": "node .kiro/hooks/scout-block.js" }
+    ]
+  },
+  "tags": ["react", "typescript", "nextjs"],
+  "minCounts": {
+    "agents": 12,
+    "skills": 20,
+    "commands": 25,
+    "hooks": 6,
+    "workflows": 4
+  }
+}
+```
+
+### Required Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | string | Preset identifier (kebab-case) |
+| `version` | string | Semver version |
+| `description` | string | One-line description |
+| `category` | string | One of: frontend, backend, fullstack, mobile, devops, data-ai |
+| `files` | FileEntry[] | Complete list of files in the preset |
+
+### Optional Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `dependencies` | string[] | Other presets this one depends on |
+| `mcpServers` | object | MCP server definitions to merge |
+| `hooks` | object | Hook registrations for settings.json |
+| `tags` | string[] | Searchable tags |
+| `minCounts` | object | Minimum artifact count thresholds |
+
+### FileEntry Schema
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `source` | string | yes | Path relative to preset root |
+| `target` | string | yes | Path relative to workspace root |
+| `type` | ArtifactType | yes | File category |
+| `executable` | boolean | no | Set Unix exec bit (for .sh files) |
+
+### Artifact Types
+
+`steering`, `hook`, `mcp`, `skill`, `agent`, `command`, `workflow`,
+`statusline`, `metadata`, `settings`, `env`, `spec`, `docs`, `other`
+
+## File Conventions by Artifact Type
+
+### Agents
+
+- One `.md` file per agent in `agents/`.
+- Front-matter must include `name` (kebab-case) and `description`.
+- Optional: `inclusion` (manual|always|fileMatch), `model`, `tools`.
+- Body contains the system prompt.
+
+```yaml
+---
+name: code-reviewer
+description: Use this agent when reviewing pull requests or code changes.
+inclusion: manual
+---
+
+You are a senior code reviewer...
+```
+
+### Skills
+
+- One folder per skill in `skills/<skill-name>/`.
+- Each folder must contain `SKILL.md` with front-matter (`name`, `description`).
+- Optional subdirectories: `references/`, `scripts/`, `assets/`.
+- Sub-skill containers: a folder without `SKILL.md` at root but with sub-folders
+  that each contain `SKILL.md`.
+
+### Commands
+
+- One `.md` file per command in `commands/`.
+- Nesting up to 3 levels: `commands/git/pr.md`, `commands/scout/ext.md`.
+- Front-matter must include `description`.
+- Optional: `inclusion`, `argument-hint`.
+- Body uses `$1`, `$2` for positional arguments.
+
+```yaml
+---
+description: Create a pull request
+argument-hint: "[branch] [from-branch]"
+inclusion: manual
+---
+
+## Variables
+TO_BRANCH: $1 (defaults to `main`)
+...
+```
+
+### Hooks
+
+- Cross-platform triple: `<name>.js` (required) + `<name>.sh` or `<name>.ps1`.
+- `.js` files must have a valid Node shebang: `#!/usr/bin/env node`
+- `.sh` files should be marked `executable: true` in the manifest.
+- Include `hooks/.env.example` for any required environment variables.
+- Include `hooks/README.md` documenting all hooks.
+
+### Workflows
+
+- One `.md` file per workflow in `workflows/`.
+- Always-on (no `inclusion` field needed).
+- Content is steering that applies to every interaction.
+
+### Steering
+
+- One `.md` file per steering rule in `steering/`.
+- Front-matter must include `inclusion` and `description`.
+- If `inclusion: fileMatch`, must also include `fileMatchPattern`.
+
+### Statusline
+
+- Three files: `statusline.js`, `statusline.sh`, `statusline.ps1`.
+- Each outputs a single line (git branch + project name + time).
+- `.sh` gracefully handles non-git directories.
+
+## Validation Rules
+
+The manifest parser enforces two critical invariants:
+
+### File Completeness
+
+Every file listed in `manifest.files[].source` must exist on disk at the
+specified path relative to the preset root. Missing files produce error KK012.
+
+### No Orphans
+
+Every file in the preset directory (excluding `manifest.json` and `README.md`)
+must be declared in `manifest.files`. Undeclared files produce error KK013.
+
+## Minimum Thresholds
+
+Each preset must meet these minimums (enforced by structural tests):
+
+| Artifact | Minimum |
+|----------|---------|
+| Agents | 12 |
+| Skills | 20 |
+| Commands | 25 |
+| Hooks | 6 |
+| Workflows | 4 |
+
+Plus: statusline triple, settings.json, metadata.json, .mcp.json.example,
+.env.example files.
+
+## Contribution Checklist
+
+Before submitting a new preset:
+
+1. [ ] `manifest.json` passes schema validation
+2. [ ] All files listed in manifest exist on disk
+3. [ ] No orphan files in the preset directory
+4. [ ] Minimum artifact thresholds are met
+5. [ ] All agents have valid front-matter (name + description)
+6. [ ] All commands have valid front-matter (description)
+7. [ ] All skills have SKILL.md with front-matter (name + description)
+8. [ ] Hook triples are complete (JS + at least one of SH/PS1)
+9. [ ] Statusline triple is present and functional
+10. [ ] .env.example files use placeholders, no real credentials
+11. [ ] .mcp.json.example uses placeholder values
+12. [ ] No emoji in any file
+13. [ ] No PII (emails, phone numbers) in templates
+14. [ ] README.md describes the preset purpose and contents
+15. [ ] Structural tests pass: `pnpm test -- tests/structural/`
+
+## Testing Your Preset
+
+```bash
+# Validate manifest
+pnpm test -- tests/unit/manifest-parser
+
+# Run structural tests
+pnpm test -- tests/structural/
+
+# Test installation in a temp workspace
+mkdir /tmp/test-workspace && cd /tmp/test-workspace
+npx kiro-kit init --preset my-preset --yes
+
+# Run doctor on the result
+npx kiro-kit doctor
+```

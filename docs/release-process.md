@@ -1,0 +1,122 @@
+# Release Process
+
+This document describes the release workflow for kiro-kit, from version bump to npm publication.
+
+## Pre-release Checklist
+
+Before starting a release, verify:
+
+- [ ] All CI checks pass on `main` (lint, typecheck, test, build, structural tests)
+- [ ] CHANGELOG.md has entries under `[Unreleased]` describing changes since last release
+- [ ] No known critical bugs or regressions
+- [ ] Documentation is up to date with any new features or breaking changes
+- [ ] `pnpm run build` succeeds locally
+- [ ] `npm pack` output in `packages/cli/` contains expected files (dist/, README, LICENSE, CHANGELOG)
+- [ ] Package size is reasonable (target < 5MB)
+
+## Release Steps
+
+### 1. Bump Version
+
+Update the version in `packages/cli/package.json`:
+
+```bash
+cd packages/cli
+# For patch releases (bug fixes):
+npm version patch --no-git-tag-version
+
+# For minor releases (new features, backward-compatible):
+npm version minor --no-git-tag-version
+
+# For major releases (breaking changes):
+npm version major --no-git-tag-version
+```
+
+### 2. Update CHANGELOG
+
+Move entries from `[Unreleased]` to a new version section:
+
+```markdown
+## [Unreleased]
+
+## [X.Y.Z] - YYYY-MM-DD
+
+### Added
+- ...
+
+### Changed
+- ...
+
+### Fixed
+- ...
+```
+
+### 3. Commit and Tag
+
+```bash
+git add packages/cli/package.json CHANGELOG.md
+git commit -m "chore: release vX.Y.Z"
+git tag vX.Y.Z
+```
+
+### 4. Push
+
+```bash
+git push origin main
+git push origin vX.Y.Z
+```
+
+### 5. CI Publish
+
+Pushing the `vX.Y.Z` tag triggers the `.github/workflows/publish.yml` workflow which:
+
+1. Runs full verification (lint, typecheck, test, build, structural tests)
+2. Publishes to npm with `--provenance` for supply chain security
+3. Uses `NPM_TOKEN` secret for authentication
+
+## Post-release Verification
+
+After the publish workflow completes:
+
+- [ ] Verify the package is available on npm: `npm info kiro-kit`
+- [ ] Verify the correct version is published: `npm info kiro-kit version`
+- [ ] Test installation: `npx kiro-kit@X.Y.Z --version`
+- [ ] Run a quick smoke test: `npx kiro-kit@X.Y.Z list`
+- [ ] Verify provenance attestation on npmjs.com package page
+- [ ] Create a GitHub Release from the tag with CHANGELOG excerpt
+
+## Rollback Procedure
+
+If a release contains a critical issue:
+
+### Option A: Publish a Patch Fix
+
+1. Fix the issue on `main`
+2. Follow the release steps above with a patch version bump
+3. Publish the fix
+
+### Option B: Deprecate and Unpublish (within 72 hours)
+
+```bash
+# Deprecate the broken version with a message
+npm deprecate kiro-kit@X.Y.Z "Critical bug in this version, use X.Y.W instead"
+
+# If within 72 hours of publish, unpublish is possible (use sparingly)
+npm unpublish kiro-kit@X.Y.Z
+```
+
+### Option C: Revert and Re-release
+
+```bash
+git revert <commit-hash>
+git push origin main
+# Then follow normal release steps with a new patch version
+```
+
+Note: Prefer Option A (patch fix) over unpublishing. Unpublishing can break downstream users who pinned the version.
+
+## Version Policy
+
+- **Patch** (0.0.x): Bug fixes, documentation updates, dependency patches
+- **Minor** (0.x.0): New presets, new commands, new features (backward-compatible)
+- **Major** (x.0.0): Breaking changes to CLI interface, manifest schema changes, removed commands

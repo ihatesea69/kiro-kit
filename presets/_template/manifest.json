@@ -1,0 +1,17 @@
+{
+  "name": "_template",
+  "version": "1.0.0",
+  "description": "Baseline preset template - copy and customize for new presets",
+  "category": "frontend",
+  "files": [],
+  "mcpServers": {},
+  "hooks": {},
+  "tags": [],
+  "minCounts": {
+    "agents": 12,
+    "skills": 20,
+    "commands": 25,
+    "hooks": 6,
+    "workflows": 4
+  }
+}

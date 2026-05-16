@@ -1,0 +1,151 @@
+# Architecture
+
+## Overview
+
+kiro-kit is a CLI tool distributed as a single npm package. It uses a pnpm
+monorepo for development but ships as one ESM bundle with all preset content
+embedded in the tarball.
+
+## Repository Layout
+
+```
+kk-kiro-kit/
+  packages/cli/         CLI source, tests, build config
+  presets/              6 preset directories (bundled into dist at build)
+  docs/                 Project documentation
+  .github/              CI workflows, issue/PR templates
+```
+
+## CLI Module Breakdown
+
+```
+packages/cli/src/
+  index.ts              Entry point (shebang, Node version check, commander setup)
+  commands/
+    init.ts             Interactive preset selection and file writing
+    add.ts              Add preset to existing workspace
+    list.ts             List available presets
+    info.ts             Show preset details
+    update.ts           Update installed presets
+    restore.ts          Restore from backup
+    doctor.ts           Health checks
+    telemetry.ts        Telemetry opt-in/out
+  core/
+    ManifestParser.ts   Zod-based manifest validation
+    PresetLoader.ts     Load and catalog bundled presets
+    ConflictResolver.ts 4-option interactive conflict resolution
+    BackupManager.ts    Timestamped backup and restore
+    TrackingStore.ts    Read/write .kiro/.kiro-kit.json
+    StatuslineSelector.ts  Platform-aware statusline command resolution
+    FrontMatterParser.ts   YAML front-matter extraction and validation
+    MetadataWriter.ts   Compose .kiro/metadata.json
+    merge/
+      mergeMCP.ts       User-priority MCP server merging
+      mergeSettings.ts  Settings array dedup and field merge
+      mergeHooks.ts     Hook file deduplication
+  prompts/
+    MultiPick.ts        Space-to-select preset picker
+    ConflictPrompt.ts   4-option conflict resolution UI
+    DiffViewer.ts       Unified diff with color
+  utils/
+    paths.ts            Cross-platform path helpers, traversal guard
+    color.ts            picocolors wrapper (NO_COLOR, isTTY aware)
+    fs-safe.ts          Atomic write (temp + rename)
+    hashing.ts          SHA-256 content hashing
+    logger.ts           Leveled logger (info/warn/error/success/debug)
+  core/errors.ts        KKError class with code, message, suggestion
+```
+
+## Key Design Decisions
+
+### Bundled Presets (Offline-First)
+
+All 6 presets are copied into `dist/presets/` at build time via tsup. The CLI
+reads preset content from its own package directory, requiring no network access
+after `npm install` or `npx` fetch.
+
+### Atomic Write Strategy
+
+File writes use a two-step process to prevent partial writes on crash or
+SIGINT:
+
+1. Write content to a temporary file (`.tmp.<random>`) in the same directory
+   as the target.
+2. Rename the temp file to the target path.
+
+Since `rename` is atomic on the same filesystem, this guarantees the target is
+either fully written or untouched. The temp file lives in the same directory to
+avoid cross-device rename failures on Windows.
+
+### User-Priority Merge
+
+When merging MCP servers, settings, or hook registrations:
+
+- Existing user content is never silently deleted or overwritten.
+- MCP servers: if a server name already exists, the user's definition is kept.
+- Settings arrays (hooks): deduplicated by `command` field; user entries first.
+- Non-array settings: last-write-wins with a warning logged.
+
+### Conflict Resolution
+
+When a target file exists with different content:
+
+1. Byte-equal check (SHA-256) - skip if identical (NO_OP).
+2. `--force` flag - overwrite with backup.
+3. `--skip-existing` flag - skip silently.
+4. Interactive mode - 4-option prompt (overwrite, skip, view diff, overwrite all).
+
+Backups are always created before overwriting.
+
+### Cross-Platform Considerations
+
+- Hooks ship as `.js` (primary, works everywhere Node runs) with `.sh` and
+  `.ps1` fallbacks for shell-native environments.
+- Statusline command in `settings.json` is resolved per `process.platform` at
+  init time (bash on Unix, PowerShell on Windows, Node as universal fallback).
+- Line endings: LF enforced for `.json`/`.yaml`/`.yml`; OS-default for
+  `.md`/`.sh`/`.ps1`/`.js`.
+- Path utilities guard against traversal outside the workspace root.
+
+### Tracking and State
+
+`.kiro/.kiro-kit.json` records which presets are installed, which files were
+written, and content hashes at install time. This enables:
+
+- `update` to diff against current bundled versions.
+- `doctor` to verify tracked files still exist.
+- Attribution of files to their source preset.
+
+The tracking file is always written last, after all file operations complete,
+to minimize stale state on interruption.
+
+### Error Handling
+
+All errors use the `KKError` class with:
+
+- A unique code (KK001-KK091) for programmatic handling.
+- A human-readable message.
+- A suggestion for resolution.
+
+Exit codes: 0 (success/no-op), 1 (business error), 2 (uncaught exception),
+130 (SIGINT).
+
+## Build Pipeline
+
+```
+tsup (ESM bundle)
+  -> compiles src/ to dist/
+  -> copies presets/ into dist/presets/
+  -> single package ready for npm publish
+```
+
+## Test Architecture
+
+```
+tests/
+  unit/           Module-level tests (parser, merger, resolver, etc.)
+  e2e/            Full command execution in temp directories
+  property/       fast-check property-based tests (round-trips, invariants)
+  structural/     Preset shape validation (min counts, front-matter, hooks)
+  fixtures/       Shared test data
+```

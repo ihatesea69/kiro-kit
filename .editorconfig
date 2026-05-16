@@ -1,0 +1,36 @@
+# EditorConfig: https://editorconfig.org/
+# Top-level config for the KK-Kiro-Kit monorepo.
+
+root = true
+
+# Default rules for all files.
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# JSON / YAML must use LF on every platform (Req 19.3).
+[*.{json,jsonc,yml,yaml}]
+end_of_line = lf
+indent_style = space
+indent_size = 2
+
+# Markdown / shell / PowerShell: keep OS-default line endings to avoid
+# rewriting line-endings on Windows checkouts. Trailing whitespace can
+# be meaningful in Markdown (line breaks), so we leave it alone there.
+[*.md]
+end_of_line = unset
+trim_trailing_whitespace = false
+
+[*.sh]
+end_of_line = unset
+
+[*.ps1]
+end_of_line = unset
+
+# Makefiles must use real tabs.
+[Makefile]
+indent_style = tab

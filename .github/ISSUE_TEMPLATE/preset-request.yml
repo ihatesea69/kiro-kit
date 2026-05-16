@@ -1,0 +1,53 @@
+name: Preset Request
+description: Request a new preset for kiro-kit
+labels: ["preset-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new preset. Please provide details about the stack or framework you would like supported.
+
+  - type: input
+    id: preset-name
+    attributes:
+      label: Preset Name
+      description: A short, kebab-case name for the preset.
+      placeholder: "e.g. rust, python-fastapi, svelte"
+    validations:
+      required: true
+
+  - type: input
+    id: target-stack
+    attributes:
+      label: Target Stack / Framework
+      description: The primary technology stack or framework this preset would cover.
+      placeholder: "e.g. Rust + Actix Web, Python + FastAPI, SvelteKit"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the purpose and scope of this preset. What kind of projects would it serve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: key-artifacts
+    attributes:
+      label: Key Artifacts Needed
+      description: List the agents, skills, commands, hooks, or other artifacts you think this preset should include.
+      placeholder: |
+        - Agents: linter, test-runner, deployment-manager
+        - Skills: framework-specific patterns, testing strategies
+        - Commands: build, deploy, migrate
+        - Hooks: pre-commit lint, type-check
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any references, examples, or other information that would help in creating this preset.

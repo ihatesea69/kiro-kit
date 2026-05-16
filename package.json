@@ -1,0 +1,25 @@
+{
+  "name": "kk-kiro-kit",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "KK-Kiro-Kit monorepo: CLI (npm) + 6 self-contained presets for bootstrapping engineer-grade Kiro workspaces.",
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "workspaces": [
+    "packages/*",
+    "presets/*"
+  ],
+  "scripts": {
+    "lint": "pnpm -r --if-present run lint",
+    "typecheck": "pnpm -r --if-present run typecheck",
+    "test": "pnpm -r --if-present run test",
+    "build": "pnpm -r --if-present run build",
+    "clean": "pnpm -r --if-present run clean"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ihatesea69/kiro-kit.git"

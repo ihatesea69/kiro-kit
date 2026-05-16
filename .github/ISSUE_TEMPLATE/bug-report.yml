@@ -1,0 +1,94 @@
+name: Bug Report
+description: Report a bug or unexpected behavior in kiro-kit
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug. Please fill out the information below to help us investigate.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of the bug.
+      placeholder: Describe what went wrong.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Run `npx kiro-kit init`
+        2. Select preset '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened. Include error messages or screenshots if applicable.
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      description: Your OS and version.
+      placeholder: "e.g. macOS 14.2, Windows 11, Ubuntu 22.04"
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js Version
+      description: Output of `node --version`.
+      placeholder: "e.g. v20.10.0"
+    validations:
+      required: true
+
+  - type: input
+    id: kiro-kit-version
+    attributes:
+      label: kiro-kit Version
+      description: Output of `npx kiro-kit --version`.
+      placeholder: "e.g. 1.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: preset
+    attributes:
+      label: Preset Used
+      description: Which preset were you using when the bug occurred?
+      options:
+        - frontend
+        - backend
+        - fullstack
+        - mobile
+        - devops
+        - data-ai
+        - N/A (not preset-specific)
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other context about the problem (logs, config, etc.).

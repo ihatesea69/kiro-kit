@@ -1,0 +1,45 @@
+---
+name: better-auth
+description: Implement authentication and authorization with modern patterns including OAuth 2.1, JWT, sessions, RBAC, and multi-factor authentication. Use when building auth systems.
+---
+
+# Better Auth
+
+Activate when implementing authentication or authorization systems.
+
+## When to Use
+
+- Adding authentication to an application
+- Implementing OAuth flows (Google, GitHub, Discord)
+- Setting up JWT or session-based auth
+- Implementing role-based access control (RBAC)
+- Adding multi-factor authentication (TOTP, SMS)
+- Managing user sessions and token refresh
+
+## Authentication Patterns
+
+### Session-Based (Recommended for Next.js)
+- Store sessions server-side (Redis for distributed)
+- Use httpOnly, secure, sameSite cookies
+- Implement session rotation on privilege escalation
+- Set absolute and idle timeouts
+
+### JWT (Stateless)
+- Short-lived access tokens (15-60 minutes)
+- Long-lived refresh tokens (7-30 days, stored securely)
+- Rotate refresh tokens on use
+- Include minimal claims (user ID, roles)
+
+### OAuth 2.1
+- Use PKCE for all flows
+- Validate state parameter to prevent CSRF
+- Store tokens encrypted at rest
+- Handle provider-specific scopes and claims
+
+## Security Rules
+
+- Hash passwords with bcrypt (cost 12+) or argon2id
+- Use constant-time comparison for tokens
+- Implement account lockout after failed attempts
+- Log all auth events for audit trail
+- Never store plain-text passwords or tokens
