@@ -7,12 +7,16 @@ import { KKError, ErrorCodes } from './errors.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function getPresetsDir(): string {
-  // In bundled dist: dist/presets/
-  // In dev: ../../presets/
-  const bundled = path.resolve(__dirname, '../presets');
-  if (fs.existsSync(bundled)) return bundled;
-  const dev = path.resolve(__dirname, '../../../../presets');
-  if (fs.existsSync(dev)) return dev;
+  // Try a couple of candidate locations so the loader works whether the
+  // bundle places presets next to index.js or one level up.
+  const candidates = [
+    path.resolve(__dirname, 'presets'),       // dist/presets (current bundle)
+    path.resolve(__dirname, '../presets'),     // legacy layout
+    path.resolve(__dirname, '../../../../presets'), // dev/source checkout
+  ];
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) return candidate;
+  }
   throw new KKError(
     ErrorCodes.PRESET_NOT_FOUND,
     'Cannot locate presets directory.',
