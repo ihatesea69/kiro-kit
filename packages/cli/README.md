@@ -1,7 +1,5 @@
 <div align="center">
 
-# kiro-kit
-
 [![npm version](https://img.shields.io/npm/v/kiro-kit?style=flat-square)](https://www.npmjs.com/package/kiro-kit)
 [![license](https://img.shields.io/npm/l/kiro-kit?style=flat-square)](https://github.com/ihatesea69/kiro-kit/blob/main/LICENSE)
 [![downloads](https://img.shields.io/npm/dm/kiro-kit?style=flat-square)](https://www.npmjs.com/package/kiro-kit)
