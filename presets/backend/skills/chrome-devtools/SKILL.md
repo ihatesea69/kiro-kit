@@ -1,6 +1,10 @@
 ---
 name: chrome-devtools
-description: Browser automation and debugging using Puppeteer for API testing, screenshot capture, and web scraping. Use when you need to interact with web interfaces programmatically.
+description: >-
+  Browser automation and debugging using Puppeteer for API testing, screenshot
+  capture, and web scraping. Use when you need to interact with web interfaces
+  programmatically.
+license: Apache-2.0
 ---
 
 # Chrome DevTools

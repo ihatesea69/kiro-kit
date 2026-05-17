@@ -1,6 +1,9 @@
 ---
 name: docs-seeker
-description: Search and retrieve technical documentation from official sources. Use when you need current documentation for libraries, frameworks, or APIs.
+description: >-
+  Search and retrieve technical documentation from official sources. Use when
+  you need current documentation for libraries, frameworks, or APIs.
+version: 3.1.0
 ---
 
 # Docs Seeker

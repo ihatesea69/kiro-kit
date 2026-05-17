@@ -1,6 +1,11 @@
 ---
 name: better-auth
-description: Implement authentication and authorization with modern patterns including OAuth 2.1, JWT, sessions, RBAC, and multi-factor authentication. Use when building auth systems.
+description: >-
+  Implement authentication and authorization with modern patterns including
+  OAuth 2.1, JWT, sessions, RBAC, and multi-factor authentication. Use when
+  building auth systems.
+license: MIT
+version: 2.0.0
 ---
 
 # Better Auth

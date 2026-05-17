@@ -1,6 +1,10 @@
 ---
 name: mcp-builder
-description: Build MCP (Model Context Protocol) servers for data and ML tool integration. Use when creating custom tool servers for database access, model inference, or data processing.
+description: >-
+  Build MCP (Model Context Protocol) servers for data and ML tool integration.
+  Use when creating custom tool servers for database access, model inference, or
+  data processing.
+license: Complete terms in LICENSE.txt
 ---
 
 # MCP Builder

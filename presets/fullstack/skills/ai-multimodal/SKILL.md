@@ -1,6 +1,15 @@
 ---
 name: ai-multimodal
-description: Process and generate multimedia content using Google Gemini API. Use when working with images, audio, video, or documents that need AI analysis or generation.
+description: >-
+  Process and generate multimedia content using Google Gemini API. Use when
+  working with images, audio, video, or documents that need AI analysis or
+  generation.
+license: MIT
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Edit
 ---
 
 # AI Multimodal

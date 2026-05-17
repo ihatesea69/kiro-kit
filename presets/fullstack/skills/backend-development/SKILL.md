@@ -1,6 +1,11 @@
 ---
 name: backend-development
-description: Build robust backend systems with Node.js, Python, or Go. Use when implementing APIs, services, middleware, or server-side logic following production-grade patterns.
+description: >-
+  Build robust backend systems with Node.js, Python, or Go. Use when
+  implementing APIs, services, middleware, or server-side logic following
+  production-grade patterns.
+license: MIT
+version: 1.0.0
 ---
 
 # Backend Development

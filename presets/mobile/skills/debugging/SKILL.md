@@ -1,6 +1,11 @@
 ---
 name: debugging
-description: Systematic debugging framework for investigating root causes before applying fixes. Use when encountering bugs, test failures, or unexpected behavior in mobile apps.
+description: >-
+  Systematic debugging framework for investigating root causes before applying
+  fixes. Use when encountering bugs, test failures, or unexpected behavior in
+  mobile apps.
+version: 3.0.0
+languages: all
 ---
 
 # Debugging

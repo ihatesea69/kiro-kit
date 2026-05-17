@@ -1,6 +1,10 @@
 ---
 name: planning
-description: Plan technical solutions that are scalable, secure, and maintainable. Use when you need to create implementation plans, evaluate architectures, or break down complex features.
+description: >-
+  Plan technical solutions that are scalable, secure, and maintainable. Use when
+  you need to create implementation plans, evaluate architectures, or break down
+  complex features.
+license: MIT
 ---
 
 # Planning

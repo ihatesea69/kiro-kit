@@ -1,6 +1,10 @@
 ---
 name: frontend-design
-description: Create distinctive, production-grade frontend interfaces with high design quality. Use when building web components, pages, or applications that need polished visual design.
+description: >-
+  Create distinctive, production-grade frontend interfaces with high design
+  quality. Use when building web components, pages, or applications that need
+  polished visual design.
+license: Complete terms in LICENSE.txt
 ---
 
 # Frontend Design

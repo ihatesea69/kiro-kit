@@ -1,6 +1,10 @@
 ---
 name: docs-seeker
-description: Search and retrieve technical documentation for data science libraries and ML frameworks. Use when you need to find API references, usage examples, or migration guides.
+description: >-
+  Search and retrieve technical documentation for data science libraries and ML
+  frameworks. Use when you need to find API references, usage examples, or
+  migration guides.
+version: 3.1.0
 ---
 
 # Docs Seeker

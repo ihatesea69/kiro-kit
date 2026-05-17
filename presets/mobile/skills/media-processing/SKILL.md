@@ -1,6 +1,10 @@
 ---
 name: media-processing
-description: Process multimedia files with FFmpeg and ImageMagick. Use when converting formats, optimizing assets, generating thumbnails, or preparing media for mobile apps.
+description: >-
+  Process multimedia files with FFmpeg and ImageMagick. Use when converting
+  formats, optimizing assets, generating thumbnails, or preparing media for
+  mobile apps.
+license: MIT
 ---
 
 # Media Processing

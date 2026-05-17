@@ -1,6 +1,11 @@
 ---
 name: backend-development
-description: Build backend systems with modern technologies, APIs, authentication, and security best practices. Use when implementing server-side logic or API endpoints.
+description: >-
+  Build backend systems with modern technologies, APIs, authentication, and
+  security best practices. Use when implementing server-side logic or API
+  endpoints.
+license: MIT
+version: 1.0.0
 ---
 
 # Backend Development

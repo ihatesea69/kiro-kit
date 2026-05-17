@@ -1,6 +1,9 @@
 ---
 name: planning
-description: Plan technical solutions for data science and ML projects. Use when designing experiments, architecting pipelines, or scoping ML features.
+description: >-
+  Plan technical solutions for data science and ML projects. Use when designing
+  experiments, architecting pipelines, or scoping ML features.
+license: MIT
 ---
 
 # Planning

@@ -1,6 +1,11 @@
 ---
 name: sequential-thinking
-description: Apply structured, reflective problem-solving for complex tasks requiring multi-step analysis and revision. Use for complex decomposition or when you need to think step by step.
+description: >-
+  Apply structured, reflective problem-solving for complex tasks requiring
+  multi-step analysis and revision. Use for complex decomposition or when you
+  need to think step by step.
+version: 1.0.0
+license: MIT
 ---
 
 # Sequential Thinking

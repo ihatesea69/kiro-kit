@@ -1,6 +1,9 @@
 ---
 name: problem-solving
-description: Apply systematic problem-solving techniques for complexity spirals, innovation blocks, recurring patterns, and assumption constraints.
+description: >-
+  Apply systematic problem-solving techniques for complexity spirals, innovation
+  blocks, recurring patterns, and assumption constraints.
+version: 2.0.0
 ---
 
 # Problem Solving

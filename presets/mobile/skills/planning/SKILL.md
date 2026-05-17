@@ -1,6 +1,10 @@
 ---
 name: planning
-description: Plan technical solutions that are scalable, secure, and maintainable. Use when you need to decompose features, evaluate approaches, or create implementation plans.
+description: >-
+  Plan technical solutions that are scalable, secure, and maintainable. Use when
+  you need to decompose features, evaluate approaches, or create implementation
+  plans.
+license: MIT
 ---
 
 # Planning

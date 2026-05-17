@@ -1,6 +1,11 @@
 ---
 name: ui-styling
-description: Style interfaces with Tailwind CSS, shadcn/ui components, and design tokens. Use when implementing visual designs, theming, or building accessible UI components.
+description: >-
+  Style interfaces with Tailwind CSS, shadcn/ui components, and design tokens.
+  Use when implementing visual designs, theming, or building accessible UI
+  components.
+license: MIT
+version: 1.0.0
 ---
 
 # UI Styling

@@ -1,6 +1,11 @@
 ---
 name: web-frameworks
-description: Build companion web applications or admin panels with Next.js and React. Use when the mobile project needs a web dashboard, landing page, or backend admin interface.
+description: >-
+  Build companion web applications or admin panels with Next.js and React. Use
+  when the mobile project needs a web dashboard, landing page, or backend admin
+  interface.
+license: MIT
+version: 1.0.0
 ---
 
 # Web Frameworks

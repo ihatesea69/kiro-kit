@@ -1,6 +1,14 @@
 ---
 name: ai-multimodal
-description: Process and generate multimedia content using AI APIs. Use when working with images, audio, video, or document analysis.
+description: >-
+  Process and generate multimedia content using AI APIs. Use when working with
+  images, audio, video, or document analysis.
+license: MIT
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Edit
 ---
 
 # AI Multimodal

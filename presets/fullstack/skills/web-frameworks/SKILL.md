@@ -1,6 +1,11 @@
 ---
 name: web-frameworks
-description: Build full-stack web applications with Next.js App Router, Server Components, and React patterns. Use when working with routing, rendering, or data fetching.
+description: >-
+  Build full-stack web applications with Next.js App Router, Server Components,
+  and React patterns. Use when working with routing, rendering, or data
+  fetching.
+license: MIT
+version: 1.0.0
 ---
 
 # Web Frameworks

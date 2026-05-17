@@ -1,6 +1,11 @@
 ---
 name: mobile-development
-description: Build mobile applications with Flutter and React Native. Use when implementing screens, widgets, navigation, platform-specific features, or optimizing for mobile constraints.
+description: >-
+  Build mobile applications with Flutter and React Native. Use when implementing
+  screens, widgets, navigation, platform-specific features, or optimizing for
+  mobile constraints.
+license: MIT
+version: 1.0.0
 ---
 
 # Mobile Development

@@ -1,6 +1,11 @@
 ---
 name: devops
-description: Deploy and manage cloud infrastructure with Docker, Kubernetes, Terraform, and CI/CD pipelines. Use when working with containers, orchestration, IaC, or cloud platforms.
+description: >-
+  Deploy and manage cloud infrastructure with Docker, Kubernetes, Terraform, and
+  CI/CD pipelines. Use when working with containers, orchestration, IaC, or
+  cloud platforms.
+license: MIT
+version: 1.0.0
 ---
 
 # DevOps

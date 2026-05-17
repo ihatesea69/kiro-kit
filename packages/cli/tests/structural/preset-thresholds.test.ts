@@ -53,22 +53,22 @@ describe('preset thresholds', () => {
     describe(`preset: ${preset}`, () => {
       const presetDir = path.join(presetsDir, preset);
 
-      it('has >= 12 agents', () => {
+      it('has >= 16 agents', () => {
         const agentsDir = path.join(presetDir, 'agents');
         const count = countMdFiles(agentsDir);
-        expect(count).toBeGreaterThanOrEqual(12);
+        expect(count).toBeGreaterThanOrEqual(16);
       });
 
-      it('has >= 20 skills', () => {
+      it('has >= 22 skills', () => {
         const skillsDir = path.join(presetDir, 'skills');
         const count = countSkillFolders(skillsDir);
-        expect(count).toBeGreaterThanOrEqual(20);
+        expect(count).toBeGreaterThanOrEqual(22);
       });
 
-      it('has >= 25 commands', () => {
+      it('has >= 40 commands', () => {
         const commandsDir = path.join(presetDir, 'commands');
         const count = countMdFiles(commandsDir);
-        expect(count).toBeGreaterThanOrEqual(25);
+        expect(count).toBeGreaterThanOrEqual(40);
       });
 
       it('has >= 6 hooks', () => {

@@ -1,6 +1,9 @@
 ---
 name: skill-creator
-description: Guide for creating effective agent skills. Use when users want to create or update skills that extend agent capabilities.
+description: >-
+  Guide for creating effective agent skills. Use when users want to create or
+  update skills that extend agent capabilities.
+license: Complete terms in LICENSE.txt
 ---
 
 # Skill Creator

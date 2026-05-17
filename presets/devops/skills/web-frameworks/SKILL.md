@@ -1,6 +1,10 @@
 ---
 name: web-frameworks
-description: Build web applications with modern frameworks (Next.js, Express, Fastify). Use when implementing web services or server-side applications.
+description: >-
+  Build web applications with modern frameworks (Next.js, Express, Fastify). Use
+  when implementing web services or server-side applications.
+license: MIT
+version: 1.0.0
 ---
 
 # Web Frameworks
