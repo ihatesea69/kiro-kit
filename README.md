@@ -2,10 +2,6 @@
 
 <img src="./assets/banner.png" alt="kiro-kit" width="100%" />
 
-# kiro-kit
-
-**Engineer-grade [Kiro IDE](https://kiro.dev) workspaces. One command.**
-
 [![CI](https://img.shields.io/github/actions/workflow/status/ihatesea69/kiro-kit/ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/ihatesea69/kiro-kit/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/kiro-kit?style=flat-square)](https://www.npmjs.com/package/kiro-kit)
 [![license](https://img.shields.io/npm/l/kiro-kit?style=flat-square)](./LICENSE)
