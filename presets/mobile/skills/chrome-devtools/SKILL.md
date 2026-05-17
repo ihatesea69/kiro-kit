@@ -1,6 +1,9 @@
 ---
 name: chrome-devtools
-description: Browser automation, debugging, and analysis using Puppeteer. Use for web-based testing, screenshot capture, or debugging web views in mobile apps.
+description: >-
+  Browser automation, debugging, and analysis using Puppeteer. Use for web-based
+  testing, screenshot capture, or debugging web views in mobile apps.
+license: Apache-2.0
 ---
 
 # Chrome DevTools

@@ -24,14 +24,14 @@ Pick from 6 curated presets, confirm, and your `.kiro/` workspace is ready. Agen
 
 | Preset | Stack | What you get |
 |--------|-------|--------------|
-| `frontend` | React, Next.js, TypeScript | 20 agents, 21 skills, 28 commands tailored for component architecture, accessibility, and performance |
-| `backend` | Node, Python, Go APIs | API design, database management, auth, deployment patterns |
-| `fullstack` | Next.js, T3 stack | Frontend plus backend, payment integration, e-commerce |
-| `mobile` | Flutter, React Native | Mobile-first patterns, ai-multimodal, ui-styling |
-| `devops` | Docker, Kubernetes, Terraform | CI checks, container scanning, infrastructure as code |
-| `data-ai` | Python, ML, AI agents | Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
+| `frontend` | React, Next.js, TypeScript | 20 agents, 23 skills, 71 commands tailored for component architecture, accessibility, and performance |
+| `backend` | Node, Python, Go APIs | 19 agents, 24 skills, 66 commands for API design, database management, auth, deployment patterns |
+| `fullstack` | Next.js, T3 stack | 20 agents, 30 skills, 73 commands covering frontend plus backend, payment integration, e-commerce |
+| `mobile` | Flutter, React Native | 23 agents, 28 skills, 71 commands for mobile-first patterns, ai-multimodal, ui-styling |
+| `devops` | Docker, Kubernetes, Terraform | 20 agents, 26 skills, 65 commands for CI checks, container scanning, infrastructure as code |
+| `data-ai` | Python, ML, AI agents | 20 agents, 30 skills, 70 commands for Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
 
-Every preset is **self-contained** with 12+ agents, 20+ skills, 25+ commands, 6+ cross-platform hooks, 4+ workflows, plus statusline scripts, MCP server templates, and spec scaffolding.
+Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 6+ cross-platform hooks, 4+ workflows, plus statusline scripts, MCP server templates, and spec scaffolding.
 
 ## Commands
 

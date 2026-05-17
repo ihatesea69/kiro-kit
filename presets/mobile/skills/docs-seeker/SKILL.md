@@ -1,6 +1,9 @@
 ---
 name: docs-seeker
-description: Search and retrieve technical documentation from official sources. Use when you need current API references, framework guides, or package documentation.
+description: >-
+  Search and retrieve technical documentation from official sources. Use when
+  you need current API references, framework guides, or package documentation.
+version: 3.1.0
 ---
 
 # Docs Seeker

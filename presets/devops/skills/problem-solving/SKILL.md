@@ -1,6 +1,10 @@
 ---
 name: problem-solving
-description: Apply systematic problem-solving techniques for complexity spirals, innovation blocks, recurring patterns, and scale uncertainty. Use when stuck or facing non-obvious challenges.
+description: >-
+  Apply systematic problem-solving techniques for complexity spirals, innovation
+  blocks, recurring patterns, and scale uncertainty. Use when stuck or facing
+  non-obvious challenges.
+version: 2.0.0
 ---
 
 # Problem Solving

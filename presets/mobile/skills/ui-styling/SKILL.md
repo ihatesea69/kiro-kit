@@ -1,6 +1,11 @@
 ---
 name: ui-styling
-description: Create platform-adaptive mobile interfaces with proper theming, responsive layouts, and design system components. Use when styling widgets or implementing design tokens.
+description: >-
+  Create platform-adaptive mobile interfaces with proper theming, responsive
+  layouts, and design system components. Use when styling widgets or
+  implementing design tokens.
+license: MIT
+version: 1.0.0
 ---
 
 # UI Styling

@@ -1,6 +1,11 @@
 ---
 name: devops
-description: Deploy and manage infrastructure with Docker, CI/CD pipelines, and cloud services. Use when containerizing, deploying, or managing production infrastructure.
+description: >-
+  Deploy and manage infrastructure with Docker, CI/CD pipelines, and cloud
+  services. Use when containerizing, deploying, or managing production
+  infrastructure.
+license: MIT
+version: 1.0.0
 ---
 
 # DevOps

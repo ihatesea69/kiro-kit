@@ -1,6 +1,10 @@
 ---
 name: databases
-description: Work with PostgreSQL, MongoDB, and Redis for schema design, query optimization, migrations, and data modeling. Use when designing or optimizing data layers.
+description: >-
+  Work with PostgreSQL, MongoDB, and Redis for schema design, query
+  optimization, migrations, and data modeling. Use when designing or optimizing
+  data layers.
+license: MIT
 ---
 
 # Databases

@@ -1,6 +1,10 @@
 ---
 name: databases
-description: Work with databases (PostgreSQL, MySQL, MongoDB) for schema design, query optimization, migrations, and administration. Use when dealing with data layer concerns.
+description: >-
+  Work with databases (PostgreSQL, MySQL, MongoDB) for schema design, query
+  optimization, migrations, and administration. Use when dealing with data layer
+  concerns.
+license: MIT
 ---
 
 # Databases

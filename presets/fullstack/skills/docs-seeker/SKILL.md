@@ -1,6 +1,9 @@
 ---
 name: docs-seeker
-description: Search and discover technical documentation using llms.txt sources and context7.com. Use when you need library or framework documentation.
+description: >-
+  Search and discover technical documentation using llms.txt sources and
+  context7.com. Use when you need library or framework documentation.
+version: 3.1.0
 ---
 
 # Docs Seeker

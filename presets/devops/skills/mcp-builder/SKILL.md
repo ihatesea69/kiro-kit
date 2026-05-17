@@ -1,6 +1,9 @@
 ---
 name: mcp-builder
-description: Guide for creating MCP (Model Context Protocol) servers that enable LLMs to interact with external services. Use when building MCP integrations.
+description: >-
+  Guide for creating MCP (Model Context Protocol) servers that enable LLMs to
+  interact with external services. Use when building MCP integrations.
+license: Complete terms in LICENSE.txt
 ---
 
 # MCP Builder

@@ -1,6 +1,11 @@
 ---
 name: payment-integration
-description: Implement payment processing with Stripe, Polar, or SePay. Use when building checkout flows, subscriptions, usage-based billing, or handling payment webhooks.
+description: >-
+  Implement payment processing with Stripe, Polar, or SePay. Use when building
+  checkout flows, subscriptions, usage-based billing, or handling payment
+  webhooks.
+version: 1.0.0
+license: MIT
 ---
 
 # Payment Integration

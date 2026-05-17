@@ -1,6 +1,10 @@
 ---
 name: debugging
-description: Systematic debugging framework for data and ML code. Use when encountering bugs, test failures, unexpected model behavior, or data quality issues.
+description: >-
+  Systematic debugging framework for data and ML code. Use when encountering
+  bugs, test failures, unexpected model behavior, or data quality issues.
+version: 3.0.0
+languages: all
 ---
 
 # Debugging

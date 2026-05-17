@@ -1,6 +1,9 @@
 ---
 name: skill-creator
-description: Guide for creating effective skills that extend agent capabilities with specialized knowledge and workflows. Use when building new skills.
+description: >-
+  Guide for creating effective skills that extend agent capabilities with
+  specialized knowledge and workflows. Use when building new skills.
+license: Complete terms in LICENSE.txt
 ---
 
 # Skill Creator

@@ -1,6 +1,10 @@
 ---
 name: docs-seeker
-description: Search technical documentation using automated scripts to find relevant library, framework, or tool documentation. Use when you need official docs for a specific technology.
+description: >-
+  Search technical documentation using automated scripts to find relevant
+  library, framework, or tool documentation. Use when you need official docs for
+  a specific technology.
+version: 3.1.0
 ---
 
 # Docs Seeker

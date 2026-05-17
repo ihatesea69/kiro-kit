@@ -1,6 +1,10 @@
 ---
 name: problem-solving
-description: Apply systematic problem-solving techniques for data science and ML challenges. Use when stuck on complexity, innovation blocks, or recurring patterns.
+description: >-
+  Apply systematic problem-solving techniques for data science and ML
+  challenges. Use when stuck on complexity, innovation blocks, or recurring
+  patterns.
+version: 2.0.0
 ---
 
 # Problem Solving

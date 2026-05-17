@@ -1,6 +1,10 @@
 ---
 name: debugging
-description: Systematic debugging framework for root cause investigation. Use when encountering bugs, test failures, unexpected behavior, or performance issues.
+description: >-
+  Systematic debugging framework for root cause investigation. Use when
+  encountering bugs, test failures, unexpected behavior, or performance issues.
+version: 3.0.0
+languages: all
 ---
 
 # Debugging

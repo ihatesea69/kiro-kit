@@ -4,150 +4,2281 @@
   "description": "Comprehensive kit for Flutter and React Native mobile development with 23 agents, 25 skills, and mobile-specific tooling",
   "category": "mobile",
   "files": [
-    { "source": "agents/accessibility-auditor.md", "target": ".kiro/agents/accessibility-auditor.md", "type": "agent" },
-    { "source": "agents/brainstormer.md", "target": ".kiro/agents/brainstormer.md", "type": "agent" },
-    { "source": "agents/code-reviewer.md", "target": ".kiro/agents/code-reviewer.md", "type": "agent" },
-    { "source": "agents/copywriter.md", "target": ".kiro/agents/copywriter.md", "type": "agent" },
-    { "source": "agents/database-admin.md", "target": ".kiro/agents/database-admin.md", "type": "agent" },
-    { "source": "agents/debugger.md", "target": ".kiro/agents/debugger.md", "type": "agent" },
-    { "source": "agents/docs-manager.md", "target": ".kiro/agents/docs-manager.md", "type": "agent" },
-    { "source": "agents/git-manager.md", "target": ".kiro/agents/git-manager.md", "type": "agent" },
-    { "source": "agents/journal-writer.md", "target": ".kiro/agents/journal-writer.md", "type": "agent" },
-    { "source": "agents/mcp-manager.md", "target": ".kiro/agents/mcp-manager.md", "type": "agent" },
-    { "source": "agents/mobile-developer.md", "target": ".kiro/agents/mobile-developer.md", "type": "agent" },
-    { "source": "agents/navigation-architect.md", "target": ".kiro/agents/navigation-architect.md", "type": "agent" },
-    { "source": "agents/performance-optimizer.md", "target": ".kiro/agents/performance-optimizer.md", "type": "agent" },
-    { "source": "agents/planner.md", "target": ".kiro/agents/planner.md", "type": "agent" },
-    { "source": "agents/platform-specialist.md", "target": ".kiro/agents/platform-specialist.md", "type": "agent" },
-    { "source": "agents/project-manager.md", "target": ".kiro/agents/project-manager.md", "type": "agent" },
-    { "source": "agents/researcher.md", "target": ".kiro/agents/researcher.md", "type": "agent" },
-    { "source": "agents/scout-external.md", "target": ".kiro/agents/scout-external.md", "type": "agent" },
-    { "source": "agents/scout.md", "target": ".kiro/agents/scout.md", "type": "agent" },
-    { "source": "agents/state-manager.md", "target": ".kiro/agents/state-manager.md", "type": "agent" },
-    { "source": "agents/tester.md", "target": ".kiro/agents/tester.md", "type": "agent" },
-    { "source": "agents/ui-ux-designer.md", "target": ".kiro/agents/ui-ux-designer.md", "type": "agent" },
-    { "source": "agents/widget-architect.md", "target": ".kiro/agents/widget-architect.md", "type": "agent" },
-    { "source": "skills/ai-multimodal/SKILL.md", "target": ".kiro/skills/ai-multimodal/SKILL.md", "type": "skill" },
-    { "source": "skills/app-deployment/SKILL.md", "target": ".kiro/skills/app-deployment/SKILL.md", "type": "skill" },
-    { "source": "skills/chrome-devtools/SKILL.md", "target": ".kiro/skills/chrome-devtools/SKILL.md", "type": "skill" },
-    { "source": "skills/code-review/SKILL.md", "target": ".kiro/skills/code-review/SKILL.md", "type": "skill" },
-    { "source": "skills/debugging/SKILL.md", "target": ".kiro/skills/debugging/SKILL.md", "type": "skill" },
-    { "source": "skills/docs-seeker/SKILL.md", "target": ".kiro/skills/docs-seeker/SKILL.md", "type": "skill" },
-    { "source": "skills/flutter-state/SKILL.md", "target": ".kiro/skills/flutter-state/SKILL.md", "type": "skill" },
-    { "source": "skills/frontend-design/SKILL.md", "target": ".kiro/skills/frontend-design/SKILL.md", "type": "skill" },
-    { "source": "skills/frontend-development/SKILL.md", "target": ".kiro/skills/frontend-development/SKILL.md", "type": "skill" },
-    { "source": "skills/mcp-builder/SKILL.md", "target": ".kiro/skills/mcp-builder/SKILL.md", "type": "skill" },
-    { "source": "skills/mcp-management/SKILL.md", "target": ".kiro/skills/mcp-management/SKILL.md", "type": "skill" },
-    { "source": "skills/media-processing/SKILL.md", "target": ".kiro/skills/media-processing/SKILL.md", "type": "skill" },
-    { "source": "skills/mobile-development/SKILL.md", "target": ".kiro/skills/mobile-development/SKILL.md", "type": "skill" },
-    { "source": "skills/mobile-testing/SKILL.md", "target": ".kiro/skills/mobile-testing/SKILL.md", "type": "skill" },
-    { "source": "skills/native-integration/SKILL.md", "target": ".kiro/skills/native-integration/SKILL.md", "type": "skill" },
-    { "source": "skills/offline-first/SKILL.md", "target": ".kiro/skills/offline-first/SKILL.md", "type": "skill" },
-    { "source": "skills/planning/SKILL.md", "target": ".kiro/skills/planning/SKILL.md", "type": "skill" },
-    { "source": "skills/problem-solving/SKILL.md", "target": ".kiro/skills/problem-solving/SKILL.md", "type": "skill" },
-    { "source": "skills/repomix/SKILL.md", "target": ".kiro/skills/repomix/SKILL.md", "type": "skill" },
-    { "source": "skills/research/SKILL.md", "target": ".kiro/skills/research/SKILL.md", "type": "skill" },
-    { "source": "skills/sequential-thinking/SKILL.md", "target": ".kiro/skills/sequential-thinking/SKILL.md", "type": "skill" },
-    { "source": "skills/skill-creator/SKILL.md", "target": ".kiro/skills/skill-creator/SKILL.md", "type": "skill" },
-    { "source": "skills/template-skill/SKILL.md", "target": ".kiro/skills/template-skill/SKILL.md", "type": "skill" },
-    { "source": "skills/ui-styling/SKILL.md", "target": ".kiro/skills/ui-styling/SKILL.md", "type": "skill" },
-    { "source": "skills/web-frameworks/SKILL.md", "target": ".kiro/skills/web-frameworks/SKILL.md", "type": "skill" },
-    { "source": "skills/README.md", "target": ".kiro/skills/README.md", "type": "doc" },
-    { "source": "skills/INSTALLATION.md", "target": ".kiro/skills/INSTALLATION.md", "type": "doc" },
-    { "source": "skills/THIRD_PARTY_NOTICES.md", "target": ".kiro/skills/THIRD_PARTY_NOTICES.md", "type": "doc" },
-    { "source": "skills/agent_skills_spec.md", "target": ".kiro/skills/agent_skills_spec.md", "type": "doc" },
-    { "source": "skills/.env.example", "target": ".kiro/skills/.env.example", "type": "config" },
-    { "source": "commands/bootstrap.md", "target": ".kiro/commands/bootstrap.md", "type": "command" },
-    { "source": "commands/clean.md", "target": ".kiro/commands/clean.md", "type": "command" },
-    { "source": "commands/lint.md", "target": ".kiro/commands/lint.md", "type": "command" },
-    { "source": "commands/release.md", "target": ".kiro/commands/release.md", "type": "command" },
-    { "source": "commands/scout.md", "target": ".kiro/commands/scout.md", "type": "command" },
-    { "source": "commands/test.md", "target": ".kiro/commands/test.md", "type": "command" },
-    { "source": "commands/design/figma.md", "target": ".kiro/commands/design/figma.md", "type": "command" },
-    { "source": "commands/design/system.md", "target": ".kiro/commands/design/system.md", "type": "command" },
-    { "source": "commands/design/wireframe.md", "target": ".kiro/commands/design/wireframe.md", "type": "command" },
-    { "source": "commands/docs/architecture.md", "target": ".kiro/commands/docs/architecture.md", "type": "command" },
-    { "source": "commands/docs/summarize.md", "target": ".kiro/commands/docs/summarize.md", "type": "command" },
-    { "source": "commands/docs/update.md", "target": ".kiro/commands/docs/update.md", "type": "command" },
-    { "source": "commands/fix/build.md", "target": ".kiro/commands/fix/build.md", "type": "command" },
-    { "source": "commands/fix/lint.md", "target": ".kiro/commands/fix/lint.md", "type": "command" },
-    { "source": "commands/fix/tests.md", "target": ".kiro/commands/fix/tests.md", "type": "command" },
-    { "source": "commands/git/branch.md", "target": ".kiro/commands/git/branch.md", "type": "command" },
-    { "source": "commands/git/commit.md", "target": ".kiro/commands/git/commit.md", "type": "command" },
-    { "source": "commands/git/pr.md", "target": ".kiro/commands/git/pr.md", "type": "command" },
-    { "source": "commands/mobile/navigation.md", "target": ".kiro/commands/mobile/navigation.md", "type": "command" },
-    { "source": "commands/mobile/platform.md", "target": ".kiro/commands/mobile/platform.md", "type": "command" },
-    { "source": "commands/mobile/screen.md", "target": ".kiro/commands/mobile/screen.md", "type": "command" },
-    { "source": "commands/mobile/widget.md", "target": ".kiro/commands/mobile/widget.md", "type": "command" },
-    { "source": "commands/plan/feature.md", "target": ".kiro/commands/plan/feature.md", "type": "command" },
-    { "source": "commands/plan/refactor.md", "target": ".kiro/commands/plan/refactor.md", "type": "command" },
-    { "source": "commands/review/code.md", "target": ".kiro/commands/review/code.md", "type": "command" },
-    { "source": "commands/review/security.md", "target": ".kiro/commands/review/security.md", "type": "command" },
-    { "source": "commands/scout/ext.md", "target": ".kiro/commands/scout/ext.md", "type": "command" },
-    { "source": "commands/skill/add.md", "target": ".kiro/commands/skill/add.md", "type": "command" },
-    { "source": "commands/skill/create.md", "target": ".kiro/commands/skill/create.md", "type": "command" },
-    { "source": "commands/skill/optimize.md", "target": ".kiro/commands/skill/optimize.md", "type": "command" },
-    { "source": "hooks/scout-block.js", "target": ".kiro/hooks/scout-block.js", "type": "hook", "executable": true },
-    { "source": "hooks/scout-block.sh", "target": ".kiro/hooks/scout-block.sh", "type": "hook", "executable": true },
-    { "source": "hooks/scout-block.ps1", "target": ".kiro/hooks/scout-block.ps1", "type": "hook" },
-    { "source": "hooks/modularization-hook.js", "target": ".kiro/hooks/modularization-hook.js", "type": "hook", "executable": true },
-    { "source": "hooks/discord-notify.js", "target": ".kiro/hooks/discord-notify.js", "type": "hook", "executable": true },
-    { "source": "hooks/discord-notify.sh", "target": ".kiro/hooks/discord-notify.sh", "type": "hook", "executable": true },
-    { "source": "hooks/discord-notify.ps1", "target": ".kiro/hooks/discord-notify.ps1", "type": "hook" },
-    { "source": "hooks/telegram-notify.js", "target": ".kiro/hooks/telegram-notify.js", "type": "hook", "executable": true },
-    { "source": "hooks/telegram-notify.sh", "target": ".kiro/hooks/telegram-notify.sh", "type": "hook", "executable": true },
-    { "source": "hooks/telegram-notify.ps1", "target": ".kiro/hooks/telegram-notify.ps1", "type": "hook" },
-    { "source": "hooks/pre-commit-lint.js", "target": ".kiro/hooks/pre-commit-lint.js", "type": "hook", "executable": true },
-    { "source": "hooks/git-status-tracker.js", "target": ".kiro/hooks/git-status-tracker.js", "type": "hook", "executable": true },
-    { "source": "hooks/.env.example", "target": ".kiro/hooks/.env.example", "type": "config" },
-    { "source": "hooks/README.md", "target": ".kiro/hooks/README.md", "type": "doc" },
-    { "source": "workflows/primary-workflow.md", "target": ".kiro/workflows/primary-workflow.md", "type": "workflow" },
-    { "source": "workflows/development-rules.md", "target": ".kiro/workflows/development-rules.md", "type": "workflow" },
-    { "source": "workflows/orchestration-protocol.md", "target": ".kiro/workflows/orchestration-protocol.md", "type": "workflow" },
-    { "source": "workflows/documentation-management.md", "target": ".kiro/workflows/documentation-management.md", "type": "workflow" },
-    { "source": "steering/flutter-conventions.md", "target": ".kiro/steering/flutter-conventions.md", "type": "steering" },
-    { "source": "steering/mobile-patterns.md", "target": ".kiro/steering/mobile-patterns.md", "type": "steering" },
-    { "source": "settings.json", "target": ".kiro/settings/settings.json", "type": "config" },
-    { "source": "statusline.js", "target": ".kiro/statusline.js", "type": "config", "executable": true },
-    { "source": "statusline.sh", "target": ".kiro/statusline.sh", "type": "config", "executable": true },
-    { "source": "statusline.ps1", "target": ".kiro/statusline.ps1", "type": "config" },
-    { "source": ".mcp.json.example", "target": ".kiro/settings/mcp.json.example", "type": "config" },
-    { "source": ".env.example", "target": ".env.example", "type": "config" },
-    { "source": "specs/_templates/mobile/requirements.md", "target": ".kiro/specs/_templates/mobile/requirements.md", "type": "spec" },
-    { "source": "specs/_templates/mobile/design.md", "target": ".kiro/specs/_templates/mobile/design.md", "type": "spec" },
-    { "source": "specs/_templates/mobile/tasks.md", "target": ".kiro/specs/_templates/mobile/tasks.md", "type": "spec" },
-    { "source": "docs/code-standards.md", "target": "docs/code-standards.md", "type": "doc" },
-    { "source": "docs/system-architecture.md", "target": "docs/system-architecture.md", "type": "doc" },
-    { "source": "docs/project-roadmap.md", "target": "docs/project-roadmap.md", "type": "doc" }
+    {
+      "source": ".env.example",
+      "target": ".env.example",
+      "type": "config"
+    },
+    {
+      "source": "agents/accessibility-auditor.md",
+      "target": ".kiro/agents/accessibility-auditor.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/brainstormer.md",
+      "target": ".kiro/agents/brainstormer.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/code-reviewer.md",
+      "target": ".kiro/agents/code-reviewer.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/copywriter.md",
+      "target": ".kiro/agents/copywriter.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/database-admin.md",
+      "target": ".kiro/agents/database-admin.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/debugger.md",
+      "target": ".kiro/agents/debugger.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/docs-manager.md",
+      "target": ".kiro/agents/docs-manager.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/git-manager.md",
+      "target": ".kiro/agents/git-manager.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/journal-writer.md",
+      "target": ".kiro/agents/journal-writer.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/mcp-manager.md",
+      "target": ".kiro/agents/mcp-manager.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/mobile-developer.md",
+      "target": ".kiro/agents/mobile-developer.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/navigation-architect.md",
+      "target": ".kiro/agents/navigation-architect.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/performance-optimizer.md",
+      "target": ".kiro/agents/performance-optimizer.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/planner.md",
+      "target": ".kiro/agents/planner.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/platform-specialist.md",
+      "target": ".kiro/agents/platform-specialist.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/project-manager.md",
+      "target": ".kiro/agents/project-manager.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/researcher.md",
+      "target": ".kiro/agents/researcher.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/scout-external.md",
+      "target": ".kiro/agents/scout-external.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/scout.md",
+      "target": ".kiro/agents/scout.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/state-manager.md",
+      "target": ".kiro/agents/state-manager.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/tester.md",
+      "target": ".kiro/agents/tester.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/ui-ux-designer.md",
+      "target": ".kiro/agents/ui-ux-designer.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/widget-architect.md",
+      "target": ".kiro/agents/widget-architect.md",
+      "type": "agent"
+    },
+    {
+      "source": "commands/ask.md",
+      "target": ".kiro/commands/ask.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/bootstrap.md",
+      "target": ".kiro/commands/bootstrap.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/bootstrap/auto.md",
+      "target": ".kiro/commands/bootstrap/auto.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/bootstrap/auto/fast.md",
+      "target": ".kiro/commands/bootstrap/auto/fast.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/brainstorm.md",
+      "target": ".kiro/commands/brainstorm.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/clean.md",
+      "target": ".kiro/commands/clean.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/code.md",
+      "target": ".kiro/commands/code.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/content/cro.md",
+      "target": ".kiro/commands/content/cro.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/content/enhance.md",
+      "target": ".kiro/commands/content/enhance.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/content/fast.md",
+      "target": ".kiro/commands/content/fast.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/content/good.md",
+      "target": ".kiro/commands/content/good.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/cook.md",
+      "target": ".kiro/commands/cook.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/cook/auto.md",
+      "target": ".kiro/commands/cook/auto.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/cook/auto/fast.md",
+      "target": ".kiro/commands/cook/auto/fast.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/debug.md",
+      "target": ".kiro/commands/debug.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/design/3d.md",
+      "target": ".kiro/commands/design/3d.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/design/describe.md",
+      "target": ".kiro/commands/design/describe.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/design/fast.md",
+      "target": ".kiro/commands/design/fast.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/design/figma.md",
+      "target": ".kiro/commands/design/figma.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/design/good.md",
+      "target": ".kiro/commands/design/good.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/design/screenshot.md",
+      "target": ".kiro/commands/design/screenshot.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/design/system.md",
+      "target": ".kiro/commands/design/system.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/design/video.md",
+      "target": ".kiro/commands/design/video.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/design/wireframe.md",
+      "target": ".kiro/commands/design/wireframe.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/docs/architecture.md",
+      "target": ".kiro/commands/docs/architecture.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/docs/init.md",
+      "target": ".kiro/commands/docs/init.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/docs/summarize.md",
+      "target": ".kiro/commands/docs/summarize.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/docs/update.md",
+      "target": ".kiro/commands/docs/update.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix.md",
+      "target": ".kiro/commands/fix.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/build.md",
+      "target": ".kiro/commands/fix/build.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/ci.md",
+      "target": ".kiro/commands/fix/ci.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/fast.md",
+      "target": ".kiro/commands/fix/fast.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/hard.md",
+      "target": ".kiro/commands/fix/hard.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/lint.md",
+      "target": ".kiro/commands/fix/lint.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/logs.md",
+      "target": ".kiro/commands/fix/logs.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/test.md",
+      "target": ".kiro/commands/fix/test.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/tests.md",
+      "target": ".kiro/commands/fix/tests.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/types.md",
+      "target": ".kiro/commands/fix/types.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/ui.md",
+      "target": ".kiro/commands/fix/ui.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/git/branch.md",
+      "target": ".kiro/commands/git/branch.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/git/cm.md",
+      "target": ".kiro/commands/git/cm.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/git/commit.md",
+      "target": ".kiro/commands/git/commit.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/git/cp.md",
+      "target": ".kiro/commands/git/cp.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/git/pr.md",
+      "target": ".kiro/commands/git/pr.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/journal.md",
+      "target": ".kiro/commands/journal.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/lint.md",
+      "target": ".kiro/commands/lint.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/mobile/navigation.md",
+      "target": ".kiro/commands/mobile/navigation.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/mobile/platform.md",
+      "target": ".kiro/commands/mobile/platform.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/mobile/screen.md",
+      "target": ".kiro/commands/mobile/screen.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/mobile/widget.md",
+      "target": ".kiro/commands/mobile/widget.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan.md",
+      "target": ".kiro/commands/plan.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/ci.md",
+      "target": ".kiro/commands/plan/ci.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/cro.md",
+      "target": ".kiro/commands/plan/cro.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/fast.md",
+      "target": ".kiro/commands/plan/fast.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/feature.md",
+      "target": ".kiro/commands/plan/feature.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/hard.md",
+      "target": ".kiro/commands/plan/hard.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/refactor.md",
+      "target": ".kiro/commands/plan/refactor.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/two.md",
+      "target": ".kiro/commands/plan/two.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/release.md",
+      "target": ".kiro/commands/release.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/review/code.md",
+      "target": ".kiro/commands/review/code.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/review/codebase.md",
+      "target": ".kiro/commands/review/codebase.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/review/security.md",
+      "target": ".kiro/commands/review/security.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/scout.md",
+      "target": ".kiro/commands/scout.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/scout/ext.md",
+      "target": ".kiro/commands/scout/ext.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/skill/add.md",
+      "target": ".kiro/commands/skill/add.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/skill/create.md",
+      "target": ".kiro/commands/skill/create.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/skill/fix-logs.md",
+      "target": ".kiro/commands/skill/fix-logs.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/skill/optimize.md",
+      "target": ".kiro/commands/skill/optimize.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test.md",
+      "target": ".kiro/commands/test.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/use-mcp.md",
+      "target": ".kiro/commands/use-mcp.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/watzup.md",
+      "target": ".kiro/commands/watzup.md",
+      "type": "command"
+    },
+    {
+      "source": "hooks/.env.example",
+      "target": ".kiro/hooks/.env.example",
+      "type": "config"
+    },
+    {
+      "source": "hooks/README.md",
+      "target": ".kiro/hooks/README.md",
+      "type": "doc"
+    },
+    {
+      "source": "hooks/discord-hook-setup.md",
+      "target": ".kiro/hooks/discord-hook-setup.md",
+      "type": "doc"
+    },
+    {
+      "source": "hooks/discord-notify.js",
+      "target": ".kiro/hooks/discord-notify.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/discord-notify.ps1",
+      "target": ".kiro/hooks/discord-notify.ps1",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/discord-notify.sh",
+      "target": ".kiro/hooks/discord-notify.sh",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/git-status-tracker.js",
+      "target": ".kiro/hooks/git-status-tracker.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/modularization-hook.js",
+      "target": ".kiro/hooks/modularization-hook.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/pre-commit-lint.js",
+      "target": ".kiro/hooks/pre-commit-lint.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/scout-block.js",
+      "target": ".kiro/hooks/scout-block.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/scout-block.ps1",
+      "target": ".kiro/hooks/scout-block.ps1",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/scout-block.sh",
+      "target": ".kiro/hooks/scout-block.sh",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/telegram-hook-setup.md",
+      "target": ".kiro/hooks/telegram-hook-setup.md",
+      "type": "doc"
+    },
+    {
+      "source": "hooks/telegram-notify.js",
+      "target": ".kiro/hooks/telegram-notify.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/telegram-notify.ps1",
+      "target": ".kiro/hooks/telegram-notify.ps1",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/telegram-notify.sh",
+      "target": ".kiro/hooks/telegram-notify.sh",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "metadata.json",
+      "target": ".kiro/metadata.json",
+      "type": "metadata"
+    },
+    {
+      "source": ".mcp.json.example",
+      "target": ".kiro/settings/mcp.json.example",
+      "type": "config"
+    },
+    {
+      "source": "settings.json",
+      "target": ".kiro/settings/settings.json",
+      "type": "config"
+    },
+    {
+      "source": "skills/.env.example",
+      "target": ".kiro/skills/.env.example",
+      "type": "config"
+    },
+    {
+      "source": "skills/INSTALLATION.md",
+      "target": ".kiro/skills/INSTALLATION.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/README.md",
+      "target": ".kiro/skills/README.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/THIRD_PARTY_NOTICES.md",
+      "target": ".kiro/skills/THIRD_PARTY_NOTICES.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/aesthetic/SKILL.md",
+      "target": ".kiro/skills/aesthetic/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/aesthetic/assets/design-guideline-template.md",
+      "target": ".kiro/skills/aesthetic/assets/design-guideline-template.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/aesthetic/assets/design-story-template.md",
+      "target": ".kiro/skills/aesthetic/assets/design-story-template.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/aesthetic/references/design-principles.md",
+      "target": ".kiro/skills/aesthetic/references/design-principles.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/aesthetic/references/design-resources.md",
+      "target": ".kiro/skills/aesthetic/references/design-resources.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/aesthetic/references/micro-interactions.md",
+      "target": ".kiro/skills/aesthetic/references/micro-interactions.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/aesthetic/references/storytelling-design.md",
+      "target": ".kiro/skills/aesthetic/references/storytelling-design.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/agent_skills_spec.md",
+      "target": ".kiro/skills/agent_skills_spec.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ai-multimodal/.env.example",
+      "target": ".kiro/skills/ai-multimodal/.env.example",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/SKILL.md",
+      "target": ".kiro/skills/ai-multimodal/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/ai-multimodal/references/audio-processing.md",
+      "target": ".kiro/skills/ai-multimodal/references/audio-processing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ai-multimodal/references/image-generation.md",
+      "target": ".kiro/skills/ai-multimodal/references/image-generation.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ai-multimodal/references/video-analysis.md",
+      "target": ".kiro/skills/ai-multimodal/references/video-analysis.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ai-multimodal/references/vision-understanding.md",
+      "target": ".kiro/skills/ai-multimodal/references/vision-understanding.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/.coverage",
+      "target": ".kiro/skills/ai-multimodal/scripts/.coverage",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/document_converter.py",
+      "target": ".kiro/skills/ai-multimodal/scripts/document_converter.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/gemini_batch_process.py",
+      "target": ".kiro/skills/ai-multimodal/scripts/gemini_batch_process.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/media_optimizer.py",
+      "target": ".kiro/skills/ai-multimodal/scripts/media_optimizer.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/requirements.txt",
+      "target": ".kiro/skills/ai-multimodal/scripts/requirements.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/tests/.coverage",
+      "target": ".kiro/skills/ai-multimodal/scripts/tests/.coverage",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/tests/requirements.txt",
+      "target": ".kiro/skills/ai-multimodal/scripts/tests/requirements.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/tests/test_document_converter.py",
+      "target": ".kiro/skills/ai-multimodal/scripts/tests/test_document_converter.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/tests/test_failures.log",
+      "target": ".kiro/skills/ai-multimodal/scripts/tests/test_failures.log",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/tests/test_gemini_batch_process.py",
+      "target": ".kiro/skills/ai-multimodal/scripts/tests/test_gemini_batch_process.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/ai-multimodal/scripts/tests/test_media_optimizer.py",
+      "target": ".kiro/skills/ai-multimodal/scripts/tests/test_media_optimizer.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/app-deployment/SKILL.md",
+      "target": ".kiro/skills/app-deployment/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/chrome-devtools/SKILL.md",
+      "target": ".kiro/skills/chrome-devtools/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/chrome-devtools/references/cdp-domains.md",
+      "target": ".kiro/skills/chrome-devtools/references/cdp-domains.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/chrome-devtools/references/performance-guide.md",
+      "target": ".kiro/skills/chrome-devtools/references/performance-guide.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/chrome-devtools/references/puppeteer-reference.md",
+      "target": ".kiro/skills/chrome-devtools/references/puppeteer-reference.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/.gitignore",
+      "target": ".kiro/skills/chrome-devtools/scripts/.gitignore",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/README.md",
+      "target": ".kiro/skills/chrome-devtools/scripts/README.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/__tests__/selector.test.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/__tests__/selector.test.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/click.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/click.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/console.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/console.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/evaluate.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/evaluate.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/fill.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/fill.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/install-deps.sh",
+      "target": ".kiro/skills/chrome-devtools/scripts/install-deps.sh",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/install.sh",
+      "target": ".kiro/skills/chrome-devtools/scripts/install.sh",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/lib/browser.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/lib/browser.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/lib/selector.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/lib/selector.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/navigate.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/navigate.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/network.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/network.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/package.json",
+      "target": ".kiro/skills/chrome-devtools/scripts/package.json",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/performance.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/performance.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/screenshot.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/screenshot.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/chrome-devtools/scripts/snapshot.js",
+      "target": ".kiro/skills/chrome-devtools/scripts/snapshot.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/claude-code/references/advanced-features.md",
+      "target": ".kiro/skills/claude-code/references/advanced-features.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/agent-skills.md",
+      "target": ".kiro/skills/claude-code/references/agent-skills.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/api-reference.md",
+      "target": ".kiro/skills/claude-code/references/api-reference.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/best-practices.md",
+      "target": ".kiro/skills/claude-code/references/best-practices.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/cicd-integration.md",
+      "target": ".kiro/skills/claude-code/references/cicd-integration.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/configuration.md",
+      "target": ".kiro/skills/claude-code/references/configuration.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/enterprise-features.md",
+      "target": ".kiro/skills/claude-code/references/enterprise-features.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/getting-started.md",
+      "target": ".kiro/skills/claude-code/references/getting-started.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/hooks-and-plugins.md",
+      "target": ".kiro/skills/claude-code/references/hooks-and-plugins.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/ide-integration.md",
+      "target": ".kiro/skills/claude-code/references/ide-integration.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/mcp-integration.md",
+      "target": ".kiro/skills/claude-code/references/mcp-integration.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/slash-commands.md",
+      "target": ".kiro/skills/claude-code/references/slash-commands.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/references/troubleshooting.md",
+      "target": ".kiro/skills/claude-code/references/troubleshooting.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/claude-code/skill.md",
+      "target": ".kiro/skills/claude-code/skill.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/code-review/SKILL.md",
+      "target": ".kiro/skills/code-review/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/code-review/references/code-review-reception.md",
+      "target": ".kiro/skills/code-review/references/code-review-reception.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/code-review/references/requesting-code-review.md",
+      "target": ".kiro/skills/code-review/references/requesting-code-review.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/code-review/references/verification-before-completion.md",
+      "target": ".kiro/skills/code-review/references/verification-before-completion.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/common/README.md",
+      "target": ".kiro/skills/common/README.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/common/api_key_helper.py",
+      "target": ".kiro/skills/common/api_key_helper.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/debugging/SKILL.md",
+      "target": ".kiro/skills/debugging/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/debugging/references/defense-in-depth.md",
+      "target": ".kiro/skills/debugging/references/defense-in-depth.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/debugging/references/root-cause-tracing.md",
+      "target": ".kiro/skills/debugging/references/root-cause-tracing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/debugging/references/systematic-debugging.md",
+      "target": ".kiro/skills/debugging/references/systematic-debugging.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/debugging/references/verification.md",
+      "target": ".kiro/skills/debugging/references/verification.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/debugging/scripts/find-polluter.sh",
+      "target": ".kiro/skills/debugging/scripts/find-polluter.sh",
+      "type": "other"
+    },
+    {
+      "source": "skills/debugging/scripts/find-polluter.test.md",
+      "target": ".kiro/skills/debugging/scripts/find-polluter.test.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/docs-seeker/.env.example",
+      "target": ".kiro/skills/docs-seeker/.env.example",
+      "type": "other"
+    },
+    {
+      "source": "skills/docs-seeker/SKILL.md",
+      "target": ".kiro/skills/docs-seeker/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/docs-seeker/package.json",
+      "target": ".kiro/skills/docs-seeker/package.json",
+      "type": "other"
+    },
+    {
+      "source": "skills/docs-seeker/references/advanced.md",
+      "target": ".kiro/skills/docs-seeker/references/advanced.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/docs-seeker/references/context7-patterns.md",
+      "target": ".kiro/skills/docs-seeker/references/context7-patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/docs-seeker/references/errors.md",
+      "target": ".kiro/skills/docs-seeker/references/errors.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/docs-seeker/scripts/analyze-llms-txt.js",
+      "target": ".kiro/skills/docs-seeker/scripts/analyze-llms-txt.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/docs-seeker/scripts/detect-topic.js",
+      "target": ".kiro/skills/docs-seeker/scripts/detect-topic.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/docs-seeker/scripts/fetch-docs.js",
+      "target": ".kiro/skills/docs-seeker/scripts/fetch-docs.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/docs-seeker/scripts/tests/run-tests.js",
+      "target": ".kiro/skills/docs-seeker/scripts/tests/run-tests.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/docs-seeker/scripts/tests/test-analyze-llms.js",
+      "target": ".kiro/skills/docs-seeker/scripts/tests/test-analyze-llms.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/docs-seeker/scripts/tests/test-detect-topic.js",
+      "target": ".kiro/skills/docs-seeker/scripts/tests/test-detect-topic.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/docs-seeker/scripts/tests/test-fetch-docs.js",
+      "target": ".kiro/skills/docs-seeker/scripts/tests/test-fetch-docs.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/docs-seeker/scripts/utils/env-loader.js",
+      "target": ".kiro/skills/docs-seeker/scripts/utils/env-loader.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/docs-seeker/workflows/library-search.md",
+      "target": ".kiro/skills/docs-seeker/workflows/library-search.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/docs-seeker/workflows/repo-analysis.md",
+      "target": ".kiro/skills/docs-seeker/workflows/repo-analysis.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/docs-seeker/workflows/topic-search.md",
+      "target": ".kiro/skills/docs-seeker/workflows/topic-search.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/flutter-state/SKILL.md",
+      "target": ".kiro/skills/flutter-state/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/frontend-design/SKILL.md",
+      "target": ".kiro/skills/frontend-design/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/frontend-design/SKILL.source.md",
+      "target": ".kiro/skills/frontend-design/SKILL.source.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/frontend-design/references/animejs.md",
+      "target": ".kiro/skills/frontend-design/references/animejs.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/frontend-development/SKILL.md",
+      "target": ".kiro/skills/frontend-development/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/mcp-builder/LICENSE.txt",
+      "target": ".kiro/skills/mcp-builder/LICENSE.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-builder/SKILL.md",
+      "target": ".kiro/skills/mcp-builder/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/mcp-builder/reference/evaluation.md",
+      "target": ".kiro/skills/mcp-builder/reference/evaluation.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mcp-builder/reference/mcp_best_practices.md",
+      "target": ".kiro/skills/mcp-builder/reference/mcp_best_practices.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mcp-builder/reference/node_mcp_server.md",
+      "target": ".kiro/skills/mcp-builder/reference/node_mcp_server.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mcp-builder/reference/python_mcp_server.md",
+      "target": ".kiro/skills/mcp-builder/reference/python_mcp_server.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mcp-builder/scripts/connections.py",
+      "target": ".kiro/skills/mcp-builder/scripts/connections.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-builder/scripts/evaluation.py",
+      "target": ".kiro/skills/mcp-builder/scripts/evaluation.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-builder/scripts/example_evaluation.xml",
+      "target": ".kiro/skills/mcp-builder/scripts/example_evaluation.xml",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-builder/scripts/requirements.txt",
+      "target": ".kiro/skills/mcp-builder/scripts/requirements.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-management/README.md",
+      "target": ".kiro/skills/mcp-management/README.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mcp-management/SKILL.md",
+      "target": ".kiro/skills/mcp-management/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/mcp-management/assets/tools.json",
+      "target": ".kiro/skills/mcp-management/assets/tools.json",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-management/references/configuration.md",
+      "target": ".kiro/skills/mcp-management/references/configuration.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mcp-management/references/gemini-cli-integration.md",
+      "target": ".kiro/skills/mcp-management/references/gemini-cli-integration.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mcp-management/references/mcp-protocol.md",
+      "target": ".kiro/skills/mcp-management/references/mcp-protocol.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mcp-management/scripts/.env.example",
+      "target": ".kiro/skills/mcp-management/scripts/.env.example",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-management/scripts/.gitignore",
+      "target": ".kiro/skills/mcp-management/scripts/.gitignore",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-management/scripts/cli.ts",
+      "target": ".kiro/skills/mcp-management/scripts/cli.ts",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-management/scripts/dist/analyze-tools.js",
+      "target": ".kiro/skills/mcp-management/scripts/dist/analyze-tools.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-management/scripts/dist/cli.js",
+      "target": ".kiro/skills/mcp-management/scripts/dist/cli.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-management/scripts/dist/mcp-client.js",
+      "target": ".kiro/skills/mcp-management/scripts/dist/mcp-client.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-management/scripts/mcp-client.ts",
+      "target": ".kiro/skills/mcp-management/scripts/mcp-client.ts",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-management/scripts/package.json",
+      "target": ".kiro/skills/mcp-management/scripts/package.json",
+      "type": "other"
+    },
+    {
+      "source": "skills/mcp-management/scripts/tsconfig.json",
+      "target": ".kiro/skills/mcp-management/scripts/tsconfig.json",
+      "type": "other"
+    },
+    {
+      "source": "skills/media-processing/SKILL.md",
+      "target": ".kiro/skills/media-processing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/media-processing/references/ffmpeg-encoding.md",
+      "target": ".kiro/skills/media-processing/references/ffmpeg-encoding.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/media-processing/references/ffmpeg-filters.md",
+      "target": ".kiro/skills/media-processing/references/ffmpeg-filters.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/media-processing/references/ffmpeg-streaming.md",
+      "target": ".kiro/skills/media-processing/references/ffmpeg-streaming.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/media-processing/references/format-compatibility.md",
+      "target": ".kiro/skills/media-processing/references/format-compatibility.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/media-processing/references/imagemagick-batch.md",
+      "target": ".kiro/skills/media-processing/references/imagemagick-batch.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/media-processing/references/imagemagick-editing.md",
+      "target": ".kiro/skills/media-processing/references/imagemagick-editing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/media-processing/scripts/batch_resize.py",
+      "target": ".kiro/skills/media-processing/scripts/batch_resize.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/media-processing/scripts/media_convert.py",
+      "target": ".kiro/skills/media-processing/scripts/media_convert.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/media-processing/scripts/requirements.txt",
+      "target": ".kiro/skills/media-processing/scripts/requirements.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/media-processing/scripts/tests/.coverage",
+      "target": ".kiro/skills/media-processing/scripts/tests/.coverage",
+      "type": "other"
+    },
+    {
+      "source": "skills/media-processing/scripts/tests/requirements.txt",
+      "target": ".kiro/skills/media-processing/scripts/tests/requirements.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/media-processing/scripts/tests/test_batch_resize.py",
+      "target": ".kiro/skills/media-processing/scripts/tests/test_batch_resize.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/media-processing/scripts/tests/test_media_convert.py",
+      "target": ".kiro/skills/media-processing/scripts/tests/test_media_convert.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/media-processing/scripts/tests/test_video_optimize.py",
+      "target": ".kiro/skills/media-processing/scripts/tests/test_video_optimize.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/media-processing/scripts/video_optimize.py",
+      "target": ".kiro/skills/media-processing/scripts/video_optimize.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/mobile-development/SKILL.md",
+      "target": ".kiro/skills/mobile-development/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/mobile-development/references/mobile-android.md",
+      "target": ".kiro/skills/mobile-development/references/mobile-android.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mobile-development/references/mobile-best-practices.md",
+      "target": ".kiro/skills/mobile-development/references/mobile-best-practices.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mobile-development/references/mobile-debugging.md",
+      "target": ".kiro/skills/mobile-development/references/mobile-debugging.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mobile-development/references/mobile-frameworks.md",
+      "target": ".kiro/skills/mobile-development/references/mobile-frameworks.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mobile-development/references/mobile-ios.md",
+      "target": ".kiro/skills/mobile-development/references/mobile-ios.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mobile-development/references/mobile-mindset.md",
+      "target": ".kiro/skills/mobile-development/references/mobile-mindset.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mobile-testing/SKILL.md",
+      "target": ".kiro/skills/mobile-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/native-integration/SKILL.md",
+      "target": ".kiro/skills/native-integration/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/offline-first/SKILL.md",
+      "target": ".kiro/skills/offline-first/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/planning/SKILL.md",
+      "target": ".kiro/skills/planning/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/planning/references/codebase-understanding.md",
+      "target": ".kiro/skills/planning/references/codebase-understanding.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/planning/references/output-standards.md",
+      "target": ".kiro/skills/planning/references/output-standards.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/planning/references/plan-organization.md",
+      "target": ".kiro/skills/planning/references/plan-organization.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/planning/references/research-phase.md",
+      "target": ".kiro/skills/planning/references/research-phase.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/planning/references/solution-design.md",
+      "target": ".kiro/skills/planning/references/solution-design.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/problem-solving/SKILL.md",
+      "target": ".kiro/skills/problem-solving/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/problem-solving/references/attribution.md",
+      "target": ".kiro/skills/problem-solving/references/attribution.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/problem-solving/references/collision-zone-thinking.md",
+      "target": ".kiro/skills/problem-solving/references/collision-zone-thinking.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/problem-solving/references/inversion-exercise.md",
+      "target": ".kiro/skills/problem-solving/references/inversion-exercise.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/problem-solving/references/meta-pattern-recognition.md",
+      "target": ".kiro/skills/problem-solving/references/meta-pattern-recognition.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/problem-solving/references/scale-game.md",
+      "target": ".kiro/skills/problem-solving/references/scale-game.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/problem-solving/references/simplification-cascades.md",
+      "target": ".kiro/skills/problem-solving/references/simplification-cascades.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/problem-solving/references/when-stuck.md",
+      "target": ".kiro/skills/problem-solving/references/when-stuck.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/repomix/SKILL.md",
+      "target": ".kiro/skills/repomix/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/repomix/references/configuration.md",
+      "target": ".kiro/skills/repomix/references/configuration.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/repomix/references/usage-patterns.md",
+      "target": ".kiro/skills/repomix/references/usage-patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/repomix/scripts/.coverage",
+      "target": ".kiro/skills/repomix/scripts/.coverage",
+      "type": "other"
+    },
+    {
+      "source": "skills/repomix/scripts/README.md",
+      "target": ".kiro/skills/repomix/scripts/README.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/repomix/scripts/repomix_batch.py",
+      "target": ".kiro/skills/repomix/scripts/repomix_batch.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/repomix/scripts/repos.example.json",
+      "target": ".kiro/skills/repomix/scripts/repos.example.json",
+      "type": "other"
+    },
+    {
+      "source": "skills/repomix/scripts/requirements.txt",
+      "target": ".kiro/skills/repomix/scripts/requirements.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/repomix/scripts/tests/test_repomix_batch.py",
+      "target": ".kiro/skills/repomix/scripts/tests/test_repomix_batch.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/research/SKILL.md",
+      "target": ".kiro/skills/research/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/sequential-thinking/.env.example",
+      "target": ".kiro/skills/sequential-thinking/.env.example",
+      "type": "other"
+    },
+    {
+      "source": "skills/sequential-thinking/.gitignore",
+      "target": ".kiro/skills/sequential-thinking/.gitignore",
+      "type": "other"
+    },
+    {
+      "source": "skills/sequential-thinking/README.md",
+      "target": ".kiro/skills/sequential-thinking/README.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/sequential-thinking/SKILL.md",
+      "target": ".kiro/skills/sequential-thinking/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/sequential-thinking/package.json",
+      "target": ".kiro/skills/sequential-thinking/package.json",
+      "type": "other"
+    },
+    {
+      "source": "skills/sequential-thinking/references/advanced-strategies.md",
+      "target": ".kiro/skills/sequential-thinking/references/advanced-strategies.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/sequential-thinking/references/advanced-techniques.md",
+      "target": ".kiro/skills/sequential-thinking/references/advanced-techniques.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/sequential-thinking/references/core-patterns.md",
+      "target": ".kiro/skills/sequential-thinking/references/core-patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/sequential-thinking/references/examples-api.md",
+      "target": ".kiro/skills/sequential-thinking/references/examples-api.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/sequential-thinking/references/examples-architecture.md",
+      "target": ".kiro/skills/sequential-thinking/references/examples-architecture.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/sequential-thinking/references/examples-debug.md",
+      "target": ".kiro/skills/sequential-thinking/references/examples-debug.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/sequential-thinking/scripts/format-thought.js",
+      "target": ".kiro/skills/sequential-thinking/scripts/format-thought.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/sequential-thinking/scripts/process-thought.js",
+      "target": ".kiro/skills/sequential-thinking/scripts/process-thought.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/sequential-thinking/tests/format-thought.test.js",
+      "target": ".kiro/skills/sequential-thinking/tests/format-thought.test.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/sequential-thinking/tests/process-thought.test.js",
+      "target": ".kiro/skills/sequential-thinking/tests/process-thought.test.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/skill-creator/LICENSE.txt",
+      "target": ".kiro/skills/skill-creator/LICENSE.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/skill-creator/SKILL.md",
+      "target": ".kiro/skills/skill-creator/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/skill-creator/scripts/init_skill.py",
+      "target": ".kiro/skills/skill-creator/scripts/init_skill.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/skill-creator/scripts/package_skill.py",
+      "target": ".kiro/skills/skill-creator/scripts/package_skill.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/skill-creator/scripts/quick_validate.py",
+      "target": ".kiro/skills/skill-creator/scripts/quick_validate.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/template-skill/SKILL.md",
+      "target": ".kiro/skills/template-skill/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/ui-styling/LICENSE.txt",
+      "target": ".kiro/skills/ui-styling/LICENSE.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/SKILL.md",
+      "target": ".kiro/skills/ui-styling/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/ArsenalSC-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/ArsenalSC-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/ArsenalSC-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/ArsenalSC-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/BigShoulders-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/BigShoulders-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/BigShoulders-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/BigShoulders-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/BigShoulders-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/BigShoulders-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Boldonse-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Boldonse-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Boldonse-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Boldonse-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/BricolageGrotesque-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/BricolageGrotesque-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/BricolageGrotesque-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/BricolageGrotesque-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/BricolageGrotesque-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/BricolageGrotesque-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/CrimsonPro-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/CrimsonPro-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/CrimsonPro-Italic.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/CrimsonPro-Italic.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/CrimsonPro-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/CrimsonPro-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/CrimsonPro-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/CrimsonPro-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/DMMono-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/DMMono-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/DMMono-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/DMMono-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/EricaOne-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/EricaOne-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/EricaOne-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/EricaOne-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/GeistMono-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/GeistMono-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/GeistMono-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/GeistMono-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/GeistMono-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/GeistMono-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Gloock-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Gloock-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Gloock-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Gloock-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/IBMPlexMono-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/IBMPlexMono-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/IBMPlexMono-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/IBMPlexMono-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/IBMPlexMono-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/IBMPlexMono-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/IBMPlexSerif-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/IBMPlexSerif-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/IBMPlexSerif-BoldItalic.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/IBMPlexSerif-BoldItalic.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/IBMPlexSerif-Italic.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/IBMPlexSerif-Italic.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/IBMPlexSerif-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/IBMPlexSerif-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/InstrumentSans-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/InstrumentSans-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/InstrumentSans-BoldItalic.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/InstrumentSans-BoldItalic.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/InstrumentSans-Italic.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/InstrumentSans-Italic.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/InstrumentSans-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/InstrumentSans-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/InstrumentSans-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/InstrumentSans-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/InstrumentSerif-Italic.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/InstrumentSerif-Italic.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/InstrumentSerif-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/InstrumentSerif-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Italiana-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Italiana-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Italiana-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Italiana-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/JetBrainsMono-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/JetBrainsMono-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/JetBrainsMono-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/JetBrainsMono-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/JetBrainsMono-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/JetBrainsMono-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Jura-Light.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Jura-Light.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Jura-Medium.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Jura-Medium.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Jura-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Jura-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/LibreBaskerville-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/LibreBaskerville-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/LibreBaskerville-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/LibreBaskerville-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Lora-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Lora-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Lora-BoldItalic.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Lora-BoldItalic.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Lora-Italic.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Lora-Italic.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Lora-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Lora-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Lora-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Lora-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/NationalPark-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/NationalPark-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/NationalPark-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/NationalPark-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/NationalPark-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/NationalPark-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/NothingYouCouldDo-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/NothingYouCouldDo-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/NothingYouCouldDo-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/NothingYouCouldDo-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Outfit-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Outfit-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Outfit-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Outfit-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Outfit-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Outfit-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/PixelifySans-Medium.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/PixelifySans-Medium.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/PixelifySans-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/PixelifySans-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/PoiretOne-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/PoiretOne-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/PoiretOne-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/PoiretOne-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/RedHatMono-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/RedHatMono-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/RedHatMono-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/RedHatMono-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/RedHatMono-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/RedHatMono-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Silkscreen-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Silkscreen-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Silkscreen-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Silkscreen-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/SmoochSans-Medium.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/SmoochSans-Medium.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/SmoochSans-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/SmoochSans-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Tektur-Medium.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Tektur-Medium.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Tektur-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Tektur-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/Tektur-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/Tektur-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/WorkSans-Bold.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/WorkSans-Bold.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/WorkSans-BoldItalic.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/WorkSans-BoldItalic.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/WorkSans-Italic.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/WorkSans-Italic.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/WorkSans-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/WorkSans-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/WorkSans-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/WorkSans-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/YoungSerif-OFL.txt",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/YoungSerif-OFL.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/canvas-fonts/YoungSerif-Regular.ttf",
+      "target": ".kiro/skills/ui-styling/canvas-fonts/YoungSerif-Regular.ttf",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/references/canvas-design-system.md",
+      "target": ".kiro/skills/ui-styling/references/canvas-design-system.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ui-styling/references/shadcn-accessibility.md",
+      "target": ".kiro/skills/ui-styling/references/shadcn-accessibility.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ui-styling/references/shadcn-components.md",
+      "target": ".kiro/skills/ui-styling/references/shadcn-components.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ui-styling/references/shadcn-theming.md",
+      "target": ".kiro/skills/ui-styling/references/shadcn-theming.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ui-styling/references/tailwind-customization.md",
+      "target": ".kiro/skills/ui-styling/references/tailwind-customization.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ui-styling/references/tailwind-responsive.md",
+      "target": ".kiro/skills/ui-styling/references/tailwind-responsive.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ui-styling/references/tailwind-utilities.md",
+      "target": ".kiro/skills/ui-styling/references/tailwind-utilities.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ui-styling/scripts/.coverage",
+      "target": ".kiro/skills/ui-styling/scripts/.coverage",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/scripts/requirements.txt",
+      "target": ".kiro/skills/ui-styling/scripts/requirements.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/scripts/shadcn_add.py",
+      "target": ".kiro/skills/ui-styling/scripts/shadcn_add.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/scripts/tailwind_config_gen.py",
+      "target": ".kiro/skills/ui-styling/scripts/tailwind_config_gen.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/scripts/tests/coverage-ui.json",
+      "target": ".kiro/skills/ui-styling/scripts/tests/coverage-ui.json",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/scripts/tests/requirements.txt",
+      "target": ".kiro/skills/ui-styling/scripts/tests/requirements.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/scripts/tests/test_shadcn_add.py",
+      "target": ".kiro/skills/ui-styling/scripts/tests/test_shadcn_add.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/ui-styling/scripts/tests/test_tailwind_config_gen.py",
+      "target": ".kiro/skills/ui-styling/scripts/tests/test_tailwind_config_gen.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/web-frameworks/SKILL.md",
+      "target": ".kiro/skills/web-frameworks/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/web-frameworks/references/nextjs-app-router.md",
+      "target": ".kiro/skills/web-frameworks/references/nextjs-app-router.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/web-frameworks/references/nextjs-data-fetching.md",
+      "target": ".kiro/skills/web-frameworks/references/nextjs-data-fetching.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/web-frameworks/references/nextjs-optimization.md",
+      "target": ".kiro/skills/web-frameworks/references/nextjs-optimization.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/web-frameworks/references/nextjs-server-components.md",
+      "target": ".kiro/skills/web-frameworks/references/nextjs-server-components.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/web-frameworks/references/remix-icon-integration.md",
+      "target": ".kiro/skills/web-frameworks/references/remix-icon-integration.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/web-frameworks/references/turborepo-caching.md",
+      "target": ".kiro/skills/web-frameworks/references/turborepo-caching.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/web-frameworks/references/turborepo-pipelines.md",
+      "target": ".kiro/skills/web-frameworks/references/turborepo-pipelines.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/web-frameworks/references/turborepo-setup.md",
+      "target": ".kiro/skills/web-frameworks/references/turborepo-setup.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/web-frameworks/scripts/.coverage",
+      "target": ".kiro/skills/web-frameworks/scripts/.coverage",
+      "type": "other"
+    },
+    {
+      "source": "skills/web-frameworks/scripts/__init__.py",
+      "target": ".kiro/skills/web-frameworks/scripts/__init__.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/web-frameworks/scripts/nextjs_init.py",
+      "target": ".kiro/skills/web-frameworks/scripts/nextjs_init.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/web-frameworks/scripts/requirements.txt",
+      "target": ".kiro/skills/web-frameworks/scripts/requirements.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/web-frameworks/scripts/tests/coverage-web.json",
+      "target": ".kiro/skills/web-frameworks/scripts/tests/coverage-web.json",
+      "type": "other"
+    },
+    {
+      "source": "skills/web-frameworks/scripts/tests/requirements.txt",
+      "target": ".kiro/skills/web-frameworks/scripts/tests/requirements.txt",
+      "type": "other"
+    },
+    {
+      "source": "skills/web-frameworks/scripts/tests/test_nextjs_init.py",
+      "target": ".kiro/skills/web-frameworks/scripts/tests/test_nextjs_init.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/web-frameworks/scripts/tests/test_turborepo_migrate.py",
+      "target": ".kiro/skills/web-frameworks/scripts/tests/test_turborepo_migrate.py",
+      "type": "other"
+    },
+    {
+      "source": "skills/web-frameworks/scripts/turborepo_migrate.py",
+      "target": ".kiro/skills/web-frameworks/scripts/turborepo_migrate.py",
+      "type": "other"
+    },
+    {
+      "source": "specs/_templates/mobile/design.md",
+      "target": ".kiro/specs/_templates/mobile/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/_templates/mobile/requirements.md",
+      "target": ".kiro/specs/_templates/mobile/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/_templates/mobile/tasks.md",
+      "target": ".kiro/specs/_templates/mobile/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "statusline.js",
+      "target": ".kiro/statusline.js",
+      "type": "config",
+      "executable": true
+    },
+    {
+      "source": "statusline.ps1",
+      "target": ".kiro/statusline.ps1",
+      "type": "config"
+    },
+    {
+      "source": "statusline.sh",
+      "target": ".kiro/statusline.sh",
+      "type": "config",
+      "executable": true
+    },
+    {
+      "source": "steering/flutter-conventions.md",
+      "target": ".kiro/steering/flutter-conventions.md",
+      "type": "steering"
+    },
+    {
+      "source": "steering/mobile-patterns.md",
+      "target": ".kiro/steering/mobile-patterns.md",
+      "type": "steering"
+    },
+    {
+      "source": "workflows/development-rules.md",
+      "target": ".kiro/workflows/development-rules.md",
+      "type": "workflow"
+    },
+    {
+      "source": "workflows/documentation-management.md",
+      "target": ".kiro/workflows/documentation-management.md",
+      "type": "workflow"
+    },
+    {
+      "source": "workflows/orchestration-protocol.md",
+      "target": ".kiro/workflows/orchestration-protocol.md",
+      "type": "workflow"
+    },
+    {
+      "source": "workflows/primary-workflow.md",
+      "target": ".kiro/workflows/primary-workflow.md",
+      "type": "workflow"
+    },
+    {
+      "source": "docs/code-standards.md",
+      "target": "docs/code-standards.md",
+      "type": "doc"
+    },
+    {
+      "source": "docs/project-roadmap.md",
+      "target": "docs/project-roadmap.md",
+      "type": "doc"
+    },
+    {
+      "source": "docs/system-architecture.md",
+      "target": "docs/system-architecture.md",
+      "type": "doc"
+    }
   ],
   "mcpServers": {
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem"
+      ]
     },
     "git": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-git"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ]
     },
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@playwright/mcp-server"]
+      "args": [
+        "-y",
+        "@playwright/mcp-server"
+      ]
     },
     "fetch": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-fetch"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ]
     },
     "docs-seeker": {
       "command": "npx",
-      "args": ["-y", "@mcp/docs-seeker"]
+      "args": [
+        "-y",
+        "@mcp/docs-seeker"
+      ]
     }
   },
   "hooks": {
-    "PreToolUse": ["scout-block"],
-    "PostToolUse": ["modularization-hook"],
-    "agentStop": ["discord-notify", "telegram-notify"]
+    "PreToolUse": [
+      "scout-block"
+    ],
+    "PostToolUse": [
+      "modularization-hook"
+    ],
+    "agentStop": [
+      "discord-notify",
+      "telegram-notify"
+    ]
   },
-  "tags": ["flutter", "dart", "react-native", "mobile", "ios", "android", "cross-platform"],
+  "tags": [
+    "flutter",
+    "dart",
+    "react-native",
+    "mobile",
+    "ios",
+    "android",
+    "cross-platform"
+  ],
   "minCounts": {
     "agents": 12,
     "skills": 20,
