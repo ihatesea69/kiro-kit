@@ -58,13 +58,18 @@ async function multiPickPrompt(
   }
 
   return new Promise<string[]>((resolve, reject) => {
+    let rendered = false;
+
     const render = (): void => {
       // Move cursor up to overwrite previous render
-      if (cursor >= 0) {
+      if (rendered) {
         process.stdout.write(`\x1B[${items.length + 1}A`);
       }
+      rendered = true;
+      // Clear line + write header
       process.stdout.write(
-        color.bold('? Select presets to install:') +
+        '\x1B[2K' +
+          color.bold('? Select presets to install:') +
           color.dim(' (Space to select, <a> toggle all, Enter to confirm)') +
           '\n',
       );
@@ -75,19 +80,45 @@ async function multiPickPrompt(
           : '[ ]';
         const name = color.bold(items[i].name.padEnd(12));
         const desc = color.dim(`- ${items[i].description}`);
-        process.stdout.write(`  ${marker} ${check} ${name} ${desc}\n`);
+        // Clear line before writing to prevent ghost text
+        process.stdout.write(`\x1B[2K  ${marker} ${check} ${name} ${desc}\n`);
       }
     };
 
-    // Initial render
-    process.stdout.write('\n'.repeat(items.length + 1));
+    // Initial render (no need for blank lines — first render writes directly)
     render();
 
     process.stdin.setRawMode(true);
     process.stdin.resume();
     process.stdin.setEncoding('utf-8');
 
+    let escBuffer = '';
+
     const onData = (key: string): void => {
+      // Handle multi-byte escape sequences (arrow keys on Windows)
+      if (escBuffer.length > 0) {
+        escBuffer += key;
+        if (escBuffer.length >= 3) {
+          const seq = escBuffer;
+          escBuffer = '';
+          if (seq === '\x1B[A' || seq === '\x1BOA') {
+            cursor = (cursor - 1 + items.length) % items.length;
+            render();
+          } else if (seq === '\x1B[B' || seq === '\x1BOB') {
+            cursor = (cursor + 1) % items.length;
+            render();
+          }
+          return;
+        }
+        return;
+      }
+
+      // Start of escape sequence
+      if (key === '\x1B') {
+        escBuffer = key;
+        return;
+      }
+
       // Ctrl+C / SIGINT
       if (key === '\x03') {
         process.stdin.setRawMode(false);
@@ -132,14 +163,14 @@ async function multiPickPrompt(
       }
 
       // Arrow up / k
-      if (key === '\x1B[A' || key === 'k') {
+      if (key === 'k') {
         cursor = (cursor - 1 + items.length) % items.length;
         render();
         return;
       }
 
       // Arrow down / j
-      if (key === '\x1B[B' || key === 'j') {
+      if (key === 'j') {
         cursor = (cursor + 1) % items.length;
         render();
         return;
