@@ -61,15 +61,19 @@ async function multiPickPrompt(
     let rendered = false;
 
     const render = (): void => {
-      // Move cursor up to overwrite previous render
       if (rendered) {
-        process.stdout.write(`\x1B[${items.length + 1}A`);
+        // Restore saved cursor position (top of our render area)
+        process.stdout.write('\x1B[u');
+      } else {
+        // Save cursor position before first render
+        process.stdout.write('\x1B[s');
       }
       rendered = true;
-      // Clear line + write header
+      // Clear from cursor to end of screen — wipes all previous render
+      process.stdout.write('\x1B[J');
+      // Write header
       process.stdout.write(
-        '\x1B[2K' +
-          color.bold('? Select presets to install:') +
+        color.bold('? Select presets to install:') +
           color.dim(' (Space to select, <a> toggle all, Enter to confirm)') +
           '\n',
       );
@@ -80,12 +84,10 @@ async function multiPickPrompt(
           : '[ ]';
         const name = color.bold(items[i].name.padEnd(12));
         const desc = color.dim(`- ${items[i].description}`);
-        // Clear line before writing to prevent ghost text
-        process.stdout.write(`\x1B[2K  ${marker} ${check} ${name} ${desc}\n`);
+        process.stdout.write(`  ${marker} ${check} ${name} ${desc}\n`);
       }
     };
 
-    // Initial render (no need for blank lines — first render writes directly)
     render();
 
     process.stdin.setRawMode(true);

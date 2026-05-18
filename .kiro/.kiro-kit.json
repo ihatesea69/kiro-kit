@@ -1,0 +1,602 @@
+{
+  "kitVersion": "0.2.2",
+  "installedAt": "2026-05-18T04:35:54.150Z",
+  "presets": [
+    {
+      "name": "backend",
+      "version": "1.0.0",
+      "installedAt": "2026-05-18T04:35:54.150Z",
+      "files": [
+        {
+          "target": ".env.example",
+          "sourcePreset": "backend",
+          "contentHash": "1fd8dc6d22850703f1e3cab9916099ce82c9f346f327fe36ac43d136dfe13270",
+          "installedAt": "2026-05-18T04:35:54.089Z"
+        },
+        {
+          "target": ".kiro/agents/api-developer.md",
+          "sourcePreset": "backend",
+          "contentHash": "9884b1efcabb59d0fb39749176c3136b841ccfed827dbb02c6f3c5394cfda906",
+          "installedAt": "2026-05-18T04:35:54.090Z"
+        },
+        {
+          "target": ".kiro/agents/brainstormer.md",
+          "sourcePreset": "backend",
+          "contentHash": "3565c77275e1877d72e6bdf2b55cc6452ffcc6545a982e8aa0ce77b6a20e1296",
+          "installedAt": "2026-05-18T04:35:54.090Z"
+        },
+        {
+          "target": ".kiro/agents/code-reviewer.md",
+          "sourcePreset": "backend",
+          "contentHash": "5fb67b49dc8d5e9a2bd69092299b961a13ec6c2b848f1f2058b0a7a18c3b6d7c",
+          "installedAt": "2026-05-18T04:35:54.091Z"
+        },
+        {
+          "target": ".kiro/agents/copywriter.md",
+          "sourcePreset": "backend",
+          "contentHash": "7ce7cf9bd08afb9ee83f9c0df3085e92a20c104bb27903817714e5a934e3bf52",
+          "installedAt": "2026-05-18T04:35:54.091Z"
+        },
+        {
+          "target": ".kiro/agents/database-admin.md",
+          "sourcePreset": "backend",
+          "contentHash": "ff7b219fef82f73be994ee76843fa36af3c5106ffa7e9897771e92d1f0c046d5",
+          "installedAt": "2026-05-18T04:35:54.091Z"
+        },
+        {
+          "target": ".kiro/agents/database-architect.md",
+          "sourcePreset": "backend",
+          "contentHash": "b7b857a5917f91ec625aaa4d1197858a827df2772b7aa8a4ee4b9a4d05eb0eb5",
+          "installedAt": "2026-05-18T04:35:54.091Z"
+        },
+        {
+          "target": ".kiro/agents/debugger.md",
+          "sourcePreset": "backend",
+          "contentHash": "0acc9b48c3b662fdac0ad29cb445fb9b163b5cb2bc446bef0b9dc8d29e1e88bf",
+          "installedAt": "2026-05-18T04:35:54.092Z"
+        },
+        {
+          "target": ".kiro/agents/devops-engineer.md",
+          "sourcePreset": "backend",
+          "contentHash": "bdc8b09202d4d7cebe448e736a6b2f852e05e45b86d425ecc8a93262850ea402",
+          "installedAt": "2026-05-18T04:35:54.092Z"
+        },
+        {
+          "target": ".kiro/agents/docs-manager.md",
+          "sourcePreset": "backend",
+          "contentHash": "1bd81f2a641358f448ebbb987633252303bc0fac1e6836eae8bc8079d5e326bb",
+          "installedAt": "2026-05-18T04:35:54.092Z"
+        },
+        {
+          "target": ".kiro/agents/git-manager.md",
+          "sourcePreset": "backend",
+          "contentHash": "e06620b50c0648f8018a64aa872ba4cb8c37d9851ed79f634a8b2c28fdcab262",
+          "installedAt": "2026-05-18T04:35:54.092Z"
+        },
+        {
+          "target": ".kiro/agents/journal-writer.md",
+          "sourcePreset": "backend",
+          "contentHash": "0e406c03c2cf71a30cae490325a8c0a52a9d253e7e8dbb14f38389af4aa97e96",
+          "installedAt": "2026-05-18T04:35:54.093Z"
+        },
+        {
+          "target": ".kiro/agents/mcp-manager.md",
+          "sourcePreset": "backend",
+          "contentHash": "b46dcb1c3ac66ee8daade18badc5444cb5d81841e53388f92c31243d6878e3cb",
+          "installedAt": "2026-05-18T04:35:54.093Z"
+        },
+        {
+          "target": ".kiro/agents/planner.md",
+          "sourcePreset": "backend",
+          "contentHash": "de03a9000af37a6759b63a02f12c314f87d38a092f0115add618871b5536ee44",
+          "installedAt": "2026-05-18T04:35:54.093Z"
+        },
+        {
+          "target": ".kiro/agents/project-manager.md",
+          "sourcePreset": "backend",
+          "contentHash": "647194bef6b893e98a17d4c80160f7a2aa05adbe3a3779563700639eb95d0f67",
+          "installedAt": "2026-05-18T04:35:54.093Z"
+        },
+        {
+          "target": ".kiro/agents/researcher.md",
+          "sourcePreset": "backend",
+          "contentHash": "31f93b8c835e78dc3fa5cd12be5285640fbe7e58a21cb841e7a84b67fa96a9ed",
+          "installedAt": "2026-05-18T04:35:54.093Z"
+        },
+        {
+          "target": ".kiro/agents/scout-external.md",
+          "sourcePreset": "backend",
+          "contentHash": "10de0327c5d2aab27f29b4bcaa32144bece0e1451dbb1bb4630090946aa49c01",
+          "installedAt": "2026-05-18T04:35:54.093Z"
+        },
+        {
+          "target": ".kiro/agents/scout.md",
+          "sourcePreset": "backend",
+          "contentHash": "46614fc61214b4c364d5cd371a0cded7527d9d314b62881ba1bd454523769fb1",
+          "installedAt": "2026-05-18T04:35:54.093Z"
+        },
+        {
+          "target": ".kiro/agents/security-auditor.md",
+          "sourcePreset": "backend",
+          "contentHash": "4b66aba5cf5ad6a2671bfe3e836da12baf44b6f539213862be133503d3b3b8e6",
+          "installedAt": "2026-05-18T04:35:54.094Z"
+        },
+        {
+          "target": ".kiro/agents/tester.md",
+          "sourcePreset": "backend",
+          "contentHash": "3581ba46b85bbf7709ff64e07b7d0f7766b85a8b81a841e55a2fcf8445bd8d84",
+          "installedAt": "2026-05-18T04:35:54.094Z"
+        },
+        {
+          "target": ".kiro/commands/backend/middleware.md",
+          "sourcePreset": "backend",
+          "contentHash": "9687b4a5f977f44086b5d480b14217f0448f92140c5302f0746bb85316dceb71",
+          "installedAt": "2026-05-18T04:35:54.094Z"
+        },
+        {
+          "target": ".kiro/commands/backend/migration.md",
+          "sourcePreset": "backend",
+          "contentHash": "f8c62457a6efef7ea0cd0313f46b9e153156063da9ebc3f7554d9a499a4262bd",
+          "installedAt": "2026-05-18T04:35:54.094Z"
+        },
+        {
+          "target": ".kiro/commands/backend/route.md",
+          "sourcePreset": "backend",
+          "contentHash": "ca4d1719c0338841cf5e172f836eb57b917ea32b080c65606ff12162e4593db0",
+          "installedAt": "2026-05-18T04:35:54.094Z"
+        },
+        {
+          "target": ".kiro/commands/bootstrap.md",
+          "sourcePreset": "backend",
+          "contentHash": "a9bc733ea714d836201d8f8a7b1e41fb9c57ca3c69461e6aba896f9d138032fe",
+          "installedAt": "2026-05-18T04:35:54.095Z"
+        },
+        {
+          "target": ".kiro/commands/clean.md",
+          "sourcePreset": "backend",
+          "contentHash": "658e40bcdc69615a3a356da0c41bef98d99dfb1a96e538607ca5f5201e481b74",
+          "installedAt": "2026-05-18T04:35:54.095Z"
+        },
+        {
+          "target": ".kiro/commands/design/figma.md",
+          "sourcePreset": "backend",
+          "contentHash": "f9e88dc01dcb9357bbc537d65f88dc5ba71a0be58ff1d1b405d2942f42b2e2ed",
+          "installedAt": "2026-05-18T04:35:54.096Z"
+        },
+        {
+          "target": ".kiro/commands/design/system.md",
+          "sourcePreset": "backend",
+          "contentHash": "0e07505f65be6dfd67983c056138d80346d34cdd24f9dc30025dcfcbfd0588a0",
+          "installedAt": "2026-05-18T04:35:54.096Z"
+        },
+        {
+          "target": ".kiro/commands/design/wireframe.md",
+          "sourcePreset": "backend",
+          "contentHash": "6cfe75c9cc311cf084eeba4aa74670af186a7b1f17a7eeb06d3b11952f883526",
+          "installedAt": "2026-05-18T04:35:54.097Z"
+        },
+        {
+          "target": ".kiro/commands/docs/architecture.md",
+          "sourcePreset": "backend",
+          "contentHash": "643e1363a483eff5f171b34fc9e77189348fba3a7b06a6c66fd558d42a39f23e",
+          "installedAt": "2026-05-18T04:35:54.097Z"
+        },
+        {
+          "target": ".kiro/commands/docs/summarize.md",
+          "sourcePreset": "backend",
+          "contentHash": "41319e0ea4e27eec177fa4927859c12037fea0cda4775ba36c76dee8bf5eaf55",
+          "installedAt": "2026-05-18T04:35:54.097Z"
+        },
+        {
+          "target": ".kiro/commands/docs/update.md",
+          "sourcePreset": "backend",
+          "contentHash": "41bb59295614080e6a663fe274cde3495c7955440beac087f38611baed542526",
+          "installedAt": "2026-05-18T04:35:54.097Z"
+        },
+        {
+          "target": ".kiro/commands/fix/build.md",
+          "sourcePreset": "backend",
+          "contentHash": "6719f1c85e5c00fc675635751475e2db32a973ddd4b761d0bc6fff8ca8297c5a",
+          "installedAt": "2026-05-18T04:35:54.098Z"
+        },
+        {
+          "target": ".kiro/commands/fix/lint.md",
+          "sourcePreset": "backend",
+          "contentHash": "c9a662077bdc868d7dcb94895bcaea5019ca2a1a5c763818aee70734404a433a",
+          "installedAt": "2026-05-18T04:35:54.098Z"
+        },
+        {
+          "target": ".kiro/commands/fix/tests.md",
+          "sourcePreset": "backend",
+          "contentHash": "cd101f7df0c05572e7fb3b9093e8db7ed88af228c61db101d66d85d22449653e",
+          "installedAt": "2026-05-18T04:35:54.098Z"
+        },
+        {
+          "target": ".kiro/commands/git/branch.md",
+          "sourcePreset": "backend",
+          "contentHash": "beb3ae39df8d66394563c811b1a98b04f799f3b080069ec2e39a335a3f5f8faa",
+          "installedAt": "2026-05-18T04:35:54.099Z"
+        },
+        {
+          "target": ".kiro/commands/git/commit.md",
+          "sourcePreset": "backend",
+          "contentHash": "f64b35f8baa0d02077240448b09fc1b9909ce1f1724bdf1861eb4fa4e67da800",
+          "installedAt": "2026-05-18T04:35:54.099Z"
+        },
+        {
+          "target": ".kiro/commands/git/pr.md",
+          "sourcePreset": "backend",
+          "contentHash": "1d26af6dde562afb8d2cce262e7d4e70246e80968ee4a5630b5ecfe312285b17",
+          "installedAt": "2026-05-18T04:35:54.099Z"
+        },
+        {
+          "target": ".kiro/commands/lint.md",
+          "sourcePreset": "backend",
+          "contentHash": "7958d3bceff10d5acebd0ded256341e29af70f1e1a4a4f0b29de3b502741855e",
+          "installedAt": "2026-05-18T04:35:54.100Z"
+        },
+        {
+          "target": ".kiro/commands/plan/feature.md",
+          "sourcePreset": "backend",
+          "contentHash": "36b3dfcc30796589dd8b33ce71d1a0b734bea5f5ccb33903cd8b12462e1705ab",
+          "installedAt": "2026-05-18T04:35:54.100Z"
+        },
+        {
+          "target": ".kiro/commands/plan/refactor.md",
+          "sourcePreset": "backend",
+          "contentHash": "3e9c8e811fbba5363c129eb183a531b1f9090edc5f4d3ee9d9c8ef889f1d6f01",
+          "installedAt": "2026-05-18T04:35:54.101Z"
+        },
+        {
+          "target": ".kiro/commands/release.md",
+          "sourcePreset": "backend",
+          "contentHash": "476483c5a10c5d69576aa11f88b0bbf8665a5cd370c0ae515ee2562fa5cd35e9",
+          "installedAt": "2026-05-18T04:35:54.101Z"
+        },
+        {
+          "target": ".kiro/commands/review/code.md",
+          "sourcePreset": "backend",
+          "contentHash": "029122789ab39419c53828b57ef544911c9f63d14f1835fb8d29099e45b69813",
+          "installedAt": "2026-05-18T04:35:54.101Z"
+        },
+        {
+          "target": ".kiro/commands/review/security.md",
+          "sourcePreset": "backend",
+          "contentHash": "0d0f276502da6e93b07ded3cbcfec9f1946b03929e3d4facff139f547dbc870f",
+          "installedAt": "2026-05-18T04:35:54.102Z"
+        },
+        {
+          "target": ".kiro/commands/scout.md",
+          "sourcePreset": "backend",
+          "contentHash": "d85827366f41127c9bbcabe377a46a1c397583a6d8741dcd67be2487a836c7b5",
+          "installedAt": "2026-05-18T04:35:54.102Z"
+        },
+        {
+          "target": ".kiro/commands/scout/ext.md",
+          "sourcePreset": "backend",
+          "contentHash": "5c29893017c36aaa9bbdb97f3f8af2c54568ae9ab33947e8bd06cb271282b98c",
+          "installedAt": "2026-05-18T04:35:54.102Z"
+        },
+        {
+          "target": ".kiro/commands/skill/add.md",
+          "sourcePreset": "backend",
+          "contentHash": "78f547a83780749b2a04c68e7f58195aba5eabb2b0ac6908bffaa3bc58bdd6b6",
+          "installedAt": "2026-05-18T04:35:54.102Z"
+        },
+        {
+          "target": ".kiro/commands/skill/create.md",
+          "sourcePreset": "backend",
+          "contentHash": "eaa2d198f000ffb2ca23a86a32d6680e56fcd69efd91cf71ecb2ea1e1e1e5572",
+          "installedAt": "2026-05-18T04:35:54.102Z"
+        },
+        {
+          "target": ".kiro/commands/skill/optimize.md",
+          "sourcePreset": "backend",
+          "contentHash": "bcc86ce5d3d44964081380cccf3db6b5f746b7d0be9ef0ae2e3ea837c9e2f232",
+          "installedAt": "2026-05-18T04:35:54.103Z"
+        },
+        {
+          "target": ".kiro/commands/test.md",
+          "sourcePreset": "backend",
+          "contentHash": "aab31d96342ffea32a44f6fedd8098392473d04664ec1c0d7c0c56d0ff617c5b",
+          "installedAt": "2026-05-18T04:35:54.103Z"
+        },
+        {
+          "target": ".kiro/hooks/.env.example",
+          "sourcePreset": "backend",
+          "contentHash": "78f966dd7845ee7cc4db480f9de30f25ed7bb11535ef2d673da8458fee0ebd26",
+          "installedAt": "2026-05-18T04:35:54.103Z"
+        },
+        {
+          "target": ".kiro/hooks/README.md",
+          "sourcePreset": "backend",
+          "contentHash": "3ad7e5e3a5a8302ea2fc51466e987031dfb0189dbbdb7075b97a25d8efb8ba0f",
+          "installedAt": "2026-05-18T04:35:54.103Z"
+        },
+        {
+          "target": ".kiro/hooks/discord-notify.js",
+          "sourcePreset": "backend",
+          "contentHash": "4d334444b77154e938bd6abcf238795d8f3b82bc6e20c761f9a86608d3eb889e",
+          "installedAt": "2026-05-18T04:35:54.103Z"
+        },
+        {
+          "target": ".kiro/hooks/discord-notify.ps1",
+          "sourcePreset": "backend",
+          "contentHash": "a5c22a70217d2db1096b6914317b58fbdb4b36a49d930fd65766e1712457a701",
+          "installedAt": "2026-05-18T04:35:54.104Z"
+        },
+        {
+          "target": ".kiro/hooks/git-status-tracker.js",
+          "sourcePreset": "backend",
+          "contentHash": "73d8b63daa0d82abe65145042dfdd32de09a44cd4cbe2e1a95e56045c7bdba96",
+          "installedAt": "2026-05-18T04:35:54.104Z"
+        },
+        {
+          "target": ".kiro/hooks/modularization-hook.js",
+          "sourcePreset": "backend",
+          "contentHash": "83a1e1eb0366024da7b94c8661e0e74e355a2ef7a6d97b2e0792812b16a0e710",
+          "installedAt": "2026-05-18T04:35:54.104Z"
+        },
+        {
+          "target": ".kiro/hooks/pre-commit-lint.js",
+          "sourcePreset": "backend",
+          "contentHash": "fecd31ac778ed850ad52e238a0a424fad1003b103c2207fe8478bcc06a63bfd0",
+          "installedAt": "2026-05-18T04:35:54.104Z"
+        },
+        {
+          "target": ".kiro/hooks/scout-block.js",
+          "sourcePreset": "backend",
+          "contentHash": "42f0dd8f7a0392cdb0960e4408216a4a3ca23eb7ea7c6a96b2043a29a2ef0d69",
+          "installedAt": "2026-05-18T04:35:54.104Z"
+        },
+        {
+          "target": ".kiro/hooks/scout-block.ps1",
+          "sourcePreset": "backend",
+          "contentHash": "bcecdec21cdaec2d69f22fb40ce211019025d2e596b0a19f0fbae69a5627da52",
+          "installedAt": "2026-05-18T04:35:54.104Z"
+        },
+        {
+          "target": ".kiro/hooks/telegram-notify.js",
+          "sourcePreset": "backend",
+          "contentHash": "9aac4f51868794436387ee4faba9a1622484a3acf268e17bdf55b77280bfd652",
+          "installedAt": "2026-05-18T04:35:54.105Z"
+        },
+        {
+          "target": ".kiro/hooks/telegram-notify.ps1",
+          "sourcePreset": "backend",
+          "contentHash": "5163d1f4747b1926deb413b497250bcbcf8bb53e56df5cb846681b280c85970d",
+          "installedAt": "2026-05-18T04:35:54.105Z"
+        },
+        {
+          "target": ".kiro/metadata.json",
+          "sourcePreset": "backend",
+          "contentHash": "df052a3290e53889d05676d2b3194bc16466caa47ba3bcfc77e18af394665ad9",
+          "installedAt": "2026-05-18T04:35:54.105Z"
+        },
+        {
+          "target": ".kiro/settings/mcp.json.example",
+          "sourcePreset": "backend",
+          "contentHash": "33d69c70e3ff1ebe79a11c1ee2e694b3473b7b6e254716ace9435b7f35c3ee27",
+          "installedAt": "2026-05-18T04:35:54.105Z"
+        },
+        {
+          "target": ".kiro/skills/.env.example",
+          "sourcePreset": "backend",
+          "contentHash": "ba6cf01467360424d55710431ccaf694c4bcae5813e6f36f99a8db473c7ee5e5",
+          "installedAt": "2026-05-18T04:35:54.105Z"
+        },
+        {
+          "target": ".kiro/skills/INSTALLATION.md",
+          "sourcePreset": "backend",
+          "contentHash": "82609b86770a1961da013769773f4b624924b1f2d495b272167f00d0faad52a2",
+          "installedAt": "2026-05-18T04:35:54.106Z"
+        },
+        {
+          "target": ".kiro/skills/README.md",
+          "sourcePreset": "backend",
+          "contentHash": "9d7364c43ddc9b92fe0e23b7ca7ae969338881da75564856827254c8e00dfd57",
+          "installedAt": "2026-05-18T04:35:54.106Z"
+        },
+        {
+          "target": ".kiro/skills/THIRD_PARTY_NOTICES.md",
+          "sourcePreset": "backend",
+          "contentHash": "4ac0ff3592263ced09f1bc70e19e192fbd7da749fb894f70ddee53bd34b3d223",
+          "installedAt": "2026-05-18T04:35:54.106Z"
+        },
+        {
+          "target": ".kiro/skills/agent_skills_spec.md",
+          "sourcePreset": "backend",
+          "contentHash": "d38cc406b121ce8ce7f819683013c582926d5183e2864a905ed6ed2e5e2ddbaf",
+          "installedAt": "2026-05-18T04:35:54.106Z"
+        },
+        {
+          "target": ".kiro/skills/chrome-devtools/scripts/.gitignore",
+          "sourcePreset": "backend",
+          "contentHash": "dba27c31aad935787bb275c3e5e4e957708f15386de599eff1db476022cd7e4c",
+          "installedAt": "2026-05-18T04:35:54.115Z"
+        },
+        {
+          "target": ".kiro/skills/chrome-devtools/scripts/package.json",
+          "sourcePreset": "backend",
+          "contentHash": "1ca3a64a645d7b1d2cace2256d2e3d459a6abbcfab0417429423e6fc97ce9b59",
+          "installedAt": "2026-05-18T04:35:54.120Z"
+        },
+        {
+          "target": ".kiro/skills/code-review/SKILL.md",
+          "sourcePreset": "backend",
+          "contentHash": "fb289eaa9de6e421372d9a9dce305f956f3e623f2661c4f4af8502d34626ac11",
+          "installedAt": "2026-05-18T04:35:54.122Z"
+        },
+        {
+          "target": ".kiro/skills/databases/scripts/tests/coverage-db.json",
+          "sourcePreset": "backend",
+          "contentHash": "f40c12d1ff34d9c927b31ba3b3f57371f06f45cf462f1516d0eb3f1fa2351b0a",
+          "installedAt": "2026-05-18T04:35:54.126Z"
+        },
+        {
+          "target": ".kiro/skills/docs-seeker/package.json",
+          "sourcePreset": "backend",
+          "contentHash": "33b6e057c9d79e9758db06281d14b9e522afa9146b18bedff2122fbdcb0a7777",
+          "installedAt": "2026-05-18T04:35:54.131Z"
+        },
+        {
+          "target": ".kiro/skills/frontend-design/SKILL.md",
+          "sourcePreset": "backend",
+          "contentHash": "5cbffad082b973f993ae71ab7b631161c078ad4be9e5bbda49bbd5a044ca6cd6",
+          "installedAt": "2026-05-18T04:35:54.133Z"
+        },
+        {
+          "target": ".kiro/skills/mcp-management/SKILL.md",
+          "sourcePreset": "backend",
+          "contentHash": "7c0aabf524c07c2944f2deb221ed4e650e5a6c5f7d69190674d0faee52f6e838",
+          "installedAt": "2026-05-18T04:35:54.135Z"
+        },
+        {
+          "target": ".kiro/skills/mcp-management/assets/tools.json",
+          "sourcePreset": "backend",
+          "contentHash": "2e3e87d128ba6e68c6b80d469968c9db822fb0f67a3323ecdf38db438480a6c7",
+          "installedAt": "2026-05-18T04:35:54.135Z"
+        },
+        {
+          "target": ".kiro/skills/mcp-management/scripts/package.json",
+          "sourcePreset": "backend",
+          "contentHash": "7b5243318c92ded0fa1b039c71853619a855f08e50ccdcb8313a22547609a0e0",
+          "installedAt": "2026-05-18T04:35:54.137Z"
+        },
+        {
+          "target": ".kiro/skills/mcp-management/scripts/tsconfig.json",
+          "sourcePreset": "backend",
+          "contentHash": "84fe410a67bf254076291e1bf4d37d55cc5b14a31f9ff28c4701dccc3d6381eb",
+          "installedAt": "2026-05-18T04:35:54.137Z"
+        },
+        {
+          "target": ".kiro/skills/media-processing/SKILL.md",
+          "sourcePreset": "backend",
+          "contentHash": "8fcd89eebf7a42dfe6854c953fe7287eab3149bae770ea65e6784853071c0b87",
+          "installedAt": "2026-05-18T04:35:54.137Z"
+        },
+        {
+          "target": ".kiro/skills/payment-integration/scripts/package.json",
+          "sourcePreset": "backend",
+          "contentHash": "67c12896253eba8d80c7a506212c6187424ccdd02b557aad0e31d73b8eee5db3",
+          "installedAt": "2026-05-18T04:35:54.140Z"
+        },
+        {
+          "target": ".kiro/skills/repomix/SKILL.md",
+          "sourcePreset": "backend",
+          "contentHash": "ceaceb91abd85dfe1ff13782939f4ff6962ecdb75d2a5d365ea92cf99bbb6ccd",
+          "installedAt": "2026-05-18T04:35:54.142Z"
+        },
+        {
+          "target": ".kiro/skills/repomix/scripts/repos.example.json",
+          "sourcePreset": "backend",
+          "contentHash": "5086bf887ccc032abd23715c7ed278bf9844b035068b25469ed4c00435e079fd",
+          "installedAt": "2026-05-18T04:35:54.143Z"
+        },
+        {
+          "target": ".kiro/skills/research/SKILL.md",
+          "sourcePreset": "backend",
+          "contentHash": "10c54a97fa32eaf60d61e658ad1233ef883bb79be69d8686873ef09adb8b5f91",
+          "installedAt": "2026-05-18T04:35:54.143Z"
+        },
+        {
+          "target": ".kiro/skills/sequential-thinking/package.json",
+          "sourcePreset": "backend",
+          "contentHash": "b392f291bd595484a90c2fb88d78810e691056072051b1616dbe1c53dec9ef50",
+          "installedAt": "2026-05-18T04:35:54.144Z"
+        },
+        {
+          "target": ".kiro/skills/template-skill/SKILL.md",
+          "sourcePreset": "backend",
+          "contentHash": "bf201bfcca6a236a757d8d87a5d47a6af3e50075c36a48828a3392a3e3659396",
+          "installedAt": "2026-05-18T04:35:54.147Z"
+        },
+        {
+          "target": ".kiro/specs/_templates/backend/design.md",
+          "sourcePreset": "backend",
+          "contentHash": "3c84189619dfc653e1ae734ba94cb0a5ffb2d457cee0783ccbab8225a9b8a8ee",
+          "installedAt": "2026-05-18T04:35:54.148Z"
+        },
+        {
+          "target": ".kiro/specs/_templates/backend/requirements.md",
+          "sourcePreset": "backend",
+          "contentHash": "376ffce24eace1ef0321a885dc67ab0410ed362fad19724c59722dfecaedeb77",
+          "installedAt": "2026-05-18T04:35:54.148Z"
+        },
+        {
+          "target": ".kiro/specs/_templates/backend/tasks.md",
+          "sourcePreset": "backend",
+          "contentHash": "c494b695e8fd3ea1d07b5bbc4a57376462f7f95730129100a37b0a79fbf7f1f5",
+          "installedAt": "2026-05-18T04:35:54.148Z"
+        },
+        {
+          "target": ".kiro/statusline.js",
+          "sourcePreset": "backend",
+          "contentHash": "ec30a308f55b8e5dc313e30377c2ef6ee9234b1fa8902b9353171c647eb5530a",
+          "installedAt": "2026-05-18T04:35:54.148Z"
+        },
+        {
+          "target": ".kiro/statusline.ps1",
+          "sourcePreset": "backend",
+          "contentHash": "074d6578688719a85970e2b907956737548d83ffd705d76db8f261a7449af1b8",
+          "installedAt": "2026-05-18T04:35:54.148Z"
+        },
+        {
+          "target": ".kiro/steering/api-design-conventions.md",
+          "sourcePreset": "backend",
+          "contentHash": "76bb3993a9104496e167d5cdaa1c5c8cbbde810cf9d05e7e8c7e63748f5083b9",
+          "installedAt": "2026-05-18T04:35:54.148Z"
+        },
+        {
+          "target": ".kiro/steering/security-best-practices.md",
+          "sourcePreset": "backend",
+          "contentHash": "fb49de9edbf60fdd6e0f72c019ce560bb6470806609b65c3e20f77727bc6f2fa",
+          "installedAt": "2026-05-18T04:35:54.148Z"
+        },
+        {
+          "target": ".kiro/workflows/development-rules.md",
+          "sourcePreset": "backend",
+          "contentHash": "cf686d08b210a583b78c4fdaeaa125cf01df563a670518788ffbc399d044e031",
+          "installedAt": "2026-05-18T04:35:54.149Z"
+        },
+        {
+          "target": ".kiro/workflows/documentation-management.md",
+          "sourcePreset": "backend",
+          "contentHash": "7458cbd69827dcacf9cf68d8bc79e6a774f5895475d47174b34c2f9d95633f95",
+          "installedAt": "2026-05-18T04:35:54.149Z"
+        },
+        {
+          "target": ".kiro/workflows/orchestration-protocol.md",
+          "sourcePreset": "backend",
+          "contentHash": "a503bd1bf752225b23e317baf965249645d773db39877a70fe37056056f9e4ad",
+          "installedAt": "2026-05-18T04:35:54.149Z"
+        },
+        {
+          "target": ".kiro/workflows/primary-workflow.md",
+          "sourcePreset": "backend",
+          "contentHash": "e6602acbad86b34e38aaf19d97724525a84507a080d46e2c21d474cfd70edcbd",
+          "installedAt": "2026-05-18T04:35:54.149Z"
+        },
+        {
+          "target": "docs/code-standards.md",
+          "sourcePreset": "backend",
+          "contentHash": "b48492536581da33cc3ae11f6fc67f69c1df6361c136af57a3266c76c90098c8",
+          "installedAt": "2026-05-18T04:35:54.149Z"
+        },
+        {
+          "target": "docs/project-roadmap.md",
+          "sourcePreset": "backend",
+          "contentHash": "7d929b841d4348efdb30d900f27dcb0338a804128d54768a14e76f2403d85013",
+          "installedAt": "2026-05-18T04:35:54.149Z"
+        },
+        {
+          "target": "docs/system-architecture.md",
+          "sourcePreset": "backend",
+          "contentHash": "9b37dead9830665fba1cc4b934b9ee4e3d68a72c9b8c716fe1e692d46f951b03",
+          "installedAt": "2026-05-18T04:35:54.149Z"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-05-18T04:35:54.150Z"
+}

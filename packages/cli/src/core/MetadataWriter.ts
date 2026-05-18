@@ -67,7 +67,7 @@ export function read(workspaceRoot: string): Metadata | null {
  * Merge new presets into existing metadata (dedup by name).
  */
 export function mergePresets(existing: Metadata, newPresets: PresetMeta[]): Metadata {
-  const merged = [...existing.presets];
+  const merged = [...(existing.presets || [])];
   for (const p of newPresets) {
     const idx = merged.findIndex((m) => m.name === p.name);
     if (idx >= 0) {
