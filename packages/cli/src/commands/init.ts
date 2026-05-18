@@ -94,28 +94,47 @@ async function multiPickPrompt(
 
     let escBuffer = '';
 
+    const handleArrow = (seq: string): boolean => {
+      if (seq === '\x1B[A' || seq === '\x1BOA') {
+        cursor = (cursor - 1 + items.length) % items.length;
+        render();
+        return true;
+      }
+      if (seq === '\x1B[B' || seq === '\x1BOB') {
+        cursor = (cursor + 1) % items.length;
+        render();
+        return true;
+      }
+      return false;
+    };
+
     const onData = (key: string): void => {
-      // Handle multi-byte escape sequences (arrow keys on Windows)
+      // Case 1: continuing a buffered escape sequence (split across chunks)
       if (escBuffer.length > 0) {
         escBuffer += key;
         if (escBuffer.length >= 3) {
           const seq = escBuffer;
           escBuffer = '';
-          if (seq === '\x1B[A' || seq === '\x1BOA') {
-            cursor = (cursor - 1 + items.length) % items.length;
-            render();
-          } else if (seq === '\x1B[B' || seq === '\x1BOB') {
-            cursor = (cursor + 1) % items.length;
-            render();
-          }
-          return;
+          handleArrow(seq);
         }
         return;
       }
 
-      // Start of escape sequence
+      // Case 2: full escape sequence arrived in one chunk (common on Windows)
+      if (key.length >= 3 && key.startsWith('\x1B')) {
+        handleArrow(key);
+        return;
+      }
+
+      // Case 3: start of escape sequence (single ESC byte, more coming)
       if (key === '\x1B') {
         escBuffer = key;
+        // Timeout: if no more bytes arrive within 50ms, discard (bare ESC key)
+        setTimeout(() => {
+          if (escBuffer.length > 0) {
+            escBuffer = '';
+          }
+        }, 50);
         return;
       }
 
