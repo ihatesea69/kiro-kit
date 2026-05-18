@@ -839,73 +839,63 @@
       "type": "other"
     },
     {
-      "source": "skills/claude-code/references/advanced-features.md",
-      "target": ".kiro/skills/claude-code/references/advanced-features.md",
+      "source": "skills/kiro/skill.md",
+      "target": ".kiro/skills/kiro/skill.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/kiro/references/autonomy-modes.md",
+      "target": ".kiro/skills/kiro/references/autonomy-modes.md",
       "type": "doc"
     },
     {
-      "source": "skills/claude-code/references/agent-skills.md",
-      "target": ".kiro/skills/claude-code/references/agent-skills.md",
+      "source": "skills/kiro/references/best-practices.md",
+      "target": ".kiro/skills/kiro/references/best-practices.md",
       "type": "doc"
     },
     {
-      "source": "skills/claude-code/references/api-reference.md",
-      "target": ".kiro/skills/claude-code/references/api-reference.md",
+      "source": "skills/kiro/references/commands.md",
+      "target": ".kiro/skills/kiro/references/commands.md",
       "type": "doc"
     },
     {
-      "source": "skills/claude-code/references/best-practices.md",
-      "target": ".kiro/skills/claude-code/references/best-practices.md",
+      "source": "skills/kiro/references/configuration.md",
+      "target": ".kiro/skills/kiro/references/configuration.md",
       "type": "doc"
     },
     {
-      "source": "skills/claude-code/references/cicd-integration.md",
-      "target": ".kiro/skills/claude-code/references/cicd-integration.md",
+      "source": "skills/kiro/references/getting-started.md",
+      "target": ".kiro/skills/kiro/references/getting-started.md",
       "type": "doc"
     },
     {
-      "source": "skills/claude-code/references/configuration.md",
-      "target": ".kiro/skills/claude-code/references/configuration.md",
+      "source": "skills/kiro/references/hooks.md",
+      "target": ".kiro/skills/kiro/references/hooks.md",
       "type": "doc"
     },
     {
-      "source": "skills/claude-code/references/enterprise-features.md",
-      "target": ".kiro/skills/claude-code/references/enterprise-features.md",
+      "source": "skills/kiro/references/mcp-integration.md",
+      "target": ".kiro/skills/kiro/references/mcp-integration.md",
       "type": "doc"
     },
     {
-      "source": "skills/claude-code/references/getting-started.md",
-      "target": ".kiro/skills/claude-code/references/getting-started.md",
+      "source": "skills/kiro/references/skills.md",
+      "target": ".kiro/skills/kiro/references/skills.md",
       "type": "doc"
     },
     {
-      "source": "skills/claude-code/references/hooks-and-plugins.md",
-      "target": ".kiro/skills/claude-code/references/hooks-and-plugins.md",
+      "source": "skills/kiro/references/specs-workflow.md",
+      "target": ".kiro/skills/kiro/references/specs-workflow.md",
       "type": "doc"
     },
     {
-      "source": "skills/claude-code/references/ide-integration.md",
-      "target": ".kiro/skills/claude-code/references/ide-integration.md",
+      "source": "skills/kiro/references/steering-files.md",
+      "target": ".kiro/skills/kiro/references/steering-files.md",
       "type": "doc"
     },
     {
-      "source": "skills/claude-code/references/mcp-integration.md",
-      "target": ".kiro/skills/claude-code/references/mcp-integration.md",
-      "type": "doc"
-    },
-    {
-      "source": "skills/claude-code/references/slash-commands.md",
-      "target": ".kiro/skills/claude-code/references/slash-commands.md",
-      "type": "doc"
-    },
-    {
-      "source": "skills/claude-code/references/troubleshooting.md",
-      "target": ".kiro/skills/claude-code/references/troubleshooting.md",
-      "type": "doc"
-    },
-    {
-      "source": "skills/claude-code/skill.md",
-      "target": ".kiro/skills/claude-code/skill.md",
+      "source": "skills/kiro/references/troubleshooting.md",
+      "target": ".kiro/skills/kiro/references/troubleshooting.md",
       "type": "doc"
     },
     {
