@@ -7,6 +7,7 @@ const ArtifactTypeSchema = z.enum([
   'steering', 'hook', 'mcp', 'skill', 'agent',
   'command', 'workflow', 'statusline', 'metadata',
   'settings', 'env', 'spec', 'docs', 'doc', 'config', 'other',
+  'powers',
 ]);
 
 const PresetNameSchema = z.enum([

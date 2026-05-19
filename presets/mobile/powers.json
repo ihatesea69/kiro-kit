@@ -1,0 +1,34 @@
+{
+  "powers": [
+    {
+      "name": "Firebase",
+      "url": "https://kiro.dev/powers/firebase",
+      "description": "Full-stack mobile development with auth, database, and push notifications",
+      "tier": "essential"
+    },
+    {
+      "name": "Figma",
+      "url": "https://kiro.dev/powers/figma",
+      "description": "Design-to-code integration with Figma files",
+      "tier": "recommended"
+    },
+    {
+      "name": "Context7",
+      "url": "https://kiro.dev/powers/context7",
+      "description": "Up-to-date documentation lookup for libraries and frameworks",
+      "tier": "recommended"
+    },
+    {
+      "name": "ElevenLabs",
+      "url": "https://kiro.dev/powers/eleven-labs",
+      "description": "Text-to-speech and voice AI integration",
+      "tier": "optional"
+    },
+    {
+      "name": "Bria",
+      "url": "https://kiro.dev/powers/bria",
+      "description": "AI image generation and editing for app assets",
+      "tier": "optional"
+    }
+  ]
+}

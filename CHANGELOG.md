@@ -5,7 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.3.0] - 2025-05-20
+
+### Added
+
+- Kiro Powers integration: each preset now recommends curated Powers from kiro.dev marketplace
+- `powers.json` per preset with 3-tier system (essential/recommended/optional)
+- Domain-specific Agent Hooks: 18 new hooks (3 per preset) for role-specific automation
+  - frontend: accessibility-check, bundle-size-guard, component-test-reminder
+  - backend: api-schema-validate, migration-safety-check, endpoint-test-coverage
+  - fullstack: type-sync-check, api-client-gen, deployment-readiness
+  - mobile: platform-parity-check, asset-optimization, release-checklist
+  - devops: terraform-plan-review, container-scan, cost-estimation
+  - data-ai: data-drift-check, model-card-update, experiment-log
+- MCP Server auto-configuration: `kiro-kit init` now generates functional `.mcp.json` (not just .example)
+  - Default servers (filesystem, git, fetch) enabled immediately
+  - Credential-requiring servers (postgres, docker) included as disabled with instructions
+- `POWERS-SETUP.md` generated in `.kiro/` with step-by-step Power installation guide
+- `.env.example` auto-updated with required environment variables grouped by service
+- CLI flags: `--powers <none|all|interactive>` and `--quiet`
+- New core modules: PowersLoader, MCPConfigurator, SetupGuideGenerator, EnvTemplateGenerator, PowersPrompter
+- `powers` artifact type added to ManifestParser schema
+
+### Changed
+
+- Init flow now includes Powers recommendation, MCP auto-config, and env template generation after file processing
+- All 6 preset manifests updated with powers.json and domain hook entries
+
+## [0.2.4] - 2025-05-18
 
 ### Added
 

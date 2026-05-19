@@ -1,0 +1,40 @@
+{
+  "powers": [
+    {
+      "name": "Terraform",
+      "url": "https://kiro.dev/powers/terraform",
+      "description": "Infrastructure as Code with registry providers and modules",
+      "tier": "essential"
+    },
+    {
+      "name": "Datadog",
+      "url": "https://kiro.dev/powers/datadog",
+      "description": "Production monitoring, logging, and APM",
+      "tier": "recommended"
+    },
+    {
+      "name": "Snyk",
+      "url": "https://kiro.dev/powers/snyk",
+      "description": "Security scanning for containers and infrastructure",
+      "tier": "recommended"
+    },
+    {
+      "name": "Depot",
+      "url": "https://kiro.dev/powers/depot",
+      "description": "Optimized container builds and CI/CD pipelines",
+      "tier": "recommended"
+    },
+    {
+      "name": "Harness",
+      "url": "https://kiro.dev/powers/harness",
+      "description": "CI/CD pipelines, cloud cost management, and feature flags",
+      "tier": "optional"
+    },
+    {
+      "name": "AWS CDK",
+      "url": "https://kiro.dev/powers/aws-cdk",
+      "description": "AWS infrastructure with CDK using best practices",
+      "tier": "optional"
+    }
+  ]
+}

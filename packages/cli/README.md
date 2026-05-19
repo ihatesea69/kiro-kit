@@ -63,10 +63,45 @@ Every preset ships **self-contained**: agents, skills, commands, cross-platform 
 --force                Overwrite all conflicts (with backup)
 --skip-existing        Skip files that already exist
 --no-color             Disable ANSI output
+--powers <mode>        Powers setup: none, all, or interactive (default)
+--quiet                Suppress non-essential output
 -v, --verbose          Verbose logging
 -q, --quiet            Errors only
 --json                 Machine-readable output (list, info)
 ```
+
+## Kiro Powers Integration
+
+Each preset recommends curated [Kiro Powers](https://kiro.dev/powers/) from the marketplace, organized by priority:
+
+| Preset | Essential | Recommended | Optional |
+|--------|-----------|-------------|----------|
+| frontend | Figma | Netlify, Context7 | Snyk, ScoutQA |
+| backend | Supabase | Neon, Postman, Context7 | Stripe, Snyk |
+| fullstack | Supabase | Figma, Netlify, Stripe, Context7 | Firebase, LaunchDarkly |
+| mobile | Firebase | Figma, Context7 | ElevenLabs, Bria |
+| devops | Terraform | Datadog, Snyk, Depot | Harness, AWS CDK |
+| data-ai | ClickHouse | Context7, Exa | Neon, New Relic |
+
+After `init`, a `POWERS-SETUP.md` guide is generated with install instructions for each Power.
+
+## MCP Server Auto-Configuration
+
+Running `kiro-kit init` generates a functional `.mcp.json` (not just an example file):
+
+- Servers requiring no credentials (filesystem, git, fetch) are enabled immediately
+- Servers requiring credentials (postgres, docker) are included as `_disabled_` entries with instructions to enable
+
+## Domain-Specific Hooks
+
+Beyond generic notification hooks, each preset includes 3 domain-specific hooks:
+
+- **frontend**: accessibility-check, bundle-size-guard, component-test-reminder
+- **backend**: api-schema-validate, migration-safety-check, endpoint-test-coverage
+- **fullstack**: type-sync-check, api-client-gen, deployment-readiness
+- **mobile**: platform-parity-check, asset-optimization, release-checklist
+- **devops**: terraform-plan-review, container-scan, cost-estimation
+- **data-ai**: data-drift-check, model-card-update, experiment-log
 
 ## How it works
 

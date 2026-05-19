@@ -31,7 +31,22 @@ Pick from 6 curated presets, confirm, and your `.kiro/` workspace is ready. Agen
 | `devops` | Docker, Kubernetes, Terraform | 20 agents, 26 skills, 65 commands for CI checks, container scanning, infrastructure as code |
 | `data-ai` | Python, ML, AI agents | 20 agents, 30 skills, 70 commands for Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
 
-Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 6+ cross-platform hooks, 4+ workflows, plus statusline scripts, MCP server templates, and spec scaffolding.
+Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 9+ cross-platform hooks (including 3 domain-specific), MCP server auto-config, Powers recommendations, and spec scaffolding.
+
+## Kiro Powers Integration
+
+Each preset recommends curated [Kiro Powers](https://kiro.dev/powers/) organized by priority tier:
+
+| Preset | Essential | Recommended | Optional |
+|--------|-----------|-------------|----------|
+| frontend | Figma | Netlify, Context7 | Snyk, ScoutQA |
+| backend | Supabase | Neon, Postman, Context7 | Stripe, Snyk |
+| fullstack | Supabase | Figma, Netlify, Stripe, Context7 | Firebase, LaunchDarkly |
+| mobile | Firebase | Figma, Context7 | ElevenLabs, Bria |
+| devops | Terraform | Datadog, Snyk, Depot | Harness, AWS CDK |
+| data-ai | ClickHouse | Context7, Exa | Neon, New Relic |
+
+Running `init` also auto-configures MCP servers (filesystem, git, fetch enabled; postgres, docker as disabled templates) and generates a `POWERS-SETUP.md` guide.
 
 ## Commands
 
