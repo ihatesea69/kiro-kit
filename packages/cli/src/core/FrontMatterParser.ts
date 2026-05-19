@@ -48,7 +48,7 @@ export function parse(content: string): ParsedFile {
     );
   }
 
-  const body = lines.slice(endIndex + 1).join('\n').replace(/^\n/, '');
+  const body = lines.slice(endIndex + 1).join('\n');
   return { frontMatter, body };
 }
 
