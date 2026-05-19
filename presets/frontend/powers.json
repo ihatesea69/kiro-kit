@@ -1,0 +1,34 @@
+{
+  "powers": [
+    {
+      "name": "Figma",
+      "url": "https://kiro.dev/powers/figma",
+      "description": "Design-to-code integration with Figma files",
+      "tier": "essential"
+    },
+    {
+      "name": "Netlify",
+      "url": "https://kiro.dev/powers/netlify",
+      "description": "Deploy React, Next.js, and modern web apps to global CDN",
+      "tier": "recommended"
+    },
+    {
+      "name": "Context7",
+      "url": "https://kiro.dev/powers/context7",
+      "description": "Up-to-date documentation lookup for libraries and frameworks",
+      "tier": "recommended"
+    },
+    {
+      "name": "Snyk",
+      "url": "https://kiro.dev/powers/snyk",
+      "description": "Security scanning and vulnerability detection for dependencies",
+      "tier": "optional"
+    },
+    {
+      "name": "ScoutQA",
+      "url": "https://kiro.dev/powers/scout-qa",
+      "description": "AI-powered exploratory testing for web applications",
+      "tier": "optional"
+    }
+  ]
+}

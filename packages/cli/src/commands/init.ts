@@ -19,12 +19,21 @@ import { logger } from '../utils/logger.js';
 import { color } from '../utils/color.js';
 import { safePathInside } from '../utils/paths.js';
 
+// Powers integration modules
+import { loadPowers, mergePowers, filterByTier } from '../core/PowersLoader.js';
+import { getMCPConfig, mergeMCPConfig, writeMCPConfig } from '../core/MCPConfigurator.js';
+import { generateSetupGuide, writeSetupGuide } from '../core/SetupGuideGenerator.js';
+import { collectEnvVars, generateEnvTemplate, readExistingEnv, writeEnvTemplate } from '../core/EnvTemplateGenerator.js';
+import { promptPowersTier, displayPowersRecommendations } from '../prompts/PowersPrompter.js';
+
 interface InitOptions {
   yes?: boolean;
   preset?: string[];
   force?: boolean;
   skipExisting?: boolean;
   color?: boolean;
+  powers?: string;
+  quiet?: boolean;
 }
 
 // Handle SIGINT at process level for exit 130
@@ -283,6 +292,8 @@ export function registerInitCommand(program: Command): void {
     .option('--force', 'Overwrite all files (with backup)')
     .option('--skip-existing', 'Skip all existing files')
     .option('--no-color', 'Disable ANSI colors')
+    .option('--powers <mode>', 'Powers setup mode: none, all, or interactive (default)', 'interactive')
+    .option('--quiet', 'Suppress non-essential output including Powers recommendations')
     .action(async (opts: InitOptions) => {
       setupSigintHandler();
       try {
@@ -523,6 +534,124 @@ async function runInit(opts: InitOptions): Promise<void> {
         fs.copyFileSync(mcpExampleSource, mcpExampleTarget);
       }
     }
+  }
+
+  // -----------------------------------------------------------------------
+  // 6a. Powers Loading
+  // -----------------------------------------------------------------------
+  try {
+    if (opts.powers !== 'none') {
+      const allPowerEntries = presets.map((p) => {
+        const result = loadPowers(p.dir);
+        if (!result.ok) {
+          logger.warn(`Powers: ${result.error}`);
+        }
+        return result.powers;
+      });
+
+      const mergedPowers = mergePowers(allPowerEntries);
+
+      if (mergedPowers.length > 0) {
+        // 6b. Powers tier selection
+        const promptResult = await promptPowersTier(mergedPowers, {
+          powersFlag: opts.powers,
+          yes: opts.yes,
+        });
+
+        const filteredPowers = promptResult.selectedTiers.length > 0
+          ? filterByTier(mergedPowers, promptResult.selectedTiers)
+          : [];
+
+        // 6c. MCP auto-configuration
+        if (promptResult.confirmMCP) {
+          try {
+            const presetMCPConfigs = presets.map((p) => getMCPConfig(p.manifest.name));
+            // Merge all preset MCP configs into one
+            let combinedMCP: Record<string, unknown> | null = null;
+            const mcpJsonPath = path.join(workspaceRoot, '.mcp.json');
+            if (fs.existsSync(mcpJsonPath)) {
+              try {
+                combinedMCP = JSON.parse(fs.readFileSync(mcpJsonPath, 'utf-8')) as Record<string, unknown>;
+              } catch {
+                logger.warn('Existing .mcp.json is invalid JSON, will create fresh.');
+                combinedMCP = null;
+              }
+            }
+
+            for (const mcpConfig of presetMCPConfigs) {
+              combinedMCP = mergeMCPConfig(combinedMCP, mcpConfig);
+            }
+
+            // Prompt user to confirm MCP server installation (skip if --yes)
+            let confirmWrite = true;
+            if (!opts.yes) {
+              confirmWrite = await confirmPrompt(
+                'Configure MCP servers in .mcp.json? (Y/n)',
+              );
+            }
+
+            if (confirmWrite && combinedMCP) {
+              writeMCPConfig(workspaceRoot, combinedMCP);
+              if (!opts.quiet) {
+                logger.info('MCP servers configured in .mcp.json');
+              }
+            }
+          } catch (err) {
+            logger.warn(`MCP configuration failed: ${err instanceof Error ? err.message : String(err)}`);
+          }
+        }
+
+        // 6d. Display Powers recommendations and generate setup guide
+        displayPowersRecommendations(filteredPowers, opts.quiet ?? false);
+
+        try {
+          const mcpServersForGuide = presets.reduce(
+            (acc, p) => ({ ...acc, ...getMCPConfig(p.manifest.name).servers }),
+            {} as Record<string, import('../core/MCPConfigurator.js').MCPServerEntry>,
+          );
+
+          const guideContent = generateSetupGuide({
+            powers: filteredPowers,
+            presetNames: selectedNames,
+            mcpServers: mcpServersForGuide,
+          });
+          writeSetupGuide(workspaceRoot, guideContent);
+          if (!opts.quiet) {
+            logger.info('Setup guide written to .kiro/POWERS-SETUP.md');
+          }
+        } catch (err) {
+          logger.warn(`Setup guide generation failed: ${err instanceof Error ? err.message : String(err)}`);
+        }
+
+        // 6e. Generate/update .env.example
+        try {
+          const mcpConfigForEnv = presets.reduce(
+            (acc, p) => {
+              const cfg = getMCPConfig(p.manifest.name);
+              return { servers: { ...acc.servers, ...cfg.servers } };
+            },
+            { servers: {} } as import('../core/MCPConfigurator.js').MCPPresetConfig,
+          );
+
+          const envVars = collectEnvVars(mcpConfigForEnv, filteredPowers);
+          if (envVars.length > 0) {
+            const existingEnv = readExistingEnv(workspaceRoot);
+            const envContent = generateEnvTemplate(existingEnv, envVars);
+            if (envContent.trim().length > 0) {
+              writeEnvTemplate(workspaceRoot, envContent);
+              if (!opts.quiet) {
+                logger.info('Environment template updated in .env.example');
+              }
+            }
+          }
+        } catch (err) {
+          logger.warn(`Env template generation failed: ${err instanceof Error ? err.message : String(err)}`);
+        }
+      }
+    }
+  } catch (err) {
+    // Powers integration is non-blocking — log warning and continue
+    logger.warn(`Powers integration failed: ${err instanceof Error ? err.message : String(err)}`);
   }
 
   // 7. Write metadata.json

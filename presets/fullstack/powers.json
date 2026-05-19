@@ -1,0 +1,46 @@
+{
+  "powers": [
+    {
+      "name": "Supabase",
+      "url": "https://kiro.dev/powers/supabase",
+      "description": "Backend-as-a-service with Postgres, auth, and real-time subscriptions",
+      "tier": "essential"
+    },
+    {
+      "name": "Figma",
+      "url": "https://kiro.dev/powers/figma",
+      "description": "Design-to-code integration with Figma files",
+      "tier": "recommended"
+    },
+    {
+      "name": "Netlify",
+      "url": "https://kiro.dev/powers/netlify",
+      "description": "Deploy React, Next.js, and modern web apps to global CDN",
+      "tier": "recommended"
+    },
+    {
+      "name": "Stripe",
+      "url": "https://kiro.dev/powers/stripe",
+      "description": "Payment processing, subscriptions, and billing integration",
+      "tier": "recommended"
+    },
+    {
+      "name": "Context7",
+      "url": "https://kiro.dev/powers/context7",
+      "description": "Up-to-date documentation lookup for libraries and frameworks",
+      "tier": "recommended"
+    },
+    {
+      "name": "Firebase",
+      "url": "https://kiro.dev/powers/firebase",
+      "description": "Full-stack application development with Google Cloud services",
+      "tier": "optional"
+    },
+    {
+      "name": "LaunchDarkly",
+      "url": "https://kiro.dev/powers/launch-darkly",
+      "description": "Feature flag management and progressive delivery",
+      "tier": "optional"
+    }
+  ]
+}

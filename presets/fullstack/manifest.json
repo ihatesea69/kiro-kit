@@ -564,6 +564,29 @@
       "executable": true
     },
     {
+      "source": "hooks/type-sync-check.js",
+      "target": ".kiro/hooks/type-sync-check.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/api-client-gen.js",
+      "target": ".kiro/hooks/api-client-gen.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/deployment-readiness.js",
+      "target": ".kiro/hooks/deployment-readiness.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "powers.json",
+      "target": ".kiro/powers.json",
+      "type": "powers"
+    },
+    {
       "source": "metadata.json",
       "target": ".kiro/metadata.json",
       "type": "metadata"

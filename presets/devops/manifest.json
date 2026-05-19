@@ -536,6 +536,29 @@
       "executable": true
     },
     {
+      "source": "hooks/terraform-plan-review.js",
+      "target": ".kiro/hooks/terraform-plan-review.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/container-scan.js",
+      "target": ".kiro/hooks/container-scan.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/cost-estimation.js",
+      "target": ".kiro/hooks/cost-estimation.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "powers.json",
+      "target": ".kiro/powers.json",
+      "type": "powers"
+    },
+    {
       "source": "metadata.json",
       "target": ".kiro/metadata.json",
       "type": "metadata"

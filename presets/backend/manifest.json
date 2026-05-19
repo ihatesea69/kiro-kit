@@ -524,6 +524,29 @@
       "executable": true
     },
     {
+      "source": "hooks/api-schema-validate.js",
+      "target": ".kiro/hooks/api-schema-validate.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/migration-safety-check.js",
+      "target": ".kiro/hooks/migration-safety-check.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/endpoint-test-coverage.js",
+      "target": ".kiro/hooks/endpoint-test-coverage.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "powers.json",
+      "target": ".kiro/powers.json",
+      "type": "powers"
+    },
+    {
       "source": "metadata.json",
       "target": ".kiro/metadata.json",
       "type": "metadata"

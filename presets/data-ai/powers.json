@@ -1,0 +1,34 @@
+{
+  "powers": [
+    {
+      "name": "ClickHouse",
+      "url": "https://kiro.dev/powers/click-house",
+      "description": "High-performance analytics database for data pipelines",
+      "tier": "essential"
+    },
+    {
+      "name": "Context7",
+      "url": "https://kiro.dev/powers/context7",
+      "description": "Up-to-date documentation lookup for libraries and frameworks",
+      "tier": "recommended"
+    },
+    {
+      "name": "Exa",
+      "url": "https://kiro.dev/powers/exa",
+      "description": "Web search and research for finding datasets and papers",
+      "tier": "recommended"
+    },
+    {
+      "name": "Neon",
+      "url": "https://kiro.dev/powers/neon",
+      "description": "Serverless Postgres for ML feature stores",
+      "tier": "optional"
+    },
+    {
+      "name": "New Relic",
+      "url": "https://kiro.dev/powers/new-relic",
+      "description": "Observability and performance monitoring for ML services",
+      "tier": "optional"
+    }
+  ]
+}
