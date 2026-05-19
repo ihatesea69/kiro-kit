@@ -8,7 +8,7 @@ const PRESETS = ['frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-a
 // Non-skill items that may exist in skills/ directory
 const IGNORED_ENTRIES = new Set([
   'README.md', 'INSTALLATION.md', 'THIRD_PARTY_NOTICES.md',
-  'agent_skills_spec.md', '.env.example',
+  'agent_skills_spec.md', '.env.example', 'common',
 ]);
 
 function hasSkillMd(dir: string): boolean {
