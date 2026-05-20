@@ -3,7 +3,6 @@ import { defineConfig } from 'tsup';
 // ESM-only packages that must be bundled (cannot be required at runtime)
 const ESM_ONLY_PACKAGES = [
   'chalk',
-  'figlet',
   'gradient-string',
   'boxen',
   'ora',
@@ -24,5 +23,7 @@ export default defineConfig({
   dts: true,
   // Bundle ESM-only packages so the dist output works with Node CJS consumers
   noExternal: ESM_ONLY_PACKAGES,
+  // figlet uses CJS require('fs') — keep it external so Node resolves it natively
+  external: ['figlet'],
   onSuccess: 'node ./scripts/copy-presets.mjs',
 });
