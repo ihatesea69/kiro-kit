@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const presetsDir = path.resolve(__dirname, '../../../../presets');
-const PRESETS = ['frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai'];
+const PRESETS = ['frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai', 'qa-automation'];
 
 // Non-skill items that may exist in skills/ directory
 const IGNORED_ENTRIES = new Set([

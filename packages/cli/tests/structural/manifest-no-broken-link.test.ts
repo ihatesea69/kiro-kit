@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const presetsDir = path.resolve(__dirname, '../../../../presets');
-const PRESETS = ['frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai'];
+const PRESETS = ['frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai', 'qa-automation'];
 
 describe('manifest no broken links', () => {
   for (const preset of PRESETS) {
