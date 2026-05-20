@@ -5,6 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.4] - 2025-05-20
+
+### Fixed
+
+- ThemedPrompt: replaced `prompts` library with raw readline-based implementation so preset selection UI works in all terminals including IDE terminals and PowerShell
+
+## [0.3.3] - 2025-05-20
+
+### Added
+
+- Rich CLI UI layer: ASCII logo with gradient, themed boxes, task progress list (listr2), spinner (ora)
+- TerminalCapability detector: respects NO_COLOR, CI, non-TTY, TERM=dumb, Windows cmd
+- Theme system with purple/blue palette and semantic tokens
+- Logo renderer: figlet ANSI Shadow font + gradient-string, compact fallback for narrow terminals
+- ThemedBox: rounded border boxes with info/tip/success/warn/error variants
+- TaskRunner: listr2 for interactive TTY, simple `->` renderer for CI/non-TTY
+- ThemedPrompt: prompts-based multi-select, confirm, conflict choice with SIGINT handling
+- Init Screens: welcome (logo + tip box + command list), summary (success box), errorBox
+- Postinstall script: light welcome box on npm install (no heavy deps, always exits 0)
+- Vendor lazy adapter: dynamic imports with null fallback for all UI deps
+
+### Changed
+
+- init.ts fully refactored to use UI layer — all readline custom prompts replaced
+- Bundle size: 669KB (includes bundled ESM-only UI deps)
+
+## [0.3.2] - 2025-05-20
+
+### Fixed
+
+- CLI preset selection display: truncate long descriptions to terminal width to prevent line overflow
+
 ## [0.3.1] - 2025-05-20
 
 ### Fixed

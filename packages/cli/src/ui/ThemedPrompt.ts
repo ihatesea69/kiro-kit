@@ -1,22 +1,302 @@
 /**
  * ThemedPrompt.ts — Interactive prompt wrapper with theme support.
  *
- * Wraps the `prompts` library with theme primitives for consistent styling.
- * Provides multi-select, single-select, confirm, and conflict-choice prompts.
- *
- * Non-TTY semantics (non-blocking):
- *   multiPickPresets → []
- *   confirm          → defaultYes value
- *   selectTier       → options[defaultIndex].value
- *   conflictChoice   → 'skip'
- *
- * SIGINT handling:
- *   When the user presses Ctrl+C inside a prompt, raw mode is cleaned up
- *   and a new Error('SIGINT') is rejected so callers can exit with code 130.
- *
- * Color=false + isTTY:
- *   Still interactive — prompts library is used but theme methods strip color.
+ * Uses raw readline for multi-select (works in all terminals including IDE).
+ * Falls back to non-interactive defaults when stdin is not available.
  */
+
+import readline from 'node:readline';
+import type { TerminalCapability } from './capability.js';
+import type { ThemeTokens } from './theme.js';
+
+// ---------------------------------------------------------------------------
+// Interfaces
+// ---------------------------------------------------------------------------
+
+export interface MultiSelectChoice {
+  name: string;
+  description: string;
+  selected?: boolean;
+  hint?: string;
+}
+
+export interface ConflictChoice {
+  value: 'overwrite' | 'skip' | 'view-diff' | 'overwrite-all';
+  label: string;
+}
+
+export interface ThemedPrompt {
+  multiPickPresets(items: MultiSelectChoice[]): Promise<string[]>;
+  selectTier<T extends string>(
+    title: string,
+    options: Array<{ value: T; label: string; hint?: string }>,
+    defaultIndex?: number,
+  ): Promise<T>;
+  confirm(message: string, defaultYes?: boolean): Promise<boolean>;
+  conflictChoice(targetRel: string): Promise<ConflictChoice['value']>;
+}
+
+// ---------------------------------------------------------------------------
+// Validation helpers
+// ---------------------------------------------------------------------------
+
+function validateMultiSelectItems(items: MultiSelectChoice[]): void {
+  if (items.length < 1) {
+    throw new Error('multiPickPresets: items must contain at least one entry');
+  }
+  const seen = new Set<string>();
+  for (const item of items) {
+    if (seen.has(item.name)) {
+      throw new Error(`multiPickPresets: duplicate item name "${item.name}"`);
+    }
+    seen.add(item.name);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Factory
+// ---------------------------------------------------------------------------
+
+export async function createPrompt(
+  capability: TerminalCapability,
+  theme: ThemeTokens,
+): Promise<ThemedPrompt> {
+
+  // -------------------------------------------------------------------------
+  // multiPickPresets — raw readline, works in all terminals
+  // -------------------------------------------------------------------------
+  async function multiPickPresets(items: MultiSelectChoice[]): Promise<string[]> {
+    validateMultiSelectItems(items);
+
+    // Non-interactive stdin (piped input, CI without TTY)
+    if (!process.stdin.readable) {
+      return [];
+    }
+
+    return new Promise<string[]>((resolve, reject) => {
+      const selected = new Set<number>();
+      let cursor = 0;
+      let rendered = false;
+
+      const cols = process.stdout.columns ?? 80;
+      const maxDescWidth = Math.max(0, cols - 23);
+
+      const render = (): void => {
+        if (rendered) {
+          process.stdout.write('\x1B[u');
+        } else {
+          process.stdout.write('\x1B[s');
+        }
+        rendered = true;
+        process.stdout.write('\x1B[J');
+
+        const heading = capability.color
+          ? theme.heading('? Select presets to install:')
+          : '? Select presets to install:';
+        const hint = capability.color
+          ? theme.muted(' (Space to select, <a> toggle all, Enter to confirm)')
+          : ' (Space to select, <a> toggle all, Enter to confirm)';
+        process.stdout.write(heading + hint + '\n');
+
+        for (let i = 0; i < items.length; i++) {
+          const marker = cursor === i
+            ? (capability.color ? theme.command('>') : '>')
+            : ' ';
+          const check = selected.has(i)
+            ? (capability.color ? '\x1B[32m[x]\x1B[0m' : '[x]')
+            : '[ ]';
+          const name = items[i].name.padEnd(12);
+          const rawDesc = items[i].description;
+          const desc = rawDesc.length > maxDescWidth
+            ? rawDesc.slice(0, Math.max(0, maxDescWidth - 1)) + '\u2026'
+            : rawDesc;
+          const styledName = capability.color ? theme.command(name) : name;
+          const styledDesc = capability.color ? theme.muted(desc) : desc;
+          process.stdout.write(`  ${marker} ${check} ${styledName} - ${styledDesc}\n`);
+        }
+      };
+
+      render();
+
+      // Try raw mode — works in real TTY and most IDE terminals
+      let rawModeActive = false;
+      try {
+        process.stdin.setRawMode(true);
+        rawModeActive = true;
+      } catch {
+        // setRawMode not supported — fall back to line-mode input
+      }
+
+      process.stdin.resume();
+      process.stdin.setEncoding('utf-8');
+
+      let escBuffer = '';
+
+      const cleanup = (): void => {
+        if (rawModeActive) {
+          try { process.stdin.setRawMode(false); } catch { /* ignore */ }
+        }
+        process.stdin.removeListener('data', onData);
+        process.stdin.pause();
+      };
+
+      const handleArrow = (seq: string): boolean => {
+        if (seq === '\x1B[A' || seq === '\x1BOA') {
+          cursor = (cursor - 1 + items.length) % items.length;
+          render();
+          return true;
+        }
+        if (seq === '\x1B[B' || seq === '\x1BOB') {
+          cursor = (cursor + 1) % items.length;
+          render();
+          return true;
+        }
+        return false;
+      };
+
+      const onData = (key: string): void => {
+        if (escBuffer.length > 0) {
+          escBuffer += key;
+          if (escBuffer.length >= 3) {
+            const seq = escBuffer;
+            escBuffer = '';
+            handleArrow(seq);
+          }
+          return;
+        }
+
+        if (key.length >= 3 && key.startsWith('\x1B')) {
+          handleArrow(key);
+          return;
+        }
+
+        if (key === '\x1B') {
+          escBuffer = key;
+          setTimeout(() => { if (escBuffer.length > 0) escBuffer = ''; }, 50);
+          return;
+        }
+
+        // Ctrl+C
+        if (key === '\x03') {
+          cleanup();
+          reject(new Error('SIGINT'));
+          return;
+        }
+
+        // Enter
+        if (key === '\r' || key === '\n') {
+          cleanup();
+          resolve([...selected].map((i) => items[i].name));
+          return;
+        }
+
+        // Space — toggle current
+        if (key === ' ') {
+          if (selected.has(cursor)) selected.delete(cursor);
+          else selected.add(cursor);
+          render();
+          return;
+        }
+
+        // 'a' — toggle all
+        if (key === 'a' || key === 'A') {
+          if (selected.size === items.length) selected.clear();
+          else for (let i = 0; i < items.length; i++) selected.add(i);
+          render();
+          return;
+        }
+
+        // vim keys
+        if (key === 'k') { cursor = (cursor - 1 + items.length) % items.length; render(); return; }
+        if (key === 'j') { cursor = (cursor + 1) % items.length; render(); return; }
+      };
+
+      process.stdin.on('data', onData);
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // confirm — readline-based Y/n
+  // -------------------------------------------------------------------------
+  async function confirm(message: string, defaultYes = true): Promise<boolean> {
+    if (!process.stdin.readable) return defaultYes;
+
+    return new Promise<boolean>((resolve, reject) => {
+      const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+      const hint = defaultYes ? '(Y/n)' : '(y/N)';
+      const styled = capability.color ? theme.heading('? ') + message : `? ${message}`;
+      rl.question(`${styled} ${hint} `, (answer) => {
+        rl.close();
+        const a = answer.trim().toLowerCase();
+        if (a === '') resolve(defaultYes);
+        else resolve(a === 'y' || a === 'yes');
+      });
+      rl.on('SIGINT', () => { rl.close(); reject(new Error('SIGINT')); });
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // selectTier — simple numbered list
+  // -------------------------------------------------------------------------
+  async function selectTier<T extends string>(
+    title: string,
+    options: Array<{ value: T; label: string; hint?: string }>,
+    defaultIndex = 0,
+  ): Promise<T> {
+    if (!process.stdin.readable) {
+      return options[Math.max(0, Math.min(defaultIndex, options.length - 1))].value;
+    }
+
+    return new Promise<T>((resolve, reject) => {
+      const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+      const styled = capability.color ? theme.heading(`? ${title}`) : `? ${title}`;
+      process.stdout.write(styled + '\n');
+      options.forEach((opt, i) => {
+        const marker = i === defaultIndex ? '>' : ' ';
+        const label = capability.color ? theme.command(opt.label) : opt.label;
+        process.stdout.write(`  ${marker} ${i + 1}. ${label}${opt.hint ? ' - ' + opt.hint : ''}\n`);
+      });
+      rl.question(`Choice [${defaultIndex + 1}]: `, (answer) => {
+        rl.close();
+        const n = parseInt(answer.trim(), 10);
+        const idx = isNaN(n) ? defaultIndex : Math.max(0, Math.min(n - 1, options.length - 1));
+        resolve(options[idx].value);
+      });
+      rl.on('SIGINT', () => { rl.close(); reject(new Error('SIGINT')); });
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // conflictChoice
+  // -------------------------------------------------------------------------
+  async function conflictChoice(targetRel: string): Promise<ConflictChoice['value']> {
+    if (!process.stdin.readable) return 'skip';
+
+    return new Promise<ConflictChoice['value']>((resolve, reject) => {
+      const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+      const msg = capability.color
+        ? `\n${theme.heading('?')} File ${theme.command(targetRel)} already exists.\n`
+        : `\nFile ${targetRel} already exists.\n`;
+      process.stdout.write(msg);
+      process.stdout.write('  > overwrite       - Replace (backup saved)\n');
+      process.stdout.write('    skip            - Keep existing\n');
+      process.stdout.write('    view-diff       - Show diff\n');
+      process.stdout.write('    overwrite-all   - Replace all remaining\n');
+      rl.question('  Choice (overwrite/skip/diff/all) [skip]: ', (answer) => {
+        rl.close();
+        const a = answer.trim().toLowerCase();
+        if (a === 'o' || a === 'overwrite') resolve('overwrite');
+        else if (a === 'd' || a === 'diff') resolve('view-diff');
+        else if (a === 'a' || a === 'all') resolve('overwrite-all');
+        else resolve('skip');
+      });
+      rl.on('SIGINT', () => { rl.close(); reject(new Error('SIGINT')); });
+    });
+  }
+
+  return { multiPickPresets, selectTier, confirm, conflictChoice };
+}
+
 
 import type { TerminalCapability } from './capability.js';
 import type { ThemeTokens } from './theme.js';
@@ -71,234 +351,4 @@ export interface ThemedPrompt {
    * Returns 'skip' when !isTTY.
    */
   conflictChoice(targetRel: string): Promise<ConflictChoice['value']>;
-}
-
-// ---------------------------------------------------------------------------
-// Validation helpers
-// ---------------------------------------------------------------------------
-
-function validateMultiSelectItems(items: MultiSelectChoice[]): void {
-  if (items.length < 1) {
-    throw new Error('multiPickPresets: items must contain at least one entry');
-  }
-  const seen = new Set<string>();
-  for (const item of items) {
-    if (seen.has(item.name)) {
-      throw new Error(
-        `multiPickPresets: duplicate item name "${item.name}" — all names must be unique`,
-      );
-    }
-    seen.add(item.name);
-  }
-}
-
-// ---------------------------------------------------------------------------
-// SIGINT helper
-// ---------------------------------------------------------------------------
-
-/**
- * Wrap a prompts call so that a cancelled prompt (value === undefined)
- * or an aborted prompt rejects with Error('SIGINT').
- *
- * The `prompts` library sets the answer to undefined when the user presses
- * Ctrl+C (when onCancel is not overridden). We detect this and throw.
- */
-function makeSigintHandler(reject: (err: Error) => void): () => void {
-  return () => {
-    // Attempt to restore terminal raw mode
-    try {
-      if (process.stdin.isTTY) {
-        process.stdin.setRawMode(false);
-      }
-    } catch {
-      // ignore — stdin may not support setRawMode
-    }
-    reject(new Error('SIGINT'));
-  };
-}
-
-// ---------------------------------------------------------------------------
-// Factory
-// ---------------------------------------------------------------------------
-
-/**
- * Create a ThemedPrompt bound to the given capability and theme.
- *
- * @param capability - Detected terminal capability
- * @param theme      - Theme tokens for styling
- */
-export async function createPrompt(
-  capability: TerminalCapability,
-  theme: ThemeTokens,
-): Promise<ThemedPrompt> {
-  // Pre-load prompts library
-  const promptsFnOrNull: PromptsFn | null = capability.isTTY ? await loadPrompts() : null;
-
-  // -------------------------------------------------------------------------
-  // Non-TTY path: return defaults immediately without blocking
-  // -------------------------------------------------------------------------
-  if (!capability.isTTY || promptsFnOrNull === null) {
-    return {
-      async multiPickPresets(_items: MultiSelectChoice[]): Promise<string[]> {
-        return [];
-      },
-      async selectTier<T extends string>(
-        _title: string,
-        options: Array<{ value: T; label: string; hint?: string }>,
-        defaultIndex = 0,
-      ): Promise<T> {
-        return options[Math.max(0, Math.min(defaultIndex, options.length - 1))].value;
-      },
-      async confirm(_message: string, defaultYes = true): Promise<boolean> {
-        return defaultYes;
-      },
-      async conflictChoice(_targetRel: string): Promise<ConflictChoice['value']> {
-        return 'skip';
-      },
-    };
-  }
-
-  // -------------------------------------------------------------------------
-  // TTY path: wrap prompts library
-  // -------------------------------------------------------------------------
-
-  // At this point we know promptsFnOrNull is non-null (checked above)
-  const promptsFn: PromptsFn = promptsFnOrNull;
-
-  /**
-   * Run a prompts question and handle SIGINT (Ctrl+C → reject Error('SIGINT')).
-   */
-  async function runPrompt<T>(
-    question: Parameters<PromptsFn>[0],
-    resultKey: string,
-  ): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-      const sigintHandler = makeSigintHandler(reject);
-
-      // prompts calls onCancel when user presses Ctrl+C
-      const options = {
-        onCancel: () => {
-          process.removeListener('SIGINT', sigintHandler);
-          sigintHandler();
-        },
-      };
-
-      process.once('SIGINT', sigintHandler);
-
-      promptsFn(question as Parameters<PromptsFn>[0], options)
-        .then((answers) => {
-          process.removeListener('SIGINT', sigintHandler);
-          const value = (answers as Record<string, unknown>)[resultKey];
-          if (value === undefined) {
-            // User cancelled without triggering onCancel (edge case)
-            sigintHandler();
-          } else {
-            resolve(value as T);
-          }
-        })
-        .catch((err: unknown) => {
-          process.removeListener('SIGINT', sigintHandler);
-          reject(err);
-        });
-    });
-  }
-
-  // -------------------------------------------------------------------------
-  // multiPickPresets
-  // -------------------------------------------------------------------------
-  async function multiPickPresets(items: MultiSelectChoice[]): Promise<string[]> {
-    validateMultiSelectItems(items);
-
-    const choices = items.map((item) => ({
-      title: theme.command(item.description),
-      value: item.name,
-      selected: item.selected ?? false,
-      description: item.hint,
-    }));
-
-    return runPrompt<string[]>(
-      {
-        type: 'multiselect',
-        name: 'selected',
-        message: theme.heading('Select presets to install'),
-        choices,
-        hint: '- Space to select, Enter to confirm',
-        instructions: false,
-      },
-      'selected',
-    );
-  }
-
-  // -------------------------------------------------------------------------
-  // selectTier
-  // -------------------------------------------------------------------------
-  async function selectTier<T extends string>(
-    title: string,
-    options: Array<{ value: T; label: string; hint?: string }>,
-    defaultIndex = 0,
-  ): Promise<T> {
-    const choices = options.map((opt) => ({
-      title: theme.command(opt.label),
-      value: opt.value,
-      description: opt.hint ? theme.muted(opt.hint) : undefined,
-    }));
-
-    return runPrompt<T>(
-      {
-        type: 'select',
-        name: 'value',
-        message: theme.heading(title),
-        choices,
-        initial: Math.max(0, Math.min(defaultIndex, options.length - 1)),
-      },
-      'value',
-    );
-  }
-
-  // -------------------------------------------------------------------------
-  // confirm
-  // -------------------------------------------------------------------------
-  async function confirm(message: string, defaultYes = true): Promise<boolean> {
-    return runPrompt<boolean>(
-      {
-        type: 'confirm',
-        name: 'value',
-        message: theme.heading(message),
-        initial: defaultYes,
-      },
-      'value',
-    );
-  }
-
-  // -------------------------------------------------------------------------
-  // conflictChoice
-  // -------------------------------------------------------------------------
-  async function conflictChoice(
-    targetRel: string,
-  ): Promise<ConflictChoice['value']> {
-    const choices: Array<{ title: string; value: ConflictChoice['value'] }> = [
-      { title: theme.command('overwrite'), value: 'overwrite' },
-      { title: theme.muted('skip'), value: 'skip' },
-      { title: theme.flag('view-diff'), value: 'view-diff' },
-      { title: theme.danger('overwrite-all'), value: 'overwrite-all' },
-    ];
-
-    return runPrompt<ConflictChoice['value']>(
-      {
-        type: 'select',
-        name: 'value',
-        message: theme.heading(`Conflict: ${targetRel}`),
-        choices,
-        initial: 1, // default to 'skip'
-      },
-      'value',
-    );
-  }
-
-  return {
-    multiPickPresets,
-    selectTier,
-    confirm,
-    conflictChoice,
-  };
 }
