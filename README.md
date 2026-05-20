@@ -18,7 +18,13 @@
 npx kiro-kit init
 ```
 
-Pick from 6 curated presets, confirm, and your `.kiro/` workspace is ready. Agents, skills, commands, hooks, workflows, MCP servers, statusline, and spec templates - all configured.
+Pick from 6 curated presets with an interactive selector — arrow keys to move, Enter to select, Enter again to confirm. Your `.kiro/` workspace is ready with agents, skills, commands, hooks, MCP servers, Powers recommendations, and spec templates.
+
+```bash
+# or install globally
+npm install -g kiro-kit
+kiro-kit init
+```
 
 ## Presets
 
@@ -32,6 +38,35 @@ Pick from 6 curated presets, confirm, and your `.kiro/` workspace is ready. Agen
 | `data-ai` | Python, ML, AI agents | 20 agents, 30 skills, 70 commands for Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
 
 Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 9+ cross-platform hooks (including 3 domain-specific), MCP server auto-config, Powers recommendations, and spec scaffolding.
+
+## CLI Experience
+
+The `kiro-kit init` command features a polished terminal UI:
+
+- Purple gradient ASCII logo (figlet Small font)
+- Interactive preset selector: arrow keys to move, Enter to select, Enter x2 to confirm
+- Live selected count indicator
+- Task progress list with spinners
+- Success summary box with file counts and next steps
+- Graceful fallback for CI/non-TTY environments
+
+## Domain-Specific Hooks
+
+Beyond generic notification hooks, each preset includes 3 domain-specific hooks:
+
+- **frontend**: accessibility-check, bundle-size-guard, component-test-reminder
+- **backend**: api-schema-validate, migration-safety-check, endpoint-test-coverage
+- **fullstack**: type-sync-check, api-client-gen, deployment-readiness
+- **mobile**: platform-parity-check, asset-optimization, release-checklist
+- **devops**: terraform-plan-review, container-scan, cost-estimation
+- **data-ai**: data-drift-check, model-card-update, experiment-log
+
+## MCP Server Auto-Configuration
+
+Running `kiro-kit init` generates a functional `.mcp.json`:
+
+- Servers requiring no credentials (filesystem, git, fetch) are enabled immediately
+- Servers requiring credentials (postgres, docker) are included as `_disabled_` entries with instructions to enable
 
 ## Kiro Powers Integration
 
@@ -68,9 +103,8 @@ Running `init` also auto-configures MCP servers (filesystem, git, fetch enabled;
 --force                Overwrite all conflicts (with backup)
 --skip-existing        Skip files that already exist
 --no-color             Disable ANSI output
--v, --verbose          Verbose logging
--q, --quiet            Errors only
---json                 Machine-readable output (list, info)
+--powers <mode>        Powers setup: none, all, or interactive (default)
+--quiet                Suppress non-essential output
 ```
 
 ## How It Works
