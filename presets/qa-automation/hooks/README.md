@@ -12,6 +12,7 @@ This directory contains lifecycle hooks for the QA automation preset. Hooks are 
 
 | Hook | Type | Description |
 |------|------|-------------|
+| pre-commit-lint.js | PreToolUse | Runs linter on staged files, prevents commit if lint fails |
 | scout-block.js | PreToolUse | Blocks dangerous commands |
 | test-runner-guard.js | PreToolUse | Ensures tests are run before completion |
 | modularization-hook.js | PostToolUse | Warns on oversized files |

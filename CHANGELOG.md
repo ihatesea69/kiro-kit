@@ -12,9 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New `qa-automation` preset with 18 agents, 24 skills, 46 commands
 - Covers Playwright, Selenium, API testing, accessibility testing, and CI/CD integration
 - Ported from fugazi/test-automation-skills-agents (MIT)
-- 8 cross-platform hooks (pre-commit, pre-push, post-merge, post-checkout, plus 3 domain-specific)
+- 9 cross-platform hooks (pre-commit, pre-push, post-merge, post-checkout, plus 4 domain-specific)
 - 5 workflows for test planning, execution, debugging, reporting, and accessibility auditing
-- Powers integration with Playwright (essential), Context7 and Snyk (recommended)
+- Powers integration with Playwright (essential), Context7 (recommended), Snyk and Postman (optional)
 
 ## [0.3.0] - 2025-05-20
 
