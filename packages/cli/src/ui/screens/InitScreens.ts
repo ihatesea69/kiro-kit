@@ -102,7 +102,7 @@ export async function createInitScreens(ctx: InitContext): Promise<InitScreens> 
     // 1. Logo with gradient
     const logoStr = logo.render({
       text: 'kiro-kit',
-      font: 'Slant',
+      font: 'Small',
       version: data.cliVersion,
       subtitle: 'Engineer-grade Kiro presets',
     });

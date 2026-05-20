@@ -1,15 +1,16 @@
 /**
  * Logo.ts — ASCII logo renderer for the welcome screen.
  *
- * Uses figlet with "Slant" font (fits in ~80 cols) + gradient coloring.
- * Falls back to compact single-line form for narrow or plain terminals.
+ * Uses figlet with "Small" font + gradient coloring.
+ * Falls back to compact single-line form for narrow terminals.
  */
 
+import figlet from 'figlet';
 import type { TerminalCapability } from './capability.js';
 import type { ThemeTokens } from './theme.js';
-import { loadFiglet, loadGradientString } from './vendor.js';
+import { loadGradientString } from './vendor.js';
 
-export type LogoFont = 'ANSI Shadow' | 'Big' | 'Slant' | '3D-ASCII' | 'Bloody';
+export type LogoFont = 'ANSI Shadow' | 'Big' | 'Slant' | '3D-ASCII' | 'Bloody' | 'Small';
 
 export interface LogoOptions {
   text?: string;
@@ -26,7 +27,6 @@ export interface LogoRenderer {
 function createLogoSync(
   capability: TerminalCapability,
   theme: ThemeTokens,
-  figlet: import('./vendor.js').FigletLike | null,
   gradient: import('./vendor.js').GradientStringLike | null,
 ): LogoRenderer {
   function renderCompact(opts: LogoOptions): string {
@@ -41,21 +41,18 @@ function createLogoSync(
   }
 
   function render(opts: LogoOptions): string {
-    const font = opts.font ?? 'Slant';
+    const font = (opts.font ?? 'Small') as figlet.Fonts;
     const subtitle = opts.subtitle ?? '';
     const version = opts.version ?? '';
     const text = opts.text ?? 'kiro-kit';
 
-    if (capability.columns < 60 || !capability.unicode || figlet === null) {
+    if (capability.columns < 40) {
       return renderCompact(opts);
     }
 
     let ascii: string;
     try {
-      ascii = figlet.textSync(text, {
-        font: font as Parameters<typeof figlet.textSync>[1] extends { font?: infer F } ? F : string,
-        horizontalLayout: 'default',
-      });
+      ascii = figlet.textSync(text, { font, horizontalLayout: 'default' });
     } catch {
       return renderCompact(opts);
     }
@@ -87,12 +84,8 @@ export async function createLogo(
   capability: TerminalCapability,
   theme: ThemeTokens,
 ): Promise<LogoRenderer> {
-  const needsFull = capability.unicode && capability.columns >= 60;
-  const [figlet, gradient] = await Promise.all([
-    needsFull ? loadFiglet() : Promise.resolve(null),
-    needsFull && capability.color ? loadGradientString() : Promise.resolve(null),
-  ]);
-  return createLogoSync(capability, theme, figlet, gradient);
+  const gradient = capability.color ? await loadGradientString() : null;
+  return createLogoSync(capability, theme, gradient);
 }
 
 export { createLogoSync };
