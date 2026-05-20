@@ -1,16 +1,17 @@
 ---
 name: test-environment-management
-description: Patterns for managing test environments including provisioning, configuration, isolation, and cleanup for reliable test execution.
+description: Provisioning and managing test environments using Docker, Testcontainers, service mocking, and CI service configuration.
 ---
 
 # Test Environment Management
 
-Patterns for creating, configuring, and maintaining test environments that support reliable test execution.
+Provisioning, configuring, and managing environments for reliable automated testing.
 
 ## When to Use This Skill
 
-- Provisioning test environments
-- Configuring environment-specific settings
-- Isolating test execution from other environments
-- Managing environment state and cleanup
-- Containerizing test dependencies
+- Setting up Docker Compose for local test environments
+- Using Testcontainers for programmatic service provisioning
+- Configuring CI services (databases, caches, queues)
+- Mocking external APIs with MSW or WireMock
+- Implementing environment health checks and readiness gates
+- Managing environment cleanup and teardown

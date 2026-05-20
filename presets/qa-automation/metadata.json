@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "name": "qa-automation-kit",
+  "name": "claudekit-engineer",
   "description": "Comprehensive kit for QA automation engineers with Playwright, Selenium, API testing, and CI/CD integration",
   "buildDate": "2025-01-01T00:00:00.000Z",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ihatesea69/kiro-kit.git"
+    "url": "https://github.com/truongtv22/claudekit-engineer.git"
   },
   "download": {
     "lastDownloadedAt": null,

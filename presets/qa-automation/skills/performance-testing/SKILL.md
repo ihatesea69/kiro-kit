@@ -1,16 +1,17 @@
 ---
 name: performance-testing
-description: Performance testing patterns including load, stress, endurance, and spike testing with k6, Artillery, and Locust frameworks.
+description: Designing performance tests for web applications and APIs including Core Web Vitals measurement, API benchmarking, and memory leak detection.
 ---
 
 # Performance Testing
 
-Patterns and practices for validating application performance under various load conditions.
+Designing, implementing, and analyzing performance tests for web applications and APIs.
 
 ## When to Use This Skill
 
-- Designing load test scenarios
-- Creating performance test scripts
-- Defining SLAs and performance budgets
-- Analyzing test results and identifying bottlenecks
-- Setting up performance monitoring in CI
+- Defining performance budgets for APIs and web pages
+- Measuring Core Web Vitals (LCP, CLS, FID/INP)
+- Running Lighthouse CI for frontend performance
+- Benchmarking database queries and API endpoints
+- Detecting memory leaks through automated testing
+- Monitoring bundle size and network waterfall performance

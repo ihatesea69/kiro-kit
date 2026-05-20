@@ -1,16 +1,17 @@
 ---
 name: debugging
-description: Systematic debugging approaches for test failures including root cause analysis, isolation techniques, and diagnostic strategies for automation frameworks.
+description: Systematic approaches for diagnosing test failures including Playwright debugging tools, CI artifact analysis, and flakiness identification.
 ---
 
-# Debugging
+# Test Debugging
 
-Systematic approaches to diagnosing and resolving test failures across automation frameworks.
+Systematic approaches for diagnosing and resolving test failures in automated test suites.
 
 ## When to Use This Skill
 
-- Diagnosing test failures systematically
-- Isolating root causes of intermittent issues
-- Using debugging tools effectively
-- Analyzing logs, traces, and screenshots
-- Resolving environment-specific failures
+- Diagnosing assertion failures and unexpected test behavior
+- Using Playwright Inspector, traces, and screenshots
+- Debugging timing issues and race conditions
+- Investigating CI-specific failures that pass locally
+- Identifying and resolving flaky tests
+- Adding instrumentation and logging to tests

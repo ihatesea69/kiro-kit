@@ -23,6 +23,12 @@
       "url": "https://kiro.dev/powers/scout-qa",
       "description": "AI-powered exploratory testing for web applications",
       "tier": "optional"
+    },
+    {
+      "name": "Postman",
+      "url": "https://kiro.dev/powers/postman",
+      "description": "API testing, mock servers, and request collection management",
+      "tier": "optional"
     }
   ]
 }

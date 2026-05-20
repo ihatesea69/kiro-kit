@@ -1,16 +1,17 @@
 ---
 name: test-data-management
-description: Patterns and practices for managing test data including factories, fixtures, seeding, cleanup, and data isolation across test environments.
+description: Patterns for creating, managing, and isolating test data using factories, builders, fixtures, and database seeding strategies.
 ---
 
 # Test Data Management
 
-Provides patterns for creating, managing, and cleaning up test data to ensure reliable, isolated, and reproducible test execution.
+Patterns for creating, managing, and maintaining test data for reliable and repeatable automated tests.
 
 ## When to Use This Skill
 
-- Creating test data factories and builders
-- Designing fixture strategies for different test levels
-- Implementing database seeding and teardown
-- Managing sensitive data in test environments
-- Ensuring test isolation and reproducibility
+- Implementing factory and builder patterns for test data
+- Managing database seeding and cleanup strategies
+- Creating deterministic test fixtures with faker
+- Setting up API-based test data provisioning
+- Ensuring test isolation through transaction rollback
+- Organizing fixture files and environment-specific data

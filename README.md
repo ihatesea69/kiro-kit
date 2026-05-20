@@ -32,7 +32,7 @@ Pick from 7 curated presets, confirm, and your `.kiro/` workspace is ready. Agen
 | `data-ai` | Python, ML, AI agents | 20 agents, 30 skills, 70 commands for Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
 | `qa-automation` | Playwright, Selenium, API testing | 18 agents, 24 skills, 46 commands for end-to-end testing, accessibility audits, CI/CD integration |
 
-Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 8+ cross-platform hooks (including 3 domain-specific), MCP server auto-config, Powers recommendations, and spec scaffolding.
+Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 9+ cross-platform hooks (including 3 domain-specific), MCP server auto-config, Powers recommendations, and spec scaffolding.
 
 ## Kiro Powers Integration
 
@@ -46,7 +46,7 @@ Each preset recommends curated [Kiro Powers](https://kiro.dev/powers/) organized
 | mobile | Firebase | Figma, Context7 | ElevenLabs, Bria |
 | devops | Terraform | Datadog, Snyk, Depot | Harness, AWS CDK |
 | data-ai | ClickHouse | Context7, Exa | Neon, New Relic |
-| qa-automation | Playwright | Context7, Snyk | ScoutQA, Postman |
+| qa-automation | Playwright | Context7 | Snyk, ScoutQA, Postman |
 
 Running `init` also auto-configures MCP servers (filesystem, git, fetch enabled; postgres, docker as disabled templates) and generates a `POWERS-SETUP.md` guide.
 

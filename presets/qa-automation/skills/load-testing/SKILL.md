@@ -1,16 +1,17 @@
 ---
 name: load-testing
-description: Load testing patterns for validating application behavior under concurrent user load using k6, Artillery, and similar tools.
+description: Designing and executing load tests with k6 and Artillery to validate system performance under expected and peak conditions.
 ---
 
 # Load Testing
 
-Patterns for validating application behavior and performance under expected and peak concurrent user loads.
+Designing, implementing, and analyzing load tests to validate system performance under expected and peak conditions.
 
 ## When to Use This Skill
 
-- Simulating concurrent user load
-- Validating response times under load
-- Identifying breaking points and bottlenecks
-- Testing auto-scaling behavior
-- Establishing performance baselines
+- Creating load test scripts with k6 or Artillery
+- Designing realistic user scenario simulations
+- Configuring ramping patterns and virtual user profiles
+- Setting performance thresholds and pass/fail criteria
+- Analyzing throughput, latency percentiles, and error rates
+- Integrating load tests into CI/CD pipelines

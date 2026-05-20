@@ -1,16 +1,17 @@
 ---
 name: test-strategy
-description: Guidance for creating comprehensive test strategies covering test levels, types, prioritization, risk analysis, and coverage goals for software projects.
+description: Frameworks and patterns for designing comprehensive test strategies including risk-based prioritization, test pyramid distribution, and quality gate definitions.
 ---
 
 # Test Strategy
 
-Provides structured approaches to defining test strategies that align testing effort with project risk, timeline, and quality goals.
+Frameworks and patterns for designing comprehensive test strategies that balance coverage, speed, and maintenance cost across different testing levels.
 
 ## When to Use This Skill
 
-- Defining test scope and approach for a new project
-- Creating risk-based test prioritization
-- Establishing test levels and types coverage
-- Planning test automation vs manual testing ratio
-- Setting quality gates and exit criteria
+- Defining test coverage approach for new projects or features
+- Evaluating and improving existing test suite effectiveness
+- Creating test plans with risk-based prioritization
+- Setting up quality gates and exit criteria for pipelines
+- Communicating testing approach to stakeholders
+- Balancing automation investment across test pyramid layers

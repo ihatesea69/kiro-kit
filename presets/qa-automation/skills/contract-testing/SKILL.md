@@ -1,16 +1,17 @@
 ---
 name: contract-testing
-description: Consumer-driven contract testing patterns using Pact and OpenAPI schema validation to verify API compatibility between services.
+description: Consumer-driven contract testing patterns for microservices using Pact, schema validation, and API contract verification.
 ---
 
 # Contract Testing
 
-Practices for validating API contracts between services using consumer-driven contract testing and schema validation.
+Consumer-driven contract testing patterns for verifying service communication in microservice architectures.
 
 ## When to Use This Skill
 
-- Verifying API compatibility between microservices
 - Implementing consumer-driven contracts with Pact
-- Validating responses against OpenAPI/Swagger schemas
-- Checking backward compatibility of API changes
-- Managing contract versions and broker integrations
+- Validating API responses against OpenAPI schemas
+- Setting up contract broker and CI integration
+- Testing event-driven contracts for async messaging
+- Implementing can-i-deploy checks before releases
+- Maintaining backwards-compatible API changes

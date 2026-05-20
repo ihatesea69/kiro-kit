@@ -390,6 +390,12 @@
       "executable": true
     },
     {
+      "source": "hooks/pre-commit-lint.js",
+      "target": ".kiro/hooks/pre-commit-lint.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
       "source": "hooks/README.md",
       "target": ".kiro/hooks/README.md",
       "type": "doc"
@@ -1086,47 +1092,47 @@
     {
       "source": "steering/accessibility-testing-conventions.md",
       "target": ".kiro/steering/accessibility-testing-conventions.md",
-      "type": "doc"
+      "type": "steering"
     },
     {
       "source": "steering/agent-authoring-conventions.md",
       "target": ".kiro/steering/agent-authoring-conventions.md",
-      "type": "doc"
+      "type": "steering"
     },
     {
       "source": "steering/api-testing-conventions.md",
       "target": ".kiro/steering/api-testing-conventions.md",
-      "type": "doc"
+      "type": "steering"
     },
     {
       "source": "steering/cicd-testing-patterns.md",
       "target": ".kiro/steering/cicd-testing-patterns.md",
-      "type": "doc"
+      "type": "steering"
     },
     {
       "source": "steering/orchestration-workflow-patterns.md",
       "target": ".kiro/steering/orchestration-workflow-patterns.md",
-      "type": "doc"
+      "type": "steering"
     },
     {
       "source": "steering/playwright-typescript-conventions.md",
       "target": ".kiro/steering/playwright-typescript-conventions.md",
-      "type": "doc"
+      "type": "steering"
     },
     {
       "source": "steering/selenium-java-conventions.md",
       "target": ".kiro/steering/selenium-java-conventions.md",
-      "type": "doc"
+      "type": "steering"
     },
     {
       "source": "steering/skill-authoring-conventions.md",
       "target": ".kiro/steering/skill-authoring-conventions.md",
-      "type": "doc"
+      "type": "steering"
     },
     {
       "source": "steering/test-automation-best-practices.md",
       "target": ".kiro/steering/test-automation-best-practices.md",
-      "type": "doc"
+      "type": "steering"
     },
     {
       "source": "workflows/development-rules.md",

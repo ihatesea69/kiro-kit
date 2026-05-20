@@ -1,16 +1,17 @@
 ---
 name: mutation-testing
-description: Mutation testing practices to evaluate test suite effectiveness by introducing code mutations and measuring detection rates.
+description: Using mutation testing with Stryker and PIT to evaluate test suite effectiveness by detecting surviving mutants and coverage gaps.
 ---
 
 # Mutation Testing
 
-Evaluates test suite quality by introducing controlled code mutations and measuring how many are detected by existing tests.
+Using mutation testing to evaluate and improve test suite effectiveness by introducing code mutations and checking detection rates.
 
 ## When to Use This Skill
 
-- Assessing test suite effectiveness
-- Identifying weak or missing test coverage
-- Measuring mutation score for quality gates
-- Improving test assertions and coverage
-- Validating test reliability
+- Evaluating test quality beyond line coverage metrics
+- Configuring Stryker Mutator for JavaScript/TypeScript projects
+- Analyzing survived mutants to identify weak test assertions
+- Running incremental mutation testing in CI
+- Setting mutation score thresholds and quality gates
+- Improving tests to kill surviving boundary and logic mutants

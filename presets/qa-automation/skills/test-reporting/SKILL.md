@@ -1,16 +1,17 @@
 ---
 name: test-reporting
-description: Test reporting patterns including result aggregation, trend analysis, failure categorization, and dashboard integration for test visibility.
+description: Generating and publishing test reports across different formats including JUnit XML, HTML reports, coverage dashboards, and CI summaries.
 ---
 
 # Test Reporting
 
-Patterns for collecting, aggregating, and presenting test results for visibility and decision-making.
+Generating, publishing, and analyzing test reports across different testing stages and tools.
 
 ## When to Use This Skill
 
-- Configuring test result reporters
-- Creating test dashboards
-- Categorizing and triaging failures
-- Tracking test health trends
-- Generating executive summaries
+- Configuring Playwright reporters (HTML, JUnit, JSON)
+- Building custom reporters for specific needs
+- Publishing test results and coverage in CI pipelines
+- Creating flaky test detection reports
+- Setting up GitHub Actions job summaries
+- Tracking test trends and metrics over time

@@ -1,16 +1,17 @@
 ---
 name: security-testing
-description: Security testing patterns including OWASP-based vulnerability scanning, authentication testing, input validation, and security headers verification.
+description: Integrating security testing into automated suites covering OWASP Top 10 validation, authentication testing, dependency scanning, and security header verification.
 ---
 
 # Security Testing
 
-Patterns for identifying security vulnerabilities in web applications through automated testing.
+Integrating security testing into automated test suites to detect vulnerabilities early in the development lifecycle.
 
 ## When to Use This Skill
 
-- Testing authentication and authorization flows
-- Validating input sanitization and XSS prevention
-- Checking security headers and CORS configuration
-- Scanning for OWASP Top 10 vulnerabilities
-- Testing API security (rate limiting, token validation)
+- Testing for injection vulnerabilities (SQL, XSS, command)
+- Validating authentication and authorization controls
+- Checking security headers and CSP configuration
+- Running dependency vulnerability scans in CI
+- Implementing secret detection in pre-commit hooks
+- Integrating OWASP ZAP for dynamic application security testing

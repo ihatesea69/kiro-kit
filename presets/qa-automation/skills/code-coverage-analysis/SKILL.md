@@ -1,16 +1,17 @@
 ---
 name: code-coverage-analysis
-description: Code coverage analysis patterns including line, branch, function, and statement coverage measurement, reporting, and threshold enforcement.
+description: Techniques for measuring, analyzing, and improving test coverage including threshold configuration, ratcheting strategies, and CI enforcement.
 ---
 
 # Code Coverage Analysis
 
-Patterns for measuring, reporting, and enforcing code coverage across test suites.
+Techniques for measuring, analyzing, and improving test code coverage across different testing levels and frameworks.
 
 ## When to Use This Skill
 
-- Configuring coverage collection tools
-- Setting coverage thresholds
-- Analyzing coverage gaps
-- Integrating coverage reporting in CI
-- Improving coverage in critical paths
+- Configuring coverage tools (Istanbul, v8, Jest)
+- Setting and enforcing coverage thresholds in CI
+- Analyzing coverage reports to find untested code paths
+- Implementing ratcheting strategies to prevent regression
+- Understanding different coverage metrics (statement, branch, function)
+- Generating and publishing coverage reports
