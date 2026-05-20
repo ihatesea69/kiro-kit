@@ -1,0 +1,28 @@
+{
+  "powers": [
+    {
+      "name": "Playwright",
+      "url": "https://kiro.dev/powers/playwright",
+      "description": "Browser automation and end-to-end testing with Playwright MCP",
+      "tier": "essential"
+    },
+    {
+      "name": "Context7",
+      "url": "https://kiro.dev/powers/context7",
+      "description": "Up-to-date documentation lookup for testing frameworks and libraries",
+      "tier": "recommended"
+    },
+    {
+      "name": "Snyk",
+      "url": "https://kiro.dev/powers/snyk",
+      "description": "Security scanning and vulnerability detection for test dependencies",
+      "tier": "optional"
+    },
+    {
+      "name": "ScoutQA",
+      "url": "https://kiro.dev/powers/scout-qa",
+      "description": "AI-powered exploratory testing for web applications",
+      "tier": "optional"
+    }
+  ]
+}

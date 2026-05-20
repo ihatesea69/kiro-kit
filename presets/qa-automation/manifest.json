@@ -1,0 +1,1173 @@
+{
+  "name": "qa-automation",
+  "version": "1.0.0",
+  "description": "Comprehensive kit for QA automation engineers with Playwright, Selenium, API testing, and CI/CD integration",
+  "category": "qa-automation",
+  "files": [
+    {
+      "source": ".env.example",
+      "target": ".env.example",
+      "type": "config"
+    },
+    {
+      "source": "agents/api-tester-specialist.md",
+      "target": ".kiro/agents/api-tester-specialist.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/ci-pipeline-specialist.md",
+      "target": ".kiro/agents/ci-pipeline-specialist.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/contract-tester.md",
+      "target": ".kiro/agents/contract-tester.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/flaky-test-hunter.md",
+      "target": ".kiro/agents/flaky-test-hunter.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/performance-tester.md",
+      "target": ".kiro/agents/performance-tester.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/playwright-test-generator.md",
+      "target": ".kiro/agents/playwright-test-generator.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/playwright-test-healer.md",
+      "target": ".kiro/agents/playwright-test-healer.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/playwright-test-planner.md",
+      "target": ".kiro/agents/playwright-test-planner.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/qa-architect.md",
+      "target": ".kiro/agents/qa-architect.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/qa-docs-manager.md",
+      "target": ".kiro/agents/qa-docs-manager.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/qa-lead-engineer.md",
+      "target": ".kiro/agents/qa-lead-engineer.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/qa-orchestrator.md",
+      "target": ".kiro/agents/qa-orchestrator.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/selenium-test-executor.md",
+      "target": ".kiro/agents/selenium-test-executor.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/selenium-test-specialist.md",
+      "target": ".kiro/agents/selenium-test-specialist.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/test-data-manager.md",
+      "target": ".kiro/agents/test-data-manager.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/test-implementation-planner.md",
+      "target": ".kiro/agents/test-implementation-planner.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/test-refactor-specialist.md",
+      "target": ".kiro/agents/test-refactor-specialist.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/visual-regression-tester.md",
+      "target": ".kiro/agents/visual-regression-tester.md",
+      "type": "agent"
+    },
+    {
+      "source": "commands/ask.md",
+      "target": ".kiro/commands/ask.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/brainstorm.md",
+      "target": ".kiro/commands/brainstorm.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/clean.md",
+      "target": ".kiro/commands/clean.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/code.md",
+      "target": ".kiro/commands/code.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/debug.md",
+      "target": ".kiro/commands/debug.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix.md",
+      "target": ".kiro/commands/fix.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/assertion.md",
+      "target": ".kiro/commands/fix/assertion.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/ci.md",
+      "target": ".kiro/commands/fix/ci.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/fast.md",
+      "target": ".kiro/commands/fix/fast.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/flaky.md",
+      "target": ".kiro/commands/fix/flaky.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/locator.md",
+      "target": ".kiro/commands/fix/locator.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/fix/timeout.md",
+      "target": ".kiro/commands/fix/timeout.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/generate/data-factory.md",
+      "target": ".kiro/commands/generate/data-factory.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/generate/fixture.md",
+      "target": ".kiro/commands/generate/fixture.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/generate/mock.md",
+      "target": ".kiro/commands/generate/mock.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/generate/page-object.md",
+      "target": ".kiro/commands/generate/page-object.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/generate/test.md",
+      "target": ".kiro/commands/generate/test.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/git/branch.md",
+      "target": ".kiro/commands/git/branch.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/git/commit.md",
+      "target": ".kiro/commands/git/commit.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/git/pr.md",
+      "target": ".kiro/commands/git/pr.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan.md",
+      "target": ".kiro/commands/plan.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/coverage.md",
+      "target": ".kiro/commands/plan/coverage.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/fast.md",
+      "target": ".kiro/commands/plan/fast.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/feature.md",
+      "target": ".kiro/commands/plan/feature.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/regression.md",
+      "target": ".kiro/commands/plan/regression.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/plan/test-strategy.md",
+      "target": ".kiro/commands/plan/test-strategy.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/release.md",
+      "target": ".kiro/commands/release.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/report/coverage.md",
+      "target": ".kiro/commands/report/coverage.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/report/flaky.md",
+      "target": ".kiro/commands/report/flaky.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/report/results.md",
+      "target": ".kiro/commands/report/results.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/review.md",
+      "target": ".kiro/commands/review.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/scout.md",
+      "target": ".kiro/commands/scout.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/scout/ext.md",
+      "target": ".kiro/commands/scout/ext.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/skill/add.md",
+      "target": ".kiro/commands/skill/add.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/skill/create.md",
+      "target": ".kiro/commands/skill/create.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test.md",
+      "target": ".kiro/commands/test.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test/accessibility.md",
+      "target": ".kiro/commands/test/accessibility.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test/api.md",
+      "target": ".kiro/commands/test/api.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test/contract.md",
+      "target": ".kiro/commands/test/contract.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test/e2e.md",
+      "target": ".kiro/commands/test/e2e.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test/integration.md",
+      "target": ".kiro/commands/test/integration.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test/performance.md",
+      "target": ".kiro/commands/test/performance.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test/regression.md",
+      "target": ".kiro/commands/test/regression.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test/smoke.md",
+      "target": ".kiro/commands/test/smoke.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test/unit.md",
+      "target": ".kiro/commands/test/unit.md",
+      "type": "command"
+    },
+    {
+      "source": "commands/test/visual.md",
+      "target": ".kiro/commands/test/visual.md",
+      "type": "command"
+    },
+    {
+      "source": "docs/code-standards.md",
+      "target": ".kiro/docs/code-standards.md",
+      "type": "doc"
+    },
+    {
+      "source": "docs/project-roadmap.md",
+      "target": ".kiro/docs/project-roadmap.md",
+      "type": "doc"
+    },
+    {
+      "source": "docs/system-architecture.md",
+      "target": ".kiro/docs/system-architecture.md",
+      "type": "doc"
+    },
+    {
+      "source": "hooks/.env.example",
+      "target": ".kiro/hooks/.env.example",
+      "type": "config"
+    },
+    {
+      "source": "hooks/discord-hook-setup.md",
+      "target": ".kiro/hooks/discord-hook-setup.md",
+      "type": "doc"
+    },
+    {
+      "source": "hooks/discord-notify.js",
+      "target": ".kiro/hooks/discord-notify.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/discord-notify.ps1",
+      "target": ".kiro/hooks/discord-notify.ps1",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/discord-notify.sh",
+      "target": ".kiro/hooks/discord-notify.sh",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/flaky-test-detector.js",
+      "target": ".kiro/hooks/flaky-test-detector.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/git-status-tracker.js",
+      "target": ".kiro/hooks/git-status-tracker.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/modularization-hook.js",
+      "target": ".kiro/hooks/modularization-hook.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/README.md",
+      "target": ".kiro/hooks/README.md",
+      "type": "doc"
+    },
+    {
+      "source": "hooks/scout-block.js",
+      "target": ".kiro/hooks/scout-block.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/scout-block.ps1",
+      "target": ".kiro/hooks/scout-block.ps1",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/scout-block.sh",
+      "target": ".kiro/hooks/scout-block.sh",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/telegram-hook-setup.md",
+      "target": ".kiro/hooks/telegram-hook-setup.md",
+      "type": "doc"
+    },
+    {
+      "source": "hooks/telegram-notify.js",
+      "target": ".kiro/hooks/telegram-notify.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/telegram-notify.ps1",
+      "target": ".kiro/hooks/telegram-notify.ps1",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/telegram-notify.sh",
+      "target": ".kiro/hooks/telegram-notify.sh",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/test-coverage-check.js",
+      "target": ".kiro/hooks/test-coverage-check.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "hooks/test-runner-guard.js",
+      "target": ".kiro/hooks/test-runner-guard.js",
+      "type": "hook",
+      "executable": true
+    },
+    {
+      "source": "metadata.json",
+      "target": ".kiro/metadata.json",
+      "type": "metadata"
+    },
+    {
+      "source": "powers.json",
+      "target": ".kiro/powers.json",
+      "type": "powers"
+    },
+    {
+      "source": "settings.json",
+      "target": ".kiro/settings/settings.json",
+      "type": "config"
+    },
+    {
+      "source": "skills/a11y-playwright-testing/references/aria_patterns.md",
+      "target": ".kiro/skills/a11y-playwright-testing/references/aria_patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/a11y-playwright-testing/references/snippets.md",
+      "target": ".kiro/skills/a11y-playwright-testing/references/snippets.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/a11y-playwright-testing/references/wcag21aa-checklist.md",
+      "target": ".kiro/skills/a11y-playwright-testing/references/wcag21aa-checklist.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/a11y-playwright-testing/SKILL.md",
+      "target": ".kiro/skills/a11y-playwright-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/accessibility-selenium-testing/references/axe_patterns.md",
+      "target": ".kiro/skills/accessibility-selenium-testing/references/axe_patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/accessibility-selenium-testing/references/wcag21aa-checklist.md",
+      "target": ".kiro/skills/accessibility-selenium-testing/references/wcag21aa-checklist.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/accessibility-selenium-testing/scripts/AccessibilityHelper.java",
+      "target": ".kiro/skills/accessibility-selenium-testing/scripts/AccessibilityHelper.java",
+      "type": "other"
+    },
+    {
+      "source": "skills/accessibility-selenium-testing/scripts/pom-template.xml",
+      "target": ".kiro/skills/accessibility-selenium-testing/scripts/pom-template.xml",
+      "type": "other"
+    },
+    {
+      "source": "skills/accessibility-selenium-testing/SKILL.md",
+      "target": ".kiro/skills/accessibility-selenium-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/api-testing/references/contract-testing.md",
+      "target": ".kiro/skills/api-testing/references/contract-testing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/api-testing/references/playwright-api-testing.md",
+      "target": ".kiro/skills/api-testing/references/playwright-api-testing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/api-testing/references/rest-api-patterns.md",
+      "target": ".kiro/skills/api-testing/references/rest-api-patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/api-testing/references/rest-assured-testing.md",
+      "target": ".kiro/skills/api-testing/references/rest-assured-testing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/api-testing/references/schema-validation.md",
+      "target": ".kiro/skills/api-testing/references/schema-validation.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/api-testing/scripts/api-health-check.sh",
+      "target": ".kiro/skills/api-testing/scripts/api-health-check.sh",
+      "type": "other",
+      "executable": true
+    },
+    {
+      "source": "skills/api-testing/SKILL.md",
+      "target": ".kiro/skills/api-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/api-testing/templates/playwright-api-spec.ts",
+      "target": ".kiro/skills/api-testing/templates/playwright-api-spec.ts",
+      "type": "other"
+    },
+    {
+      "source": "skills/api-testing/templates/rest-assured-test.java",
+      "target": ".kiro/skills/api-testing/templates/rest-assured-test.java",
+      "type": "other"
+    },
+    {
+      "source": "skills/ci-cd-integration/references/pipeline-patterns.md",
+      "target": ".kiro/skills/ci-cd-integration/references/pipeline-patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/ci-cd-integration/SKILL.md",
+      "target": ".kiro/skills/ci-cd-integration/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/code-coverage-analysis/references/coverage-guide.md",
+      "target": ".kiro/skills/code-coverage-analysis/references/coverage-guide.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/code-coverage-analysis/SKILL.md",
+      "target": ".kiro/skills/code-coverage-analysis/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/contract-testing/references/contract-patterns.md",
+      "target": ".kiro/skills/contract-testing/references/contract-patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/contract-testing/SKILL.md",
+      "target": ".kiro/skills/contract-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/debugging/references/debugging-guide.md",
+      "target": ".kiro/skills/debugging/references/debugging-guide.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/debugging/SKILL.md",
+      "target": ".kiro/skills/debugging/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/INSTALLATION.md",
+      "target": ".kiro/skills/INSTALLATION.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/load-testing/references/load-testing-guide.md",
+      "target": ".kiro/skills/load-testing/references/load-testing-guide.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/load-testing/SKILL.md",
+      "target": ".kiro/skills/load-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/mobile-testing/references/mobile-testing-guide.md",
+      "target": ".kiro/skills/mobile-testing/references/mobile-testing-guide.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mobile-testing/SKILL.md",
+      "target": ".kiro/skills/mobile-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/mutation-testing/references/mutation-guide.md",
+      "target": ".kiro/skills/mutation-testing/references/mutation-guide.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/mutation-testing/SKILL.md",
+      "target": ".kiro/skills/mutation-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/performance-testing/references/performance-patterns.md",
+      "target": ".kiro/skills/performance-testing/references/performance-patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/performance-testing/SKILL.md",
+      "target": ".kiro/skills/performance-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/playwright-cli/references/element-attributes.md",
+      "target": ".kiro/skills/playwright-cli/references/element-attributes.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-cli/references/playwright-tests.md",
+      "target": ".kiro/skills/playwright-cli/references/playwright-tests.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-cli/references/request-mocking.md",
+      "target": ".kiro/skills/playwright-cli/references/request-mocking.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-cli/references/running-code.md",
+      "target": ".kiro/skills/playwright-cli/references/running-code.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-cli/references/session-management.md",
+      "target": ".kiro/skills/playwright-cli/references/session-management.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-cli/references/spec-driven-testing.md",
+      "target": ".kiro/skills/playwright-cli/references/spec-driven-testing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-cli/references/storage-state.md",
+      "target": ".kiro/skills/playwright-cli/references/storage-state.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-cli/references/test-generation.md",
+      "target": ".kiro/skills/playwright-cli/references/test-generation.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-cli/references/tracing.md",
+      "target": ".kiro/skills/playwright-cli/references/tracing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-cli/references/video-recording.md",
+      "target": ".kiro/skills/playwright-cli/references/video-recording.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-cli/SKILL.md",
+      "target": ".kiro/skills/playwright-cli/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/playwright-e2e-testing/references/debugging.md",
+      "target": ".kiro/skills/playwright-e2e-testing/references/debugging.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-e2e-testing/references/file-map-template.md",
+      "target": ".kiro/skills/playwright-e2e-testing/references/file-map-template.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-e2e-testing/references/locator_strategies.md",
+      "target": ".kiro/skills/playwright-e2e-testing/references/locator_strategies.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-e2e-testing/references/page_object_model.md",
+      "target": ".kiro/skills/playwright-e2e-testing/references/page_object_model.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-e2e-testing/references/snippets.md",
+      "target": ".kiro/skills/playwright-e2e-testing/references/snippets.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-e2e-testing/SKILL.md",
+      "target": ".kiro/skills/playwright-e2e-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/playwright-regression-testing/references/ci-cd-integration.md",
+      "target": ".kiro/skills/playwright-regression-testing/references/ci-cd-integration.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-regression-testing/references/flaky-management.md",
+      "target": ".kiro/skills/playwright-regression-testing/references/flaky-management.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-regression-testing/references/regression-strategy.md",
+      "target": ".kiro/skills/playwright-regression-testing/references/regression-strategy.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/playwright-regression-testing/SKILL.md",
+      "target": ".kiro/skills/playwright-regression-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/automation-playwright-best-practices.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/automation-playwright-best-practices.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/bug-report-quality.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/bug-report-quality.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/defect-lifecycle.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/defect-lifecycle.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/experience-based-techniques.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/experience-based-techniques.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/istqb-glossary.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/istqb-glossary.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/regression-suite-strategy.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/regression-suite-strategy.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/risk-based-testing.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/risk-based-testing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/static-testing.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/static-testing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/test-design-techniques.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/test-design-techniques.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/test-estimation.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/test-estimation.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/test-levels-types.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/test-levels-types.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/test-monitoring-metrics.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/test-monitoring-metrics.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/references/test-process-and-deliverables.md",
+      "target": ".kiro/skills/qa-manual-istqb/references/test-process-and-deliverables.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/scripts/qa_artifacts.mjs",
+      "target": ".kiro/skills/qa-manual-istqb/scripts/qa_artifacts.mjs",
+      "type": "other"
+    },
+    {
+      "source": "skills/qa-manual-istqb/SKILL.md",
+      "target": ".kiro/skills/qa-manual-istqb/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/bug-log.csv",
+      "target": ".kiro/skills/qa-manual-istqb/templates/bug-log.csv",
+      "type": "other"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/bug-report.md",
+      "target": ".kiro/skills/qa-manual-istqb/templates/bug-report.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/exploratory-charter.md",
+      "target": ".kiro/skills/qa-manual-istqb/templates/exploratory-charter.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/playwright-spec.ts",
+      "target": ".kiro/skills/qa-manual-istqb/templates/playwright-spec.ts",
+      "type": "other"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/regression-suite.md",
+      "target": ".kiro/skills/qa-manual-istqb/templates/regression-suite.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/risk-assessment-matrix.md",
+      "target": ".kiro/skills/qa-manual-istqb/templates/risk-assessment-matrix.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/test-cases.csv",
+      "target": ".kiro/skills/qa-manual-istqb/templates/test-cases.csv",
+      "type": "other"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/test-conditions.md",
+      "target": ".kiro/skills/qa-manual-istqb/templates/test-conditions.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/test-environment-checklist.md",
+      "target": ".kiro/skills/qa-manual-istqb/templates/test-environment-checklist.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/test-plan.md",
+      "target": ".kiro/skills/qa-manual-istqb/templates/test-plan.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/test-summary-report.md",
+      "target": ".kiro/skills/qa-manual-istqb/templates/test-summary-report.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-manual-istqb/templates/traceability-matrix.csv",
+      "target": ".kiro/skills/qa-manual-istqb/templates/traceability-matrix.csv",
+      "type": "other"
+    },
+    {
+      "source": "skills/qa-test-planner/references/bug_report_templates.md",
+      "target": ".kiro/skills/qa-test-planner/references/bug_report_templates.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-test-planner/references/playwright_automation.md",
+      "target": ".kiro/skills/qa-test-planner/references/playwright_automation.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-test-planner/references/regression_testing.md",
+      "target": ".kiro/skills/qa-test-planner/references/regression_testing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-test-planner/references/test_case_templates.md",
+      "target": ".kiro/skills/qa-test-planner/references/test_case_templates.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-test-planner/SKILL.md",
+      "target": ".kiro/skills/qa-test-planner/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/qa-test-planner/templates/bug-report.md",
+      "target": ".kiro/skills/qa-test-planner/templates/bug-report.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-test-planner/templates/playwright-test.md",
+      "target": ".kiro/skills/qa-test-planner/templates/playwright-test.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-test-planner/templates/test-case.md",
+      "target": ".kiro/skills/qa-test-planner/templates/test-case.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/qa-test-planner/templates/test-plan.md",
+      "target": ".kiro/skills/qa-test-planner/templates/test-plan.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/README.md",
+      "target": ".kiro/skills/README.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/security-testing/references/security-testing-guide.md",
+      "target": ".kiro/skills/security-testing/references/security-testing-guide.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/security-testing/SKILL.md",
+      "target": ".kiro/skills/security-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/test-data-management/references/data-patterns.md",
+      "target": ".kiro/skills/test-data-management/references/data-patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/test-data-management/SKILL.md",
+      "target": ".kiro/skills/test-data-management/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/test-environment-management/references/environment-guide.md",
+      "target": ".kiro/skills/test-environment-management/references/environment-guide.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/test-environment-management/SKILL.md",
+      "target": ".kiro/skills/test-environment-management/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/test-reporting/references/reporting-guide.md",
+      "target": ".kiro/skills/test-reporting/references/reporting-guide.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/test-reporting/SKILL.md",
+      "target": ".kiro/skills/test-reporting/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/test-strategy/references/test-strategy-framework.md",
+      "target": ".kiro/skills/test-strategy/references/test-strategy-framework.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/test-strategy/SKILL.md",
+      "target": ".kiro/skills/test-strategy/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/THIRD_PARTY_NOTICES.md",
+      "target": ".kiro/skills/THIRD_PARTY_NOTICES.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/visual-regression/references/visual-testing-guide.md",
+      "target": ".kiro/skills/visual-regression/references/visual-testing-guide.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/visual-regression/SKILL.md",
+      "target": ".kiro/skills/visual-regression/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/webapp-playwright-testing/references/api_testing.md",
+      "target": ".kiro/skills/webapp-playwright-testing/references/api_testing.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/webapp-playwright-testing/references/common_patterns.md",
+      "target": ".kiro/skills/webapp-playwright-testing/references/common_patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/webapp-playwright-testing/references/locator_strategies.md",
+      "target": ".kiro/skills/webapp-playwright-testing/references/locator_strategies.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/webapp-playwright-testing/references/page_object_model.md",
+      "target": ".kiro/skills/webapp-playwright-testing/references/page_object_model.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/webapp-playwright-testing/scripts/test-helper.js",
+      "target": ".kiro/skills/webapp-playwright-testing/scripts/test-helper.js",
+      "type": "other"
+    },
+    {
+      "source": "skills/webapp-playwright-testing/SKILL.md",
+      "target": ".kiro/skills/webapp-playwright-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/webapp-selenium-testing/references/file-map-template.md",
+      "target": ".kiro/skills/webapp-selenium-testing/references/file-map-template.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/webapp-selenium-testing/references/locator_strategies.md",
+      "target": ".kiro/skills/webapp-selenium-testing/references/locator_strategies.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/webapp-selenium-testing/references/page_object_model.md",
+      "target": ".kiro/skills/webapp-selenium-testing/references/page_object_model.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/webapp-selenium-testing/references/wait_strategies.md",
+      "target": ".kiro/skills/webapp-selenium-testing/references/wait_strategies.md",
+      "type": "doc"
+    },
+    {
+      "source": "skills/webapp-selenium-testing/scripts/pom-template.xml",
+      "target": ".kiro/skills/webapp-selenium-testing/scripts/pom-template.xml",
+      "type": "other"
+    },
+    {
+      "source": "skills/webapp-selenium-testing/scripts/setup-maven-project.ps1",
+      "target": ".kiro/skills/webapp-selenium-testing/scripts/setup-maven-project.ps1",
+      "type": "other"
+    },
+    {
+      "source": "skills/webapp-selenium-testing/SKILL.md",
+      "target": ".kiro/skills/webapp-selenium-testing/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "specs/_templates/qa-automation/test-plan.md",
+      "target": ".kiro/specs/_templates/qa-automation/test-plan.md",
+      "type": "doc"
+    },
+    {
+      "source": "specs/_templates/qa-automation/test-strategy.md",
+      "target": ".kiro/specs/_templates/qa-automation/test-strategy.md",
+      "type": "doc"
+    },
+    {
+      "source": "statusline.js",
+      "target": ".kiro/statusline.js",
+      "type": "config",
+      "executable": true
+    },
+    {
+      "source": "statusline.ps1",
+      "target": ".kiro/statusline.ps1",
+      "type": "config"
+    },
+    {
+      "source": "statusline.sh",
+      "target": ".kiro/statusline.sh",
+      "type": "config",
+      "executable": true
+    },
+    {
+      "source": "steering/accessibility-testing-conventions.md",
+      "target": ".kiro/steering/accessibility-testing-conventions.md",
+      "type": "doc"
+    },
+    {
+      "source": "steering/agent-authoring-conventions.md",
+      "target": ".kiro/steering/agent-authoring-conventions.md",
+      "type": "doc"
+    },
+    {
+      "source": "steering/api-testing-conventions.md",
+      "target": ".kiro/steering/api-testing-conventions.md",
+      "type": "doc"
+    },
+    {
+      "source": "steering/cicd-testing-patterns.md",
+      "target": ".kiro/steering/cicd-testing-patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "steering/orchestration-workflow-patterns.md",
+      "target": ".kiro/steering/orchestration-workflow-patterns.md",
+      "type": "doc"
+    },
+    {
+      "source": "steering/playwright-typescript-conventions.md",
+      "target": ".kiro/steering/playwright-typescript-conventions.md",
+      "type": "doc"
+    },
+    {
+      "source": "steering/selenium-java-conventions.md",
+      "target": ".kiro/steering/selenium-java-conventions.md",
+      "type": "doc"
+    },
+    {
+      "source": "steering/skill-authoring-conventions.md",
+      "target": ".kiro/steering/skill-authoring-conventions.md",
+      "type": "doc"
+    },
+    {
+      "source": "steering/test-automation-best-practices.md",
+      "target": ".kiro/steering/test-automation-best-practices.md",
+      "type": "doc"
+    },
+    {
+      "source": "workflows/development-rules.md",
+      "target": ".kiro/workflows/development-rules.md",
+      "type": "doc"
+    },
+    {
+      "source": "workflows/documentation-management.md",
+      "target": ".kiro/workflows/documentation-management.md",
+      "type": "doc"
+    },
+    {
+      "source": "workflows/orchestration-protocol.md",
+      "target": ".kiro/workflows/orchestration-protocol.md",
+      "type": "doc"
+    },
+    {
+      "source": "workflows/primary-workflow.md",
+      "target": ".kiro/workflows/primary-workflow.md",
+      "type": "doc"
+    },
+    {
+      "source": "workflows/test-automation-workflow.md",
+      "target": ".kiro/workflows/test-automation-workflow.md",
+      "type": "doc"
+    }
+  ],
+  "mcpServers": {},
+  "hooks": {},
+  "tags": [
+    "qa",
+    "testing",
+    "playwright",
+    "selenium",
+    "automation"
+  ],
+  "minCounts": {
+    "agents": 16,
+    "skills": 22,
+    "commands": 40,
+    "hooks": 6,
+    "workflows": 4
+  }
+}
