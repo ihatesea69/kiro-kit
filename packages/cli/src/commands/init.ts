@@ -598,7 +598,13 @@ async function runInit(opts: InitOptions): Promise<void> {
 
   // Empty selection → exit cleanly
   if (selectedNames.length === 0) {
-    logger.info('No presets selected. Exiting.');
+    if (!capability.isTTY) {
+      logger.info('No presets selected. Use --preset <name> to specify a preset.');
+      logger.info('Available presets: ' + available.join(', '));
+      logger.info('Example: kiro-kit init --preset backend');
+    } else {
+      logger.info('No presets selected. Exiting.');
+    }
     process.exit(0);
   }
 
