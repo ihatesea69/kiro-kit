@@ -53,11 +53,11 @@ const VARIANT_COLOR: Record<BoxVariant, PaletteKey> = {
 
 // Default hex values matching DEFAULT_PALETTE (used in ASCII fallback)
 const VARIANT_HEX: Record<BoxVariant, string> = {
-  info: '#a970ff',
-  tip: '#8bd5ff',
-  success: '#22c55e',
-  warn: '#f5b042',
-  error: '#ff5c8a',
+  info: '#c084fc',     // violet-400
+  tip: '#818cf8',      // indigo-400
+  success: '#34d399',  // emerald-400
+  warn: '#fbbf24',     // amber-400
+  error: '#f472b6',    // pink-400
 };
 
 // ---------------------------------------------------------------------------

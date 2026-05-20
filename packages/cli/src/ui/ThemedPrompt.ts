@@ -68,15 +68,88 @@ export async function createPrompt(
   async function multiPickPresets(items: MultiSelectChoice[]): Promise<string[]> {
     validateMultiSelectItems(items);
 
-    // Non-interactive stdin (piped input, CI without TTY)
     if (!process.stdin.readable) {
       return [];
     }
 
+    // Try raw mode first
+    let rawModeWorks = false;
+    try {
+      process.stdin.setRawMode(true);
+      process.stdin.setRawMode(false);
+      rawModeWorks = true;
+    } catch {
+      rawModeWorks = false;
+    }
+
+    if (rawModeWorks) {
+      return multiPickRaw(items);
+    } else {
+      return multiPickLineMode(items);
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Line-mode fallback: numbered list, user types numbers
+  // -------------------------------------------------------------------------
+  async function multiPickLineMode(items: MultiSelectChoice[]): Promise<string[]> {
+    return new Promise<string[]>((resolve, reject) => {
+      process.stdout.write('\n? Select presets to install (enter numbers separated by commas):\n\n');
+      items.forEach((item, i) => {
+        const num = String(i + 1).padStart(2);
+        const name = item.name.padEnd(12);
+        process.stdout.write(`  ${num}. ${name} - ${item.description}\n`);
+      });
+      process.stdout.write('\nExample: 1,3 or 1-3 or all\n');
+      process.stdout.write('Choice: ');
+
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+        terminal: false,
+      });
+
+      rl.once('line', (answer: string) => {
+        rl.close();
+        const a = answer.trim().toLowerCase();
+        if (a === 'all' || a === 'a') {
+          resolve(items.map((item) => item.name));
+          return;
+        }
+        const indices = new Set<number>();
+        // Handle ranges like "1-3" and comma-separated like "1,2,3"
+        for (const part of a.split(',')) {
+          const range = part.trim().split('-');
+          if (range.length === 2) {
+            const start = parseInt(range[0], 10);
+            const end = parseInt(range[1], 10);
+            if (!isNaN(start) && !isNaN(end)) {
+              for (let i = start; i <= end; i++) indices.add(i - 1);
+            }
+          } else {
+            const n = parseInt(part.trim(), 10);
+            if (!isNaN(n)) indices.add(n - 1);
+          }
+        }
+        const selected = [...indices]
+          .filter((i) => i >= 0 && i < items.length)
+          .map((i) => items[i].name);
+        resolve(selected);
+      });
+
+      rl.on('SIGINT', () => { rl.close(); reject(new Error('SIGINT')); });
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // Raw mode interactive picker
+  // -------------------------------------------------------------------------
+  async function multiPickRaw(items: MultiSelectChoice[]): Promise<string[]> {
     return new Promise<string[]>((resolve, reject) => {
       const selected = new Set<number>();
       let cursor = 0;
       let lineCount = 0; // track how many lines we printed last render
+      let lastEnterCursor = -1; // for double-Enter confirm detection
 
       const cols = process.stdout.columns ?? 80;
       const maxDescWidth = Math.max(0, cols - 23);
@@ -93,9 +166,19 @@ export async function createPrompt(
           ? theme.heading('? Select presets to install:')
           : '? Select presets to install:';
         const hint = capability.color
-          ? theme.muted(' (Space to select, <a> toggle all, Enter to confirm)')
-          : ' (Space to select, <a> toggle all, Enter to confirm)';
+          ? theme.muted(' (Up/Down: move  Enter: select  A: all  Enter x2: confirm)')
+          : ' (Up/Down: move  Enter: select  A: all  Enter x2: confirm)';
         lines.push(heading + hint);
+
+        // Show selected count if any
+        if (selected.size > 0) {
+          const countLine = capability.color
+            ? '  ' + theme.success(`${selected.size} selected`) + theme.muted(' — press Enter again to confirm')
+            : `  ${selected.size} selected — press Enter again to confirm`;
+          lines.push(countLine);
+        } else {
+          lines.push(capability.color ? theme.muted('  No presets selected yet') : '  No presets selected yet');
+        }
 
         for (let i = 0; i < items.length; i++) {
           const marker = cursor === i
@@ -145,11 +228,13 @@ export async function createPrompt(
       const handleArrow = (seq: string): boolean => {
         if (seq === '\x1B[A' || seq === '\x1BOA') {
           cursor = (cursor - 1 + items.length) % items.length;
+          lastEnterCursor = -1; // reset double-Enter on move
           render();
           return true;
         }
         if (seq === '\x1B[B' || seq === '\x1BOB') {
           cursor = (cursor + 1) % items.length;
+          lastEnterCursor = -1; // reset double-Enter on move
           render();
           return true;
         }
@@ -185,18 +270,31 @@ export async function createPrompt(
           return;
         }
 
-        // Enter — \r, \n, or \r\n
+        // Enter — toggle select; double Enter (same cursor, no move) = confirm
         if (key === '\r' || key === '\n' || key === '\r\n') {
-          cleanup();
-          process.stdout.write('\n');
-          resolve([...selected].map((i) => items[i].name));
+          // Double Enter on same cursor position = confirm
+          if (lastEnterCursor === cursor && selected.size > 0) {
+            cleanup();
+            process.stdout.write('\n');
+            resolve([...selected].map((i) => items[i].name));
+            return;
+          }
+          // Single Enter = toggle current item
+          if (selected.has(cursor)) {
+            selected.delete(cursor);
+          } else {
+            selected.add(cursor);
+          }
+          lastEnterCursor = cursor;
+          render();
           return;
         }
 
-        // Space — toggle current
+        // Space — toggle current (also resets double-Enter state)
         if (key === ' ') {
           if (selected.has(cursor)) selected.delete(cursor);
           else selected.add(cursor);
+          lastEnterCursor = -1;
           render();
           return;
         }
@@ -216,7 +314,7 @@ export async function createPrompt(
 
       process.stdin.on('data', onData);
     });
-  }
+  } // end multiPickRaw
 
   // -------------------------------------------------------------------------
   // confirm — readline-based Y/n

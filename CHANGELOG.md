@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.7] - 2025-05-20
+
+### Added
+
+- Purple gradient theme: violet-400 → indigo-400 → pink-400 across logo, boxes, and accents
+- Separator line between logo and command list
+- Icons in command list (▶ init, + add, ≡ list, ♥ doctor)
+- Polished summary box with checkmark, bullet icons, and cleaner layout
+- Figlet "Slant" font for logo (fits in standard 80-col terminal without wrapping)
+- Preset selector: instruction bar shows Up/Down/Enter/A/Enter x2 hint with live selected count
+
+### Changed
+
+- Removed "Did you know?" tip box from welcome screen (cleaner layout)
+- Updated ThemedBox border colors to match purple theme (violet, indigo, emerald, amber, pink)
+- Default palette updated: primary #c084fc, secondary #818cf8, muted #7c6f9f
+- Preset selector: Enter = toggle select, Enter x2 on same item = confirm
+
 ## [0.3.5] - 2025-05-20
 
 ### Fixed

@@ -1,6 +1,6 @@
 {
   "name": "kiro-kit",
-  "version": "0.3.5",
+  "version": "0.3.7",
   "description": "CLI tool for bootstrapping engineer-grade Kiro IDE workspaces with curated presets.",
   "type": "module",
   "bin": {
@@ -55,7 +55,7 @@
     "figlet": "1.7.0",
     "gradient-string": "2.0.2",
     "js-yaml": "^4.1.0",
-    "kiro-kit": "^0.3.3",
+    "kiro-kit": "^0.3.5",
     "listr2": "8.0.1",
     "ora": "8.0.1",
     "picocolors": "^1.1.0",
