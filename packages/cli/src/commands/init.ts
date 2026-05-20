@@ -53,16 +53,8 @@ async function multiPickPrompt(
   const selected = new Set<number>();
   let cursor = 0;
 
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false,
-  });
-
   // Enable raw mode for keypress detection
   if (!process.stdin.isTTY) {
-    // Non-interactive: return empty
-    rl.close();
     return [];
   }
 
@@ -71,15 +63,10 @@ async function multiPickPrompt(
 
     const render = (): void => {
       if (rendered) {
-        // Restore saved cursor position (top of our render area)
-        process.stdout.write('\x1B[u');
-      } else {
-        // Save cursor position before first render
-        process.stdout.write('\x1B[s');
+        // Move cursor up by (items.length + 1) lines to overwrite previous render
+        process.stdout.write(`\x1B[${items.length + 1}A\r`);
       }
       rendered = true;
-      // Clear from cursor to end of screen — wipes all previous render
-      process.stdout.write('\x1B[J');
       // Write header
       process.stdout.write(
         color.bold('? Select presets to install:') +
@@ -93,7 +80,8 @@ async function multiPickPrompt(
           : '[ ]';
         const name = color.bold(items[i].name.padEnd(12));
         const desc = color.dim(`- ${items[i].description}`);
-        process.stdout.write(`  ${marker} ${check} ${name} ${desc}\n`);
+        // Clear line then write
+        process.stdout.write(`\x1B[2K  ${marker} ${check} ${name} ${desc}\n`);
       }
     };
 
@@ -104,6 +92,12 @@ async function multiPickPrompt(
     process.stdin.setEncoding('utf-8');
 
     let escBuffer = '';
+
+    const cleanup = (): void => {
+      process.stdin.setRawMode(false);
+      process.stdin.removeListener('data', onData);
+      process.stdin.pause();
+    };
 
     const handleArrow = (seq: string): boolean => {
       if (seq === '\x1B[A' || seq === '\x1BOA') {
@@ -151,20 +145,14 @@ async function multiPickPrompt(
 
       // Ctrl+C / SIGINT
       if (key === '\x03') {
-        process.stdin.setRawMode(false);
-        process.stdin.removeListener('data', onData);
-        process.stdin.pause();
-        rl.close();
+        cleanup();
         reject(new Error('SIGINT'));
         return;
       }
 
       // Enter
       if (key === '\r' || key === '\n') {
-        process.stdin.setRawMode(false);
-        process.stdin.removeListener('data', onData);
-        process.stdin.pause();
-        rl.close();
+        cleanup();
         const result = [...selected].map((i) => items[i].name);
         resolve(result);
         return;
