@@ -16,7 +16,7 @@
 npx kiro-kit init
 ```
 
-Pick from 6 curated presets, confirm, and your `.kiro/` workspace is ready. Agents, skills, commands, hooks, workflows, MCP servers, statusline, and spec templates — all configured and bundled in the install.
+Pick from 6 curated presets with an interactive selector — arrow keys to move, Enter to select, Enter again to confirm. Your `.kiro/` workspace is ready with agents, skills, commands, hooks, MCP servers, Powers recommendations, and spec templates.
 
 ```bash
 # or install globally
@@ -69,6 +69,17 @@ Every preset ships **self-contained**: agents, skills, commands, cross-platform 
 -q, --quiet            Errors only
 --json                 Machine-readable output (list, info)
 ```
+
+## CLI Experience
+
+The `kiro-kit init` command features a polished terminal UI:
+
+- Purple gradient ASCII logo (figlet Slant font)
+- Interactive preset selector with arrow keys, Enter to select, Enter x2 to confirm
+- Live selected count indicator
+- Task progress list with spinners
+- Success summary box with file counts and next steps
+- Graceful fallback for CI/non-TTY environments
 
 ## Kiro Powers Integration
 

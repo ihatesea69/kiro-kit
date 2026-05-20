@@ -97,40 +97,41 @@ export async function createInitScreens(ctx: InitContext): Promise<InitScreens> 
   // Implements Algorithm: renderInitWelcome from design.md
   // -------------------------------------------------------------------------
   function welcome(data: WelcomeData): void {
-    // 1. Logo
+    const cols = capability.columns ?? 80;
+
+    // 1. Logo with gradient
     const logoStr = logo.render({
       text: 'kiro-kit',
-      font: 'ANSI Shadow',
+      font: 'Slant',
       version: data.cliVersion,
       subtitle: 'Engineer-grade Kiro presets',
     });
     process.stdout.write(logoStr + '\n');
 
-    // 2. Blank line
-    process.stdout.write('\n');
+    // 2. Separator line
+    const sep = capability.color
+      ? '\x1B[38;2;124;111;159m' + '\u2500'.repeat(Math.min(cols - 2, 72)) + '\x1B[0m'
+      : '\u2500'.repeat(Math.min(cols - 2, 72));
+    process.stdout.write(sep + '\n\n');
 
-    // 3. Tip box (variant='tip', title='Did you know?')
-    const tipBox = box.render(data.tipText, {
-      title: 'Did you know?',
-      variant: 'tip',
-    });
-    process.stdout.write(tipBox + '\n');
-
-    // 4. Blank line
-    process.stdout.write('\n');
-
-    // 5. Heading + command list
-    process.stdout.write(theme.heading('Available commands:') + '\n');
-
+    // 3. Command list with icons
+    process.stdout.write(theme.heading('Commands') + '\n');
+    const icons: Record<string, string> = {
+      init: '\u25B6',
+      add: '\u002B',
+      list: '\u2261',
+      doctor: '\u2665',
+    };
     for (const cmd of data.commands) {
-      // Pad the raw name to 20 chars first, then apply styling so ANSI
-      // escape bytes don't inflate the visible width calculation.
-      const paddedName = theme.command(cmd.name.padEnd(20));
+      const icon = capability.color
+        ? '\x1B[38;2;192;132;252m' + (icons[cmd.name] ?? '\u25CF') + '\x1B[0m'
+        : (icons[cmd.name] ?? '-');
+      const paddedName = theme.command(cmd.name.padEnd(10));
       const desc = theme.muted(cmd.description);
-      process.stdout.write(`  ${paddedName}${desc}\n`);
+      process.stdout.write(`  ${icon}  ${paddedName}  ${desc}\n`);
     }
 
-    // 6. Trailing blank line
+    // 4. Trailing blank line
     process.stdout.write('\n');
   }
 
@@ -141,25 +142,26 @@ export async function createInitScreens(ctx: InitContext): Promise<InitScreens> 
   // -------------------------------------------------------------------------
   function summary(data: SummaryData): void {
     const lines: string[] = [];
+    const check = capability.color ? '\x1B[38;2;52;211;153m\u2714\x1B[0m' : '[ok]';
+    const bullet = capability.color ? '\x1B[38;2;192;132;252m\u2022\x1B[0m' : '-';
 
     // File counts
     lines.push(
-      `${theme.success(String(data.filesWritten))} files written, ` +
-        `${theme.muted(String(data.filesSkipped))} skipped`,
+      `${check}  ${theme.success(String(data.filesWritten))} files written` +
+        (data.filesSkipped > 0 ? `, ${theme.muted(String(data.filesSkipped) + ' skipped')}` : ''),
     );
 
     // Preset list
-    lines.push(`Presets: ${theme.command(data.presets.join(', '))}`);
+    lines.push(`${bullet}  Presets: ${theme.command(data.presets.join(', '))}`);
 
-    // Optional paths — sanitize before rendering
+    // Optional paths
     if (data.setupGuidePath !== undefined) {
       const safePath = sanitizePath(data.setupGuidePath);
-      lines.push(`Setup guide: ${theme.pathStyle(safePath)}`);
+      lines.push(`${bullet}  Setup guide: ${theme.pathStyle(safePath)}`);
     }
-
     if (data.envExamplePath !== undefined) {
       const safePath = sanitizePath(data.envExamplePath);
-      lines.push(`Env template: ${theme.pathStyle(safePath)}`);
+      lines.push(`${bullet}  Env template: ${theme.pathStyle(safePath)}`);
     }
 
     // Next steps
@@ -167,17 +169,17 @@ export async function createInitScreens(ctx: InitContext): Promise<InitScreens> 
       lines.push('');
       lines.push(theme.heading('Next steps:'));
       for (const step of data.nextSteps) {
-        lines.push(`  ${theme.muted('\u2022')} ${step}`);
+        lines.push(`  ${bullet}  ${step}`);
       }
     }
 
     // Docs URL
     lines.push('');
-    lines.push(theme.link('Docs', data.docsUrl));
+    lines.push(`  ${theme.muted('Docs:')} ${theme.link('github.com/ihatesea69/kiro-kit', data.docsUrl)}`);
 
     const content = lines.join('\n');
     const successBox = box.render(content, {
-      title: 'Done!',
+      title: ' Done! ',
       variant: 'success',
     });
 

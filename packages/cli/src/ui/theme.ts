@@ -56,13 +56,13 @@ export interface ThemeTokens {
 // ---------------------------------------------------------------------------
 
 export const DEFAULT_PALETTE: ThemePalette = {
-  primary: '#a970ff',
-  secondary: '#8bd5ff',
-  muted: '#6f6a7c',
-  text: '#f4f1ff',
-  danger: '#ff5c8a',
-  success: '#22c55e',
-  warn: '#f5b042',
+  primary: '#c084fc',    // violet-400 — bright purple
+  secondary: '#818cf8',  // indigo-400 — purple-blue
+  muted: '#7c6f9f',      // muted purple-gray
+  text: '#f5f3ff',       // near-white with purple tint
+  danger: '#f472b6',     // pink-400
+  success: '#34d399',    // emerald-400
+  warn: '#fbbf24',       // amber-400
 };
 
 // ---------------------------------------------------------------------------
@@ -212,7 +212,7 @@ export async function createTheme(
   };
 
   return {
-    logoGradient: [merged.primary, merged.secondary],
+    logoGradient: [merged.primary, '#a78bfa', merged.secondary, '#f472b6'],
     heading: headingFn,
     command: commandFn,
     flag: flagFn,

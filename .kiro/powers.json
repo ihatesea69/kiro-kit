@@ -1,0 +1,40 @@
+{
+  "powers": [
+    {
+      "name": "Supabase",
+      "url": "https://kiro.dev/powers/supabase",
+      "description": "Backend-as-a-service with Postgres, auth, and real-time subscriptions",
+      "tier": "essential"
+    },
+    {
+      "name": "Neon",
+      "url": "https://kiro.dev/powers/neon",
+      "description": "Serverless Postgres with branching and autoscaling",
+      "tier": "recommended"
+    },
+    {
+      "name": "Postman",
+      "url": "https://kiro.dev/powers/postman",
+      "description": "API testing and collection management",
+      "tier": "recommended"
+    },
+    {
+      "name": "Context7",
+      "url": "https://kiro.dev/powers/context7",
+      "description": "Up-to-date documentation lookup for libraries and frameworks",
+      "tier": "recommended"
+    },
+    {
+      "name": "Stripe",
+      "url": "https://kiro.dev/powers/stripe",
+      "description": "Payment processing, subscriptions, and billing integration",
+      "tier": "optional"
+    },
+    {
+      "name": "Snyk",
+      "url": "https://kiro.dev/powers/snyk",
+      "description": "Security scanning and vulnerability detection for dependencies",
+      "tier": "optional"
+    }
+  ]
+}
