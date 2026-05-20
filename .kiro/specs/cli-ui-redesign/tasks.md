@@ -9,14 +9,14 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
 
 ## Tasks
 
-- [-] 1. Cài đặt dependencies và setup vendor adapter
-  - [ ] 1.1 Thêm runtime dependencies pinned vào `packages/cli/package.json`
+- [x] 1. Cài đặt dependencies và setup vendor adapter
+  - [x] 1.1 Thêm runtime dependencies pinned vào `packages/cli/package.json`
     - Thêm runtime: `chalk@5.3.0`, `figlet@1.7.0`, `gradient-string@2.0.2`, `boxen@7.1.1`, `ora@8.0.1`, `listr2@8.0.1`, `prompts@2.4.2`, `terminal-link@3.0.0`
     - Thêm dev: `@types/figlet@^1.5.8`, `@types/gradient-string@^1.1.6`, `@types/prompts@^2.4.9`, `strip-ansi@7.1.0`
     - Update `tsup.config.ts`: thêm các package trên vào `external` để giữ bundle nhẹ
     - _Requirements: 13.1, 13.2_
 
-  - [ ] 1.2 Tạo `src/ui/vendor.ts` lazy import adapter
+  - [x] 1.2 Tạo `src/ui/vendor.ts` lazy import adapter
     - Mỗi vendor module có hàm `loadX()` dùng `await import()` với try/catch
     - Cache promise sau lần resolve đầu để tránh re-import
     - Trả `null` khi load fail; component caller phải handle null fallback
@@ -26,8 +26,8 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - **Property: Vendor load fail không throw, luôn trả null hoặc module hợp lệ**
     - **Validates: Requirements 11.1, 13.1**
 
-- [ ] 2. Implement TerminalCapability detector
-  - [ ] 2.1 Tạo `src/ui/capability.ts` với interface và `detectCapability()`
+- [x] 2. Implement TerminalCapability detector
+  - [x] 2.1 Tạo `src/ui/capability.ts` với interface và `detectCapability()`
     - Implement theo `Algorithm: detectCapability` trong design
     - Đọc `NO_COLOR`, `FORCE_COLOR`, `CI`, `TERM`, `COLORTERM`, `WT_SESSION`, `TERM_PROGRAM`
     - Detect win32 cmd (không có `WT_SESSION`/`TERM_PROGRAM`) thì set `unicode = false`
@@ -49,8 +49,8 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - Test: không mutate input env/argv/stream (Req 1.9)
     - _Requirements: 1.2, 1.3, 1.4, 1.5, 1.9, 1.10, 1.11_
 
-- [ ] 3. Implement Theme builder
-  - [ ] 3.1 Tạo `src/ui/theme.ts` với palette default và `createTheme()`
+- [x] 3. Implement Theme builder
+  - [x] 3.1 Tạo `src/ui/theme.ts` với palette default và `createTheme()`
     - Default palette: primary `#a970ff`, secondary `#8bd5ff`, muted `#6f6a7c`, text `#f4f1ff`, danger `#ff5c8a`, success `#22c55e`, warn `#f5b042`
     - Validate palette hex regex `/^#[0-9a-fA-F]{6}$/` cho mỗi field; throw error mô tả field vi phạm
     - Validate `primary !== secondary`
@@ -72,8 +72,8 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - Test: `truecolor=false` thì dùng ANSI 256 fallback (Req 2.5)
     - _Requirements: 2.2, 2.3, 2.5, 2.7, 12.3, 12.4_
 
-- [ ] 4. Implement Logo renderer
-  - [ ] 4.1 Tạo `src/ui/Logo.ts` với `createLogo()` và `LogoRenderer`
+- [x] 4. Implement Logo renderer
+  - [x] 4.1 Tạo `src/ui/Logo.ts` với `createLogo()` và `LogoRenderer`
     - Implement theo `Algorithm: renderLogo` trong design
     - Default font `ANSI Shadow`, default text `kiro-kit`
     - Khi `unicode=true && color=true && columns>=60`: figlet + gradient
@@ -95,8 +95,8 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - Test: vendor figlet=null thì fallback compact (Req 11.2)
     - _Requirements: 3.1, 3.3, 11.2_
 
-- [ ] 5. Implement ThemedBox renderer
-  - [ ] 5.1 Tạo `src/ui/ThemedBox.ts` với `createThemedBox()`
+- [x] 5. Implement ThemedBox renderer
+  - [x] 5.1 Tạo `src/ui/ThemedBox.ts` với `createThemedBox()`
     - Map variant -> borderColor: info=primary, tip=secondary, success=success, warn=warn, error=danger
     - Khi `unicode=false`: border style `classic` (`+`/`-`/`|`)
     - Khi `unicode=true`: border style `round`
@@ -118,12 +118,12 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - Test: `columns<40` thì padding=0 (Req 11.7)
     - _Requirements: 4.2, 4.3, 11.3, 11.7_
 
-- [ ] 6. Checkpoint - Render layer xong
+- [x] 6. Checkpoint - Render layer xong
   - Ensure all tests pass, ask the user if questions arise.
 
 
-- [ ] 7. Implement Spinner
-  - [ ] 7.1 Tạo `src/ui/Spinner.ts` với `createSpinner()` và `SpinnerHandle`
+- [x] 7. Implement Spinner
+  - [x] 7.1 Tạo `src/ui/Spinner.ts` với `createSpinner()` và `SpinnerHandle`
     - Khi `animate=true`: wrap `ora`, render spinner animation
     - Khi `animate=false`: `start(t)` in `-> {t}`, `succeed(t)` in `[ok] {t}`, `fail(t)` in `[x] {t}`, `warn(t)` in `[!] {t}`
     - Đăng ký `process.once('SIGINT', cleanup)` và `process.once('exit', cleanup)` để stop spinner
@@ -136,8 +136,8 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - Test: setText sau start update text (Req 9.4)
     - _Requirements: 9.2, 9.4_
 
-- [ ] 8. Implement ThemedPrompt
-  - [ ] 8.1 Tạo `src/ui/ThemedPrompt.ts` với `createPrompt()`
+- [x] 8. Implement ThemedPrompt
+  - [x] 8.1 Tạo `src/ui/ThemedPrompt.ts` với `createPrompt()`
     - Wrap `prompts` library với theme primitives
     - `multiPickPresets(items)`: validate `items.length >= 1` và unique names; render multiselect
     - `confirm(msg, defaultYes)`: render Y/n prompt
@@ -157,8 +157,8 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - Test: SIGINT trong prompt thì reject `Error('SIGINT')` và cleanup raw mode (Req 7.5, 7.7)
     - _Requirements: 7.5, 7.7, 7.8_
 
-- [ ] 9. Implement TaskRunner
-  - [ ] 9.1 Tạo `src/ui/TaskRunner.ts` với `createTaskRunner()` và `TaskDef`
+- [x] 9. Implement TaskRunner
+  - [x] 9.1 Tạo `src/ui/TaskRunner.ts` với `createTaskRunner()` và `TaskDef`
     - Khi `animate=true && color=true`: dùng `listr2` renderer `default`
     - Khi `animate=false || !isTTY`: dùng renderer `simple` (in `-> task ... done`)
     - Khi `columns < 40`: force renderer `simple`
@@ -180,8 +180,8 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - Test: reject thì spinner đã start được stop (Req 8.5)
     - _Requirements: 8.3, 8.4, 8.5, 8.7_
 
-- [ ] 10. Implement Init Screens
-  - [ ] 10.1 Tạo `src/ui/screens/InitScreens.ts` với `createInitScreens()`
+- [x] 10. Implement Init Screens
+  - [x] 10.1 Tạo `src/ui/screens/InitScreens.ts` với `createInitScreens()`
     - `welcome(data)`: theo `Algorithm: renderInitWelcome` - in Logo → blank → tip box → blank → heading "Available commands" → command list (name padded 20 + muted description)
     - `summary(data)`: render success box variant=success chứa filesWritten/filesSkipped/presets/setupGuidePath?/envExamplePath?/nextSteps/docsUrl
     - Omit setupGuidePath/envExamplePath nếu undefined
@@ -201,8 +201,8 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - _Requirements: 10.3, 10.4, 11.4, 12.1_
 
 
-- [ ] 11. Wire UI layer vào init.ts
-  - [ ] 11.1 Refactor `src/commands/init.ts` để dùng UI layer
+- [x] 11. Wire UI layer vào init.ts
+  - [x] 11.1 Refactor `src/commands/init.ts` để dùng UI layer
     - Tạo `capability` từ `detectCapability(process.env, process.argv, process.stdout)` ở entry
     - Tạo `theme = createTheme(capability)` và `screens = createInitScreens({ capability, theme, cliVersion })`
     - Tạo `prompt = createPrompt(capability, theme)`
@@ -220,7 +220,7 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - **Validates: Requirements 14.1, 14.3**
 
 - [ ] 12. Implement Postinstall script
-  - [ ] 12.1 Tạo `packages/cli/scripts/postinstall.js` plain JS (không qua tsup)
+  - [x] 12.1 Tạo `packages/cli/scripts/postinstall.js` plain JS (không qua tsup)
     - Implement theo `Algorithm: postinstallEntry` trong design
     - Outer try/catch nuốt mọi exception, luôn `process.exit(0)`
     - Tôn trọng `KIRO_KIT_SKIP_POSTINSTALL` thì exit 0 ngay không in gì
@@ -232,7 +232,7 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - Đọc version từ `../package.json` qua `require()`
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 11.8_
 
-  - [ ] 12.2 Update `package.json`: thêm `scripts.postinstall` và `files`
+  - [x] 12.2 Update `package.json`: thêm `scripts.postinstall` và `files`
     - Thêm `"postinstall": "node scripts/postinstall.js"` vào `scripts`
     - Thêm `"scripts/postinstall.js"` vào `files` array để package được publish kèm script
     - _Requirements: 5.1_
@@ -247,10 +247,10 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - Test: spawn với `KIRO_KIT_SKIP_POSTINSTALL=1` thì stdout rỗng, exit 0 (Req 5.3)
     - _Requirements: 5.3, 5.4, 5.6_
 
-- [ ] 13. Checkpoint - Wire-up xong
+- [x] 13. Checkpoint - Wire-up xong
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 14. E2E và performance verification
+- [x] 14. E2E và performance verification
   - [ ]* 14.1 E2E test init UI flow
     - Spawn `node dist/index.js init --yes --preset=frontend` trong tempdir
     - Assert stdout contains "kiro-kit" và summary marker
@@ -268,7 +268,7 @@ Ngôn ngữ implementation: TypeScript (theo design). Test framework: vitest + f
     - Measure postinstall: <= 30ms
     - _Requirements: 13.3, 13.4, 13.5_
 
-- [ ] 15. Final checkpoint - Toàn bộ flow chạy đầy đủ
+- [x] 15. Final checkpoint - Toàn bộ flow chạy đầy đủ
   - Ensure all tests pass, ask the user if questions arise.
   - Verify build: `cd packages/cli && npx tsup` thành công
   - Verify structural tests vẫn pass
