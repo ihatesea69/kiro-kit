@@ -76,19 +76,18 @@ export async function createPrompt(
     return new Promise<string[]>((resolve, reject) => {
       const selected = new Set<number>();
       let cursor = 0;
-      let rendered = false;
+      let lineCount = 0; // track how many lines we printed last render
 
       const cols = process.stdout.columns ?? 80;
       const maxDescWidth = Math.max(0, cols - 23);
 
       const render = (): void => {
-        if (rendered) {
-          process.stdout.write('\x1B[u');
-        } else {
-          process.stdout.write('\x1B[s');
+        // Move cursor up to overwrite previous render
+        if (lineCount > 0) {
+          process.stdout.write(`\x1B[${lineCount}A\x1B[0J`);
         }
-        rendered = true;
-        process.stdout.write('\x1B[J');
+
+        const lines: string[] = [];
 
         const heading = capability.color
           ? theme.heading('? Select presets to install:')
@@ -96,7 +95,7 @@ export async function createPrompt(
         const hint = capability.color
           ? theme.muted(' (Space to select, <a> toggle all, Enter to confirm)')
           : ' (Space to select, <a> toggle all, Enter to confirm)';
-        process.stdout.write(heading + hint + '\n');
+        lines.push(heading + hint);
 
         for (let i = 0; i < items.length; i++) {
           const marker = cursor === i
@@ -112,8 +111,11 @@ export async function createPrompt(
             : rawDesc;
           const styledName = capability.color ? theme.command(name) : name;
           const styledDesc = capability.color ? theme.muted(desc) : desc;
-          process.stdout.write(`  ${marker} ${check} ${styledName} - ${styledDesc}\n`);
+          lines.push(`  ${marker} ${check} ${styledName} - ${styledDesc}`);
         }
+
+        process.stdout.write(lines.join('\n') + '\n');
+        lineCount = lines.length;
       };
 
       render();
@@ -183,9 +185,10 @@ export async function createPrompt(
           return;
         }
 
-        // Enter
-        if (key === '\r' || key === '\n') {
+        // Enter — \r, \n, or \r\n
+        if (key === '\r' || key === '\n' || key === '\r\n') {
           cleanup();
+          process.stdout.write('\n');
           resolve([...selected].map((i) => items[i].name));
           return;
         }
