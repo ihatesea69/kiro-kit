@@ -1,0 +1,13 @@
+{
+  "enabled": false,
+  "name": "Release Checklist",
+  "description": "Manual pre-release checklist for a store submission.",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Run a mobile release readiness review: version/build numbers bumped, changelog updated, app icons and splash present, permissions justified for store review, crash/analytics SDKs initialized, deep links tested, and signing config valid for both platforms. Output a checklist with blockers first."
+  }
+}

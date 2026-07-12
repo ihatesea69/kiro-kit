@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-07-13
+
+### Added
+
+- **Native Kiro Agent Hooks**: every preset now ships 7 native `*.kiro.hook` files (4 shared + 3 domain-specific) using Kiro's real `when`/`then` event-driven format. All ship `enabled: false` (opt-in) so a fresh workspace never starts an unrequested agent run. Each preset includes a `hooks/native-hooks.md` guide.
+- **Worked example specs**: each preset ships a fully-written best-practice spec under `specs/examples/` (Product Listing, API Key Auth, Stripe Checkout, Offline-first Notes, Blue-Green Deployment, Churn Prediction) demonstrating EARS acceptance criteria, Mermaid diagrams, and task-to-requirement traceability.
+- **`spec-driven-development.md` steering** teaching EARS patterns, approval gates, and when to skip the full spec workflow.
+- **`kiro-kit spec new <name>`** command to scaffold a new spec folder from an installed template (`--from <preset>`, `--force`).
+- **Enriched Powers catalog**: `powers.json` entries now carry `category`, `auth`, `envVars`, and `mcpBacked` metadata (backward compatible). Per-preset recommendations expanded (Vercel, Sentry, Clerk, Upstash, Expo, Pulumi, Hugging Face, and more).
+- **MCP auto-wire**: credential-free servers `memory`, `context7`, and `sequential-thinking` are now enabled on init; `github` and `sentry` scaffolded disabled.
+- **doctor**: two new checks — native hook JSON validity and example-spec completeness (10 validations total).
+- Maintenance scripts: `generate-native-hooks.mjs`, `generate-powers.mjs`, `sync-preset-manifests.mjs`.
+
+### Changed
+
+- README documents native Agent Hooks, example specs, and the enriched Powers catalog.
+- `.env.example` generation now derives required variables from Power `envVars` metadata.
+
 ## [0.3.8] - 2025-05-20
 
 ### Fixed

@@ -54,6 +54,37 @@ const SERVER_DEFINITIONS: Record<string, MCPServerEntry> = {
     args: ['-y', '@modelcontextprotocol/server-playwright'],
     requiresCredentials: false,
   },
+  // --- Additional credential-free servers (auto-enabled) ---
+  memory: {
+    command: 'npx',
+    args: ['-y', '@modelcontextprotocol/server-memory'],
+    requiresCredentials: false,
+  },
+  sequentialthinking: {
+    command: 'npx',
+    args: ['-y', '@modelcontextprotocol/server-sequential-thinking'],
+    requiresCredentials: false,
+  },
+  context7: {
+    command: 'npx',
+    args: ['-y', '@upstash/context7-mcp'],
+    requiresCredentials: false,
+  },
+  // --- Credentialed servers (scaffolded disabled) ---
+  github: {
+    command: 'npx',
+    args: ['-y', '@modelcontextprotocol/server-github'],
+    env: { GITHUB_PERSONAL_ACCESS_TOKEN: '${GITHUB_PERSONAL_ACCESS_TOKEN}' },
+    requiresCredentials: true,
+    credentialEnvVars: ['GITHUB_PERSONAL_ACCESS_TOKEN'],
+  },
+  sentry: {
+    command: 'npx',
+    args: ['-y', '@sentry/mcp-server'],
+    env: { SENTRY_AUTH_TOKEN: '${SENTRY_AUTH_TOKEN}' },
+    requiresCredentials: true,
+    credentialEnvVars: ['SENTRY_AUTH_TOKEN'],
+  },
   postgres: {
     command: 'npx',
     args: ['-y', '@modelcontextprotocol/server-postgres'],
@@ -72,12 +103,30 @@ const SERVER_DEFINITIONS: Record<string, MCPServerEntry> = {
 
 /** Preset-to-server mapping. */
 const PRESET_SERVERS: Record<string, { default: string[]; optional: string[] }> = {
-  frontend: { default: ['filesystem', 'git', 'fetch', 'playwright'], optional: [] },
-  backend: { default: ['filesystem', 'git', 'fetch'], optional: ['postgres', 'docker'] },
-  fullstack: { default: ['filesystem', 'git', 'fetch', 'playwright'], optional: ['postgres', 'docker'] },
-  mobile: { default: ['filesystem', 'git', 'fetch'], optional: [] },
-  devops: { default: ['filesystem', 'git', 'fetch'], optional: ['docker', 'postgres'] },
-  'data-ai': { default: ['filesystem', 'git', 'fetch'], optional: ['postgres'] },
+  frontend: {
+    default: ['filesystem', 'git', 'fetch', 'playwright', 'context7', 'memory'],
+    optional: ['sentry'],
+  },
+  backend: {
+    default: ['filesystem', 'git', 'fetch', 'context7', 'memory', 'sequentialthinking'],
+    optional: ['postgres', 'docker', 'github', 'sentry'],
+  },
+  fullstack: {
+    default: ['filesystem', 'git', 'fetch', 'playwright', 'context7', 'memory'],
+    optional: ['postgres', 'docker', 'github', 'sentry'],
+  },
+  mobile: {
+    default: ['filesystem', 'git', 'fetch', 'context7', 'memory'],
+    optional: ['sentry'],
+  },
+  devops: {
+    default: ['filesystem', 'git', 'fetch', 'context7', 'sequentialthinking'],
+    optional: ['docker', 'postgres', 'github'],
+  },
+  'data-ai': {
+    default: ['filesystem', 'git', 'fetch', 'context7', 'memory', 'sequentialthinking'],
+    optional: ['postgres', 'github'],
+  },
 };
 
 // ---------------------------------------------------------------------------

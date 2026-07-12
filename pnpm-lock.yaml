@@ -20,8 +20,8 @@ importers:
         specifier: ^12.1.0
         version: 12.1.0
       diff:
-        specifier: ^7.0.0
-        version: 7.0.0
+        specifier: ^9.0.0
+        version: 9.0.0
       figlet:
         specifier: 1.7.0
         version: 1.7.0
@@ -32,8 +32,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.1
       kiro-kit:
-        specifier: ^0.3.1
-        version: 0.3.1
+        specifier: ^0.3.7
+        version: 0.3.7
       listr2:
         specifier: 8.0.1
         version: 8.0.1
@@ -746,6 +746,10 @@ packages:
     resolution: {integrity: sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw==}
     engines: {node: '>=0.3.1'}
 
+  diff@9.0.0:
+    resolution: {integrity: sha512-svtcdpS8CgJyqAjEQIXdb3OjhFVVYjzGAPO8WGCmRbrml64SPw/jJD4GoE98aR7r25A0XcgrK3F02yw9R/vhQw==}
+    engines: {node: '>=0.3.1'}
+
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
@@ -884,8 +888,8 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
 
-  kiro-kit@0.3.1:
-    resolution: {integrity: sha512-BNGeL8mDdQouo50I7Rd8ceHWL/tc5EI3+G0qPxB5MsiQZ18yWReZ3N5WT5cN4AOWTlFrwsEiJoA+NO5cznqcBQ==}
+  kiro-kit@0.3.7:
+    resolution: {integrity: sha512-vO7ktQos3RC4QMm3vPPbw9SdDuOv2Kg1RbRAh4c3tsXwjC3mv9MWwIom6TE3spT/rOQKCxR44v4n7QriRHGKyw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -1734,6 +1738,8 @@ snapshots:
 
   diff@7.0.0: {}
 
+  diff@9.0.0: {}
+
   eastasianwidth@0.2.0: {}
 
   emoji-regex@10.6.0: {}
@@ -1885,7 +1891,7 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  kiro-kit@0.3.1:
+  kiro-kit@0.3.7:
     dependencies:
       boxen: 7.1.1
       chalk: 5.3.0

@@ -1,0 +1,16 @@
+{
+  "enabled": false,
+  "name": "Spec Task Sync",
+  "description": "When a spec tasks.md changes, reconcile checkbox state against the actual implementation and preserve requirement traceability.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      ".kiro/specs/**/tasks.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The tasks.md of a spec changed. For each checked task, verify the described work actually exists in the codebase; for unchecked tasks, note any that appear already implemented. Flag mismatches and keep every task's _Requirements: Rx.y_ traceability line intact. Only edit the tasks.md checklist — do not change product code."
+  }
+}

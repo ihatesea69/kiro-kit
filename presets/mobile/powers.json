@@ -3,32 +3,100 @@
     {
       "name": "Firebase",
       "url": "https://kiro.dev/powers/firebase",
-      "description": "Full-stack mobile development with auth, database, and push notifications",
-      "tier": "essential"
+      "description": "App platform: Firestore, auth, hosting, and messaging",
+      "tier": "essential",
+      "category": "database",
+      "auth": "apiKey",
+      "envVars": [
+        "FIREBASE_PROJECT_ID",
+        "FIREBASE_API_KEY"
+      ]
     },
     {
       "name": "Figma",
       "url": "https://kiro.dev/powers/figma",
-      "description": "Design-to-code integration with Figma files",
-      "tier": "recommended"
+      "description": "Design source of truth; import frames and tokens",
+      "tier": "recommended",
+      "category": "design",
+      "auth": "oauth",
+      "mcpBacked": true
     },
     {
       "name": "Context7",
       "url": "https://kiro.dev/powers/context7",
-      "description": "Up-to-date documentation lookup for libraries and frameworks",
-      "tier": "recommended"
+      "description": "Up-to-date library and framework documentation lookup",
+      "tier": "recommended",
+      "category": "docs",
+      "auth": "none",
+      "mcpBacked": true
+    },
+    {
+      "name": "Expo",
+      "url": "https://kiro.dev/powers/expo",
+      "description": "Build, submit, and OTA-update React Native apps (EAS)",
+      "tier": "recommended",
+      "category": "hosting",
+      "auth": "apiKey",
+      "envVars": [
+        "EXPO_TOKEN"
+      ]
     },
     {
       "name": "ElevenLabs",
-      "url": "https://kiro.dev/powers/eleven-labs",
-      "description": "Text-to-speech and voice AI integration",
-      "tier": "optional"
+      "url": "https://kiro.dev/powers/elevenlabs",
+      "description": "Text-to-speech and voice generation",
+      "tier": "optional",
+      "category": "ai",
+      "auth": "apiKey",
+      "envVars": [
+        "ELEVENLABS_API_KEY"
+      ]
     },
     {
       "name": "Bria",
       "url": "https://kiro.dev/powers/bria",
-      "description": "AI image generation and editing for app assets",
-      "tier": "optional"
+      "description": "Licensed generative image editing and backgrounds",
+      "tier": "optional",
+      "category": "ai",
+      "auth": "apiKey",
+      "envVars": [
+        "BRIA_API_TOKEN"
+      ]
+    },
+    {
+      "name": "RevenueCat",
+      "url": "https://kiro.dev/powers/revenuecat",
+      "description": "In-app subscriptions and purchases for mobile",
+      "tier": "optional",
+      "category": "payments",
+      "auth": "apiKey",
+      "envVars": [
+        "REVENUECAT_API_KEY"
+      ]
+    },
+    {
+      "name": "OneSignal",
+      "url": "https://kiro.dev/powers/onesignal",
+      "description": "Push notifications across mobile and web",
+      "tier": "optional",
+      "category": "other",
+      "auth": "apiKey",
+      "envVars": [
+        "ONESIGNAL_APP_ID",
+        "ONESIGNAL_API_KEY"
+      ]
+    },
+    {
+      "name": "Sentry",
+      "url": "https://kiro.dev/powers/sentry",
+      "description": "Error tracking and performance monitoring",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "SENTRY_AUTH_TOKEN"
+      ],
+      "mcpBacked": true
     }
   ]
 }
