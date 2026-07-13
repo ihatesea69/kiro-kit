@@ -23,7 +23,7 @@ scripts or `runCommand` for deterministic checks.
 
 - **Run Tests on Save** — When a test file is saved, run its suite and surface failures. Disabled by default (askAgent uses credits). (`fileEdited`)
 - **Spec Task Sync** — When a spec tasks.md changes, reconcile checkbox state against the actual implementation and preserve requirement traceability. (`fileEdited`)
-- **Secret Scan Before Write** — Before a file write, scan the pending content for hardcoded secrets and block if any are found. (`preToolUse`)
+- **Secret Scan on Save** — When a code or config file is saved, scan it for hardcoded secrets. Scoped to file writes so it does not run on every tool call. (`fileEdited`)
 - **Docs Drift Guard** — When source changes, update any README / API docs / steering that now reference stale symbols. Documentation-only edits. (`fileEdited`)
 
 ## frontend domain hooks

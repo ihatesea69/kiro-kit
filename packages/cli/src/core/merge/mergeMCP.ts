@@ -33,7 +33,7 @@ export function mergeMCP(
   }
 
   for (const [serverName, def] of Object.entries(presetServers)) {
-    if (serverName in result.mcpServers) {
+    if (Object.hasOwn(result.mcpServers, serverName)) {
       logger.warn(
         `MCP server "${serverName}" already exists, keeping user definition.` +
           (presetName ? ` (from preset: ${presetName})` : ''),

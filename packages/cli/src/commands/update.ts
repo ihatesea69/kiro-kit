@@ -188,12 +188,16 @@ async function runUpdate(opts: UpdateOptions): Promise<void> {
           break;
       }
 
-      updatedFiles.push({
-        target: fileEntry.target,
-        sourcePreset: bundled.manifest.name,
-        contentHash: newHash,
-        installedAt: new Date().toISOString(),
-      });
+      // Only record the new hash when the file was actually written. Recording
+      // it after SKIP would poison tracking so the file is never offered again.
+      if (action === 'WRITE_NEW' || action === 'OVERWRITE_WITH_BACKUP') {
+        updatedFiles.push({
+          target: fileEntry.target,
+          sourcePreset: bundled.manifest.name,
+          contentHash: newHash,
+          installedAt: new Date().toISOString(),
+        });
+      }
     }
 
     // Bump version in tracking

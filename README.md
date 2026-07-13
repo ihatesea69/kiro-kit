@@ -97,8 +97,9 @@ kiro-kit spec new my-feature --from backend
 
 Running `kiro-kit init` generates a functional `.mcp.json`:
 
-- Credential-free servers (filesystem, git, fetch, playwright, memory, context7, sequential-thinking) are enabled immediately
-- Servers requiring credentials (postgres, docker, github, sentry) are included as `_disabled_` entries with instructions to enable
+- Credential-free servers (filesystem, memory, context7, sequential-thinking, playwright) are enabled immediately via `npx`
+- The official git/fetch servers run via `uvx` (Python) — install [`uv`](https://docs.astral.sh/uv/) to use them
+- Servers requiring credentials (postgres, github, sentry) are included as `_disabled_` entries with instructions to enable
 
 ## Kiro Powers Integration
 

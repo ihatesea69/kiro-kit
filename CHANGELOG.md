@@ -18,10 +18,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **doctor**: two new checks — native hook JSON validity and example-spec completeness (10 validations total).
 - Maintenance scripts: `generate-native-hooks.mjs`, `generate-powers.mjs`, `sync-preset-manifests.mjs`.
 
+### Security
+
+- **Removed `@mcp/docs-seeker`** from all `.mcp.json.example` files — the `@mcp` npm scope is unclaimed, so `npx -y @mcp/docs-seeker` was a dependency-confusion RCE vector. The kit already ships a docs-seeker skill.
+- **Corrected non-existent MCP package names** (`server-git`/`server-fetch` → `uvx` Python servers, `server-playwright`/`@playwright/mcp-server` → `@playwright/mcp`; removed phantom `server-docker`/`server-jupyter`) in `MCPConfigurator` and all example configs.
+- **`restore --timestamp`** now validates the timestamp format and guards writes with `safePathInside` (was a `../` path-traversal into the workspace).
+- **`spec new --from`** now rejects non-bare template names (was a `../` traversal that could read arbitrary files into a spec).
+- **`scout-block` guard** now reads tool context from stdin JSON (with argv fallback), so it actually inspects commands; broadened patterns (`rm -rf $HOME`, `find … -delete`, structural fork-bomb).
+- **Discord/Telegram shell notifiers** build JSON via `jq`/`node` (no injection/malformed payloads); the Telegram bot token is passed via a curl config on stdin so it no longer appears in the process table.
+- **`secret-scan` native hook** scoped to file writes (`fileEdited`) instead of every tool call (avoids credit drain).
+- **`build-verify` hook** now blocks (exit 1) when artifacts are missing instead of failing open.
+- Hardened `mergeMCP` (`Object.hasOwn`), `mergeHooks` (`safePathInside` guard), and `ConflictResolver` (ENOENT-safe read).
+
 ### Changed
 
 - README documents native Agent Hooks, example specs, and the enriched Powers catalog.
 - `.env.example` generation now derives required variables from Power `envVars` metadata.
+- Atomic writes for `metadata.json` and the tracking store (crash-safe).
+- `update` no longer records the new content hash for files the user skipped (was stranding them on old versions).
+- Line-ending-normalized content comparison so re-`init` is idempotent on Windows (CRLF vs LF).
+- Accurate telemetry `enable` message (no data is transmitted in this version).
 
 ## [0.3.8] - 2025-05-20
 

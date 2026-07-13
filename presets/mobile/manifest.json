@@ -2264,8 +2264,8 @@
       "type": "hook"
     },
     {
-      "source": "hooks/secret-scan-before-write.kiro.hook",
-      "target": ".kiro/hooks/secret-scan-before-write.kiro.hook",
+      "source": "hooks/secret-scan-on-save.kiro.hook",
+      "target": ".kiro/hooks/secret-scan-on-save.kiro.hook",
       "type": "hook"
     },
     {

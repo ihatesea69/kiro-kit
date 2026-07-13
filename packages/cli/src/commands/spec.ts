@@ -6,6 +6,8 @@ import crypto from 'node:crypto';
 
 import { logger } from '../utils/logger.js';
 import { color } from '../utils/color.js';
+import { safePathInside } from '../utils/paths.js';
+import { KKError, ErrorCodes } from '../core/errors.js';
 
 interface SpecNewOptions {
   from?: string;
@@ -22,13 +24,26 @@ function humanize(name: string): string {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+/** A safe bare template name — letters, numbers, hyphens, underscores only. */
+const TEMPLATE_NAME_RE = /^[a-zA-Z0-9][a-zA-Z0-9-_]*$/;
+
 /** Locate a `_templates/<preset>/` directory to copy from, if one is installed. */
 function findTemplateDir(workspaceRoot: string, from?: string): string | null {
   const templatesRoot = path.join(workspaceRoot, '.kiro/specs/_templates');
   if (!fs.existsSync(templatesRoot)) return null;
 
   if (from) {
+    // Reject anything that could traverse out of _templates (`..`, slashes,
+    // absolute/drive paths). `--from` must be a bare template directory name.
+    if (!TEMPLATE_NAME_RE.test(from)) {
+      throw new KKError(
+        ErrorCodes.SPEC_INVALID_TEMPLATE,
+        `Invalid --from value "${from}". Use a bare template name (letters, numbers, hyphens).`,
+      );
+    }
     const candidate = path.join(templatesRoot, from);
+    // Defense-in-depth: ensure the resolved path stays inside _templates.
+    if (!safePathInside(templatesRoot, from)) return null;
     return fs.existsSync(candidate) ? candidate : null;
   }
 

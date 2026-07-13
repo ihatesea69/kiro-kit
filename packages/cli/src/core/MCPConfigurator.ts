@@ -39,19 +39,20 @@ const SERVER_DEFINITIONS: Record<string, MCPServerEntry> = {
     args: ['-y', '@modelcontextprotocol/server-filesystem', '.'],
     requiresCredentials: false,
   },
+  // Official git/fetch MCP servers are Python packages, run via uvx (requires `uv`).
   git: {
-    command: 'npx',
-    args: ['-y', '@modelcontextprotocol/server-git', '--repository', '.'],
+    command: 'uvx',
+    args: ['mcp-server-git', '--repository', '.'],
     requiresCredentials: false,
   },
   fetch: {
-    command: 'npx',
-    args: ['-y', '@modelcontextprotocol/server-fetch'],
+    command: 'uvx',
+    args: ['mcp-server-fetch'],
     requiresCredentials: false,
   },
   playwright: {
     command: 'npx',
-    args: ['-y', '@modelcontextprotocol/server-playwright'],
+    args: ['-y', '@playwright/mcp'],
     requiresCredentials: false,
   },
   // --- Additional credential-free servers (auto-enabled) ---
@@ -92,13 +93,6 @@ const SERVER_DEFINITIONS: Record<string, MCPServerEntry> = {
     requiresCredentials: true,
     credentialEnvVars: ['POSTGRES_URL'],
   },
-  docker: {
-    command: 'npx',
-    args: ['-y', '@modelcontextprotocol/server-docker'],
-    env: { DOCKER_HOST: '${DOCKER_HOST}' },
-    requiresCredentials: true,
-    credentialEnvVars: ['DOCKER_HOST'],
-  },
 };
 
 /** Preset-to-server mapping. */
@@ -109,11 +103,11 @@ const PRESET_SERVERS: Record<string, { default: string[]; optional: string[] }> 
   },
   backend: {
     default: ['filesystem', 'git', 'fetch', 'context7', 'memory', 'sequentialthinking'],
-    optional: ['postgres', 'docker', 'github', 'sentry'],
+    optional: ['postgres', 'github', 'sentry'],
   },
   fullstack: {
     default: ['filesystem', 'git', 'fetch', 'playwright', 'context7', 'memory'],
-    optional: ['postgres', 'docker', 'github', 'sentry'],
+    optional: ['postgres', 'github', 'sentry'],
   },
   mobile: {
     default: ['filesystem', 'git', 'fetch', 'context7', 'memory'],
@@ -121,7 +115,7 @@ const PRESET_SERVERS: Record<string, { default: string[]; optional: string[] }> 
   },
   devops: {
     default: ['filesystem', 'git', 'fetch', 'context7', 'sequentialthinking'],
-    optional: ['docker', 'postgres', 'github'],
+    optional: ['postgres', 'github'],
   },
   'data-ai': {
     default: ['filesystem', 'git', 'fetch', 'context7', 'memory', 'sequentialthinking'],

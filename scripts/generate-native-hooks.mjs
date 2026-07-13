@@ -72,14 +72,20 @@ const SHARED_HOOKS = [
     ),
   }),
   hook({
-    name: 'Secret Scan Before Write',
+    name: 'Secret Scan on Save',
     description:
-      'Before a file write, scan the pending content for hardcoded secrets and block if any are found.',
+      'When a code or config file is saved, scan it for hardcoded secrets. Scoped to file writes so it does not run on every tool call.',
     when: {
-      type: 'preToolUse',
+      type: 'fileEdited',
+      patterns: [
+        'src/**/*.*',
+        'lib/**/*.*',
+        'app/**/*.*',
+        '**/*.{env,yaml,yml,json,tf,tfvars}',
+      ],
     },
     then: askAgent(
-      'Before this file write proceeds, inspect the pending content for hardcoded secrets: API keys, access tokens, passwords, private keys, and database connection strings with embedded credentials. If any are found, block the write and report the exact location plus a safe alternative (environment variable via .env). If none are found, allow the write to proceed.',
+      'The saved file changed. Inspect it for hardcoded secrets: API keys, access tokens, passwords, private keys, and database connection strings with embedded credentials. If any are found, report the exact location and a safe alternative (environment variable via .env). Do not modify unrelated files.',
     ),
   }),
   hook({

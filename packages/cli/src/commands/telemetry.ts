@@ -42,7 +42,10 @@ export function registerTelemetryCommand(program: Command): void {
         const config = readConfig();
         config.telemetry = true;
         writeConfig(config);
-        logger.success('Telemetry enabled. Anonymous usage data will be collected.');
+        logger.success(
+          'Telemetry preference set to enabled (stored locally). ' +
+            'No usage data is transmitted in this version.',
+        );
       } catch (err: unknown) {
         logger.error(err instanceof Error ? err.message : String(err));
         process.exit(1);
