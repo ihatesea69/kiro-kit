@@ -1953,10 +1953,11 @@
       ]
     },
     "git": {
-      "command": "npx",
+      "command": "uvx",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-git"
+        "mcp-server-git",
+        "--repository",
+        "."
       ]
     },
     "postgres": {
@@ -1967,24 +1968,9 @@
       ]
     },
     "fetch": {
-      "command": "npx",
+      "command": "uvx",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-fetch"
-      ]
-    },
-    "docs-seeker": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@mcp/docs-seeker"
-      ]
-    },
-    "docker": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-docker"
+        "mcp-server-fetch"
       ]
     }
   },
