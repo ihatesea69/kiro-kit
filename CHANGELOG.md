@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-07-21
+
+### Security
+
+- **Fully close the `@mcp/docs-seeker` dependency-confusion vector.** 0.4.0 fixed the `.mcp.json.example` files and the CLI auto-wire catalog, but the `mcpServers` block inside each preset's `manifest.json` — which is written to `.kiro/settings/mcp.json` on `init` — still referenced the unclaimed `@mcp/docs-seeker` scope plus the non-existent `@playwright/mcp-server`, `server-git`, `server-fetch`, `server-docker`, and `server-jupyter`. All preset manifests are now corrected (docs-seeker/docker/jupyter removed; git/fetch → `uvx`; playwright → `@playwright/mcp`), so a fresh `init` no longer writes any of these into the workspace MCP config.
+
 ## [0.4.0] - 2026-07-13
 
 ### Added
