@@ -1,0 +1,17 @@
+{
+  "enabled": false,
+  "name": "Component Scaffold",
+  "description": "When a new component is created, scaffold a matching test and Storybook story.",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      "**/components/**/*.{tsx,jsx}",
+      "src/**/*.component.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new React component was created. Scaffold a co-located test file (React Testing Library) covering render + key interactions, and a Storybook story with default and edge-case args. Infer props from the component. Do not modify the component itself unless it is missing an explicit export."
+  }
+}

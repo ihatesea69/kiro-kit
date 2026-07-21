@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { KKError, ErrorCodes } from './errors.js';
 import { logger } from '../utils/logger.js';
+import { atomicWrite } from '../utils/fs-safe.js';
 
 const TRACKING_FILE = '.kiro/.kiro-kit.json';
 
@@ -64,7 +65,7 @@ export function write(workspaceRoot: string, data: TrackingData): void {
   const filePath = getTrackingPath(workspaceRoot);
   const dir = path.dirname(filePath);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf-8');
+  atomicWrite(filePath, JSON.stringify(data, null, 2) + '\n');
 }
 
 /**

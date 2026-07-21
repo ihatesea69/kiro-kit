@@ -1,44 +1,28 @@
 #!/usr/bin/env node
-// PreToolUse hook: verifies build artifacts exist before deployment commands.
-// Prevents deploying stale or missing builds.
+// PreToolUse guard: blocks when no build artifacts are present, to prevent
+// deploying a stale or missing build. Exits non-zero (blocks) on failure.
 
 const fs = require('fs');
 const path = require('path');
 
-const DEPLOY_PATTERNS = [
-  /kubectl\s+apply/i,
-  /helm\s+(install|upgrade)/i,
-  /terraform\s+apply/i,
-  /docker\s+push/i,
-  /aws\s+.*deploy/i,
-  /gcloud\s+.*deploy/i,
-];
+const ARTIFACT_DIRS = ['dist', 'build', 'out', '.next', 'target'];
+const cwd = process.cwd();
 
-const input = process.argv.slice(2).join(' ') || '';
-const isDeployCommand = DEPLOY_PATTERNS.some((p) => p.test(input));
-
-if (!isDeployCommand) {
-  process.exit(0);
-}
-
-// Check for common build artifacts
-const buildIndicators = [
-  'dist',
-  'build',
-  'Dockerfile',
-  'docker-compose.yml',
-  'docker-compose.yaml',
-];
-
-const hasArtifact = buildIndicators.some((indicator) => {
-  return fs.existsSync(path.resolve(process.cwd(), indicator));
+const hasArtifact = ARTIFACT_DIRS.some((d) => {
+  const p = path.resolve(cwd, d);
+  try {
+    return fs.existsSync(p) && fs.readdirSync(p).length > 0;
+  } catch {
+    return false;
+  }
 });
 
 if (!hasArtifact) {
   process.stderr.write(
-    '[build-verify] Warning: No build artifacts found. Run build before deploying.\n'
+    '[build-verify] No build artifacts found (dist/build/out/.next/target). ' +
+      'Run your build before deploying.\n',
   );
-  // Exit 0 to warn but not block -- user may have artifacts elsewhere
+  process.exit(1); // block
 }
 
 process.exit(0);

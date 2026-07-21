@@ -2237,6 +2237,81 @@
       "source": "docs/system-architecture.md",
       "target": "docs/system-architecture.md",
       "type": "doc"
+    },
+    {
+      "source": "hooks/accessibility-review.kiro.hook",
+      "target": ".kiro/hooks/accessibility-review.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/bundle-size-guard.kiro.hook",
+      "target": ".kiro/hooks/bundle-size-guard.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/component-scaffold.kiro.hook",
+      "target": ".kiro/hooks/component-scaffold.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/docs-drift-guard.kiro.hook",
+      "target": ".kiro/hooks/docs-drift-guard.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/native-hooks.md",
+      "target": ".kiro/hooks/native-hooks.md",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/run-tests-on-save.kiro.hook",
+      "target": ".kiro/hooks/run-tests-on-save.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/secret-scan-on-save.kiro.hook",
+      "target": ".kiro/hooks/secret-scan-on-save.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/spec-task-sync.kiro.hook",
+      "target": ".kiro/hooks/spec-task-sync.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "skills/template-skill/assets/.gitkeep",
+      "target": ".kiro/skills/template-skill/assets/.gitkeep",
+      "type": "skill"
+    },
+    {
+      "source": "skills/template-skill/references/.gitkeep",
+      "target": ".kiro/skills/template-skill/references/.gitkeep",
+      "type": "skill"
+    },
+    {
+      "source": "skills/template-skill/scripts/.gitkeep",
+      "target": ".kiro/skills/template-skill/scripts/.gitkeep",
+      "type": "skill"
+    },
+    {
+      "source": "specs/examples/product-listing-page/design.md",
+      "target": ".kiro/specs/examples/product-listing-page/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/examples/product-listing-page/requirements.md",
+      "target": ".kiro/specs/examples/product-listing-page/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/examples/product-listing-page/tasks.md",
+      "target": ".kiro/specs/examples/product-listing-page/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "steering/spec-driven-development.md",
+      "target": ".kiro/steering/spec-driven-development.md",
+      "type": "steering"
     }
   ],
   "mcpServers": {

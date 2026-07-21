@@ -3,38 +3,94 @@
     {
       "name": "Supabase",
       "url": "https://kiro.dev/powers/supabase",
-      "description": "Backend-as-a-service with Postgres, auth, and real-time subscriptions",
-      "tier": "essential"
+      "description": "Backend-as-a-service: Postgres, auth, storage, and realtime",
+      "tier": "essential",
+      "category": "database",
+      "auth": "apiKey",
+      "envVars": [
+        "SUPABASE_URL",
+        "SUPABASE_ANON_KEY"
+      ],
+      "mcpBacked": true
     },
     {
       "name": "Neon",
       "url": "https://kiro.dev/powers/neon",
       "description": "Serverless Postgres with branching and autoscaling",
-      "tier": "recommended"
+      "tier": "recommended",
+      "category": "database",
+      "auth": "apiKey",
+      "envVars": [
+        "DATABASE_URL"
+      ]
     },
     {
       "name": "Postman",
       "url": "https://kiro.dev/powers/postman",
-      "description": "API testing and collection management",
-      "tier": "recommended"
+      "description": "API testing, collections, and mock servers",
+      "tier": "recommended",
+      "category": "testing",
+      "auth": "apiKey",
+      "envVars": [
+        "POSTMAN_API_KEY"
+      ]
     },
     {
       "name": "Context7",
       "url": "https://kiro.dev/powers/context7",
-      "description": "Up-to-date documentation lookup for libraries and frameworks",
-      "tier": "recommended"
+      "description": "Up-to-date library and framework documentation lookup",
+      "tier": "recommended",
+      "category": "docs",
+      "auth": "none",
+      "mcpBacked": true
+    },
+    {
+      "name": "Upstash",
+      "url": "https://kiro.dev/powers/upstash",
+      "description": "Serverless Redis and Kafka with per-request pricing",
+      "tier": "recommended",
+      "category": "database",
+      "auth": "apiKey",
+      "envVars": [
+        "UPSTASH_REDIS_REST_URL",
+        "UPSTASH_REDIS_REST_TOKEN"
+      ]
     },
     {
       "name": "Stripe",
       "url": "https://kiro.dev/powers/stripe",
-      "description": "Payment processing, subscriptions, and billing integration",
-      "tier": "optional"
+      "description": "Payments, subscriptions, and billing",
+      "tier": "optional",
+      "category": "payments",
+      "auth": "apiKey",
+      "envVars": [
+        "STRIPE_SECRET_KEY",
+        "STRIPE_WEBHOOK_SECRET"
+      ],
+      "mcpBacked": true
     },
     {
       "name": "Snyk",
       "url": "https://kiro.dev/powers/snyk",
-      "description": "Security scanning and vulnerability detection for dependencies",
-      "tier": "optional"
+      "description": "Dependency and container vulnerability scanning",
+      "tier": "optional",
+      "category": "testing",
+      "auth": "apiKey",
+      "envVars": [
+        "SNYK_TOKEN"
+      ]
+    },
+    {
+      "name": "Sentry",
+      "url": "https://kiro.dev/powers/sentry",
+      "description": "Error tracking and performance monitoring",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "SENTRY_AUTH_TOKEN"
+      ],
+      "mcpBacked": true
     }
   ]
 }

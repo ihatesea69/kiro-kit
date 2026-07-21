@@ -63,15 +63,36 @@ export function collectEnvVars(
     }
   }
 
-  // Collect from Powers (placeholder entries for Powers that may need env vars)
-  // Powers are installed via marketplace, but some may need env configuration
+  // Collect from Powers. Prefer the catalog metadata (power.envVars) when present
+  // — it is the single source of truth for a Power's required credentials — and
+  // fall back to the legacy known-Power mapping otherwise.
+  const seen = new Set(vars.map((v) => v.key));
   for (const power of powers) {
-    if (power.tier === 'essential' || power.tier === 'recommended') {
-      // Only include a generic placeholder for Powers that commonly need keys
-      const knownPowerEnvVars = getKnownPowerEnvVars(power.name);
-      for (const envVar of knownPowerEnvVars) {
-        vars.push(envVar);
+    if (power.tier !== 'essential' && power.tier !== 'recommended') {
+      continue;
+    }
+    if (power.auth === 'none') {
+      continue; // credential-free Powers need no env entry
+    }
+
+    if (power.envVars && power.envVars.length > 0) {
+      for (const key of power.envVars) {
+        if (seen.has(key)) continue;
+        seen.add(key);
+        vars.push({
+          key,
+          placeholder: `your-${key.toLowerCase().replace(/_/g, '-')}`,
+          comment: `Required by ${power.name} Power`,
+          service: `${power.name} Power`,
+        });
       }
+      continue;
+    }
+
+    for (const envVar of getKnownPowerEnvVars(power.name)) {
+      if (seen.has(envVar.key)) continue;
+      seen.add(envVar.key);
+      vars.push(envVar);
     }
   }
 

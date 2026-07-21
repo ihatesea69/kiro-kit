@@ -14,11 +14,24 @@ import { z } from 'zod';
 
 export const PowerTierSchema = z.enum(['essential', 'recommended', 'optional']);
 
+export const PowerCategorySchema = z.enum([
+  'hosting', 'database', 'auth', 'payments', 'observability',
+  'design', 'testing', 'ai', 'infra', 'docs', 'other',
+]);
+
+export const PowerAuthSchema = z.enum(['none', 'apiKey', 'oauth']);
+
 export const PowerEntrySchema = z.object({
   name: z.string().min(1),
   url: z.string().url(),
   description: z.string().min(1),
   tier: PowerTierSchema,
+  // Enriched metadata — all optional for backward compatibility with existing
+  // powers.json files that only carry the four core fields.
+  category: PowerCategorySchema.optional(),
+  auth: PowerAuthSchema.optional(),
+  envVars: z.array(z.string()).optional(),
+  mcpBacked: z.boolean().optional(),
 });
 
 export const PowersConfigSchema = z.object({
@@ -30,6 +43,8 @@ export const PowersConfigSchema = z.object({
 // ---------------------------------------------------------------------------
 
 export type PowerTier = z.infer<typeof PowerTierSchema>;
+export type PowerCategory = z.infer<typeof PowerCategorySchema>;
+export type PowerAuth = z.infer<typeof PowerAuthSchema>;
 export type PowerEntry = z.infer<typeof PowerEntrySchema>;
 export type PowersConfig = z.infer<typeof PowersConfigSchema>;
 

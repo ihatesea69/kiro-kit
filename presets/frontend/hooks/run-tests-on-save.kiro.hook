@@ -1,0 +1,19 @@
+{
+  "enabled": false,
+  "name": "Run Tests on Save",
+  "description": "When a test file is saved, run its suite and surface failures. Disabled by default (askAgent uses credits).",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*_test.*",
+      "**/test_*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A test file was just saved. Run the test suite that covers this file. If any tests fail, summarize the failures and propose the minimal fix. Report a concise pass/fail result — do not modify unrelated files."
+  }
+}

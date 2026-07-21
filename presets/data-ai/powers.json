@@ -2,33 +2,100 @@
   "powers": [
     {
       "name": "ClickHouse",
-      "url": "https://kiro.dev/powers/click-house",
-      "description": "High-performance analytics database for data pipelines",
-      "tier": "essential"
+      "url": "https://kiro.dev/powers/clickhouse",
+      "description": "Column-oriented OLAP database for analytics at scale",
+      "tier": "essential",
+      "category": "database",
+      "auth": "apiKey",
+      "envVars": [
+        "CLICKHOUSE_URL"
+      ]
     },
     {
       "name": "Context7",
       "url": "https://kiro.dev/powers/context7",
-      "description": "Up-to-date documentation lookup for libraries and frameworks",
-      "tier": "recommended"
+      "description": "Up-to-date library and framework documentation lookup",
+      "tier": "recommended",
+      "category": "docs",
+      "auth": "none",
+      "mcpBacked": true
     },
     {
       "name": "Exa",
       "url": "https://kiro.dev/powers/exa",
-      "description": "Web search and research for finding datasets and papers",
-      "tier": "recommended"
+      "description": "Neural web search API for agents and research",
+      "tier": "recommended",
+      "category": "ai",
+      "auth": "apiKey",
+      "envVars": [
+        "EXA_API_KEY"
+      ]
+    },
+    {
+      "name": "Hugging Face",
+      "url": "https://kiro.dev/powers/hugging-face",
+      "description": "Models, datasets, and inference endpoints",
+      "tier": "recommended",
+      "category": "ai",
+      "auth": "apiKey",
+      "envVars": [
+        "HF_TOKEN"
+      ]
     },
     {
       "name": "Neon",
       "url": "https://kiro.dev/powers/neon",
-      "description": "Serverless Postgres for ML feature stores",
-      "tier": "optional"
+      "description": "Serverless Postgres with branching and autoscaling",
+      "tier": "optional",
+      "category": "database",
+      "auth": "apiKey",
+      "envVars": [
+        "DATABASE_URL"
+      ]
     },
     {
       "name": "New Relic",
       "url": "https://kiro.dev/powers/new-relic",
-      "description": "Observability and performance monitoring for ML services",
-      "tier": "optional"
+      "description": "Full-stack observability and APM",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "NEW_RELIC_API_KEY"
+      ]
+    },
+    {
+      "name": "Weights & Biases",
+      "url": "https://kiro.dev/powers/weights-and-biases",
+      "description": "Experiment tracking, sweeps, and model registry",
+      "tier": "optional",
+      "category": "ai",
+      "auth": "apiKey",
+      "envVars": [
+        "WANDB_API_KEY"
+      ]
+    },
+    {
+      "name": "Pinecone",
+      "url": "https://kiro.dev/powers/pinecone",
+      "description": "Managed vector database for semantic search and RAG",
+      "tier": "optional",
+      "category": "database",
+      "auth": "apiKey",
+      "envVars": [
+        "PINECONE_API_KEY"
+      ]
+    },
+    {
+      "name": "LangSmith",
+      "url": "https://kiro.dev/powers/langsmith",
+      "description": "Tracing, evals, and monitoring for LLM apps",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "LANGCHAIN_API_KEY"
+      ]
     }
   ]
 }

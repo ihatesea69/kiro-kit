@@ -399,8 +399,6 @@ export async function createPrompt(
 }
 
 
-import type { TerminalCapability } from './capability.js';
-import type { ThemeTokens } from './theme.js';
 import { loadPrompts, type PromptsFn } from './vendor.js';
 
 // ---------------------------------------------------------------------------
