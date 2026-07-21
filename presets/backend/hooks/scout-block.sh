@@ -1,31 +1,32 @@
 #!/usr/bin/env bash
-# Security guard: blocks dangerous commands before execution.
-# Registered as PreToolUse hook.
+# Best-effort guard: blocks obviously-dangerous commands before execution.
+# NOTE: a denylist is defense-in-depth, NOT a security boundary — it can be
+# bypassed. The .js variant (used as the primary PreToolUse hook) is authoritative.
 
 INPUT="$*"
 
-BLOCKED_PATTERNS=(
-  "rm -rf /"
-  "rm -fr /"
-  "rm -rf ~"
-  "rm -rf ."
-  "drop database"
-  "drop table"
-  "truncate table"
-  "mkfs."
-  "dd if="
-  "chmod -R 777 /"
-  "shutdown"
-  "reboot"
-  "init 0"
-  "format c:"
+# ERE patterns with [[:space:]] so alternate spacing does not trivially bypass.
+PATTERNS=(
+  'rm[[:space:]]+-[a-zA-Z]*[rf][a-zA-Z]*[[:space:]]+[/~]'
+  'rm[[:space:]]+-[a-zA-Z]*[rf][a-zA-Z]*[[:space:]]+\$?(HOME)'
+  'find[[:space:]].*-delete'
+  'drop[[:space:]]+(database|table|schema)'
+  'truncate[[:space:]]+table'
+  'mkfs\.'
+  'dd[[:space:]]+if=.*of=/dev'
+  'chmod[[:space:]]+-R[[:space:]]+777[[:space:]]+/'
+  '>[[:space:]]*/dev/sd[a-z]'
+  'shutdown'
+  'reboot'
+  'init[[:space:]]+0'
+  'format[[:space:]]+[a-z]:'
 )
 
-for pattern in "${BLOCKED_PATTERNS[@]}"; do
-  if echo "$INPUT" | grep -qi "$pattern"; then
+shopt -s nocasematch
+for pattern in "${PATTERNS[@]}"; do
+  if [[ "$INPUT" =~ $pattern ]]; then
     echo "[scout-block] Blocked dangerous command: $INPUT" >&2
     exit 2
   fi
 done
-
 exit 0

@@ -64,6 +64,12 @@ function runDoctor(opts: DoctorOptions): void {
   // (h) statusline exec bit (Unix)
   checks.push(checkStatuslineExecBit(workspaceRoot));
 
+  // (i) native agent hooks are valid JSON with required fields
+  checks.push(checkNativeHooks(workspaceRoot));
+
+  // (j) example specs are complete
+  checks.push(checkExampleSpecs(workspaceRoot));
+
   // Print results
   let hasFail = false;
   for (const check of checks) {
@@ -300,6 +306,105 @@ function checkMetadataJson(workspaceRoot: string): CheckReport {
   } catch {
     return { name: 'metadata-json', result: 'FAIL', message: '.kiro/metadata.json is not valid JSON' };
   }
+}
+
+function checkNativeHooks(workspaceRoot: string): CheckReport {
+  const hooksDir = path.join(workspaceRoot, '.kiro/hooks');
+  if (!fs.existsSync(hooksDir)) {
+    return { name: 'native-hooks', result: 'PASS', message: 'No native hooks to check' };
+  }
+
+  const invalid: string[] = [];
+  let checked = 0;
+
+  const walkDir = (dir: string): void => {
+    let entries: fs.Dirent[];
+    try {
+      entries = fs.readdirSync(dir, { withFileTypes: true });
+    } catch { return; }
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walkDir(fullPath);
+      } else if (entry.isFile() && entry.name.endsWith('.kiro.hook')) {
+        checked++;
+        try {
+          const parsed = JSON.parse(fs.readFileSync(fullPath, 'utf-8')) as {
+            name?: unknown;
+            when?: { type?: unknown };
+            then?: { type?: unknown };
+          };
+          const ok =
+            typeof parsed.name === 'string' &&
+            typeof parsed.when?.type === 'string' &&
+            typeof parsed.then?.type === 'string';
+          if (!ok) invalid.push(entry.name);
+        } catch {
+          invalid.push(entry.name);
+        }
+      }
+    }
+  };
+
+  walkDir(hooksDir);
+
+  if (checked === 0) {
+    return { name: 'native-hooks', result: 'PASS', message: 'No native hooks to check' };
+  }
+  if (invalid.length === 0) {
+    return {
+      name: 'native-hooks',
+      result: 'PASS',
+      message: `All ${checked} native hook(s) are valid`,
+    };
+  }
+  return {
+    name: 'native-hooks',
+    result: 'FAIL',
+    message: `${invalid.length} native hook(s) invalid: ${invalid.slice(0, 3).join(', ')}${invalid.length > 3 ? '...' : ''}`,
+  };
+}
+
+function checkExampleSpecs(workspaceRoot: string): CheckReport {
+  const examplesDir = path.join(workspaceRoot, '.kiro/specs/examples');
+  if (!fs.existsSync(examplesDir)) {
+    return { name: 'example-specs', result: 'PASS', message: 'No example specs to check' };
+  }
+
+  const required = ['requirements.md', 'design.md', 'tasks.md'];
+  const incomplete: string[] = [];
+  let checked = 0;
+
+  let dirs: fs.Dirent[];
+  try {
+    dirs = fs.readdirSync(examplesDir, { withFileTypes: true });
+  } catch {
+    return { name: 'example-specs', result: 'WARN', message: 'Cannot read example specs directory' };
+  }
+
+  for (const entry of dirs) {
+    if (!entry.isDirectory()) continue;
+    checked++;
+    const specPath = path.join(examplesDir, entry.name);
+    const missing = required.filter((f) => !fs.existsSync(path.join(specPath, f)));
+    if (missing.length > 0) incomplete.push(`${entry.name} (missing ${missing.join(', ')})`);
+  }
+
+  if (checked === 0) {
+    return { name: 'example-specs', result: 'PASS', message: 'No example specs to check' };
+  }
+  if (incomplete.length === 0) {
+    return {
+      name: 'example-specs',
+      result: 'PASS',
+      message: `All ${checked} example spec(s) complete`,
+    };
+  }
+  return {
+    name: 'example-specs',
+    result: 'FAIL',
+    message: `Incomplete example spec(s): ${incomplete.slice(0, 2).join('; ')}`,
+  };
 }
 
 function checkStatuslineExecBit(workspaceRoot: string): CheckReport {

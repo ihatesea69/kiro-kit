@@ -2,30 +2,25 @@
   "mcpServers": {
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${WORKSPACE_ROOT}"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${WORKSPACE_ROOT}"
+      ]
     },
     "git": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-git", "--repository", "${WORKSPACE_ROOT}"]
-    },
-    "docs-seeker": {
-      "command": "npx",
-      "args": ["-y", "@mcp/docs-seeker"],
-      "env": {
-        "DOCS_PATH": "${WORKSPACE_ROOT}/docs"
-      }
-    },
-    "jupyter": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-jupyter"],
-      "env": {
-        "JUPYTER_URL": "http://localhost:${JUPYTER_PORT}",
-        "JUPYTER_TOKEN": "${JUPYTER_TOKEN}"
-      }
+      "command": "uvx",
+      "args": [
+        "mcp-server-git",
+        "--repository",
+        "${WORKSPACE_ROOT}"
+      ]
     },
     "fetch": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-fetch"]
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch"
+      ]
     }
   }
 }

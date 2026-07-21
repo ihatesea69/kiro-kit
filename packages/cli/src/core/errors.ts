@@ -45,4 +45,5 @@ export const ErrorCodes = {
   FRONTMATTER_MISSING: 'KK081',
   DOCTOR_FAIL: 'KK090',
   DOCTOR_WARN: 'KK091',
+  SPEC_INVALID_TEMPLATE: 'KK100',
 } as const;

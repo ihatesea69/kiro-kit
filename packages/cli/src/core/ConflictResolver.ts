@@ -21,8 +21,20 @@ export interface DiffViewerFn {
   (target: string, sourceContent: Buffer): void;
 }
 
-function sha256(data: Buffer): string {
-  return crypto.createHash('sha256').update(data).digest('hex');
+/**
+ * Hash content for equality comparison, normalizing line endings for text so
+ * that a CRLF-on-disk file (written with os.EOL by atomicWrite) compares equal
+ * to its LF preset source. Binary content (contains a NUL byte) is hashed raw.
+ */
+function contentHash(data: Buffer): string {
+  const isBinary = data.includes(0);
+  const normalized = isBinary
+    ? data
+    : Buffer.from(
+        data.toString('utf-8').replace(/\r\n/g, '\n').replace(/\r/g, '\n'),
+        'utf-8',
+      );
+  return crypto.createHash('sha256').update(normalized).digest('hex');
 }
 
 /**
@@ -38,15 +50,20 @@ export async function resolve(opts: {
 }): Promise<ConflictAction> {
   const { target, sourceContent, mode, sessionState, prompt, showDiff } = opts;
 
-  // File doesn't exist yet - write new
-  if (!fs.existsSync(target)) {
-    return 'WRITE_NEW';
+  // Compare hashes. Read the target directly and treat a missing file as
+  // "write new" — this also closes the TOCTOU gap between an existsSync check
+  // and the read (the file may be deleted in between).
+  let currentContent: Buffer;
+  try {
+    currentContent = fs.readFileSync(target);
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
+      return 'WRITE_NEW';
+    }
+    throw err;
   }
-
-  // Compare hashes
-  const currentContent = fs.readFileSync(target);
-  const currentHash = sha256(currentContent);
-  const newHash = sha256(sourceContent);
+  const currentHash = contentHash(currentContent);
+  const newHash = contentHash(sourceContent);
 
   // Byte-equal - no operation needed
   if (currentHash === newHash) {

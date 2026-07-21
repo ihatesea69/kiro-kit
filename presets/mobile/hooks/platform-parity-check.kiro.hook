@@ -1,0 +1,18 @@
+{
+  "enabled": false,
+  "name": "Platform Parity Check",
+  "description": "When a screen/widget changes, check iOS and Android behave equivalently.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/screens/**/*.{tsx,dart}",
+      "**/widgets/**/*.dart",
+      "**/components/**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A screen or widget changed. Check for iOS/Android parity risks: platform-specific APIs used without a fallback, safe-area/notch handling, keyboard avoidance, back-button/gesture behavior, and permission flows. Report divergences with the platform-correct fix."
+  }
+}

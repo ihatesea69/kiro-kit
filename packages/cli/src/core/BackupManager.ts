@@ -1,8 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { KKError, ErrorCodes } from './errors.js';
+import { safePathInside } from '../utils/paths.js';
 
 const BACKUP_DIR = '.kiro/.backup';
+
+/** Backup timestamps are strictly YYYYMMDD-HHmmss-mmm. */
+const TIMESTAMP_RE = /^\d{8}-\d{6}-\d{3}$/;
 
 /**
  * Generate timestamp string: YYYYMMDD-HHmmss-mmm
@@ -57,6 +61,16 @@ export function restore(
     );
   }
 
+  // Reject any timestamp that isn't the canonical format — prevents `..`
+  // path traversal out of the backup directory via a crafted --timestamp.
+  if (!TIMESTAMP_RE.test(ts)) {
+    throw new KKError(
+      ErrorCodes.BACKUP_NOT_FOUND,
+      `Invalid backup timestamp "${ts}".`,
+      'Use `kiro-kit restore --list` to see valid timestamps.',
+    );
+  }
+
   const backupRoot = path.join(workspaceRoot, BACKUP_DIR, ts);
   if (!fs.existsSync(backupRoot)) {
     throw new KKError(
@@ -76,6 +90,10 @@ export function restore(
       if (entry.isDirectory()) {
         walkAndRestore(fullPath, rel);
       } else if (entry.isFile()) {
+        // Defense-in-depth: never restore outside the workspace root.
+        if (!safePathInside(workspaceRoot, rel)) {
+          continue;
+        }
         const targetPath = path.join(workspaceRoot, rel);
         const targetDir = path.dirname(targetPath);
         fs.mkdirSync(targetDir, { recursive: true });

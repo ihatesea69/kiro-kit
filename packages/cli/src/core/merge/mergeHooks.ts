@@ -3,6 +3,8 @@ import path from 'node:path';
 import type { ConflictMode, SessionState } from '../ConflictResolver.js';
 import { resolve as resolveConflict } from '../ConflictResolver.js';
 import type { ConflictPromptFn, DiffViewerFn } from '../ConflictResolver.js';
+import { safePathInside } from '../../utils/paths.js';
+import { logger } from '../../utils/logger.js';
 
 export interface HookMergeResult {
   written: string[];
@@ -29,6 +31,13 @@ export async function mergeHooks(opts: {
   const result: HookMergeResult = { written: [], skipped: [], noOp: [] };
 
   for (const { source, targetPath } of presetHookFiles) {
+    // Never write outside the workspace, even if a preset supplies a malicious
+    // targetPath (`..`/absolute). Mirrors the guard in init/add/update.
+    if (!safePathInside(workspaceRoot, targetPath)) {
+      logger.warn(`Skipping unsafe hook path: ${targetPath}`);
+      result.skipped.push(targetPath);
+      continue;
+    }
     const fullTarget = path.resolve(workspaceRoot, targetPath);
     const sourceContent = fs.readFileSync(source);
 
