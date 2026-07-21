@@ -1674,33 +1674,17 @@
       ]
     },
     "git": {
-      "command": "npx",
+      "command": "uvx",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-git",
+        "mcp-server-git",
         "--repository",
-        "${WORKSPACE_ROOT}"
-      ]
-    },
-    "docs-seeker": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@mcp/docs-seeker"
-      ]
-    },
-    "jupyter": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-jupyter"
+        "."
       ]
     },
     "fetch": {
-      "command": "npx",
+      "command": "uvx",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-fetch"
+        "mcp-server-fetch"
       ]
     }
   },

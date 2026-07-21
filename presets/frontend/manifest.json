@@ -2323,31 +2323,24 @@
       ]
     },
     "git": {
-      "command": "npx",
+      "command": "uvx",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-git"
+        "mcp-server-git",
+        "--repository",
+        "."
       ]
     },
     "playwright": {
       "command": "npx",
       "args": [
         "-y",
-        "@playwright/mcp-server"
+        "@playwright/mcp"
       ]
     },
     "fetch": {
-      "command": "npx",
+      "command": "uvx",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-fetch"
-      ]
-    },
-    "docs-seeker": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@mcp/docs-seeker"
+        "mcp-server-fetch"
       ]
     }
   },
