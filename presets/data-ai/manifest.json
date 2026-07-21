@@ -1602,6 +1602,66 @@
       "source": "docs/system-architecture.md",
       "target": "docs/system-architecture.md",
       "type": "docs"
+    },
+    {
+      "source": "hooks/data-validation.kiro.hook",
+      "target": ".kiro/hooks/data-validation.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/docs-drift-guard.kiro.hook",
+      "target": ".kiro/hooks/docs-drift-guard.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/experiment-log.kiro.hook",
+      "target": ".kiro/hooks/experiment-log.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/model-card-update.kiro.hook",
+      "target": ".kiro/hooks/model-card-update.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/native-hooks.md",
+      "target": ".kiro/hooks/native-hooks.md",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/run-tests-on-save.kiro.hook",
+      "target": ".kiro/hooks/run-tests-on-save.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/secret-scan-on-save.kiro.hook",
+      "target": ".kiro/hooks/secret-scan-on-save.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/spec-task-sync.kiro.hook",
+      "target": ".kiro/hooks/spec-task-sync.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "specs/examples/customer-churn-prediction/design.md",
+      "target": ".kiro/specs/examples/customer-churn-prediction/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/examples/customer-churn-prediction/requirements.md",
+      "target": ".kiro/specs/examples/customer-churn-prediction/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/examples/customer-churn-prediction/tasks.md",
+      "target": ".kiro/specs/examples/customer-churn-prediction/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "steering/spec-driven-development.md",
+      "target": ".kiro/steering/spec-driven-development.md",
+      "type": "steering"
     }
   ],
   "mcpServers": {

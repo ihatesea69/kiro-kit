@@ -39,20 +39,52 @@ const SERVER_DEFINITIONS: Record<string, MCPServerEntry> = {
     args: ['-y', '@modelcontextprotocol/server-filesystem', '.'],
     requiresCredentials: false,
   },
+  // Official git/fetch MCP servers are Python packages, run via uvx (requires `uv`).
   git: {
-    command: 'npx',
-    args: ['-y', '@modelcontextprotocol/server-git', '--repository', '.'],
+    command: 'uvx',
+    args: ['mcp-server-git', '--repository', '.'],
     requiresCredentials: false,
   },
   fetch: {
-    command: 'npx',
-    args: ['-y', '@modelcontextprotocol/server-fetch'],
+    command: 'uvx',
+    args: ['mcp-server-fetch'],
     requiresCredentials: false,
   },
   playwright: {
     command: 'npx',
-    args: ['-y', '@modelcontextprotocol/server-playwright'],
+    args: ['-y', '@playwright/mcp'],
     requiresCredentials: false,
+  },
+  // --- Additional credential-free servers (auto-enabled) ---
+  memory: {
+    command: 'npx',
+    args: ['-y', '@modelcontextprotocol/server-memory'],
+    requiresCredentials: false,
+  },
+  sequentialthinking: {
+    command: 'npx',
+    args: ['-y', '@modelcontextprotocol/server-sequential-thinking'],
+    requiresCredentials: false,
+  },
+  context7: {
+    command: 'npx',
+    args: ['-y', '@upstash/context7-mcp'],
+    requiresCredentials: false,
+  },
+  // --- Credentialed servers (scaffolded disabled) ---
+  github: {
+    command: 'npx',
+    args: ['-y', '@modelcontextprotocol/server-github'],
+    env: { GITHUB_PERSONAL_ACCESS_TOKEN: '${GITHUB_PERSONAL_ACCESS_TOKEN}' },
+    requiresCredentials: true,
+    credentialEnvVars: ['GITHUB_PERSONAL_ACCESS_TOKEN'],
+  },
+  sentry: {
+    command: 'npx',
+    args: ['-y', '@sentry/mcp-server'],
+    env: { SENTRY_AUTH_TOKEN: '${SENTRY_AUTH_TOKEN}' },
+    requiresCredentials: true,
+    credentialEnvVars: ['SENTRY_AUTH_TOKEN'],
   },
   postgres: {
     command: 'npx',
@@ -61,23 +93,34 @@ const SERVER_DEFINITIONS: Record<string, MCPServerEntry> = {
     requiresCredentials: true,
     credentialEnvVars: ['POSTGRES_URL'],
   },
-  docker: {
-    command: 'npx',
-    args: ['-y', '@modelcontextprotocol/server-docker'],
-    env: { DOCKER_HOST: '${DOCKER_HOST}' },
-    requiresCredentials: true,
-    credentialEnvVars: ['DOCKER_HOST'],
-  },
 };
 
 /** Preset-to-server mapping. */
 const PRESET_SERVERS: Record<string, { default: string[]; optional: string[] }> = {
-  frontend: { default: ['filesystem', 'git', 'fetch', 'playwright'], optional: [] },
-  backend: { default: ['filesystem', 'git', 'fetch'], optional: ['postgres', 'docker'] },
-  fullstack: { default: ['filesystem', 'git', 'fetch', 'playwright'], optional: ['postgres', 'docker'] },
-  mobile: { default: ['filesystem', 'git', 'fetch'], optional: [] },
-  devops: { default: ['filesystem', 'git', 'fetch'], optional: ['docker', 'postgres'] },
-  'data-ai': { default: ['filesystem', 'git', 'fetch'], optional: ['postgres'] },
+  frontend: {
+    default: ['filesystem', 'git', 'fetch', 'playwright', 'context7', 'memory'],
+    optional: ['sentry'],
+  },
+  backend: {
+    default: ['filesystem', 'git', 'fetch', 'context7', 'memory', 'sequentialthinking'],
+    optional: ['postgres', 'github', 'sentry'],
+  },
+  fullstack: {
+    default: ['filesystem', 'git', 'fetch', 'playwright', 'context7', 'memory'],
+    optional: ['postgres', 'github', 'sentry'],
+  },
+  mobile: {
+    default: ['filesystem', 'git', 'fetch', 'context7', 'memory'],
+    optional: ['sentry'],
+  },
+  devops: {
+    default: ['filesystem', 'git', 'fetch', 'context7', 'sequentialthinking'],
+    optional: ['postgres', 'github'],
+  },
+  'data-ai': {
+    default: ['filesystem', 'git', 'fetch', 'context7', 'memory', 'sequentialthinking'],
+    optional: ['postgres', 'github'],
+  },
 };
 
 // ---------------------------------------------------------------------------

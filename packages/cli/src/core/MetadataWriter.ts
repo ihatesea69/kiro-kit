@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { atomicWrite } from '../utils/fs-safe.js';
 
 const METADATA_FILE = '.kiro/metadata.json';
 
@@ -47,7 +48,7 @@ export function write(workspaceRoot: string, metadata: Metadata): void {
   const filePath = path.join(workspaceRoot, METADATA_FILE);
   const dir = path.dirname(filePath);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(filePath, JSON.stringify(metadata, null, 2) + '\n', 'utf-8');
+  atomicWrite(filePath, JSON.stringify(metadata, null, 2) + '\n');
 }
 
 /**

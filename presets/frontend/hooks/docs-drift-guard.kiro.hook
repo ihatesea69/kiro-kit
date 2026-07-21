@@ -1,0 +1,17 @@
+{
+  "enabled": false,
+  "name": "Docs Drift Guard",
+  "description": "When source changes, update any README / API docs / steering that now reference stale symbols. Documentation-only edits.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.{ts,tsx,js,jsx,py,go,rs}",
+      "lib/**/*.{ts,js,py,go}"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Source code changed. Check whether any README, docs/**, or .kiro/steering files reference symbols, signatures, or behavior that this change made stale, and update only that documentation to match. Do not modify source or tests."
+  }
+}

@@ -1882,6 +1882,66 @@
       "source": "docs/system-architecture.md",
       "target": "docs/system-architecture.md",
       "type": "doc"
+    },
+    {
+      "source": "hooks/api-contract-sync.kiro.hook",
+      "target": ".kiro/hooks/api-contract-sync.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/docs-drift-guard.kiro.hook",
+      "target": ".kiro/hooks/docs-drift-guard.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/endpoint-test-coverage.kiro.hook",
+      "target": ".kiro/hooks/endpoint-test-coverage.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/migration-safety-review.kiro.hook",
+      "target": ".kiro/hooks/migration-safety-review.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/native-hooks.md",
+      "target": ".kiro/hooks/native-hooks.md",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/run-tests-on-save.kiro.hook",
+      "target": ".kiro/hooks/run-tests-on-save.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/secret-scan-on-save.kiro.hook",
+      "target": ".kiro/hooks/secret-scan-on-save.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/spec-task-sync.kiro.hook",
+      "target": ".kiro/hooks/spec-task-sync.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "specs/examples/api-key-authentication/design.md",
+      "target": ".kiro/specs/examples/api-key-authentication/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/examples/api-key-authentication/requirements.md",
+      "target": ".kiro/specs/examples/api-key-authentication/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/examples/api-key-authentication/tasks.md",
+      "target": ".kiro/specs/examples/api-key-authentication/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "steering/spec-driven-development.md",
+      "target": ".kiro/steering/spec-driven-development.md",
+      "type": "steering"
     }
   ],
   "mcpServers": {

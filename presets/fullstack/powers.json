@@ -3,44 +3,115 @@
     {
       "name": "Supabase",
       "url": "https://kiro.dev/powers/supabase",
-      "description": "Backend-as-a-service with Postgres, auth, and real-time subscriptions",
-      "tier": "essential"
+      "description": "Backend-as-a-service: Postgres, auth, storage, and realtime",
+      "tier": "essential",
+      "category": "database",
+      "auth": "apiKey",
+      "envVars": [
+        "SUPABASE_URL",
+        "SUPABASE_ANON_KEY"
+      ],
+      "mcpBacked": true
     },
     {
       "name": "Figma",
       "url": "https://kiro.dev/powers/figma",
-      "description": "Design-to-code integration with Figma files",
-      "tier": "recommended"
+      "description": "Design source of truth; import frames and tokens",
+      "tier": "recommended",
+      "category": "design",
+      "auth": "oauth",
+      "mcpBacked": true
     },
     {
       "name": "Netlify",
       "url": "https://kiro.dev/powers/netlify",
-      "description": "Deploy React, Next.js, and modern web apps to global CDN",
-      "tier": "recommended"
+      "description": "Edge hosting, previews, and serverless functions",
+      "tier": "recommended",
+      "category": "hosting",
+      "auth": "apiKey",
+      "envVars": [
+        "NETLIFY_AUTH_TOKEN"
+      ]
     },
     {
       "name": "Stripe",
       "url": "https://kiro.dev/powers/stripe",
-      "description": "Payment processing, subscriptions, and billing integration",
-      "tier": "recommended"
+      "description": "Payments, subscriptions, and billing",
+      "tier": "recommended",
+      "category": "payments",
+      "auth": "apiKey",
+      "envVars": [
+        "STRIPE_SECRET_KEY",
+        "STRIPE_WEBHOOK_SECRET"
+      ],
+      "mcpBacked": true
     },
     {
       "name": "Context7",
       "url": "https://kiro.dev/powers/context7",
-      "description": "Up-to-date documentation lookup for libraries and frameworks",
-      "tier": "recommended"
+      "description": "Up-to-date library and framework documentation lookup",
+      "tier": "recommended",
+      "category": "docs",
+      "auth": "none",
+      "mcpBacked": true
+    },
+    {
+      "name": "Clerk",
+      "url": "https://kiro.dev/powers/clerk",
+      "description": "Drop-in authentication and user management",
+      "tier": "recommended",
+      "category": "auth",
+      "auth": "apiKey",
+      "envVars": [
+        "CLERK_SECRET_KEY",
+        "CLERK_PUBLISHABLE_KEY"
+      ]
     },
     {
       "name": "Firebase",
       "url": "https://kiro.dev/powers/firebase",
-      "description": "Full-stack application development with Google Cloud services",
-      "tier": "optional"
+      "description": "App platform: Firestore, auth, hosting, and messaging",
+      "tier": "optional",
+      "category": "database",
+      "auth": "apiKey",
+      "envVars": [
+        "FIREBASE_PROJECT_ID",
+        "FIREBASE_API_KEY"
+      ]
     },
     {
       "name": "LaunchDarkly",
-      "url": "https://kiro.dev/powers/launch-darkly",
+      "url": "https://kiro.dev/powers/launchdarkly",
       "description": "Feature flag management and progressive delivery",
-      "tier": "optional"
+      "tier": "optional",
+      "category": "infra",
+      "auth": "apiKey",
+      "envVars": [
+        "LAUNCHDARKLY_SDK_KEY"
+      ]
+    },
+    {
+      "name": "Sentry",
+      "url": "https://kiro.dev/powers/sentry",
+      "description": "Error tracking and performance monitoring",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "SENTRY_AUTH_TOKEN"
+      ],
+      "mcpBacked": true
+    },
+    {
+      "name": "Resend",
+      "url": "https://kiro.dev/powers/resend",
+      "description": "Transactional email API for developers",
+      "tier": "optional",
+      "category": "other",
+      "auth": "apiKey",
+      "envVars": [
+        "RESEND_API_KEY"
+      ]
     }
   ]
 }

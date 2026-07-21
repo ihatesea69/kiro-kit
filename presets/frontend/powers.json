@@ -3,32 +3,84 @@
     {
       "name": "Figma",
       "url": "https://kiro.dev/powers/figma",
-      "description": "Design-to-code integration with Figma files",
-      "tier": "essential"
+      "description": "Design source of truth; import frames and tokens",
+      "tier": "essential",
+      "category": "design",
+      "auth": "oauth",
+      "mcpBacked": true
     },
     {
       "name": "Netlify",
       "url": "https://kiro.dev/powers/netlify",
-      "description": "Deploy React, Next.js, and modern web apps to global CDN",
-      "tier": "recommended"
+      "description": "Edge hosting, previews, and serverless functions",
+      "tier": "recommended",
+      "category": "hosting",
+      "auth": "apiKey",
+      "envVars": [
+        "NETLIFY_AUTH_TOKEN"
+      ]
+    },
+    {
+      "name": "Vercel",
+      "url": "https://kiro.dev/powers/vercel",
+      "description": "Frontend cloud with instant previews and edge functions",
+      "tier": "recommended",
+      "category": "hosting",
+      "auth": "apiKey",
+      "envVars": [
+        "VERCEL_TOKEN"
+      ]
     },
     {
       "name": "Context7",
       "url": "https://kiro.dev/powers/context7",
-      "description": "Up-to-date documentation lookup for libraries and frameworks",
-      "tier": "recommended"
+      "description": "Up-to-date library and framework documentation lookup",
+      "tier": "recommended",
+      "category": "docs",
+      "auth": "none",
+      "mcpBacked": true
     },
     {
-      "name": "Snyk",
-      "url": "https://kiro.dev/powers/snyk",
-      "description": "Security scanning and vulnerability detection for dependencies",
-      "tier": "optional"
+      "name": "Storybook",
+      "url": "https://kiro.dev/powers/storybook",
+      "description": "Component workshop and visual documentation",
+      "tier": "recommended",
+      "category": "design",
+      "auth": "none"
+    },
+    {
+      "name": "Sentry",
+      "url": "https://kiro.dev/powers/sentry",
+      "description": "Error tracking and performance monitoring",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "SENTRY_AUTH_TOKEN"
+      ],
+      "mcpBacked": true
+    },
+    {
+      "name": "PostHog",
+      "url": "https://kiro.dev/powers/posthog",
+      "description": "Product analytics, feature flags, and session replay",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "POSTHOG_API_KEY"
+      ]
     },
     {
       "name": "ScoutQA",
-      "url": "https://kiro.dev/powers/scout-qa",
-      "description": "AI-powered exploratory testing for web applications",
-      "tier": "optional"
+      "url": "https://kiro.dev/powers/scoutqa",
+      "description": "Autonomous end-to-end QA test generation",
+      "tier": "optional",
+      "category": "testing",
+      "auth": "apiKey",
+      "envVars": [
+        "SCOUTQA_API_KEY"
+      ]
     }
   ]
 }
