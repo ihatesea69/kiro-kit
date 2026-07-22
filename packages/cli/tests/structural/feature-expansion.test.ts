@@ -66,20 +66,22 @@ describe('feature expansion — native hooks', () => {
 
 describe('feature expansion — example specs', () => {
   for (const preset of PRESETS) {
-    it(`preset ${preset} ships at least one complete example spec`, () => {
-      const examplesDir = path.join(presetsDir, preset, 'specs', 'examples');
-      expect(fs.existsSync(examplesDir), `${preset} missing specs/examples`).toBe(true);
+    it(`preset ${preset} ships at least one complete example spec (with .config.kiro)`, () => {
+      const specsDir = path.join(presetsDir, preset, 'specs');
+      expect(fs.existsSync(specsDir), `${preset} missing specs/`).toBe(true);
 
+      // Example specs are direct children named `example-*` so Kiro's Specs
+      // panel discovers them; each carries a .config.kiro marker.
       const specDirs = fs
-        .readdirSync(examplesDir, { withFileTypes: true })
-        .filter((e) => e.isDirectory())
+        .readdirSync(specsDir, { withFileTypes: true })
+        .filter((e) => e.isDirectory() && e.name.startsWith('example-'))
         .map((e) => e.name);
 
       expect(specDirs.length).toBeGreaterThanOrEqual(1);
 
       for (const specName of specDirs) {
-        const specDir = path.join(examplesDir, specName);
-        for (const file of REQUIRED_SPEC_FILES) {
+        const specDir = path.join(specsDir, specName);
+        for (const file of [...REQUIRED_SPEC_FILES, '.config.kiro']) {
           expect(
             fs.existsSync(path.join(specDir, file)),
             `${preset}/${specName} missing ${file}`,

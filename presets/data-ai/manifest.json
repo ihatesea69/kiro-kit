@@ -682,11 +682,6 @@
       "type": "other"
     },
     {
-      "source": "skills/ai-multimodal/scripts/tests/test_failures.log",
-      "target": ".kiro/skills/ai-multimodal/scripts/tests/test_failures.log",
-      "type": "other"
-    },
-    {
       "source": "skills/ai-multimodal/scripts/tests/test_gemini_batch_process.py",
       "target": ".kiro/skills/ai-multimodal/scripts/tests/test_gemini_batch_process.py",
       "type": "other"
@@ -1144,21 +1139,6 @@
     {
       "source": "skills/mcp-management/scripts/cli.ts",
       "target": ".kiro/skills/mcp-management/scripts/cli.ts",
-      "type": "other"
-    },
-    {
-      "source": "skills/mcp-management/scripts/dist/analyze-tools.js",
-      "target": ".kiro/skills/mcp-management/scripts/dist/analyze-tools.js",
-      "type": "other"
-    },
-    {
-      "source": "skills/mcp-management/scripts/dist/cli.js",
-      "target": ".kiro/skills/mcp-management/scripts/dist/cli.js",
-      "type": "other"
-    },
-    {
-      "source": "skills/mcp-management/scripts/dist/mcp-client.js",
-      "target": ".kiro/skills/mcp-management/scripts/dist/mcp-client.js",
       "type": "other"
     },
     {
@@ -1644,24 +1624,29 @@
       "type": "hook"
     },
     {
-      "source": "specs/examples/customer-churn-prediction/design.md",
-      "target": ".kiro/specs/examples/customer-churn-prediction/design.md",
+      "source": "specs/example-customer-churn-prediction/design.md",
+      "target": ".kiro/specs/example-customer-churn-prediction/design.md",
       "type": "spec"
     },
     {
-      "source": "specs/examples/customer-churn-prediction/requirements.md",
-      "target": ".kiro/specs/examples/customer-churn-prediction/requirements.md",
+      "source": "specs/example-customer-churn-prediction/requirements.md",
+      "target": ".kiro/specs/example-customer-churn-prediction/requirements.md",
       "type": "spec"
     },
     {
-      "source": "specs/examples/customer-churn-prediction/tasks.md",
-      "target": ".kiro/specs/examples/customer-churn-prediction/tasks.md",
+      "source": "specs/example-customer-churn-prediction/tasks.md",
+      "target": ".kiro/specs/example-customer-churn-prediction/tasks.md",
       "type": "spec"
     },
     {
       "source": "steering/spec-driven-development.md",
       "target": ".kiro/steering/spec-driven-development.md",
       "type": "steering"
+    },
+    {
+      "source": "specs/example-customer-churn-prediction/.config.kiro",
+      "target": ".kiro/specs/example-customer-churn-prediction/.config.kiro",
+      "type": "spec"
     }
   ],
   "mcpServers": {
