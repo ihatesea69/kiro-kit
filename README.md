@@ -72,7 +72,7 @@ that also ship in `hooks/`.
 
 ## Spec-Driven Best Practices
 
-Each preset ships a **worked example spec** under `.kiro/specs/examples/` — a
+Each preset ships a **worked example spec** as `.kiro/specs/example-<feature>/` (with a `.config.kiro` marker so it shows in Kiro's Specs panel) — a
 fully-written `requirements.md` / `design.md` / `tasks.md` trio demonstrating
 EARS acceptance criteria, Mermaid diagrams, and task-to-requirement traceability:
 

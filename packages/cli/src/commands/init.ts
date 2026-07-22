@@ -45,6 +45,7 @@ import {
   getMCPConfig,
   mergeMCPConfig,
   writeMCPConfig,
+  writeKiroSettingsMCP,
   type MCPServerEntry,
   type MCPPresetConfig,
 } from '../core/MCPConfigurator.js';
@@ -410,8 +411,10 @@ function buildInitTasks(
 
               if (confirmWrite && combinedMCP) {
                 writeMCPConfig(ctx.workspaceRoot, combinedMCP);
+                // Also write to the location Kiro IDE reads.
+                writeKiroSettingsMCP(ctx.workspaceRoot, combinedMCP);
                 if (!ctx.opts.quiet) {
-                  helpers.setOutput('MCP servers configured in .mcp.json');
+                  helpers.setOutput('MCP servers configured in .mcp.json and .kiro/settings/mcp.json');
                 }
               }
             } catch (err) {
