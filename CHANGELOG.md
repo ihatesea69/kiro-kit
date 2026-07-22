@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.2] - 2026-07-22
+
+### Fixed
+
+- **Example specs now appear in Kiro's Specs panel.** They shipped nested under `specs/examples/<feature>/` without the `.config.kiro` marker Kiro uses to recognize a spec, so the panel stayed empty. Each is now a direct child `.kiro/specs/example-<feature>/` with a `.config.kiro` marker.
+- **MCP auto-wire now also writes `.kiro/settings/mcp.json`** — the location the Kiro IDE actually reads — in addition to the root `.mcp.json` (Claude/Cursor convention). Existing user-defined servers are never overwritten. (Note: MCP still won't appear if your Kiro organization has disabled MCP.)
+- **Removed broken manifest entries** for gitignored build artifacts (`skills/mcp-management/scripts/dist/*.js`) and a stray `test_failures.log` that were declared but never packaged — fixes the "source file missing" skips and the no-broken-link check.
+
+### Changed
+
+- `doctor` and the structural tests validate example specs at `.kiro/specs/example-*` with a `.config.kiro` marker.
+
 ## [0.4.1] - 2026-07-21
 
 ### Security
