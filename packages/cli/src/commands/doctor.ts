@@ -366,8 +366,8 @@ function checkNativeHooks(workspaceRoot: string): CheckReport {
 }
 
 function checkExampleSpecs(workspaceRoot: string): CheckReport {
-  const examplesDir = path.join(workspaceRoot, '.kiro/specs/examples');
-  if (!fs.existsSync(examplesDir)) {
+  const specsDir = path.join(workspaceRoot, '.kiro/specs');
+  if (!fs.existsSync(specsDir)) {
     return { name: 'example-specs', result: 'PASS', message: 'No example specs to check' };
   }
 
@@ -377,15 +377,16 @@ function checkExampleSpecs(workspaceRoot: string): CheckReport {
 
   let dirs: fs.Dirent[];
   try {
-    dirs = fs.readdirSync(examplesDir, { withFileTypes: true });
+    dirs = fs.readdirSync(specsDir, { withFileTypes: true });
   } catch {
-    return { name: 'example-specs', result: 'WARN', message: 'Cannot read example specs directory' };
+    return { name: 'example-specs', result: 'WARN', message: 'Cannot read specs directory' };
   }
 
+  // Example specs are direct children named `example-*`.
   for (const entry of dirs) {
-    if (!entry.isDirectory()) continue;
+    if (!entry.isDirectory() || !entry.name.startsWith('example-')) continue;
     checked++;
-    const specPath = path.join(examplesDir, entry.name);
+    const specPath = path.join(specsDir, entry.name);
     const missing = required.filter((f) => !fs.existsSync(path.join(specPath, f)));
     if (missing.length > 0) incomplete.push(`${entry.name} (missing ${missing.join(', ')})`);
   }

@@ -222,3 +222,55 @@ export function writeMCPConfig(
     );
   }
 }
+
+/**
+ * Also write the MCP config to `.kiro/settings/mcp.json` — the location the
+ * Kiro IDE actually reads (root `.mcp.json` is the Claude/Cursor convention).
+ * Merges into any existing file without overwriting user-defined servers
+ * (checks both the enabled and `_disabled_` key for each server).
+ */
+export function writeKiroSettingsMCP(
+  workspaceRoot: string,
+  config: Record<string, unknown>,
+): void {
+  const filePath = path.join(workspaceRoot, '.kiro', 'settings', 'mcp.json');
+
+  let existing: Record<string, unknown> = {};
+  if (fs.existsSync(filePath)) {
+    try {
+      existing = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as Record<string, unknown>;
+    } catch {
+      existing = {};
+    }
+  }
+
+  const existingServers =
+    (existing.mcpServers as Record<string, unknown> | undefined) ?? {};
+  const incomingServers =
+    (config.mcpServers as Record<string, unknown> | undefined) ?? {};
+
+  const merged: Record<string, unknown> = { ...existingServers };
+  for (const [key, value] of Object.entries(incomingServers)) {
+    const base = key.replace(/^_disabled_/, '');
+    if (
+      Object.hasOwn(merged, base) ||
+      Object.hasOwn(merged, `_disabled_${base}`)
+    ) {
+      continue; // never overwrite a user-defined server
+    }
+    merged[key] = value;
+  }
+
+  const result: Record<string, unknown> = { ...existing, mcpServers: merged };
+  try {
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, JSON.stringify(result, null, 2) + '\n', 'utf-8');
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    throw new KKError(
+      ErrorCodes.MCP_MERGE_CONFLICT,
+      `Failed to write .kiro/settings/mcp.json: ${message}`,
+      'Check file permissions and ensure the directory exists.',
+    );
+  }
+}

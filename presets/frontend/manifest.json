@@ -722,11 +722,6 @@
       "type": "other"
     },
     {
-      "source": "skills/ai-multimodal/scripts/tests/test_failures.log",
-      "target": ".kiro/skills/ai-multimodal/scripts/tests/test_failures.log",
-      "type": "other"
-    },
-    {
       "source": "skills/ai-multimodal/scripts/tests/test_gemini_batch_process.py",
       "target": ".kiro/skills/ai-multimodal/scripts/tests/test_gemini_batch_process.py",
       "type": "other"
@@ -1159,21 +1154,6 @@
     {
       "source": "skills/mcp-management/scripts/cli.ts",
       "target": ".kiro/skills/mcp-management/scripts/cli.ts",
-      "type": "other"
-    },
-    {
-      "source": "skills/mcp-management/scripts/dist/analyze-tools.js",
-      "target": ".kiro/skills/mcp-management/scripts/dist/analyze-tools.js",
-      "type": "other"
-    },
-    {
-      "source": "skills/mcp-management/scripts/dist/cli.js",
-      "target": ".kiro/skills/mcp-management/scripts/dist/cli.js",
-      "type": "other"
-    },
-    {
-      "source": "skills/mcp-management/scripts/dist/mcp-client.js",
-      "target": ".kiro/skills/mcp-management/scripts/dist/mcp-client.js",
       "type": "other"
     },
     {
@@ -2294,24 +2274,29 @@
       "type": "skill"
     },
     {
-      "source": "specs/examples/product-listing-page/design.md",
-      "target": ".kiro/specs/examples/product-listing-page/design.md",
+      "source": "specs/example-product-listing-page/design.md",
+      "target": ".kiro/specs/example-product-listing-page/design.md",
       "type": "spec"
     },
     {
-      "source": "specs/examples/product-listing-page/requirements.md",
-      "target": ".kiro/specs/examples/product-listing-page/requirements.md",
+      "source": "specs/example-product-listing-page/requirements.md",
+      "target": ".kiro/specs/example-product-listing-page/requirements.md",
       "type": "spec"
     },
     {
-      "source": "specs/examples/product-listing-page/tasks.md",
-      "target": ".kiro/specs/examples/product-listing-page/tasks.md",
+      "source": "specs/example-product-listing-page/tasks.md",
+      "target": ".kiro/specs/example-product-listing-page/tasks.md",
       "type": "spec"
     },
     {
       "source": "steering/spec-driven-development.md",
       "target": ".kiro/steering/spec-driven-development.md",
       "type": "steering"
+    },
+    {
+      "source": "specs/example-product-listing-page/.config.kiro",
+      "target": ".kiro/specs/example-product-listing-page/.config.kiro",
+      "type": "spec"
     }
   ],
   "mcpServers": {
