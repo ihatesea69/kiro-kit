@@ -1,0 +1,31 @@
+{
+  "powers": [
+    {
+      "name": "Context7",
+      "url": "https://kiro.dev/powers/context7",
+      "description": "Up-to-date library and framework documentation lookup",
+      "tier": "essential",
+      "category": "docs",
+      "auth": "none",
+      "mcpBacked": true
+    },
+    {
+      "name": "Snyk",
+      "url": "https://kiro.dev/powers/snyk",
+      "description": "Dependency and container vulnerability scanning",
+      "tier": "recommended",
+      "category": "testing",
+      "auth": "apiKey",
+      "envVars": ["SNYK_TOKEN"]
+    },
+    {
+      "name": "Postman",
+      "url": "https://kiro.dev/powers/postman",
+      "description": "API testing, collections, and mock servers",
+      "tier": "optional",
+      "category": "testing",
+      "auth": "apiKey",
+      "envVars": ["POSTMAN_API_KEY"]
+    }
+  ]
+}

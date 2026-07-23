@@ -1,0 +1,15 @@
+{
+  "version": "1.0.1",
+  "name": "kiro-kit-dev",
+  "description": "Kiro-Kit development preset",
+  "buildDate": "2025-11-26T07:40:39.469Z",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/truongtv22/claudekit-engineer.git"
+  },
+  "download": {
+    "lastDownloadedAt": null,
+    "downloadedBy": null,
+    "installCount": 0
+  }
+}
