@@ -60,6 +60,12 @@ import {
   promptPowersTier,
   displayPowersRecommendations,
 } from '../prompts/PowersPrompter.js';
+import {
+  powersForPresets,
+  installPowers,
+  kiroPowersAvailable,
+  isKiroRunning,
+} from '../core/PowerInstaller.js';
 
 // UI layer — presentation only, no core imports inside these modules
 import { detectCapability } from '../ui/capability.js';
@@ -660,6 +666,32 @@ async function runInit(opts: InitOptions): Promise<void> {
   // 7. Run tasks
   // -------------------------------------------------------------------------
   const result = await runner.run(initialCtx);
+
+  // -------------------------------------------------------------------------
+  // 7b. Opt-in: install real Kiro Powers (user-global, needs Kiro closed).
+  //     Interactive only — never as a silent side effect of --yes/CI.
+  // -------------------------------------------------------------------------
+  if (!opts.yes && capability.isTTY && opts.powers !== 'none' && kiroPowersAvailable()) {
+    const powerNames = powersForPresets(selectedNames);
+    if (powerNames.length > 0) {
+      if (isKiroRunning()) {
+        logger.info(
+          `${powerNames.length} Kiro Power(s) are available for these presets. ` +
+            `Close Kiro, then run \`kiro-kit powers install --preset ${selectedNames[0]}\` to install them.`,
+        );
+      } else {
+        const yes = await prompt.confirm(
+          `Install ${powerNames.length} recommended Kiro Power(s) now (${powerNames.join(', ')})?`,
+          false,
+        );
+        if (yes) {
+          const installResults = installPowers(powerNames);
+          const n = installResults.filter((r) => r.status === 'installed').length;
+          logger.success(`Installed ${n} Power(s). Restart Kiro to see them.`);
+        }
+      }
+    }
+  }
 
   // -------------------------------------------------------------------------
   // 8. Render summary
