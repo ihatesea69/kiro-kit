@@ -11,6 +11,7 @@ import { registerUpdateCommand } from './commands/update.js';
 import { registerRestoreCommand } from './commands/restore.js';
 import { registerDoctorCommand } from './commands/doctor.js';
 import { registerSpecCommand } from './commands/spec.js';
+import { registerPowersCommand } from './commands/powers.js';
 import { registerTelemetryCommand } from './commands/telemetry.js';
 import { setVerbose, setQuiet } from './utils/logger.js';
 
@@ -49,6 +50,7 @@ registerUpdateCommand(program);
 registerRestoreCommand(program);
 registerDoctorCommand(program);
 registerSpecCommand(program);
+registerPowersCommand(program);
 registerTelemetryCommand(program);
 
 // Apply global flags before command execution
