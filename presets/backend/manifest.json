@@ -1927,6 +1927,66 @@
       "source": "specs/example-api-key-authentication/.config.kiro",
       "target": ".kiro/specs/example-api-key-authentication/.config.kiro",
       "type": "spec"
+    },
+    {
+      "source": "specs/example-background-job-queue/.config.kiro",
+      "target": ".kiro/specs/example-background-job-queue/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-background-job-queue/design.md",
+      "target": ".kiro/specs/example-background-job-queue/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-background-job-queue/requirements.md",
+      "target": ".kiro/specs/example-background-job-queue/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-background-job-queue/tasks.md",
+      "target": ".kiro/specs/example-background-job-queue/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-caching-strategy/.config.kiro",
+      "target": ".kiro/specs/example-caching-strategy/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-caching-strategy/design.md",
+      "target": ".kiro/specs/example-caching-strategy/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-caching-strategy/requirements.md",
+      "target": ".kiro/specs/example-caching-strategy/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-caching-strategy/tasks.md",
+      "target": ".kiro/specs/example-caching-strategy/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-webhook-delivery-system/.config.kiro",
+      "target": ".kiro/specs/example-webhook-delivery-system/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-webhook-delivery-system/design.md",
+      "target": ".kiro/specs/example-webhook-delivery-system/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-webhook-delivery-system/requirements.md",
+      "target": ".kiro/specs/example-webhook-delivery-system/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-webhook-delivery-system/tasks.md",
+      "target": ".kiro/specs/example-webhook-delivery-system/tasks.md",
+      "type": "spec"
     }
   ],
   "mcpServers": {

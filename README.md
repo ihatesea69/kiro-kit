@@ -72,18 +72,20 @@ that also ship in `hooks/`.
 
 ## Spec-Driven Best Practices
 
-Each preset ships a **worked example spec** as `.kiro/specs/example-<feature>/` (with a `.config.kiro` marker so it shows in Kiro's Specs panel) — a
-fully-written `requirements.md` / `design.md` / `tasks.md` trio demonstrating
-EARS acceptance criteria, Mermaid diagrams, and task-to-requirement traceability:
+Each preset ships a **library of worked example specs** as `.kiro/specs/example-<feature>/` (each with a `.config.kiro` marker so it shows in Kiro's Specs panel) —
+fully-written `requirements.md` / `design.md` / `tasks.md` trios demonstrating
+EARS acceptance criteria, **Out of Scope** boundaries, **Files & Interfaces**,
+Mermaid diagrams, task-to-requirement traceability, and an end-to-end verification
++ documentation task (per Anthropic's spec best practices):
 
-| Preset | Example spec |
+| Preset | Example specs |
 |--------|--------------|
-| frontend | Accessible, paginated Product Listing Page |
-| backend | Rate-limited API Key Authentication |
-| fullstack | End-to-end Stripe Checkout with webhooks |
-| mobile | Offline-first Notes with sync + conflict resolution |
-| devops | Blue-Green Deployment pipeline on Kubernetes |
-| data-ai | Customer Churn Prediction ML pipeline |
+| frontend | Product Listing · Landing Page · Analytics Dashboard · Web Performance Optimization (Core Web Vitals) |
+| backend | API Key Auth · Background Job Queue · Webhook Delivery · Caching Strategy |
+| fullstack | Stripe Checkout |
+| mobile | Offline-first Notes |
+| devops | Blue-Green Deploy · AWS Serverless API (Lambda/API GW/DynamoDB/CDK) · AWS CDK Infrastructure · CI/CD Pipeline |
+| data-ai | Churn Prediction · Model Evaluation Pipeline · LLM Evaluation Harness · RAG Chatbot |
 
 A `spec-driven-development.md` steering file teaches the EARS patterns and the
 requirements→design→tasks approval gates. Scaffold your own with:

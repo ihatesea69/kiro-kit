@@ -1647,6 +1647,66 @@
       "source": "specs/example-customer-churn-prediction/.config.kiro",
       "target": ".kiro/specs/example-customer-churn-prediction/.config.kiro",
       "type": "spec"
+    },
+    {
+      "source": "specs/example-llm-evaluation-harness/.config.kiro",
+      "target": ".kiro/specs/example-llm-evaluation-harness/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-llm-evaluation-harness/design.md",
+      "target": ".kiro/specs/example-llm-evaluation-harness/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-llm-evaluation-harness/requirements.md",
+      "target": ".kiro/specs/example-llm-evaluation-harness/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-llm-evaluation-harness/tasks.md",
+      "target": ".kiro/specs/example-llm-evaluation-harness/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-model-evaluation-pipeline/.config.kiro",
+      "target": ".kiro/specs/example-model-evaluation-pipeline/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-model-evaluation-pipeline/design.md",
+      "target": ".kiro/specs/example-model-evaluation-pipeline/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-model-evaluation-pipeline/requirements.md",
+      "target": ".kiro/specs/example-model-evaluation-pipeline/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-model-evaluation-pipeline/tasks.md",
+      "target": ".kiro/specs/example-model-evaluation-pipeline/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-rag-chatbot/.config.kiro",
+      "target": ".kiro/specs/example-rag-chatbot/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-rag-chatbot/design.md",
+      "target": ".kiro/specs/example-rag-chatbot/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-rag-chatbot/requirements.md",
+      "target": ".kiro/specs/example-rag-chatbot/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-rag-chatbot/tasks.md",
+      "target": ".kiro/specs/example-rag-chatbot/tasks.md",
+      "type": "spec"
     }
   ],
   "mcpServers": {

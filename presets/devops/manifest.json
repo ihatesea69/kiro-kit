@@ -1839,6 +1839,66 @@
       "source": "specs/example-blue-green-deployment/.config.kiro",
       "target": ".kiro/specs/example-blue-green-deployment/.config.kiro",
       "type": "spec"
+    },
+    {
+      "source": "specs/example-aws-cdk-infrastructure/.config.kiro",
+      "target": ".kiro/specs/example-aws-cdk-infrastructure/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-aws-cdk-infrastructure/design.md",
+      "target": ".kiro/specs/example-aws-cdk-infrastructure/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-aws-cdk-infrastructure/requirements.md",
+      "target": ".kiro/specs/example-aws-cdk-infrastructure/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-aws-cdk-infrastructure/tasks.md",
+      "target": ".kiro/specs/example-aws-cdk-infrastructure/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-aws-serverless-api/.config.kiro",
+      "target": ".kiro/specs/example-aws-serverless-api/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-aws-serverless-api/design.md",
+      "target": ".kiro/specs/example-aws-serverless-api/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-aws-serverless-api/requirements.md",
+      "target": ".kiro/specs/example-aws-serverless-api/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-aws-serverless-api/tasks.md",
+      "target": ".kiro/specs/example-aws-serverless-api/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-ci-cd-pipeline/.config.kiro",
+      "target": ".kiro/specs/example-ci-cd-pipeline/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-ci-cd-pipeline/design.md",
+      "target": ".kiro/specs/example-ci-cd-pipeline/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-ci-cd-pipeline/requirements.md",
+      "target": ".kiro/specs/example-ci-cd-pipeline/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-ci-cd-pipeline/tasks.md",
+      "target": ".kiro/specs/example-ci-cd-pipeline/tasks.md",
+      "type": "spec"
     }
   ],
   "mcpServers": {
