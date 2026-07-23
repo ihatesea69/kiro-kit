@@ -121,6 +121,27 @@ Running `init` auto-configures MCP servers (credential-free ones enabled;
 credentialed ones as disabled templates), documents required env vars in
 `.env.example`, and generates a `POWERS-SETUP.md` guide.
 
+### Auto-installing Powers
+
+Unlike Steering/Skills/Hooks/Specs (which are workspace files that appear in Kiro
+immediately), Kiro **Powers** live in `~/.kiro/powers/` (user-global) and are
+managed by the IDE. Kiro-Kit can install the real marketplace Powers for you:
+
+```bash
+# close Kiro first (it rewrites its power registry on exit), then:
+kiro-kit powers list                       # see installable powers
+kiro-kit powers install --preset backend   # install powers for a preset
+kiro-kit powers install neon postman       # or by name
+```
+
+`init` also offers this as an opt-in prompt (interactive only). Powers are cloned
+from their **official** repos (`kirodotdev/powers`, `figma/mcp-server-guide`,
+`supabase-community/kiro-powers`) into `~/.kiro/powers/`; `installed.json` is
+backed up and the operation is reversible. Note: Context7, Upstash, Snyk, and
+Sentry are **MCP servers** (configured in `.kiro/settings/mcp.json`), not
+marketplace Powers, and a Kiro org that disables MCP will block the MCP side of
+any Power.
+
 ## Commands
 
 | Command | What it does |
@@ -133,6 +154,8 @@ credentialed ones as disabled templates), documents required env vars in
 | `kiro-kit restore` | Roll back from a timestamped backup |
 | `kiro-kit doctor` | Health check (10 validations, `--fix` auto-repairs) |
 | `kiro-kit spec new <name>` | Scaffold a new spec folder from a template |
+| `kiro-kit powers list` | List installable Kiro Powers |
+| `kiro-kit powers install` | Install real Kiro Powers (close Kiro first) |
 | `kiro-kit telemetry` | Manage opt-in usage telemetry (off by default) |
 
 ### Common Flags
