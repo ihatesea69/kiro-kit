@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-07-23
+
+### Added
+
+- **New `kiro-kit-dev` preset** (the 7th) — for developing the Kiro-Kit CLI itself and TypeScript ESM CLI tools in a pnpm monorepo. Based on the engineer base (19 agents, 24 skills, 66 commands) with:
+  - Specialized steering: `preset-authoring` (manifest schema + the no-orphan invariant + thresholds), `cli-architecture` (core modules + the three invariants), `testing-strategy` (unit/property/structural), `typescript-cli-conventions`, plus `kiro-kit-development` and `spec-driven-development`.
+  - Three meta example specs: `add-new-preset`, `add-cli-command`, `spec-library-expansion` (each with `.config.kiro`).
+  - Powers: Context7, Snyk, Postman.
+- Wired the new preset name through `PresetNameSchema`, `MCPConfigurator`, the structural/property test suites, and the README preset + Powers matrices.
+
 ## [0.6.0] - 2026-07-23
 
 ### Added
