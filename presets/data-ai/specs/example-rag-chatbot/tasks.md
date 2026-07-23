@@ -1,0 +1,90 @@
+# Implementation Plan: RAG Chatbot
+
+## Overview
+
+This plan builds the RAG Chatbot in strict dependency order: project scaffolding, schema definitions, document ingestion (parse → chunk → embed → upsert), the vector store abstraction, retrieval, reranking, context assembly, LLM generation with citations, abstention and safety filtering, the FastAPI service, evaluation hooks, and documentation. Sub-tasks marked `- [ ]*` are test tasks that must pass in CI on every pull request. Estimated effort: 10–13 engineer-days for a single ML engineer.
+
+Requirement references use the format `RN.M` (Requirement N, Acceptance Criterion M).
+
+## Tasks
+
+- [ ] 1. Project scaffold and dependency pinning
+  - [ ] 1.1 Initialise the Python package at `src/rag/__init__.py` with `py.typed` marker and a `pyproject.toml` pinning: `sentence-transformers>=3.0`, `qdrant-client>=1.9`, `openai>=1.30`, `ragas>=0.1.14`, `datasets>=2.19`, `fastapi>=0.111`, `uvicorn>=0.29`, `pydantic>=2.7`, `pypdf>=4.2`, `beautifulsoup4>=4.12`, `jinja2>=3.1`, `httpx>=0.27`, `torch>=2.2`, `transformers>=4.40`, `pandas>=2.2`, `numpy>=1.26`, `pytest>=8.2`, `pytest-cov>=5.0`, `pytest-asyncio>=0.23`, `ruff>=0.4`.
+  - [ ] 1.2 Create `configs/rag_config.yaml` with documented defaults: `collection_name`, `chunk_size: 512`, `chunk_overlap: 64`, `embedding_batch_size: 64`, `retrieval_top_k: 20`, `retrieval_min_score: 0.70`, `rerank_top_n: 5`, `rerank_min_score: 0.30`, `context_max_tokens: 2048`, `answer_max_tokens: 512`, `faithfulness_min_score: 0.70`, `enable_faithfulness_check: true`, `incremental: true`; create `configs/pii_patterns.yaml` and `configs/jailbreak_patterns.yaml` with initial patterns.
+  - [ ] 1.3 Create directory structure: `data/ingestion_manifests/`, `data/`, `results/rag_eval/`, `logs/`, `templates/` with `.gitkeep` files; create `templates/rag_prompt.j2` (Jinja2 template with system instruction, context section with `[Cn]` markers, and user query slot).
+  - [ ] 1.4 Write `docker/Dockerfile.rag` with a Python 3.11 slim base, all runtime dependencies, non-root user, and `CMD ["uvicorn", "rag.api:app", "--host", "0.0.0.0", "--port", "8080"]`; document GPU-enabled variant with `--platform` note.
+  - _Requirements: R1.1, R1.4, R4.2, R6.1_
+
+- [ ] 2. Schema definitions
+  - [ ] 2.1 Implement `rag/schemas.py` with all Pydantic v2 models: `Document`, `Chunk`, `RetrievedChunk`, `ContextBundle`, `ChatRequest`, `ChatResponse`, `CitationRecord`, `EvalQuery`, `PerQueryMetrics`, `IngestionManifest`; ensure `ChatRequest.query` has `min_length=1` and `max_length=2000` validated by Pydantic.
+  - [ ] 2.2 Implement `rag/exceptions.py` with typed exceptions: `UnsupportedFileTypeError`, `VectorStoreConnectionError`, `LLMUnavailableError`, `LowFaithfulnessWarning`, `InvalidCitationWarning`, `SafetyFilterTriggered`, `SmallContextWarning`, `HighRetrievalKWarning`, `BiasProbeUnderpoweredWarning`, `FaithfulnessCheckSkipped`.
+  - [ ]* 2.3 Write `tests/unit/test_schemas.py`: assert `ChatRequest` rejects an empty `query`; assert `ChatResponse` serialises to JSON without error; assert `CitationRecord.citation_index` is a positive integer; assert `Chunk.chunk_id` format matches `{doc_id}:{index:04d}`.
+  - _Requirements: R1.3, R2.2, R3.4, R4.4, R5.1_
+
+- [ ] 3. Document ingestion — parsing and chunking
+  - [ ] 3.1 Implement `rag/ingestion.py` with `ingest(source_path, config) -> IngestionManifest`: walk `source_path` (or process a single file); dispatch to `_parse_pdf()`, `_parse_markdown()`, `_parse_txt()`, or `_parse_html()` based on file extension; catch `UnsupportedFileTypeError` per file, log it, and continue; compute `doc_id = sha256(f"{filepath}:{mtime}".encode()).hexdigest()`.
+  - [ ] 3.2 Implement `_parse_pdf(path) -> tuple[Document, str]` using `pypdf.PdfReader`: extract text page by page; record `page_number` per extracted text segment for downstream chunk metadata.
+  - [ ] 3.3 Implement `_parse_markdown(path) -> tuple[Document, str]`: read raw file; strip Markdown syntax using `re.sub` (headers, bold, italic, links, code fences) to produce plain text.
+  - [ ] 3.4 Implement `_parse_html(path) -> tuple[Document, str]` using `BeautifulSoup(html, "html.parser").get_text(separator=" ", strip=True)`.
+  - [ ] 3.5 Implement `rag/chunker.py` with `chunk_text(text, doc, tokenizer, chunk_size=512, overlap=64) -> list[Chunk]`: tokenise with `tokenizer.encode(text)`, slide a window of `chunk_size` tokens with `chunk_size - overlap` stride, decode each window back to text; store `char_start`/`char_end` by character-aligning after decode; assign `chunk_id = f"{doc.doc_id}:{i:04d}"`.
+  - [ ]* 3.6 Write `tests/unit/test_chunker.py`: a 2 000-token document with chunk_size=512, overlap=64 produces correct number of chunks; each chunk has `token_count <= 512`; `chunk_id` format is correct; last chunk does not exceed document boundary; a 100-token document produces exactly one chunk.
+  - _Requirements: R1.1, R1.2, R1.3_
+
+- [ ] 4. Embedding and vector store
+  - [ ] 4.1 Implement `rag/embedder.py` with `Embedder` class: load `SentenceTransformer("BAAI/bge-large-en-v1.5")` in `__init__`; implement `encode(chunks: list[Chunk]) -> list[Chunk]`: encode in batches of `config.embedding_batch_size`, L2-normalise with `sklearn.preprocessing.normalize`, assign `chunk.embedding`; implement `encode_query(query: str) -> list[float]`: prepend `"Represent this sentence for searching relevant passages: "` and encode.
+  - [ ] 4.2 Implement `rag/vector_store.py` with `QdrantStore` wrapping `qdrant_client.QdrantClient`: implement `ensure_collection(dim=1024, distance=Distance.COSINE)` (creates if absent); `upsert(chunks)` in batches of 100 using `client.upsert(collection_name, points=[PointStruct(id=..., vector=..., payload=...)])`; `search(query_vec, top_k, filter?) -> list[RetrievedChunk]`; `delete_by_doc_id(doc_id)`.
+  - [ ] 4.3 Wire incremental ingestion in `rag/ingestion.py`: before processing a document, check `data/doc_registry.jsonl` for a matching `doc_id`; skip if found (incremental mode); if re-ingesting a changed file, call `store.delete_by_doc_id(old_doc_id)` before upserting new chunks.
+  - [ ] 4.4 Implement Qdrant connection retry: wrap the initial `QdrantClient()` instantiation in a retry loop (3 attempts, delays 1 s, 2 s, 4 s); raise `VectorStoreConnectionError` with the endpoint URL after the third failure.
+  - [ ]* 4.5 Write `tests/unit/test_embedder.py`: assert output vector has length 1024; assert L2 norm ≈ 1.0; assert query prefix is applied (`encode_query` output differs from `encode([chunk])` for the same text); assert identical inputs produce identical embeddings (deterministic).
+  - [ ]* 4.6 Write `tests/integration/test_vector_store.py` using a test Qdrant instance (Docker container or in-memory mode): upsert 10 chunks; assert search returns <= top_k results; assert `delete_by_doc_id` removes all chunks for that doc; assert metadata filter restricts results to matching `filename`.
+  - _Requirements: R1.4, R1.5, R2.1, R2.4, R2.5_
+
+- [ ] 5. Retrieval and reranking
+  - [ ] 5.1 Implement `rag/retriever.py` with `retrieve(query, embedder, store, config) -> list[RetrievedChunk]`: encode the query; call `store.search(query_vec, top_k=config.retrieval_top_k, filter=doc_filter)`; apply `_apply_min_score_filter(chunks, config.retrieval_min_score)` returning only chunks above threshold; return the filtered list (may be empty, triggering abstention).
+  - [ ] 5.2 Emit `HighRetrievalKWarning` at module import time if `config.retrieval_top_k > 50` and clamp the value to 50.
+  - [ ] 5.3 Implement `rag/reranker.py` with `Reranker` class: load `CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")` in `__init__`; implement `rerank(query, chunks, top_n) -> list[RetrievedChunk]`: build `pairs = [(query, chunk.text) for chunk in chunks]`, call `self.model.predict(pairs)`, sort by score descending, assign `chunk.reranker_score`, return top `min(top_n, len(chunks))` chunks.
+  - [ ]* 5.4 Write `tests/unit/test_retriever.py`: assert empty list returned when all mock scores are 0.65 (below 0.70); assert metadata filter is passed through to `store.search()`; assert `HighRetrievalKWarning` raised and top_k clamped at 50.
+  - [ ]* 5.5 Write `tests/unit/test_reranker.py`: assert top-N are in descending `reranker_score` order; assert abstention triggered when all scores < 0.30; assert fewer than N inputs returns all available chunks without error.
+  - _Requirements: R2.2, R2.3, R2.4, R2.5, R3.1, R3.3, R3.5_
+
+- [ ] 6. Context assembly and prompt building
+  - [ ] 6.1 Implement `rag/prompt_builder.py` with `build_context(query, chunks, max_tokens, tokenizer) -> ContextBundle`: iterate chunks in reranker score order; prepend each with `"[C{n}] (Source: {filename}, p. {page_number})\n"` and its text; join with `"\n\n---\n\n"`; tokenise the running assembly with `tokenizer.encode`; stop adding chunks when `context_token_count > max_tokens` to truncate at chunk boundaries, never mid-sentence; set `RetrievedChunk.citation_index = n` for each included chunk.
+  - [ ] 6.2 Implement the Jinja2 prompt template at `templates/rag_prompt.j2`: inject system instruction telling the LLM to answer only from context, insert `[Cn]` after factual claims, and respond with the abstention phrase if context is insufficient; inject the assembled context string; inject the user query.
+  - [ ]* 6.3 Write `tests/unit/test_prompt_builder.py`: assert context truncates at a chunk boundary (not mid-sentence) when it would exceed `max_tokens`; assert `[C1]` prefix appears on the first chunk; assert `context_token_count` exactly equals the token count of the assembled string; assert a single 3 000-token chunk truncation produces an empty context (and triggers abstention path).
+  - _Requirements: R3.2, R3.4, R3.5, R4.1_
+
+- [ ] 7. LLM generation, citation extraction, abstention, and safety filtering
+  - [ ] 7.1 Implement `rag/answer_generator.py` with `LLMClient` wrapping `openai.OpenAI(base_url=LLM_API_BASE, api_key=LLM_API_KEY)`: implement `generate(context_bundle, prompt_template, config) -> str`: render the Jinja2 template, call `client.chat.completions.create(model=config.model_id, temperature=0.2, max_tokens=config.answer_max_tokens)`; retry once after 2 seconds on any exception; raise `LLMUnavailableError` on second failure.
+  - [ ] 7.2 Implement `rag/citation_extractor.py` with `extract_citations(answer, context_bundle) -> tuple[str, list[CitationRecord]]`: find all `[C{n}]` patterns using `re.findall(r"\[C(\d+)\]", answer)`; for each match, resolve `n` to `context_bundle.chunks[n-1]` (1-based); emit `InvalidCitationWarning` for any `n > len(context_bundle.chunks)` and strip the invalid marker; build `CitationRecord` list.
+  - [ ] 7.3 Implement `rag/abstention.py` with `AbstentionGuard`: `check_retrieval(chunks, threshold) -> bool`; `check_reranker(chunks, threshold) -> bool`; `check_llm_output(answer, patterns_path) -> bool` (loads compiled patterns from `configs/abstention_patterns.yaml` and checks for the standard abstention phrase); `check_safety(answer, pii_patterns, jailbreak_patterns) -> bool`.
+  - [ ] 7.4 Implement `rag/faithfulness.py` with `check_faithfulness(query, answer, context_chunks, config) -> float | None`: if `config.enable_faithfulness_check` is False, return None; else call `ragas.evaluate()` with `Faithfulness()` and `AnswerRelevancy()` metrics; emit `LowFaithfulnessWarning` if `faithfulness < config.faithfulness_min_score`; wrap in try/except so a `ragas` import or API error logs `FaithfulnessCheckSkipped` and returns None.
+  - [ ]* 7.5 Write `tests/unit/test_citation_extractor.py`: `[C2]` resolves to second chunk in bundle; `[C99]` emits `InvalidCitationWarning` and is stripped; answer with no markers returns empty list; answer with `[C1]` and `[C3]` (out of 3 chunks) resolves both correctly.
+  - [ ]* 7.6 Write `tests/unit/test_abstention.py`: retrieval score 0.65 triggers `retrieval_threshold`; reranker score 0.25 triggers `reranker_threshold`; `"I don't have enough information"` triggers `llm_self_abstention`; safety filter triggers on PII pattern match.
+  - _Requirements: R4.2, R4.3, R4.4, R4.5, R5.1, R5.2, R5.3, R5.4, R5.5_
+
+- [ ] 8. FastAPI service
+  - [ ] 8.1 Implement `rag/api.py` as a FastAPI application with an `asynccontextmanager` lifespan hook: load `Embedder` (sentence-transformers), `QdrantStore`, `Reranker` (cross-encoder), and `LLMClient` at startup; set `app.state.ready = True` after all models are loaded and a synthetic warm-up query succeeds.
+  - [ ] 8.2 Implement `GET /health/live` (always HTTP 200) and `GET /health/ready` (HTTP 200 when `app.state.ready`, else HTTP 503 with `{"status": "loading"}`).
+  - [ ] 8.3 Implement `POST /v1/chat`: validate `ChatRequest` with Pydantic; call `retrieve()` → `AbstentionGuard.check_retrieval()` → `rerank()` → `AbstentionGuard.check_reranker()` → `build_context()` → `LLMClient.generate()` → `AbstentionGuard.check_llm_output()` → `AbstentionGuard.check_safety()` → `extract_citations()` → `check_faithfulness()` (async, non-blocking); measure `latency_ms` from request receipt; return `ChatResponse`.
+  - [ ] 8.4 Implement structured JSON request logging middleware: after each response, write one JSON line to `logs/rag_requests_{date}.jsonl` containing `request_id`, `query_hash` (SHA-256 of query, not the raw query for privacy), `abstained`, `abstention_reason`, `faithfulness_score`, `citation_count`, `latency_ms`, `context_token_count`, and `request_at` UTC timestamp.
+  - [ ]* 8.5 Write `tests/integration/test_api.py` using `httpx.AsyncClient` with `transport=ASGITransport(app=app)`: assert `/health/ready` returns 503 before lifespan completes; POST `/v1/chat` with a query whose answer is in a pre-seeded chunk and assert `abstained: false` and `citations` is non-empty; POST with a query about an unknown topic and assert `abstained: true`; assert `latency_ms` is a positive float; assert HTTP 422 on an empty `query` string.
+  - _Requirements: R4.4, R4.5, R5.1, R5.3, R5.4_
+
+- [ ] 9. RAG evaluation hooks
+  - [ ] 9.1 Implement `rag/eval.py` with `run_rag_eval(eval_set_path, config_path) -> dict`: load `EvalQuery` records from the JSONL eval set; for each query, run the full RAG pipeline (retrieval + reranking + generation); compute retrieval metrics using `_compute_retrieval_metrics(retrieved_ids, relevant_ids, top_k)`; call `ragas.evaluate()` for non-abstained responses with expected answers; write one `PerQueryMetrics` line per query to `results/rag_eval/{run_id}/per_query_metrics.jsonl`.
+  - [ ] 9.2 Compute and write aggregate metrics to `results/rag_eval/{run_id}/aggregate_metrics.json`: `mean_context_precision`, `mean_context_recall`, `mean_mrr`, `mean_faithfulness`, `mean_answer_relevance`, `abstention_rate`, `safety_filter_rate`, `low_faithfulness_rate`; skip faithfulness/answer_relevance aggregates for abstained queries.
+  - [ ] 9.3 Implement the eval CI gate as a CLI flag `--gate`: after aggregation, compare each metric against gates in `configs/rag_config.yaml` under `eval_gates:`; exit with return code 1 and print the failed metrics to stderr if any required gate fails.
+  - [ ]* 9.4 Write `tests/integration/test_rag_eval_e2e.py`: seed a test Qdrant collection with 5 known chunks; build a 10-query eval set where 8 queries have known `relevant_chunk_ids` (the seeded chunks) and 2 have no relevant chunks; run `run_rag_eval()`; assert `per_query_metrics.jsonl` has 10 lines; assert abstention_rate ≈ 0.2; assert `mean_mrr > 0` for the 8 answerable queries; assert `aggregate_metrics.json` contains all required keys.
+  - _Requirements: R6.1, R6.2, R6.3, R6.4, R6.5, R6.6_
+
+- [ ] 10. End-to-end verification
+  - [ ] 10.1 Write `tests/integration/test_ingestion_e2e.py`: ingest a 5-page PDF and a Markdown file using `ingest()`; assert the Qdrant collection has the expected chunk count (PDF page count × ~4 chunks per page + Markdown chunks); assert `doc_registry.jsonl` has 2 entries; modify the Markdown file and re-ingest with `incremental: false`; assert old Markdown chunks are deleted and replaced.
+  - [ ] 10.2 Write `tests/integration/test_query_e2e.py`: insert 10 known chunks into a test collection using the Qdrant client directly; POST a query via the FastAPI `TestClient` whose answer is contained verbatim in chunk 5; assert the response `citations` list contains chunk 5's `chunk_id`; assert `abstained: false`; assert `answer` contains at least one `[C` marker.
+  - [ ] 10.3 Write `tests/integration/test_abstention_e2e.py`: insert chunks about topic A; query about topic B; assert `abstained: true`, `answer` equals the standard abstention string, and `citations` is empty; separately test reranker-triggered abstention by seeding chunks with very low cross-encoder scores (mock the reranker to return scores all < 0.30).
+  - [ ] 10.4 Add `.github/workflows/rag_ci.yml` with jobs: `lint` (`ruff check src/rag/ tests/`), `type-check` (`mypy src/rag/`), `unit-tests` (`pytest tests/unit/ -v --cov=src/rag --cov-fail-under=85`), `integration-tests` (`pytest tests/integration/ -v --timeout=120`); add a `services:` block to start Qdrant via Docker for integration tests; block merge on any failure.
+  - _Requirements: R1.1, R1.5, R1.6, R2.3, R3.3, R4.4, R5.1, R6.4_
+
+- [ ] 11. Update documentation
+  - [ ] 11.1 Update `docs/rag-chatbot.md` with: a quickstart showing how to run the ingestion pipeline on a local folder, start the FastAPI service, send a test query with `curl`, and interpret the citation fields; an ingestion guide explaining the `doc_id` strategy, incremental mode, and how to monitor the `ingestion_manifests/`; a tuning guide for `retrieval_min_score`, `rerank_min_score`, `chunk_size`, and `chunk_overlap` with recommended starting values; a troubleshooting section covering `VectorStoreConnectionError`, low faithfulness scores, and abstention rate tuning.
+  - [ ] 11.2 Update `docs/system-architecture.md` to add the RAG Chatbot as a component connected to the vector store (Qdrant), the embedding model service, the LLM API, and the RAG evaluation pipeline.
+  - _Requirements: R1.1, R2.1, R3.1, R4.1, R5.1, R6.1_
