@@ -2297,6 +2297,66 @@
       "source": "specs/example-product-listing-page/.config.kiro",
       "target": ".kiro/specs/example-product-listing-page/.config.kiro",
       "type": "spec"
+    },
+    {
+      "source": "specs/example-analytics-dashboard/.config.kiro",
+      "target": ".kiro/specs/example-analytics-dashboard/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-analytics-dashboard/design.md",
+      "target": ".kiro/specs/example-analytics-dashboard/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-analytics-dashboard/requirements.md",
+      "target": ".kiro/specs/example-analytics-dashboard/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-analytics-dashboard/tasks.md",
+      "target": ".kiro/specs/example-analytics-dashboard/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-landing-page/.config.kiro",
+      "target": ".kiro/specs/example-landing-page/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-landing-page/design.md",
+      "target": ".kiro/specs/example-landing-page/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-landing-page/requirements.md",
+      "target": ".kiro/specs/example-landing-page/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-landing-page/tasks.md",
+      "target": ".kiro/specs/example-landing-page/tasks.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-web-performance-optimization/.config.kiro",
+      "target": ".kiro/specs/example-web-performance-optimization/.config.kiro",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-web-performance-optimization/design.md",
+      "target": ".kiro/specs/example-web-performance-optimization/design.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-web-performance-optimization/requirements.md",
+      "target": ".kiro/specs/example-web-performance-optimization/requirements.md",
+      "type": "spec"
+    },
+    {
+      "source": "specs/example-web-performance-optimization/tasks.md",
+      "target": ".kiro/specs/example-web-performance-optimization/tasks.md",
+      "type": "spec"
     }
   ],
   "mcpServers": {

@@ -1,0 +1,62 @@
+# Implementation Plan: CI/CD Pipeline
+
+## Overview
+
+This plan delivers the GitHub Actions CI/CD pipeline in five incremental phases. Each phase ends with a verifiable checkpoint — a passing workflow run, a confirmed OIDC credential exchange, or a verified rollback. Tasks within a phase with no file-level dependency may run in parallel.
+
+Traceability tags use the format `R<N>.<AC>` where `N` is the Requirement number and `AC` is the Acceptance Criterion from `requirements.md`.
+
+## Tasks
+
+- [ ] 1. OIDC IAM Roles and GitHub Repository Configuration
+  - [ ] 1.1 Create `iam/github-actions-roles.ts` as a standalone CDK stack (`GitHubActionsIamStack`) that declares the AWS IAM OIDC provider (`iam.OpenIdConnectProvider`) with `url: 'https://token.actions.githubusercontent.com'` and `clientIds: ['sts.amazonaws.com']`; deploy this stack once per target AWS account before any other stack
+  - [ ] 1.2 In `GitHubActionsIamStack`, create `GitHubActionsDevDeployRole` with trust condition `sub: repo:myorg/myrepo:ref:refs/heads/main`; create `GitHubActionsStagingDeployRole` with `sub: repo:myorg/myrepo:environment:staging`; create `GitHubActionsProdDeployRole` with `sub: repo:myorg/myrepo:ref:refs/tags/v*`; each role limited to `maxSessionDuration: 1 hour`
+  - [ ] 1.3 Attach minimum-permission inline policies to each deploy role: `cloudformation:*` on the app stack ARN, `s3:GetObject/PutObject/ListBucket` on the CDK asset bucket, `iam:PassRole` to the CDK CloudFormation execution role, `ssm:GetParameter` on CDK bootstrap parameters, `cloudwatch:PutMetricData` scoped to the `CICD/Deployments` namespace
+  - [ ] 1.4 In the GitHub repository, create three GitHub Environments (`dev`, `staging`, `prod`); configure `staging` with one required reviewer from the `platform-engineers` team; configure `prod` with two required reviewers from the `platform-leads` team and a 5-minute wait timer
+  - [ ] 1.5 Add three GitHub Actions variables (`vars`): `AWS_DEV_ROLE_ARN`, `AWS_STAGING_ROLE_ARN`, `AWS_PROD_ROLE_ARN` containing the ARNs of the roles created in step 1.2; add secrets `SLACK_DEPLOY_WEBHOOK` and `PAGERDUTY_ROUTING_KEY`
+  - [ ] 1.6 Create a one-job test workflow `.github/workflows/test-oidc.yml` (not part of the final delivery; delete after verification): it calls `aws-actions/configure-aws-credentials@v4` with `role-to-assume: ${{ vars.AWS_DEV_ROLE_ARN }}` then runs `aws sts get-caller-identity`; trigger it manually and confirm it prints the role ARN, not a static key pair
+  - [ ]* Validate: the test-oidc workflow run shows the correct `GitHubActionsDevDeployRole` ARN in `sts get-caller-identity`; attempting to trigger it from a fork branch fails with `AccessDenied`; no `AWS_ACCESS_KEY_ID` or `AWS_SECRET_ACCESS_KEY` secrets appear anywhere in the workflow YAML files
+  - _Requirements: R1.1, R1.2, R1.3, R1.4, R1.5_
+
+- [ ] 2. CI Workflow — Build, Test, and Security Scan
+  - [ ] 2.1 Create `.github/workflows/ci.yml` with trigger `on: pull_request: branches: [main]`; declare workflow-level permissions `contents: read`, `pull-requests: write`, `security-events: write`; add `concurrency: group: ci-${{ github.ref }}, cancel-in-progress: true`
+  - [ ] 2.2 Implement the `build` job: `actions/setup-node@v4` with `node-version: '20'` and `cache: 'npm'`; run `npm ci`, `npx tsc --noEmit` (upload error output on failure as artifact `tsc-errors.txt`), `npx cdk synth -c environment=dev`
+  - [ ] 2.3 Implement the `test` job (runs in parallel with `build`): same Node setup; run `npm test -- --reporter=junit --outputFile=test-results.xml`; upload `test-results.xml` as artifact `test-results`; fail job if vitest exits non-zero
+  - [ ] 2.4 Implement the `security-scan` job (runs in parallel with `build` and `test`): run `npm audit --audit-level=high --omit=dev`; run `npx cdk synth -c environment=dev` (which executes `cdk-nag`); install and run `semgrep --config p/typescript --config p/secrets --error --sarif --output semgrep.sarif lambda/ lib/`; upload SARIF via `github/codeql-action/upload-sarif@v3`; fail job on any HIGH semgrep finding
+  - [ ] 2.5 Implement the `cdk-diff` job (`needs: [build]`): add `permissions: id-token: write`; authenticate to AWS dev account via OIDC; run `npx cdk diff DevStack -c environment=dev 2>&1`; capture output; post as sticky PR comment with `marocchino/sticky-pull-request-comment@v2`; add `infra:replacement` label if diff contains `-/+` lines
+  - [ ] 2.6 Add `actionlint` step to the `build` job: `run: go install github.com/rhysd/actionlint/cmd/actionlint@latest && actionlint` to catch workflow YAML errors in CI
+  - [ ]* Validate: open a test PR; confirm all four jobs appear; introduce a deliberate TypeScript error and confirm `build` fails with `tsc-errors.txt` artifact; confirm `security-scan` posts SARIF findings to the Security tab; confirm `cdk-diff` posts a comment on the PR
+  - _Requirements: R2.1, R2.2, R2.3, R2.4, R2.5, R3.1, R3.2, R3.3, R3.4, R3.5, R4.1, R4.2, R4.4, R4.5_
+
+- [ ] 3. Smoke Test Script and Rollback Workflow
+  - [ ] 3.1 Create `scripts/smoke-test.sh`: reads `BASE_URL` env var; defines `assert()` helper that calls `curl -sf --max-time 10` and emits a structured JSON log line per test with `test`, `environment`, `status`, `http_status`, `latency_ms`, `endpoint` fields; asserts `GET /healthz → 200` and `GET /api/v1/status → 200 + non-empty JSON body` (validated via `jq`); exits 1 if any assertion fails; track pass/fail counts and print summary
+  - [ ] 3.2 Create `scripts/emit-metrics.sh`: reads `DEPLOY_DURATION_SECONDS`, `SMOKE_PASS`, `ENVIRONMENT`, `GITHUB_REPOSITORY` env vars; calls `aws cloudwatch put-metric-data` with namespace `CICD/Deployments`, metric `DeploymentDuration` (Seconds) and `SmokeTestsPassed`/`SmokeTestsFailed` (Count), with dimensions `Environment` and `Repository`
+  - [ ] 3.3 Create `scripts/changelog.sh`: accepts `PREV_TAG` and `NEW_TAG` env vars; runs `git log --oneline ${PREV_TAG}..${NEW_TAG}`; formats as Markdown bullet list; outputs to stdout for capture into GitHub Release notes
+  - [ ] 3.4 Create `.github/workflows/rollback.yml` as a reusable workflow (`on: workflow_call`) accepting inputs `environment` (string), `stack-name` (string), `target-tag` (string, default empty); implement the resolution of the previous release tag using `git describe --tags --abbrev=0 HEAD^`; check out the target tag; install deps; authenticate via OIDC; run `cdk deploy`; run smoke test; send Slack notification (`success` or `failure`); if the rollback job itself exits non-zero, create a GitHub Issue with label `p0-incident` using `actions/github-script@v7` and fire a PagerDuty Events API v2 alert via `curl`
+  - [ ] 3.5 Write `test/scripts/smoke-test.bats` using BATS (Bash Automated Testing System): start a local Python `http.server` mock returning 200 for `/healthz` and 200 with `{"status":"ok"}` for `/api/v1/status`; run `smoke-test.sh` and assert exit 0; then return 500 from `/healthz` and assert exit 1
+  - [ ]* Validate: run `bash scripts/smoke-test.sh` with `BASE_URL=https://httpbin.org` targeting a real endpoint that returns 200; confirm structured JSON lines appear and exit code is 0; run with a non-existent host and confirm exit 1; BATS tests pass with `bats test/scripts/smoke-test.bats`
+  - _Requirements: R6.1, R6.2, R6.3, R6.4, R6.5, R7.5_
+
+- [ ] 4. Deploy and Release Workflows
+  - [ ] 4.1 Create `.github/workflows/deploy.yml` with trigger `on: push: branches: [main]`; permissions `id-token: write`, `contents: read`, `deployments: write`; add concurrency group `deploy-${{ github.ref_name }}` with `cancel-in-progress: true` for dev
+  - [ ] 4.2 Implement the `deploy-dev` job: `environment: dev`; authenticate via OIDC with `vars.AWS_DEV_ROLE_ARN`; run `npm ci`; run `npx cdk deploy DevStack -c environment=dev --require-approval never --outputs-file outputs.json`; upload `outputs.json` as artifact; set GitHub Deployment status to `in_progress` at start and `success`/`failure` at end via `actions/github-script@v7`; capture `ApiEndpoint` from outputs
+  - [ ] 4.3 Implement the `smoke-test-dev` job (`needs: deploy-dev`): download `outputs.json` artifact; extract `ApiEndpoint`; run `BASE_URL=<endpoint> bash scripts/smoke-test.sh`; emit metrics via `scripts/emit-metrics.sh`
+  - [ ] 4.4 Implement the `deploy-staging` job (`needs: smoke-test-dev`, `environment: staging`): staging environment requires one reviewer approval (configured in GitHub); authenticate with `vars.AWS_STAGING_ROLE_ARN`; run `cdk deploy StagingStack`; capture outputs; set GitHub Deployment status
+  - [ ] 4.5 Implement the `smoke-test-staging` job and the `rollback` job (`if: failure()`, `uses: ./.github/workflows/rollback.yml`) wired to both smoke-test jobs; pass correct `environment` and `stack-name` inputs
+  - [ ] 4.6 Create `.github/workflows/release.yml` with trigger `on: push: tags: ['v*.*.*']`; implement `deploy-prod` job (`environment: prod`, two-reviewer protection); authenticate with `vars.AWS_PROD_ROLE_ARN`; run `cdk deploy ProdStack -c environment=prod --require-approval never`; implement `smoke-test-prod`; implement `create-release` job that runs `scripts/changelog.sh` and creates a GitHub Release with `actions/github-script@v7` including diff and changelog; implement `emit-metrics` job; wire rollback on smoke-test failure
+  - [ ]* Validate: merge a commit to `main`; confirm `deploy-dev` runs automatically and completes; confirm `smoke-test-dev` passes; confirm `deploy-staging` pauses for approval; approve it; confirm staging deploys; push a `v0.1.0` tag and confirm `deploy-prod` pauses for two approvals; approve and verify prod deploys and GitHub Release is created
+  - _Requirements: R5.1, R5.2, R5.3, R5.4, R5.5, R7.1, R7.2, R7.3, R7.4_
+
+- [ ] 5. End-to-End Verification and Documentation
+  - [ ] 5.1 Simulate a smoke-test failure in dev: temporarily change `scripts/smoke-test.sh` to exit 1 unconditionally; merge to `main`; confirm `smoke-test-dev` fails, the `rollback` reusable workflow is triggered, it deploys the previous commit, smoke tests pass on the rolled-back version, and a Slack message appears in `#deployments`
+  - [ ] 5.2 Restore `smoke-test.sh`; simulate a rollback failure: configure the rollback's `cdk deploy` step to exit 1 (via a bad stack name); trigger a deployment; confirm a GitHub Issue with label `p0-incident` is created and a PagerDuty alert fires
+  - [ ] 5.3 Verify OIDC subject enforcement: create a test workflow on a branch that tries to assume the prod deploy role; confirm it receives `AccessDenied` because the `sub` condition requires `ref:refs/tags/v*` not a branch ref
+  - [ ] 5.4 Verify concurrency: trigger two rapid pushes to `main`; confirm the first `deploy-dev` run is cancelled by the second (cancel-in-progress: true); confirm `deploy-staging` and `deploy-prod` do NOT cancel in-progress runs on the same environment
+  - [ ] 5.5 Run a full release end-to-end: open a PR, let CI pass, merge, let dev+staging deploy, push `v1.0.0` tag, approve prod deployment (two reviewers), confirm GitHub Release is created with changelog and CDK diff, verify CloudWatch `CICD/Deployments` metrics are present in the AWS Console
+  - [ ]* Validate: full CI workflow passes on a clean PR; dev deployment is fully automated; staging requires approval and deploys; prod requires two approvals and creates a release; rollback triggers on smoke-test failure; CloudWatch metrics appear after each deploy
+  - _Requirements: R1.3, R1.4, R5.3, R5.4, R6.2, R6.3, R6.4, R7.1, R7.2, R7.3, R7.4, R7.5_
+
+- [ ] 6. Update Documentation
+  - [ ] 6.1 Update `README.md` with a pipeline overview diagram (text-based), prerequisites (GitHub CLI, OIDC bootstrap steps), how to trigger a prod release (push a `vX.Y.Z` tag), and how to manually trigger a rollback via the GitHub Actions UI
+  - [ ] 6.2 Add `docs/runbooks/deployment-playbook.md` covering: how to check the current deployed version per environment (from GitHub Deployments page), how to approve a pending staging or prod deployment, how to manually trigger the rollback workflow for a specific tag, and how to resolve a P0 rollback failure
+  - [ ] 6.3 Add `docs/runbooks/oidc-setup.md` covering: how to bootstrap the OIDC provider and deploy roles in a new AWS account (`cdk deploy GitHubActionsIamStack`), how to verify the trust policy allows the correct `sub` claim, and how to rotate or update the OIDC thumbprint if GitHub rotates their certificate
