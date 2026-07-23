@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-07-22
+
+### Added
+
+- **`kiro-kit powers install` / `powers list`** — install real Kiro marketplace Powers automatically. Kiro Powers live in `~/.kiro/powers/` (user-global) and are IDE-managed, so unlike workspace files they can't just be copied; this command replicates the IDE's install (shallow-clone the power's repo, copy it into `installed/`, register it in `installed.json`).
+  - Only clones from a hardcoded, trusted catalog of **official** power repos (`kirodotdev/powers`, `figma/mcp-server-guide`, `supabase-community/kiro-powers`) — never an arbitrary URL.
+  - Detects a running Kiro (which would overwrite `installed.json` on exit) and refuses unless `--force`; backs up `installed.json`; fully reversible.
+  - `--preset <name>` installs the powers relevant to a preset; `--all` installs the whole catalog.
+- **`init` opt-in prompt** to install those Powers right after bootstrap (interactive only — never a silent side effect of `--yes`/CI; if Kiro is running it prints instructions instead).
+
+### Notes
+
+- Powers depending on an MCP server won't expose tools while a Kiro org has MCP disabled, but their `POWER.md` steering still applies.
+- Context7, Upstash, Snyk, and Sentry are MCP servers (configured in `.kiro/settings/mcp.json`), not marketplace Powers.
+
 ## [0.4.2] - 2026-07-22
 
 ### Fixed
