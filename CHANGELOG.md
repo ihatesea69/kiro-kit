@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-07-23
+
+### Added
+
+- **12 new worked example specs** across 4 presets (each with `.config.kiro` so it appears in Kiro's Specs panel), grounded in web-researched best practices:
+  - **frontend**: Landing Page (conversion), Analytics Dashboard, Web Performance Optimization (Core Web Vitals — LCP < 2.5s, INP < 200ms, CLS < 0.1, RUM + Lighthouse CI).
+  - **backend**: Background Job Queue (retries/DLQ/idempotency), Webhook Delivery System (HMAC signing/replay), Caching Strategy (multi-layer, stampede protection).
+  - **devops**: AWS Serverless API (Lambda + API Gateway + DynamoDB + CDK, one-function-per-route, least-privilege IAM), AWS CDK Infrastructure (modular constructs, cdk-nag), CI/CD Pipeline (GitHub Actions OIDC → AWS, diff gate, rollback).
+  - **data-ai**: Model Evaluation Pipeline (offline CI gate + online drift/regression), LLM Evaluation Harness (rubric/LLM-as-judge/safety metrics), RAG Chatbot (retrieval + rerank + citations + faithfulness eval).
+- **Enhanced spec template** (applied to the new specs) with an `## Out of Scope` section, a `## Files & Interfaces` section, an end-to-end verification task, and a final documentation task — matching Anthropic's spec-writing best practices.
+
 ## [0.5.0] - 2026-07-22
 
 ### Added
