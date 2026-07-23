@@ -36,6 +36,7 @@ kiro-kit init
 | `mobile` | Flutter, React Native | 23 agents, 28 skills, 71 commands for mobile-first patterns, ai-multimodal, ui-styling |
 | `devops` | Docker, Kubernetes, Terraform | 20 agents, 26 skills, 65 commands for CI checks, container scanning, infrastructure as code |
 | `data-ai` | Python, ML, AI agents | 20 agents, 30 skills, 70 commands for Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
+| `kiro-kit-dev` | TypeScript CLI, pnpm monorepo | 19 agents, 24 skills, 66 commands for developing Kiro-Kit itself — preset authoring, CLI architecture, vitest testing, spec library |
 
 Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 9+ cross-platform hooks (including 3 domain-specific), 7 native Kiro Agent Hooks, a worked example spec, MCP server auto-config, an enriched Powers catalog, and spec scaffolding.
 
@@ -118,6 +119,7 @@ credential-free MCP-backed Powers** and scaffold the credentialed ones disabled:
 | mobile | Firebase | Figma, Context7, Expo | ElevenLabs, Bria, RevenueCat, OneSignal, Sentry |
 | devops | Terraform | Datadog, Snyk, Depot, Context7 | Harness, AWS CDK, Pulumi, Grafana |
 | data-ai | ClickHouse | Context7, Exa, Hugging Face | Neon, New Relic, Weights & Biases, Pinecone, LangSmith |
+| kiro-kit-dev | Context7 | Snyk | Postman |
 
 Running `init` auto-configures MCP servers (credential-free ones enabled;
 credentialed ones as disabled templates), documents required env vars in
