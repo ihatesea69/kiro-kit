@@ -1,0 +1,70 @@
+{
+  "powers": [
+    {
+      "name": "Terraform",
+      "url": "https://kiro.dev/powers/terraform",
+      "description": "Infrastructure as code across cloud providers",
+      "tier": "essential",
+      "category": "infra",
+      "auth": "apiKey",
+      "envVars": [
+        "TF_API_TOKEN"
+      ]
+    },
+    {
+      "name": "AWS CDK",
+      "url": "https://kiro.dev/powers/aws-cdk",
+      "description": "Define AWS infrastructure with code",
+      "tier": "essential",
+      "category": "infra",
+      "auth": "apiKey",
+      "envVars": [
+        "AWS_ACCESS_KEY_ID",
+        "AWS_SECRET_ACCESS_KEY"
+      ]
+    },
+    {
+      "name": "Context7",
+      "url": "https://kiro.dev/powers/context7",
+      "description": "Up-to-date library and framework documentation lookup",
+      "tier": "recommended",
+      "category": "docs",
+      "auth": "none",
+      "mcpBacked": true
+    },
+    {
+      "name": "Figma",
+      "url": "https://kiro.dev/powers/figma",
+      "description": "Design file access for diagrams and design handoff",
+      "tier": "recommended",
+      "category": "design",
+      "auth": "apiKey",
+      "envVars": [
+        "FIGMA_ACCESS_TOKEN"
+      ]
+    },
+    {
+      "name": "Datadog",
+      "url": "https://kiro.dev/powers/datadog",
+      "description": "Metrics, logs, traces, and dashboards",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "DD_API_KEY",
+        "DD_APP_KEY"
+      ]
+    },
+    {
+      "name": "Snyk",
+      "url": "https://kiro.dev/powers/snyk",
+      "description": "Dependency and container vulnerability scanning",
+      "tier": "optional",
+      "category": "testing",
+      "auth": "apiKey",
+      "envVars": [
+        "SNYK_TOKEN"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "node .kiro/statusline.js"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": ".*",
+        "command": "node .kiro/hooks/scout-block.js"
+      },
+      {
+        "matcher": ".*",
+        "command": "node .kiro/hooks/build-verify.js"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": ".*",
+        "command": "node .kiro/hooks/modularization-hook.js"
+      },
+      {
+        "matcher": ".*",
+        "command": "node .kiro/hooks/image-scan.js"
+      }
+    ],
+    "agentStop": [
+      {
+        "matcher": ".*",
+        "command": "node .kiro/hooks/discord-notify.js"
+      },
+      {
+        "matcher": ".*",
+        "command": "node .kiro/hooks/telegram-notify.js"
+      }
+    ]
+  },
+  "includeCoAuthoredBy": false
+}

@@ -1,0 +1,40 @@
+Kiro-Kit `sa` (Solutions Architect) preset — NOTICE
+
+This preset bundles third-party content:
+
+## drawio-ai-kit (MIT)
+
+The skills `skills/drawio-aws/`, `skills/drawio-azure/`, and `skills/drawio-gcp/`
+are copied from https://github.com/sparklabx/drawio-ai-kit and are licensed
+under the MIT License:
+
+    MIT License
+
+    Copyright (c) 2026 sparklabx
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+These skills are thin frontends: at runtime they invoke the separate
+`drawio-ai` CLI, which the user installs themselves via
+`npm i -g github:sparklabx/drawio-ai-kit`. The CLI and its bundled icon/stencil
+assets are NOT distributed with this preset. Per the upstream NOTICE, the MIT
+license applies to the drawio-ai-kit source code only; bundled icon/logo assets
+(e.g. AWS Architecture Icons, third-party product logos) remain the property of
+their respective owners and are subject to their own trademark and usage
+guidelines.
