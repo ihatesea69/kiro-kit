@@ -144,7 +144,7 @@ describe('Property 5: Idempotency with skip-existing mode', () => {
  */
 describe('Property 7: Manifest completeness no-orphan', () => {
   const presetsDir = path.resolve(__dirname, '../../../../presets');
-  const PRESETS = ['frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai', 'kiro-kit-dev'];
+  const PRESETS = ['frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai', 'kiro-kit-dev', 'sa'];
 
   it('all preset manifests pass file completeness (declared files exist)', () => {
     for (const presetName of PRESETS) {

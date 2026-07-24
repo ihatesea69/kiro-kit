@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-07-24
+
+### Added
+
+- **New `sa` (Solutions Architect) preset** (the 8th) — for designing and documenting cloud architectures. Based on the `devops` preset (20 agents, IaC/AWS tooling) with:
+  - **draw.io skills** `drawio-aws`, `drawio-azure`, `drawio-gcp` from [sparklabx/drawio-ai-kit](https://github.com/sparklabx/drawio-ai-kit) (MIT, attributed in `NOTICE` + `THIRD_PARTY_NOTICES.md`). They drive the external `drawio-ai` CLI (`npm i -g github:sparklabx/drawio-ai-kit` — documented prerequisite, not bundled) for real-stencil search and diagram validation.
+  - **Document skills**: `architecture-deck` (.pptx architecture presentations via python-pptx), `architecture-doc` (.docx Solution Architecture Documents via python-docx), `mermaid-diagrams` (C4 context/container/component, sequence, deployment, state — with CLI validation).
+  - **Steering**: `aws-well-architected` (6 pillars), `c4-model`, `architecture-decision-records`, `diagramming-conventions` (draw.io vs Mermaid, stencil discipline, layout topologies), `iac-conventions` (CloudFormation vs Terraform, least privilege, state, drift), plus `spec-driven-development`.
+  - **Commands** `iac/` group: `cloudformation`, `terraform-module`, `well-architected-review`.
+  - **4 example architecture specs** (each with `.config.kiro`, enhanced template): Three-Tier Web Architecture (VPC/ALB/ECS/RDS + CloudFormation), Event-Driven Microservices (API GW/Lambda/EventBridge/SQS/DynamoDB + Terraform), Data Lake (S3 tiers/Glue/Athena/Lake Formation), Multi-Region DR (warm standby, RTO/RPO, Route 53 failover).
+  - Powers: Terraform + AWS CDK (essential), Context7 + Figma (recommended), Datadog + Snyk (optional).
+- Wired the new preset name through `PresetNameSchema`, `MCPConfigurator`, the structural/property test suites, `sync-preset-manifests.mjs`, and the README preset + Powers matrices.
+
 ## [0.7.0] - 2026-07-23
 
 ### Added

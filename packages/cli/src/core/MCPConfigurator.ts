@@ -125,6 +125,10 @@ const PRESET_SERVERS: Record<string, { default: string[]; optional: string[] }> 
     default: ['filesystem', 'git', 'fetch', 'context7', 'memory', 'sequentialthinking'],
     optional: ['github'],
   },
+  sa: {
+    default: ['filesystem', 'git', 'fetch', 'context7', 'memory', 'sequentialthinking'],
+    optional: ['github'],
+  },
 };
 
 // ---------------------------------------------------------------------------
