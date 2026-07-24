@@ -11,7 +11,7 @@ const ArtifactTypeSchema = z.enum([
 ]);
 
 const PresetNameSchema = z.enum([
-  'frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai', 'kiro-kit-dev',
+  'frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai', 'kiro-kit-dev', 'sa',
 ]);
 
 const FileEntrySchema = z.object({

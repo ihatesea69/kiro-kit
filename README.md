@@ -37,6 +37,7 @@ kiro-kit init
 | `devops` | Docker, Kubernetes, Terraform | 20 agents, 26 skills, 65 commands for CI checks, container scanning, infrastructure as code |
 | `data-ai` | Python, ML, AI agents | 20 agents, 30 skills, 70 commands for Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
 | `kiro-kit-dev` | TypeScript CLI, pnpm monorepo | 19 agents, 24 skills, 66 commands for developing Kiro-Kit itself — preset authoring, CLI architecture, vitest testing, spec library |
+| `sa` | Cloud architecture, draw.io, IaC | 20 agents, 27 skills, 68 commands for architecture diagrams (draw.io + Mermaid), SAD documents (.docx), decks (.pptx), CloudFormation + Terraform, Well-Architected reviews |
 
 Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 9+ cross-platform hooks (including 3 domain-specific), 7 native Kiro Agent Hooks, a worked example spec, MCP server auto-config, an enriched Powers catalog, and spec scaffolding.
 
@@ -87,6 +88,7 @@ Mermaid diagrams, task-to-requirement traceability, and an end-to-end verificati
 | mobile | Offline-first Notes |
 | devops | Blue-Green Deploy · AWS Serverless API (Lambda/API GW/DynamoDB/CDK) · AWS CDK Infrastructure · CI/CD Pipeline |
 | data-ai | Churn Prediction · Model Evaluation Pipeline · LLM Evaluation Harness · RAG Chatbot |
+| sa | Three-Tier Web Architecture · Event-Driven Microservices · Data Lake · Multi-Region DR |
 
 A `spec-driven-development.md` steering file teaches the EARS patterns and the
 requirements→design→tasks approval gates. Scaffold your own with:
@@ -120,6 +122,7 @@ credential-free MCP-backed Powers** and scaffold the credentialed ones disabled:
 | devops | Terraform | Datadog, Snyk, Depot, Context7 | Harness, AWS CDK, Pulumi, Grafana |
 | data-ai | ClickHouse | Context7, Exa, Hugging Face | Neon, New Relic, Weights & Biases, Pinecone, LangSmith |
 | kiro-kit-dev | Context7 | Snyk | Postman |
+| sa | Terraform, AWS CDK | Context7, Figma | Datadog, Snyk |
 
 Running `init` auto-configures MCP servers (credential-free ones enabled;
 credentialed ones as disabled templates), documents required env vars in
