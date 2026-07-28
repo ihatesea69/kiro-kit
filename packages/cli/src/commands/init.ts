@@ -25,6 +25,7 @@ import crypto from 'node:crypto';
 import { load, loadAll, listAvailable } from '../core/PresetLoader.js';
 import {
   resolve as resolveConflict,
+  type ConflictAction,
   type ConflictMode,
   type SessionState,
 } from '../core/ConflictResolver.js';
@@ -40,7 +41,12 @@ import { logger } from '../utils/logger.js';
 import { safePathInside } from '../utils/paths.js';
 
 // Powers integration modules
-import { loadPowers, mergePowers, filterByTier } from '../core/PowersLoader.js';
+import {
+  loadPowers,
+  mergePowers,
+  filterByTier,
+  type PowerEntry,
+} from '../core/PowersLoader.js';
 import {
   getMCPConfig,
   mergeMCPConfig,
@@ -59,6 +65,7 @@ import {
 import {
   promptPowersTier,
   displayPowersRecommendations,
+  type PowersPromptResult,
 } from '../prompts/PowersPrompter.js';
 import {
   powersForPresets,
@@ -104,6 +111,26 @@ interface InitTaskContext {
   filesSkipped: number;
   setupGuideWritten: boolean;
   envExampleWritten: boolean;
+  /** Deduplicated regular-file writes, planned before the task runner starts. */
+  plannedWrites: PlannedWrite[];
+  /** Conflict actions resolved interactively BEFORE the spinner starts.
+   *  Prompting inside the task runner would be swallowed by the listr2
+   *  renderer and look like a hang, so all prompts happen up front. */
+  preResolved: Map<string, ConflictAction>;
+  /** Powers data + answers gathered before the task runner starts. */
+  mergedPowers: PowerEntry[];
+  powersPromptResult: PowersPromptResult | null;
+  confirmMCPWrite: boolean;
+}
+
+/** One deduplicated file write. When several presets target the same path,
+ *  the last selected preset wins (matches sequential overwrite semantics). */
+interface PlannedWrite {
+  presetName: string;
+  target: string;
+  targetPath: string;
+  sourcePath: string;
+  executable?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -130,6 +157,43 @@ function generateTimestamp(): string {
   return `${y}${mo}${d}-${h}${mi}${s}-${ms}`;
 }
 
+/**
+ * Build the deduplicated list of regular-file writes for the selected presets.
+ * Presets overlap heavily (shared agents/steering files); writing them
+ * sequentially would make later presets conflict with files the run itself
+ * just wrote. Deduplicating by target (last preset wins) avoids those
+ * self-conflicts entirely.
+ */
+function planRegularWrites(
+  presets: ReturnType<typeof loadAll>,
+  workspaceRoot: string,
+): PlannedWrite[] {
+  const byTarget = new Map<string, PlannedWrite>();
+  for (const preset of presets) {
+    for (const fileEntry of preset.manifest.files) {
+      if (['mcp', 'settings', 'statusline'].includes(fileEntry.type)) continue;
+      if (!safePathInside(workspaceRoot, fileEntry.target)) {
+        logger.warn(`Skipping unsafe path: ${fileEntry.target}`);
+        continue;
+      }
+      const sourcePath = path.join(preset.dir, fileEntry.source);
+      if (!fs.existsSync(sourcePath)) {
+        logger.debug(`Source file missing: ${sourcePath}`);
+        continue;
+      }
+      const targetPath = path.resolve(workspaceRoot, fileEntry.target);
+      byTarget.set(targetPath, {
+        presetName: preset.manifest.name,
+        target: fileEntry.target,
+        targetPath,
+        sourcePath,
+        executable: fileEntry.executable,
+      });
+    }
+  }
+  return [...byTarget.values()];
+}
+
 function getKitVersion(): string {
   try {
     const pkgPath = new URL('../package.json', import.meta.url);
@@ -150,12 +214,10 @@ function getKitVersion(): string {
  *
  * @param presets   - Pre-loaded preset objects (from loadAll)
  * @param opts      - CLI options
- * @param promptFn  - ThemedPrompt instance for interactive conflict resolution
  */
 function buildInitTasks(
   presets: ReturnType<typeof loadAll>,
   opts: InitOptions,
-  promptFn: Awaited<ReturnType<typeof createPrompt>>,
 ): TaskDef<InitTaskContext>[] {
   return [
     // ------------------------------------------------------------------
@@ -191,80 +253,70 @@ function buildInitTasks(
     {
       title: 'Writing workspace files',
       run: async (ctx, helpers) => {
-        for (const preset of presets) {
-          const { manifest, dir: presetDir } = preset;
+        // Process the deduplicated regular files. All interactive conflict
+        // decisions were made BEFORE the runner started (ctx.preResolved) —
+        // never prompt in here, the spinner renderer would swallow it and
+        // the CLI would appear to hang forever.
+        let processed = 0;
+        for (const w of ctx.plannedWrites) {
+          const sourceContent = fs.readFileSync(w.sourcePath);
 
-          // Separate files by type for special handling
-          const regularFiles = manifest.files.filter(
-            (f) => !['mcp', 'settings', 'statusline'].includes(f.type),
-          );
-          const mcpFiles = manifest.files.filter((f) => f.type === 'mcp');
-          const settingsFiles = manifest.files.filter((f) => f.type === 'settings');
-          const statuslineFiles = manifest.files.filter((f) => f.type === 'statusline');
-
-          // Process regular files
-          for (const fileEntry of regularFiles) {
-            const sourcePath = path.join(presetDir, fileEntry.source);
-            const targetPath = path.resolve(ctx.workspaceRoot, fileEntry.target);
-
-            // Safety check — skip paths that escape the workspace root
-            if (!safePathInside(ctx.workspaceRoot, fileEntry.target)) {
-              logger.warn(`Skipping unsafe path: ${fileEntry.target}`);
-              ctx.filesSkipped++;
-              continue;
-            }
-
-            if (!fs.existsSync(sourcePath)) {
-              logger.debug(`Source file missing: ${sourcePath}`);
-              continue;
-            }
-
-            const sourceContent = fs.readFileSync(sourcePath);
-
-            const action = await resolveConflict({
-              target: targetPath,
+          const action =
+            ctx.preResolved.get(w.targetPath) ??
+            (await resolveConflict({
+              target: w.targetPath,
               sourceContent,
               mode: ctx.mode,
               sessionState: ctx.sessionState,
-              prompt: (target) => promptFn.conflictChoice(path.relative(ctx.workspaceRoot, target)),
-              showDiff: (t, s) => showDiff(t, s),
-            });
+              // no prompt: unresolved interactive conflicts default to SKIP
+            }));
 
-            switch (action) {
-              case 'WRITE_NEW':
-                fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-                atomicWrite(targetPath, sourceContent.toString('utf-8'));
-                if (fileEntry.executable && process.platform !== 'win32') {
-                  try { fs.chmodSync(targetPath, 0o755); } catch { /* non-critical */ }
-                }
-                ctx.filesWritten++;
-                break;
-              case 'OVERWRITE_WITH_BACKUP':
-                backup(ctx.workspaceRoot, targetPath, ctx.timestamp);
-                atomicWrite(targetPath, sourceContent.toString('utf-8'));
-                if (fileEntry.executable && process.platform !== 'win32') {
-                  try { fs.chmodSync(targetPath, 0o755); } catch { /* non-critical */ }
-                }
-                ctx.filesWritten++;
-                break;
-              case 'SKIP':
-                ctx.filesSkipped++;
-                break;
-              case 'NO_OP':
-                // File already identical — no action needed
-                break;
-            }
-
-            // Track the file for the tracking store (skip SKIP actions)
-            if (action !== 'SKIP') {
-              ctx.allTrackedFiles.push({
-                target: fileEntry.target,
-                sourcePreset: manifest.name,
-                contentHash: sha256(sourceContent),
-                installedAt: new Date().toISOString(),
-              });
-            }
+          switch (action) {
+            case 'WRITE_NEW':
+              fs.mkdirSync(path.dirname(w.targetPath), { recursive: true });
+              atomicWrite(w.targetPath, sourceContent.toString('utf-8'));
+              if (w.executable && process.platform !== 'win32') {
+                try { fs.chmodSync(w.targetPath, 0o755); } catch { /* non-critical */ }
+              }
+              ctx.filesWritten++;
+              break;
+            case 'OVERWRITE_WITH_BACKUP':
+              backup(ctx.workspaceRoot, w.targetPath, ctx.timestamp);
+              atomicWrite(w.targetPath, sourceContent.toString('utf-8'));
+              if (w.executable && process.platform !== 'win32') {
+                try { fs.chmodSync(w.targetPath, 0o755); } catch { /* non-critical */ }
+              }
+              ctx.filesWritten++;
+              break;
+            case 'SKIP':
+              ctx.filesSkipped++;
+              break;
+            case 'NO_OP':
+              // File already identical — no action needed
+              break;
           }
+
+          if (action !== 'SKIP') {
+            ctx.allTrackedFiles.push({
+              target: w.target,
+              sourcePreset: w.presetName,
+              contentHash: sha256(sourceContent),
+              installedAt: new Date().toISOString(),
+            });
+          }
+
+          processed++;
+          if (processed % 100 === 0) {
+            helpers.setOutput(`${processed}/${ctx.plannedWrites.length} files processed`);
+          }
+        }
+
+        for (const preset of presets) {
+          const { manifest, dir: presetDir } = preset;
+
+          const mcpFiles = manifest.files.filter((f) => f.type === 'mcp');
+          const settingsFiles = manifest.files.filter((f) => f.type === 'settings');
+          const statuslineFiles = manifest.files.filter((f) => f.type === 'statusline');
 
           // Process statusline files via StatuslineSelector
           if (statuslineFiles.length > 0) {
@@ -356,28 +408,18 @@ function buildInitTasks(
       },
       run: async (ctx, helpers) => {
         try {
-          const allPowerEntries = presets.map((p) => {
-            const result = loadPowers(p.dir);
-            if (!result.ok) {
-              logger.warn(`Powers: ${result.error}`);
-            }
-            return result.powers;
-          });
+          // Powers were loaded and the tier/MCP questions were asked BEFORE
+          // the runner started (see runInit) — prompting under the spinner
+          // renderer would be invisible and look like a hang.
+          const mergedPowers = ctx.mergedPowers;
+          const promptResult = ctx.powersPromptResult;
 
-          const mergedPowers = mergePowers(allPowerEntries);
-
-          if (mergedPowers.length === 0) {
+          if (mergedPowers.length === 0 || !promptResult) {
             helpers.setOutput('No powers found in selected presets');
             return;
           }
 
           helpers.setOutput(`Found ${mergedPowers.length} power(s)`);
-
-          // Powers tier selection
-          const promptResult = await promptPowersTier(mergedPowers, {
-            powersFlag: ctx.opts.powers,
-            yes: ctx.opts.yes,
-          });
 
           const filteredPowers =
             promptResult.selectedTiers.length > 0
@@ -406,16 +448,8 @@ function buildInitTasks(
                 combinedMCP = mergeMCPConfig(combinedMCP, mcpConfig);
               }
 
-              // Confirm MCP write (skip if --yes)
-              let confirmWrite = true;
-              if (!ctx.opts.yes) {
-                confirmWrite = await promptFn.confirm(
-                  'Configure MCP servers in .mcp.json?',
-                  true,
-                );
-              }
-
-              if (confirmWrite && combinedMCP) {
+              // MCP write confirmation was collected before the runner started
+              if (ctx.confirmMCPWrite && combinedMCP) {
                 writeMCPConfig(ctx.workspaceRoot, combinedMCP);
                 // Also write to the location Kiro IDE reads.
                 writeKiroSettingsMCP(ctx.workspaceRoot, combinedMCP);
@@ -643,6 +677,59 @@ async function runInit(opts: InitOptions): Promise<void> {
   else if (opts.yes) mode = 'skip-existing';
 
   // -------------------------------------------------------------------------
+  // 5b. Plan writes + resolve all interactive questions BEFORE the runner.
+  //     The listr2 spinner owns the terminal while tasks run; any prompt
+  //     rendered underneath it is invisible and the CLI appears to hang.
+  // -------------------------------------------------------------------------
+  const sessionState: SessionState = { overwriteAll: false };
+  const plannedWrites = planRegularWrites(presets, workspaceRoot);
+  const preResolved = new Map<string, ConflictAction>();
+
+  if (mode === 'interactive') {
+    for (const w of plannedWrites) {
+      if (!fs.existsSync(w.targetPath)) continue;
+      const sourceContent = fs.readFileSync(w.sourcePath);
+      const action = await resolveConflict({
+        target: w.targetPath,
+        sourceContent,
+        mode,
+        sessionState,
+        prompt: (target) => prompt.conflictChoice(path.relative(workspaceRoot, target)),
+        showDiff: (t, s) => showDiff(t, s),
+      });
+      if (action === 'SKIP' || action === 'OVERWRITE_WITH_BACKUP') {
+        preResolved.set(w.targetPath, action);
+      }
+    }
+  }
+
+  // Pre-load Powers and ask the tier/MCP questions now (outside the spinner)
+  let mergedPowers: PowerEntry[] = [];
+  let powersPromptResult: PowersPromptResult | null = null;
+  let confirmMCPWrite = true;
+
+  if (opts.powers !== 'none') {
+    const allPowerEntries = presets.map((p) => {
+      const result = loadPowers(p.dir);
+      if (!result.ok) {
+        logger.warn(`Powers: ${result.error}`);
+      }
+      return result.powers;
+    });
+    mergedPowers = mergePowers(allPowerEntries);
+
+    if (mergedPowers.length > 0) {
+      powersPromptResult = await promptPowersTier(mergedPowers, {
+        powersFlag: opts.powers,
+        yes: opts.yes,
+      });
+      if (powersPromptResult.confirmMCP && !opts.yes) {
+        confirmMCPWrite = await prompt.confirm('Configure MCP servers in .mcp.json?', true);
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------
   // 6. Build initial context and task runner
   // -------------------------------------------------------------------------
   const initialCtx: InitTaskContext = {
@@ -651,15 +738,20 @@ async function runInit(opts: InitOptions): Promise<void> {
     opts,
     timestamp: generateTimestamp(),
     mode,
-    sessionState: { overwriteAll: false },
+    sessionState,
     allTrackedFiles: [],
     filesWritten: 0,
     filesSkipped: 0,
     setupGuideWritten: false,
     envExampleWritten: false,
+    plannedWrites,
+    preResolved,
+    mergedPowers,
+    powersPromptResult,
+    confirmMCPWrite,
   };
 
-  const tasks = buildInitTasks(presets, opts, prompt);
+  const tasks = buildInitTasks(presets, opts);
   const runner = await createTaskRunner(tasks, capability, theme);
 
   // -------------------------------------------------------------------------

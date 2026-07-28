@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.1] - 2026-07-28
+
+### Fixed
+
+- **`init` appeared to hang forever at "Writing workspace files"** when 2+ presets were selected. Presets overlap on 100+ target files with differing content, so the write loop hit a conflict and `await`ed an interactive overwrite/skip prompt — but the listr2 spinner owns the terminal while tasks run, so the prompt was invisible and the CLI looked frozen. All interactive questions (file conflicts, Powers tier, MCP confirmation) are now asked *before* the task runner starts, and never under the spinner.
+- Regular-file writes are now deduplicated across selected presets (last preset wins), eliminating self-conflicts and redundant writes for shared agents/steering files.
+- The write task now streams `N/total files processed` progress under the spinner.
+
 ## [0.8.0] - 2026-07-24
 
 ### Added
