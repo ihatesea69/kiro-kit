@@ -266,16 +266,43 @@ const DOMAIN_HOOKS = {
 };
 
 // ---------------------------------------------------------------------------
+// Feature hooks — shipped only with the presets that carry the feature
+// ---------------------------------------------------------------------------
+
+/** Presets that ship the deep-security-scan feature (command + agents + skill). */
+const DEEP_SCAN_PRESETS = ['backend', 'fullstack', 'devops', 'sa'];
+
+const DEEP_SCAN_HOOK = hook({
+  name: 'Deep Scan Stale',
+  description:
+    'Manual check of whether the last deep security scan is stale (>30 days) or predates significant source changes.',
+  when: { type: 'userTriggered' },
+  then: askAgent(
+    'Check the freshness of the last deep security scan. Find the most recent directory under .kiro/security/scans/ and read its report.md and findings.json. Report: the scan date and how many days old it is; the count of findings still marked status: open by severity; and whether source files have changed materially since the scan (use git log since that date, ignoring docs and tests). Recommend a re-scan if the scan is older than 30 days, if open CRITICAL or HIGH findings remain, or if changes since the scan touched files listed in any open finding — and say which scoped path to re-scan with /security:deep-scan. If no scan directory exists, say so and recommend an initial full scan. Do not modify any files.',
+  ),
+});
+
+/** Feature hooks for a preset, or [] when it doesn't carry the feature. */
+function featureHooksFor(preset) {
+  return DEEP_SCAN_PRESETS.includes(preset) ? [DEEP_SCAN_HOOK] : [];
+}
+
+// ---------------------------------------------------------------------------
 // Guide doc emitted into each preset's hooks/ dir
 // ---------------------------------------------------------------------------
 
-function guideMarkdown(presetName, domainHooks) {
+function guideMarkdown(presetName, domainHooks, featureHooks = []) {
   const domainList = domainHooks
     .map((h) => `- **${h.name}** — ${h.description} (\`${h.when.type}\`)`)
     .join('\n');
   const sharedList = SHARED_HOOKS.map(
     (h) => `- **${h.name}** — ${h.description} (\`${h.when.type}\`)`,
   ).join('\n');
+  const featureSection = featureHooks.length
+    ? `\n## Feature hooks\n\n${featureHooks
+        .map((h) => `- **${h.name}** — ${h.description} (\`${h.when.type}\`)`)
+        .join('\n')}\n`
+    : '';
   return `# Native Kiro Agent Hooks
 
 These \`*.kiro.hook\` files are **native Kiro Agent Hooks** — event-driven automation
@@ -304,7 +331,7 @@ ${sharedList}
 ## ${presetName} domain hooks
 
 ${domainList}
-
+${featureSection}
 ## Triggers reference
 
 \`fileEdited\`, \`fileCreated\`, \`fileDeleted\`, \`userTriggered\`, \`promptSubmit\`,
@@ -333,15 +360,27 @@ for (const preset of PRESETS) {
   const hooksDir = path.join(presetsDir, preset, 'hooks');
   fs.mkdirSync(hooksDir, { recursive: true });
   const written = [];
+  const featureHooks = featureHooksFor(preset);
   for (const h of SHARED_HOOKS) written.push(writeHook(hooksDir, h));
   for (const h of DOMAIN_HOOKS[preset]) written.push(writeHook(hooksDir, h));
+  for (const h of featureHooks) written.push(writeHook(hooksDir, h));
   fs.writeFileSync(
     path.join(hooksDir, 'native-hooks.md'),
-    guideMarkdown(preset, DOMAIN_HOOKS[preset]),
+    guideMarkdown(preset, DOMAIN_HOOKS[preset], featureHooks),
     'utf-8',
   );
   total += written.length;
   console.log(`[${preset}] wrote ${written.length} native hooks + native-hooks.md`);
+}
+
+// Feature presets outside PRESETS (e.g. `sa`, cloned from devops) still get their
+// feature hooks; their native-hooks.md is maintained by hand.
+for (const preset of DEEP_SCAN_PRESETS.filter((p) => !PRESETS.includes(p))) {
+  const hooksDir = path.join(presetsDir, preset, 'hooks');
+  if (!fs.existsSync(hooksDir)) continue;
+  for (const h of featureHooksFor(preset)) writeHook(hooksDir, h);
+  total += 1;
+  console.log(`[${preset}] wrote 1 feature hook`);
 }
 
 // Also emit the shared set into the repo's own dogfood workspace.

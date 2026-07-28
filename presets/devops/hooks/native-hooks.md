@@ -32,6 +32,10 @@ scripts or `runCommand` for deterministic checks.
 - **Container Scan** — When a Dockerfile changes, review it for security and efficiency issues. (`fileEdited`)
 - **Cost Estimate** — Manual infrastructure cost estimate for the current IaC. (`userTriggered`)
 
+## Feature hooks
+
+- **Deep Scan Stale** — Manual check of whether the last deep security scan is stale (>30 days) or predates significant source changes. (`userTriggered`)
+
 ## Triggers reference
 
 `fileEdited`, `fileCreated`, `fileDeleted`, `userTriggered`, `promptSubmit`,
