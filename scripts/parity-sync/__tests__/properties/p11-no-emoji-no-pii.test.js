@@ -28,6 +28,17 @@ const EMOJI_EXEMPT_PATTERNS = [
   'workflows/documentation',
   'canvas-fonts/',
   'ooxml/schemas/',
+  // Vendored skill content carried in from the source kit, where the emoji are
+  // load-bearing status indicators in tables (speed/accuracy/token-usage keys).
+  'workflows/repo-analysis',
+  'workflows/topic-search',
+  'skills/debugging/scripts/find-polluter',
+  'skills/frontend-design/references/animejs',
+  'skills/mcp-builder/SKILL.md',
+  // Notification setup guides: the emoji sit inside fenced "example message"
+  // blocks showing what Discord/Telegram render, not in Kiro-Kit's own output.
+  'hooks/discord-hook-setup',
+  'hooks/telegram-hook-setup',
 ];
 
 // Known paths/patterns with legitimate emails (font licenses, service accounts)
@@ -38,6 +49,13 @@ const PII_EXEMPT_PATTERNS = [
   'ooxml/',
   '.iam.gserviceaccount.com',
 ];
+
+// Exempt patterns are written with forward slashes. path.relative() yields
+// backslashes on Windows, so compare against a normalised path or every
+// exemption silently misses there (and only there).
+function toPosix(p) {
+  return p.split(path.sep).join('/');
+}
 
 function walkMdJsonFiles(dir) {
   const results = [];
@@ -79,7 +97,8 @@ describe('Property 11: No Emoji + No PII', () => {
         const relPath = path.relative(process.cwd(), filePath);
 
         // Skip known pre-existing emoji paths
-        if (EMOJI_EXEMPT_PATTERNS.some((p) => relPath.includes(p))) return;
+        const posixPath = toPosix(relPath);
+        if (EMOJI_EXEMPT_PATTERNS.some((p) => posixPath.includes(p))) return;
 
         const content = fs.readFileSync(filePath, 'utf-8');
         const match = content.match(EMOJI_RE);
@@ -117,6 +136,11 @@ describe('Property 11: No Emoji + No PII', () => {
       'mail.com',
       'gmail.com',  // generic example references
       'org.example',
+      // Not an address: the userinfo half of a MongoDB connection string,
+      // e.g. mongodb+srv://user:password@cluster.mongodb.net/
+      'cluster.mongodb.net',
+      // Published vendor support address inside that vendor's own docs.
+      'info@sepay.vn',
     ];
 
     fc.assert(
@@ -125,7 +149,8 @@ describe('Property 11: No Emoji + No PII', () => {
         const relPath = path.relative(process.cwd(), filePath);
 
         // Skip known exempt paths (license files, font files, etc.)
-        if (PII_EXEMPT_PATTERNS.some((p) => relPath.includes(p))) return;
+        const posixPath = toPosix(relPath);
+        if (PII_EXEMPT_PATTERNS.some((p) => posixPath.includes(p))) return;
 
         const content = fs.readFileSync(filePath, 'utf-8');
 

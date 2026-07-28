@@ -139,7 +139,7 @@ function countByTier(powers: PowerEntry[]): Record<PowerTier, number> {
  * Interactive single-select prompt for tier selection using readline.
  * Arrow keys to navigate, Enter to confirm.
  */
-async function interactiveTierPrompt(powers: PowerEntry[]): Promise<PowersPromptResult> {
+async function interactiveTierPrompt(_powers: PowerEntry[]): Promise<PowersPromptResult> {
   if (!process.stdin.isTTY) {
     // Non-interactive fallback: use defaults
     return { selectedTiers: ['essential', 'recommended'], confirmMCP: true };

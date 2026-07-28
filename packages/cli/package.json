@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "lint": "eslint src/ --ext .ts",
+    "lint": "eslint src",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -64,17 +64,20 @@
     "zod": "^3.23.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9",
     "@types/diff": "^6.0.0",
     "@types/figlet": "1.5.8",
     "@types/gradient-string": "1.1.6",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.14.0",
     "@types/prompts": "2.4.9",
+    "eslint": "^9",
     "fast-check": "^3.19.0",
     "rimraf": "^6.0.0",
     "strip-ansi": "7.1.0",
     "tsup": "^8.1.0",
     "typescript": "^5.5.0",
+    "typescript-eslint": "^8",
     "vitest": "^2.0.0"
   }
 }

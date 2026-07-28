@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import fs from 'node:fs';
 import path from 'node:path';
-import { KKError, ErrorCodes } from './errors.js';
+import { ErrorCodes } from './errors.js';
 
 const ArtifactTypeSchema = z.enum([
   'steering', 'hook', 'mcp', 'skill', 'agent',

@@ -143,14 +143,12 @@ describe('ThemedPrompt validation', () => {
   });
 
   it('multiPickPresets validation runs even in non-TTY mode', async () => {
-    // Validation should fire before the non-TTY short-circuit
+    // An empty items array is a caller bug, not a runtime condition. Validation
+    // fires before the non-TTY short-circuit so the bug surfaces in CI too,
+    // rather than being masked by the [] return.
     const prompt = await createPrompt(makeCap({ isTTY: false }), makeTheme());
-    // Empty items should throw regardless of TTY
-    // Note: non-TTY path returns [] without calling prompts, but validation
-    // is in the TTY path. The non-TTY path skips validation by design
-    // (it returns [] immediately). This test documents that behaviour.
-    const result = await prompt.multiPickPresets([]);
-    // Non-TTY: returns [] without validating (no interactive prompt needed)
-    expect(result).toEqual([]);
+    await expect(prompt.multiPickPresets([])).rejects.toThrow(
+      /items must contain at least one entry/,
+    );
   });
 });

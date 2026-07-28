@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parse, validate, type Manifest } from './ManifestParser.js';
+import { parse, type Manifest } from './ManifestParser.js';
 import { KKError, ErrorCodes } from './errors.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

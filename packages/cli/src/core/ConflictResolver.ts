@@ -91,7 +91,6 @@ export async function resolve(opts: {
     return 'SKIP';
   }
 
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     const choice = await prompt(target);
 
