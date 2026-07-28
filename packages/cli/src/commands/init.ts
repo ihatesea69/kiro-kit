@@ -213,11 +213,11 @@ function getKitVersion(): string {
  * Each task receives the shared InitTaskContext and mutates it.
  *
  * @param presets   - Pre-loaded preset objects (from loadAll)
- * @param opts      - CLI options
+ * @param _opts     - CLI options (kept for signature stability; unused today)
  */
 function buildInitTasks(
   presets: ReturnType<typeof loadAll>,
-  opts: InitOptions,
+  _opts: InitOptions,
 ): TaskDef<InitTaskContext>[] {
   return [
     // ------------------------------------------------------------------
