@@ -23,10 +23,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # No `version:` here on purpose — pnpm/action-setup@v4 errors out if the
+      # version is declared both here and as `packageManager` in package.json.
+      # package.json is the single source of truth.
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Setup Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4

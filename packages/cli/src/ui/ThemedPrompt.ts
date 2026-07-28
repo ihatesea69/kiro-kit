@@ -68,7 +68,10 @@ export async function createPrompt(
   async function multiPickPresets(items: MultiSelectChoice[]): Promise<string[]> {
     validateMultiSelectItems(items);
 
-    if (!process.stdin.readable) {
+    // capability.isTTY is the injected source of truth: process.stdin.readable
+    // is still true for a pipe, so gating on it alone makes a non-interactive
+    // run (CI, `| cat`, a test) block forever on input that never arrives.
+    if (!capability.isTTY || !process.stdin.readable) {
       return [];
     }
 
@@ -320,7 +323,7 @@ export async function createPrompt(
   // confirm — readline-based Y/n
   // -------------------------------------------------------------------------
   async function confirm(message: string, defaultYes = true): Promise<boolean> {
-    if (!process.stdin.readable) return defaultYes;
+    if (!capability.isTTY || !process.stdin.readable) return defaultYes;
 
     return new Promise<boolean>((resolve, reject) => {
       const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
@@ -344,7 +347,7 @@ export async function createPrompt(
     options: Array<{ value: T; label: string; hint?: string }>,
     defaultIndex = 0,
   ): Promise<T> {
-    if (!process.stdin.readable) {
+    if (!capability.isTTY || !process.stdin.readable) {
       return options[Math.max(0, Math.min(defaultIndex, options.length - 1))].value;
     }
 
@@ -371,7 +374,7 @@ export async function createPrompt(
   // conflictChoice
   // -------------------------------------------------------------------------
   async function conflictChoice(targetRel: string): Promise<ConflictChoice['value']> {
-    if (!process.stdin.readable) return 'skip';
+    if (!capability.isTTY || !process.stdin.readable) return 'skip';
 
     return new Promise<ConflictChoice['value']>((resolve, reject) => {
       const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
@@ -399,7 +402,6 @@ export async function createPrompt(
 }
 
 
-import { loadPrompts, type PromptsFn } from './vendor.js';
 
 // ---------------------------------------------------------------------------
 // Interfaces

@@ -38,18 +38,8 @@ export interface ThemedBoxRenderer {
 }
 
 // ---------------------------------------------------------------------------
-// Variant → palette key mapping
+// Variant → colour mapping
 // ---------------------------------------------------------------------------
-
-type PaletteKey = 'primary' | 'secondary' | 'success' | 'warn' | 'danger';
-
-const VARIANT_COLOR: Record<BoxVariant, PaletteKey> = {
-  info: 'primary',
-  tip: 'secondary',
-  success: 'success',
-  warn: 'warn',
-  error: 'danger',
-};
 
 // Default hex values matching DEFAULT_PALETTE (used in ASCII fallback)
 const VARIANT_HEX: Record<BoxVariant, string> = {
@@ -166,7 +156,7 @@ function truncateVisible(s: string, maxLen: number): string {
  */
 export async function createThemedBox(
   capability: TerminalCapability,
-  theme: ThemeTokens,
+  _theme: ThemeTokens,
 ): Promise<ThemedBoxRenderer> {
   const [boxen, chalk] = await Promise.all([
     loadBoxen(),

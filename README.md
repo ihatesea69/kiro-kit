@@ -18,7 +18,7 @@
 npx kiro-kit init
 ```
 
-Pick from 6 curated presets with an interactive selector — arrow keys to move, Enter to select, Enter again to confirm. Your `.kiro/` workspace is ready with agents, skills, commands, hooks, MCP servers, Powers recommendations, and spec templates.
+Pick from 9 curated presets with an interactive selector — arrow keys to move, Enter to select, Enter again to confirm. Your `.kiro/` workspace is ready with agents, skills, commands, hooks, MCP servers, Powers recommendations, and spec templates.
 
 ```bash
 # or install globally
@@ -38,6 +38,7 @@ kiro-kit init
 | `data-ai` | Python, ML, AI agents | 20 agents, 30 skills, 70 commands for Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
 | `kiro-kit-dev` | TypeScript CLI, pnpm monorepo | 19 agents, 24 skills, 66 commands for developing Kiro-Kit itself — preset authoring, CLI architecture, vitest testing, spec library |
 | `sa` | Cloud architecture, draw.io, IaC | 26 agents, 28 skills, 69 commands for architecture diagrams (draw.io + Mermaid), SAD documents (.docx), decks (.pptx), CloudFormation + Terraform, Well-Architected reviews |
+| `ai-engineer` | AWS agents, MCP, Bedrock | 20 agents, 35 skills, 70 commands for chatbots and agents on Bedrock AgentCore — Runtime/Gateway/Memory, MCP server hosting, Strands Agents, Knowledge Bases RAG, guardrails, agent evaluation |
 
 Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 9+ cross-platform hooks (including 3 domain-specific), 7+ native Kiro Agent Hooks, a worked example spec, MCP server auto-config, an enriched Powers catalog, and spec scaffolding.
 
@@ -65,6 +66,7 @@ inside the IDE. Every preset gets 4 shared hooks plus 3 domain-specific ones:
 - **mobile**: Platform Parity Check, Asset Optimization, Release Checklist
 - **devops**: Terraform Plan Review, Container Scan, Cost Estimate
 - **data-ai**: Experiment Log, Data Validation, Model Card Update
+- **ai-engineer**: Prompt Change Eval, Tool Contract Check, Agent Card Update
 - **backend / fullstack / devops / sa** also get the feature hook **Deep Scan Stale**
   (see Deep Security Scan below)
 
@@ -126,6 +128,7 @@ Mermaid diagrams, task-to-requirement traceability, and an end-to-end verificati
 | devops | Blue-Green Deploy · AWS Serverless API (Lambda/API GW/DynamoDB/CDK) · AWS CDK Infrastructure · CI/CD Pipeline |
 | data-ai | Churn Prediction · Model Evaluation Pipeline · LLM Evaluation Harness · RAG Chatbot |
 | sa | Three-Tier Web Architecture · Event-Driven Microservices · Data Lake · Multi-Region DR |
+| ai-engineer | AgentCore Support Chatbot · MCP Server on Lambda · RAG Knowledge Assistant · Multi-Agent Orchestrator |
 
 A `spec-driven-development.md` steering file teaches the EARS patterns and the
 requirements→design→tasks approval gates. Scaffold your own with:
@@ -160,6 +163,7 @@ credential-free MCP-backed Powers** and scaffold the credentialed ones disabled:
 | data-ai | ClickHouse | Context7, Exa, Hugging Face | Neon, New Relic, Weights & Biases, Pinecone, LangSmith |
 | kiro-kit-dev | Context7 | Snyk | Postman |
 | sa | Terraform, AWS CDK | Context7, Figma | Datadog, Snyk |
+| ai-engineer | AWS IaC, Terraform | Context7, Exa, Hugging Face | Langfuse, LangSmith, Datadog, Pinecone, Snyk |
 
 Running `init` auto-configures MCP servers (credential-free ones enabled;
 credentialed ones as disabled templates), documents required env vars in
@@ -238,7 +242,7 @@ See [`docs/architecture.md`](./docs/architecture.md) for the module breakdown an
 - Timestamped backups with `restore` and `restore --list`
 - Tracking file (`.kiro/.kiro-kit.json`) records what came from where
 - Property-based tests verify invariants (round-trips, commutativity, idempotency)
-- Structural tests enforce minimum thresholds across all 6 presets
+- Structural tests enforce minimum thresholds across all 9 presets
 
 ## Privacy
 

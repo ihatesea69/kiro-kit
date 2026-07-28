@@ -10,6 +10,7 @@ const artifactTypes = [
 
 const presetNames = [
   'frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai', 'kiro-kit-dev', 'sa',
+  'ai-engineer',
 ] as const;
 
 const fileEntryArb = fc.record({

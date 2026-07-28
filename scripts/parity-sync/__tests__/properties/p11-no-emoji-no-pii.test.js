@@ -2,7 +2,6 @@
 // **Validates: Requirements 1.6, 11.6, 16.1, 16.2, 16.3, 16.4, 17.4, 19.3**
 'use strict';
 
-const fc = require('fast-check');
 const fs = require('fs');
 const path = require('path');
 
@@ -28,6 +27,17 @@ const EMOJI_EXEMPT_PATTERNS = [
   'workflows/documentation',
   'canvas-fonts/',
   'ooxml/schemas/',
+  // Vendored skill content carried in from the source kit, where the emoji are
+  // load-bearing status indicators in tables (speed/accuracy/token-usage keys).
+  'workflows/repo-analysis',
+  'workflows/topic-search',
+  'skills/debugging/scripts/find-polluter',
+  'skills/frontend-design/references/animejs',
+  'skills/mcp-builder/SKILL.md',
+  // Notification setup guides: the emoji sit inside fenced "example message"
+  // blocks showing what Discord/Telegram render, not in Kiro-Kit's own output.
+  'hooks/discord-hook-setup',
+  'hooks/telegram-hook-setup',
 ];
 
 // Known paths/patterns with legitimate emails (font licenses, service accounts)
@@ -38,6 +48,13 @@ const PII_EXEMPT_PATTERNS = [
   'ooxml/',
   '.iam.gserviceaccount.com',
 ];
+
+// Exempt patterns are written with forward slashes. path.relative() yields
+// backslashes on Windows, so compare against a normalised path or every
+// exemption silently misses there (and only there).
+function toPosix(p) {
+  return p.split(path.sep).join('/');
+}
 
 function walkMdJsonFiles(dir) {
   const results = [];
@@ -71,31 +88,24 @@ describe('Property 11: No Emoji + No PII', () => {
   it('no emoji found in preset .md/.json files (excluding known exempt paths)', () => {
     if (allFiles.length === 0) return;
 
-    const arbFileIndex = fc.integer({ min: 0, max: allFiles.length - 1 });
+    // The file set is finite and small, so check every file rather than
+    // sampling 100 of them at random: sampling made a real violation surface
+    // only intermittently, which reads as CI flake instead of a bug.
+    const violations = [];
+    for (const filePath of allFiles) {
+      const relPath = path.relative(process.cwd(), filePath);
+      const posixPath = toPosix(relPath);
+      if (EMOJI_EXEMPT_PATTERNS.some((p) => posixPath.includes(p))) continue;
 
-    fc.assert(
-      fc.property(arbFileIndex, (idx) => {
-        const filePath = allFiles[idx];
-        const relPath = path.relative(process.cwd(), filePath);
+      const match = fs.readFileSync(filePath, 'utf-8').match(EMOJI_RE);
+      if (match) violations.push(`${posixPath}: "${match[0]}"`);
+    }
 
-        // Skip known pre-existing emoji paths
-        if (EMOJI_EXEMPT_PATTERNS.some((p) => relPath.includes(p))) return;
-
-        const content = fs.readFileSync(filePath, 'utf-8');
-        const match = content.match(EMOJI_RE);
-        expect(
-          match,
-          `Emoji found in ${relPath}: "${match?.[0]}"`
-        ).toBeNull();
-      }),
-      { numRuns: 100 }
-    );
+    expect(violations, 'Emoji found in:\n  ' + violations.join('\n  ')).toEqual([]);
   });
 
   it('no PII (real email) found in preset .md/.json files (excluding exempt paths)', () => {
     if (allFiles.length === 0) return;
-
-    const arbFileIndex = fc.integer({ min: 0, max: allFiles.length - 1 });
 
     // Allowlist for legitimate patterns
     const ALLOWED_EMAIL_DOMAINS = [
@@ -117,30 +127,28 @@ describe('Property 11: No Emoji + No PII', () => {
       'mail.com',
       'gmail.com',  // generic example references
       'org.example',
+      // Not an address: the userinfo half of a MongoDB connection string,
+      // e.g. mongodb+srv://user:password@cluster.mongodb.net/
+      'cluster.mongodb.net',
+      // Published vendor support address inside that vendor's own docs.
+      'info@sepay.vn',
     ];
 
-    fc.assert(
-      fc.property(arbFileIndex, (idx) => {
-        const filePath = allFiles[idx];
-        const relPath = path.relative(process.cwd(), filePath);
+    // Exhaustive for the same reason as the emoji check above.
+    const violations = [];
+    for (const filePath of allFiles) {
+      const relPath = path.relative(process.cwd(), filePath);
+      const posixPath = toPosix(relPath);
+      if (PII_EXEMPT_PATTERNS.some((p) => posixPath.includes(p))) continue;
 
-        // Skip known exempt paths (license files, font files, etc.)
-        if (PII_EXEMPT_PATTERNS.some((p) => relPath.includes(p))) return;
+      const content = fs.readFileSync(filePath, 'utf-8');
+      const emailMatches = content.match(new RegExp(EMAIL_RE.source, 'g')) || [];
+      const realEmails = emailMatches.filter(
+        (e) => !ALLOWED_EMAIL_DOMAINS.some((d) => e.toLowerCase().includes(d))
+      );
+      if (realEmails.length > 0) violations.push(`${posixPath}: ${realEmails.join(', ')}`);
+    }
 
-        const content = fs.readFileSync(filePath, 'utf-8');
-
-        // Check email
-        const emailMatches = content.match(new RegExp(EMAIL_RE.source, 'g')) || [];
-        const realEmails = emailMatches.filter(
-          (e) => !ALLOWED_EMAIL_DOMAINS.some((d) => e.toLowerCase().includes(d))
-        );
-
-        expect(
-          realEmails.length,
-          `PII email found in ${relPath}: ${realEmails.join(', ')}`
-        ).toBe(0);
-      }),
-      { numRuns: 100 }
-    );
+    expect(violations, 'PII email found in:\n  ' + violations.join('\n  ')).toEqual([]);
   });
 });
