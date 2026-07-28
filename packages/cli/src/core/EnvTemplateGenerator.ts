@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { KKError, ErrorCodes } from './errors.js';
-import type { MCPPresetConfig, MCPServerEntry } from './MCPConfigurator.js';
+import type { MCPPresetConfig } from './MCPConfigurator.js';
 import type { PowerEntry } from './PowersLoader.js';
 
 /**

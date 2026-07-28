@@ -52,7 +52,7 @@ export interface SpinnerHandle {
  */
 export async function createSpinner(
   capability: TerminalCapability,
-  theme: ThemeTokens,
+  _theme: ThemeTokens,
 ): Promise<SpinnerHandle> {
   // -------------------------------------------------------------------------
   // Animated path: wrap ora

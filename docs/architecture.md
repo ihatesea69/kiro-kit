@@ -60,7 +60,7 @@ packages/cli/src/
 
 ### Bundled Presets (Offline-First)
 
-All 6 presets are copied into `dist/presets/` at build time via tsup. The CLI
+All 9 presets are copied into `dist/presets/` at build time via tsup. The CLI
 reads preset content from its own package directory, requiring no network access
 after `npm install` or `npx` fetch.
 

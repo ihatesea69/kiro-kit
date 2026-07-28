@@ -1,5 +1,5 @@
 ---
-description: 🔒🔒🔒 Whole-repository deep security scan (multi-agent pipeline, findings workspace)
+description: Whole-repository deep security scan (multi-agent pipeline, findings workspace)
 inclusion: manual
 argument-hint: "[path] [partitions] [--semgrep]"
 ---

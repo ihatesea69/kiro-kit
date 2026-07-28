@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import fs from 'node:fs';
 import path from 'node:path';
-import { KKError, ErrorCodes } from './errors.js';
+import { ErrorCodes } from './errors.js';
 
 const ArtifactTypeSchema = z.enum([
   'steering', 'hook', 'mcp', 'skill', 'agent',
@@ -12,6 +12,7 @@ const ArtifactTypeSchema = z.enum([
 
 const PresetNameSchema = z.enum([
   'frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai', 'kiro-kit-dev', 'sa',
+  'ai-engineer',
 ]);
 
 const FileEntrySchema = z.object({

@@ -1,0 +1,19 @@
+{
+  "enabled": false,
+  "name": "Prompt Change Eval",
+  "description": "When a system prompt, agent definition, or model id changes, re-run the offline eval set before it ships.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/prompts/**/*.{md,txt,py,yaml,yml}",
+      "**/agent*.py",
+      "**/agents/**/*.py",
+      "**/*prompt*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A prompt, agent definition, or model id changed. Prompts are code: (1) identify which golden-set cases in evals/ exercise the changed behaviour; (2) run the offline eval harness and compare against the thresholds in evals/thresholds.yaml; (3) report any metric that regressed — especially faithfulness, citation coverage, and tool-selection accuracy — with the specific failing cases. Do not loosen a threshold; if the change is intentional, say so and leave the threshold decision to the reviewer."
+  }
+}

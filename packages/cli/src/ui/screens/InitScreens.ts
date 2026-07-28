@@ -84,7 +84,7 @@ function sanitizePath(s: string): string {
  * @param ctx - InitContext with capability, theme, and cliVersion
  */
 export async function createInitScreens(ctx: InitContext): Promise<InitScreens> {
-  const { capability, theme, cliVersion } = ctx;
+  const { capability, theme } = ctx;
 
   // Pre-load async component factories
   const [logo, box] = await Promise.all([
