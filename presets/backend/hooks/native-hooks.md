@@ -32,6 +32,10 @@ scripts or `runCommand` for deterministic checks.
 - **API Contract Sync** — When a route/handler changes, update the OpenAPI spec to match. (`fileEdited`)
 - **Endpoint Test Coverage** — When a new endpoint is added, scaffold integration tests for its success and error paths. (`fileCreated`)
 
+## Feature hooks
+
+- **Deep Scan Stale** — Manual check of whether the last deep security scan is stale (>30 days) or predates significant source changes. (`userTriggered`)
+
 ## Triggers reference
 
 `fileEdited`, `fileCreated`, `fileDeleted`, `userTriggered`, `promptSubmit`,

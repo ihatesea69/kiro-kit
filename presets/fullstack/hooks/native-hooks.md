@@ -32,6 +32,10 @@ scripts or `runCommand` for deterministic checks.
 - **Env Schema Sync** — When .env.example changes, update the runtime env validation schema. (`fileEdited`)
 - **Deployment Readiness** — Manual pre-deploy checklist across frontend, backend, and infra. (`userTriggered`)
 
+## Feature hooks
+
+- **Deep Scan Stale** — Manual check of whether the last deep security scan is stale (>30 days) or predates significant source changes. (`userTriggered`)
+
 ## Triggers reference
 
 `fileEdited`, `fileCreated`, `fileDeleted`, `userTriggered`, `promptSubmit`,

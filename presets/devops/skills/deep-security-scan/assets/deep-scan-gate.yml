@@ -1,0 +1,56 @@
+# Deep Security Scan gate — copy to .github/workflows/deep-scan-gate.yml
+#
+# The scan itself is agent-driven and runs in Kiro, not in CI. This workflow
+# consumes the scan artifacts that were committed to the repo
+# (.kiro/security/scans/<date>-<n>/findings.json) and fails the build when an
+# open finding at or above the threshold remains, or when the newest scan has
+# gone stale.
+#
+# Prerequisite: commit the scan directory produced by /security:deep-scan.
+name: Deep Security Scan Gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    # Weekly staleness check, Mondays 03:00 UTC.
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    name: Findings gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fail on open CRITICAL/HIGH findings
+        run: |
+          node .kiro/skills/deep-security-scan/scripts/check-findings.mjs \
+            --fail-on HIGH \
+            --format github
+
+      # Staleness is advisory on PRs and blocking on the weekly schedule, so a
+      # stale scan never blocks unrelated work but does get surfaced.
+      - name: Check scan freshness
+        if: github.event_name == 'schedule'
+        run: |
+          node .kiro/skills/deep-security-scan/scripts/check-findings.mjs \
+            --fail-on CRITICAL \
+            --max-age-days 30
+
+      - name: Upload scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deep-security-scan
+          path: .kiro/security/scans/
+          if-no-files-found: warn

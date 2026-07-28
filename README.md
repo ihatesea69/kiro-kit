@@ -31,15 +31,15 @@ kiro-kit init
 | Preset | Stack | What you get |
 |--------|-------|--------------|
 | `frontend` | React, Next.js, TypeScript | 20 agents, 23 skills, 71 commands tailored for component architecture, accessibility, and performance |
-| `backend` | Node, Python, Go APIs | 19 agents, 24 skills, 66 commands for API design, database management, auth, deployment patterns |
-| `fullstack` | Next.js, T3 stack | 20 agents, 30 skills, 73 commands covering frontend plus backend, payment integration, e-commerce |
+| `backend` | Node, Python, Go APIs | 25 agents, 25 skills, 67 commands for API design, database management, auth, deployment patterns, deep security scanning |
+| `fullstack` | Next.js, T3 stack | 26 agents, 31 skills, 74 commands covering frontend plus backend, payment integration, e-commerce, deep security scanning |
 | `mobile` | Flutter, React Native | 23 agents, 28 skills, 71 commands for mobile-first patterns, ai-multimodal, ui-styling |
-| `devops` | Docker, Kubernetes, Terraform | 20 agents, 26 skills, 65 commands for CI checks, container scanning, infrastructure as code |
+| `devops` | Docker, Kubernetes, Terraform | 26 agents, 27 skills, 66 commands for CI checks, container scanning, infrastructure as code, deep security scanning |
 | `data-ai` | Python, ML, AI agents | 20 agents, 30 skills, 70 commands for Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
 | `kiro-kit-dev` | TypeScript CLI, pnpm monorepo | 19 agents, 24 skills, 66 commands for developing Kiro-Kit itself — preset authoring, CLI architecture, vitest testing, spec library |
-| `sa` | Cloud architecture, draw.io, IaC | 20 agents, 27 skills, 68 commands for architecture diagrams (draw.io + Mermaid), SAD documents (.docx), decks (.pptx), CloudFormation + Terraform, Well-Architected reviews |
+| `sa` | Cloud architecture, draw.io, IaC | 26 agents, 28 skills, 69 commands for architecture diagrams (draw.io + Mermaid), SAD documents (.docx), decks (.pptx), CloudFormation + Terraform, Well-Architected reviews |
 
-Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 9+ cross-platform hooks (including 3 domain-specific), 7 native Kiro Agent Hooks, a worked example spec, MCP server auto-config, an enriched Powers catalog, and spec scaffolding.
+Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 9+ cross-platform hooks (including 3 domain-specific), 7+ native Kiro Agent Hooks, a worked example spec, MCP server auto-config, an enriched Powers catalog, and spec scaffolding.
 
 ## CLI Experience
 
@@ -65,12 +65,49 @@ inside the IDE. Every preset gets 4 shared hooks plus 3 domain-specific ones:
 - **mobile**: Platform Parity Check, Asset Optimization, Release Checklist
 - **devops**: Terraform Plan Review, Container Scan, Cost Estimate
 - **data-ai**: Experiment Log, Data Validation, Model Card Update
+- **backend / fullstack / devops / sa** also get the feature hook **Deep Scan Stale**
+  (see Deep Security Scan below)
 
 Every native hook ships **disabled** (`"enabled": false`) so a fresh workspace
 never starts an agent run you didn't ask for. Toggle one on in Kiro's Agent Hooks
 panel (or set `"enabled": true`). See each preset's `hooks/native-hooks.md` guide.
 These are distinct from the cross-platform shell notifier scripts (`.js`/`.sh`/`.ps1`)
 that also ship in `hooks/`.
+
+## Deep Security Scan
+
+The `backend`, `fullstack`, `devops`, and `sa` presets ship a whole-repository
+security scan: `/security:deep-scan [path]`. It runs a multi-agent pipeline —
+recon partitions the attack surface, parallel finders trace data flow from user
+inputs to sensitive sinks, one adversarial validator per candidate scores
+confidence 1–10 (anything below 8 is dropped), a serial judge dedups by root
+cause, and a reporter writes the results.
+
+Output is a findings workspace under `.kiro/security/scans/<date>-<n>/`:
+`report.md` (human entry point), `findings/<slug>/finding.md` per issue,
+`hardening/` structural recommendations, plus `scan-manifest.json`,
+`findings.json` (the CI contract), and `coverage.json`.
+
+**CI gate** — `findings.json` is machine-readable, and the bundled
+`check-findings.mjs` (zero dependencies) fails a build on any open CRITICAL/HIGH
+finding or on a stale scan. Copy `assets/deep-scan-gate.yml` for GitHub Actions:
+
+```bash
+node .kiro/skills/deep-security-scan/scripts/check-findings.mjs --fail-on HIGH
+```
+
+**Re-scans** track a finding across its whole life: matched by root cause (so the
+slug stays stable), marked `new` / `persisting` / `regressed`, with a `delta.md`
+per re-scan. A scoped re-scan will never mark a finding outside its scope as
+fixed. **`--semgrep`** optionally adds SAST-first candidate generation with
+LLM triage, when Semgrep is installed — those candidates still pass through the
+same adversarial gate.
+
+Scopes are deliberately separate: `/review:security` is the fast per-diff gate,
+`security-auditor` covers infrastructure and compliance, and the deep scan owns
+whole-repo application-code vulnerabilities. Categories with poor
+signal-to-noise — DoS, rate limiting, resource exhaustion, open redirects, and
+generic input validation without a proven exploit path — are never reported.
 
 ## Spec-Driven Best Practices
 
