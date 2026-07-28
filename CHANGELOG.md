@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-07-28
+
+### Added
+
+- **`deep-security-scan` feature** — a whole-repository security scan added to the `backend`, `fullstack`, `devops`, and `sa` presets (12 files each). Clones the *contract* of Codex Security's Deep Scan (scopeable invocation, preflight, findings-workspace output); the pipeline is our own, built on published open-source security-review methodology plus multi-agent recon-partitioning and serial-judge dedup patterns.
+  - **Command** `commands/security/deep-scan.md` — `/security:deep-scan [path] [partitions]`, orchestrating preflight → recon → parallel find → adversarial validate → serial judge → report.
+  - **5 agents**: `security-recon` (partitions the attack surface, writes `scan-manifest.json`), `security-finder` (per-partition data-flow hunter, writes candidates incrementally so a dead subagent loses nothing), `security-validator` (prompted to *refute* one candidate, confidence 1–10 — **below 8 is dropped**), `security-judge` (single serial dedup pass by root cause: new / better-example / duplicate), `security-reporter` (writes the findings workspace).
+  - **Skill** `deep-security-scan` (SKILL.md + `severity-taxonomy.md`, `finding-template.md`, `vuln-classes.md` references) — three-phase methodology (repository context → comparative analysis vs the codebase's own defenses → data-flow assessment), the severity ladder, and the **hard exclusions** (DoS, rate limiting, resource exhaustion, open redirects, generic input validation without a proven exploit path) that keep false positives near zero.
+  - **Steering** `security-scanning.md` — the scope split (`/review:security` = per-diff gate · `security-auditor` = infra/compliance · deep scan = whole-repo application code) plus the findings-workspace contract: append-only scan history, `findings.json` as the CI contract, read-only scans.
+  - **Native hook** `deep-scan-stale.kiro.hook` (`userTriggered`, disabled by default) — reports whether the last scan is stale or predates material source changes.
+  - Output workspace: `.kiro/security/scans/<yyyy-mm-dd>-<n>/` with `report.md`, `findings/<slug>/finding.md`, `hardening/<topic>.md`, `scan-manifest.json`, `findings.json`, `coverage.json`.
+- `generate-native-hooks.mjs` now emits per-feature hooks (`DEEP_SCAN_PRESETS`) alongside shared and domain hooks, including for presets outside its main loop (`sa`).
+
 ## [0.8.1] - 2026-07-28
 
 ### Fixed

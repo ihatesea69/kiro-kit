@@ -1987,6 +1987,66 @@
       "source": "specs/example-webhook-delivery-system/tasks.md",
       "target": ".kiro/specs/example-webhook-delivery-system/tasks.md",
       "type": "spec"
+    },
+    {
+      "source": "agents/security-finder.md",
+      "target": ".kiro/agents/security-finder.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/security-judge.md",
+      "target": ".kiro/agents/security-judge.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/security-recon.md",
+      "target": ".kiro/agents/security-recon.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/security-reporter.md",
+      "target": ".kiro/agents/security-reporter.md",
+      "type": "agent"
+    },
+    {
+      "source": "agents/security-validator.md",
+      "target": ".kiro/agents/security-validator.md",
+      "type": "agent"
+    },
+    {
+      "source": "commands/security/deep-scan.md",
+      "target": ".kiro/commands/security/deep-scan.md",
+      "type": "command"
+    },
+    {
+      "source": "hooks/deep-scan-stale.kiro.hook",
+      "target": ".kiro/hooks/deep-scan-stale.kiro.hook",
+      "type": "hook"
+    },
+    {
+      "source": "skills/deep-security-scan/SKILL.md",
+      "target": ".kiro/skills/deep-security-scan/SKILL.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/deep-security-scan/references/finding-template.md",
+      "target": ".kiro/skills/deep-security-scan/references/finding-template.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/deep-security-scan/references/severity-taxonomy.md",
+      "target": ".kiro/skills/deep-security-scan/references/severity-taxonomy.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/deep-security-scan/references/vuln-classes.md",
+      "target": ".kiro/skills/deep-security-scan/references/vuln-classes.md",
+      "type": "skill"
+    },
+    {
+      "source": "steering/security-scanning.md",
+      "target": ".kiro/steering/security-scanning.md",
+      "type": "steering"
     }
   ],
   "mcpServers": {
