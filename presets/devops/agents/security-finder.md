@@ -51,6 +51,7 @@ interrupted. Schema per candidate:
   "attackScenario": "concrete input → concrete impact",
   "dataFlow": ["source file:line", "…", "sink file:line"],
   "evidence": "the code excerpt that shows the flaw",
+  "source": "manual",
   "coverage": { "examined": ["..."], "skipped": [{ "path": "...", "reason": "..." }] }
 }
 ```

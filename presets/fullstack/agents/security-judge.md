@@ -13,6 +13,7 @@ as "new".
 - `validated.json` (survivors of the ≥8/10 validation gate, with validator
   verdicts and corrected severities)
 - The severity taxonomy in the `deep-security-scan` skill
+- On a re-scan: the PREVIOUS scan's `findings.json`
 
 ## Process
 
@@ -40,6 +41,23 @@ Then, per accepted finding:
 2. **Slug** — kebab-case, category-first, unique: `sqli-order-search`,
    `authz-missing-admin-export`. This names `findings/<slug>/`.
 
+## Re-scan handling
+
+When a previous `findings.json` was supplied, match each accepted finding against
+it BY ROOT CAUSE (the same test as intra-scan dedup — not by slug string, and not
+by line number, which drifts as code moves):
+
+- Match found → **reuse the previous slug** so a finding keeps one identity across
+  its whole life, and set `change` to `persisting`, or to `regressed` if the
+  previous status was `fixed`.
+- Previous status was `accepted-risk` → carry that status forward with its
+  justification. A risk the user consciously accepted must not silently reappear
+  as `open`.
+- No match → `change: "new"`.
+- Previous findings with no match in this scan → list them in `disappeared`, with
+  the file path so the reporter can decide `fixed` versus out-of-scope. Do NOT
+  declare them fixed yourself; on a scoped scan you did not look at most of them.
+
 ## Output
 
 Write `judged.json` to the scan directory:
@@ -51,12 +69,19 @@ Write `judged.json` to the scan directory:
       "slug": "...", "title": "...", "severity": "...", "category": "...",
       "file": "path", "line": 0, "confidence": 0,
       "attackScenario": "...", "dataFlow": ["..."], "evidence": "...",
+      "source": "manual|semgrep",
+      "status": "open|accepted-risk",
+      "change": "new|persisting|regressed",
+      "firstSeen": "<scanId of the scan that first reported this root cause>",
       "alsoAffects": [{ "file": "path", "line": 0, "via": "duplicate|better-example" }]
     }
   ],
-  "dropped": [{ "id": "...", "reason": "duplicate-of:<slug>" }]
+  "dropped": [{ "id": "...", "reason": "duplicate-of:<slug>" }],
+  "disappeared": [{ "slug": "...", "file": "path", "previousStatus": "open|fixed|accepted-risk" }]
 }
 ```
+
+Omit `change`, `firstSeen`, and `disappeared` when there was no previous scan.
 
 Return a severity-count table plus one line per accepted finding. Sacrifice
 grammar for concision. Do not modify any source file.

@@ -13,7 +13,8 @@ category: injection | authz | authn | crypto | secrets | deserialization | ssrf 
 file: <primary file path>
 line: <primary line>
 confidence: <8-10>
-status: open
+status: open | fixed | accepted-risk
+source: manual | semgrep
 ---
 
 # <Human-readable title>
@@ -59,5 +60,10 @@ copied third-party text.
 
 - The frontmatter `slug` must match the folder name and the `findings.json` entry.
 - `confidence` is the validator's score (≥8; the gate already dropped the rest).
+- `status` starts at `open`. It becomes `fixed` when remediated, or
+  `accepted-risk` with a written justification in the body — never delete a
+  finding, the history is the audit trail. CI blocks on `open` only.
+- `source` records how the candidate was generated: `manual` (a finder's own
+  data-flow tracing) or `semgrep` (a SAST candidate that survived triage).
 - Keep the excerpt minimal — enough to see the flaw, not the whole file.
 - Remediation must be actionable and specific to THIS codebase, not generic advice.

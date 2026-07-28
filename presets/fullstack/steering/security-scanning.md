@@ -41,6 +41,7 @@ Every scan writes exactly this, and nothing outside it:
   scan-manifest.json     # target, partitions, frameworks, entry points, agent counts
   findings.json          # machine-readable — CI consumes this
   coverage.json          # per-partition examined / skipped / status
+  delta.md               # re-scans only — fixed / new / regressed / persisting
 ```
 
 - Scans are **append-only history**: never overwrite or delete a previous scan
@@ -48,12 +49,38 @@ Every scan writes exactly this, and nothing outside it:
 - Scans never modify source code. Remediation is a separate, explicit task.
 - `findings.json` is the CI contract. A pipeline may fail the build on any
   `severity: CRITICAL` or `HIGH` with `status: open`.
-- Fixed a finding? Set its `status` to `fixed` in the finding's frontmatter and in
-  `findings.json`, in place. Don't delete the finding — the history is the audit trail.
-- Numbers in `report.md`, `findings.json`, and `coverage.json` must always agree.
+- `status` is `open` (blocks CI), `fixed`, or `accepted-risk`. Changing it means
+  editing the finding's frontmatter AND `findings.json`, in place. Don't delete the
+  finding — the history is the audit trail. `accepted-risk` requires a written
+  justification in the finding body.
+- A finding keeps ONE slug for its whole life. Re-scans match by root cause and
+  reuse the previous slug, so `findings/<slug>/` is stable across scans.
+- Numbers in `report.md`, `findings.json`, `coverage.json`, and `delta.md` must
+  always agree.
 
-## Scoping
+## CI gate
+
+`skills/deep-security-scan/scripts/check-findings.mjs` reads the newest scan and
+exits non-zero on open findings at or above a threshold:
+
+```bash
+node .kiro/skills/deep-security-scan/scripts/check-findings.mjs --fail-on HIGH
+```
+
+`assets/deep-scan-gate.yml` is the GitHub Actions template. CI consumes scans; it
+never authors or edits them. Never lower `--fail-on` to turn a build green — fix
+the finding, or mark it `accepted-risk` with justification so the decision lands in
+the audit trail. Details in `references/ci-integration.md`.
+
+## Scoping and re-scans
 
 `/security:deep-scan <path>` scopes to a subfolder. Prefer scoped scans on large
 repos (>~2,000 source files) — a full pass there is shallower per-file than several
 scoped passes.
+
+A scan that finds a previous one becomes a re-scan and produces a delta. The one
+rule that matters: **only findings inside the scanned scope may be marked `fixed`**.
+Anything outside was never examined; carry it forward unchanged and say so in
+`delta.md`. `--semgrep` additionally enables hybrid SAST-first candidate generation
+when Semgrep is installed — its output is a candidate list, never a finding list,
+and everything still passes the ≥8/10 adversarial gate.

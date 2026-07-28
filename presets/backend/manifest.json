@@ -2047,6 +2047,31 @@
       "source": "steering/security-scanning.md",
       "target": ".kiro/steering/security-scanning.md",
       "type": "steering"
+    },
+    {
+      "source": "agents/security-triage.md",
+      "target": ".kiro/agents/security-triage.md",
+      "type": "agent"
+    },
+    {
+      "source": "skills/deep-security-scan/assets/deep-scan-gate.yml",
+      "target": ".kiro/skills/deep-security-scan/assets/deep-scan-gate.yml",
+      "type": "skill"
+    },
+    {
+      "source": "skills/deep-security-scan/references/ci-integration.md",
+      "target": ".kiro/skills/deep-security-scan/references/ci-integration.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/deep-security-scan/references/semgrep-hybrid.md",
+      "target": ".kiro/skills/deep-security-scan/references/semgrep-hybrid.md",
+      "type": "skill"
+    },
+    {
+      "source": "skills/deep-security-scan/scripts/check-findings.mjs",
+      "target": ".kiro/skills/deep-security-scan/scripts/check-findings.mjs",
+      "type": "skill"
     }
   ],
   "mcpServers": {
