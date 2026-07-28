@@ -1,0 +1,107 @@
+{
+  "powers": [
+    {
+      "name": "AWS Infrastructure as Code",
+      "url": "https://kiro.dev/powers/aws-infrastructure-as-code",
+      "description": "CDK and CloudFormation for AgentCore, Lambda, and Bedrock Knowledge Base resources",
+      "tier": "essential",
+      "category": "infrastructure",
+      "auth": "none"
+    },
+    {
+      "name": "Terraform",
+      "url": "https://kiro.dev/powers/terraform",
+      "description": "Provision AgentCore Runtime/Gateway, MCP servers, and Bedrock resources as code",
+      "tier": "essential",
+      "category": "infrastructure",
+      "auth": "none"
+    },
+    {
+      "name": "Context7",
+      "url": "https://kiro.dev/powers/context7",
+      "description": "Up-to-date SDK documentation lookup (Strands, MCP, Bedrock, LangGraph)",
+      "tier": "recommended",
+      "category": "docs",
+      "auth": "none",
+      "mcpBacked": true
+    },
+    {
+      "name": "Exa",
+      "url": "https://kiro.dev/powers/exa",
+      "description": "Neural web search for grounding designs against fast-moving AWS documentation",
+      "tier": "recommended",
+      "category": "ai",
+      "auth": "apiKey",
+      "envVars": [
+        "EXA_API_KEY"
+      ]
+    },
+    {
+      "name": "Hugging Face",
+      "url": "https://kiro.dev/powers/hugging-face",
+      "description": "Open models, datasets, and inference endpoints for non-Bedrock providers",
+      "tier": "recommended",
+      "category": "ai",
+      "auth": "apiKey",
+      "envVars": [
+        "HF_TOKEN"
+      ]
+    },
+    {
+      "name": "Langfuse",
+      "url": "https://kiro.dev/powers/langfuse",
+      "description": "Open-source tracing, evaluation, and prompt management for LLM agents",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "LANGFUSE_PUBLIC_KEY",
+        "LANGFUSE_SECRET_KEY"
+      ]
+    },
+    {
+      "name": "LangSmith",
+      "url": "https://kiro.dev/powers/langsmith",
+      "description": "Tracing, evals, and monitoring for LLM and agent applications",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "LANGCHAIN_API_KEY"
+      ]
+    },
+    {
+      "name": "Datadog",
+      "url": "https://kiro.dev/powers/datadog",
+      "description": "Production observability for agent latency, token cost, and error budgets",
+      "tier": "optional",
+      "category": "observability",
+      "auth": "apiKey",
+      "envVars": [
+        "DD_API_KEY"
+      ]
+    },
+    {
+      "name": "Pinecone",
+      "url": "https://kiro.dev/powers/pinecone",
+      "description": "Managed vector database when a Bedrock Knowledge Base vector store is not the fit",
+      "tier": "optional",
+      "category": "database",
+      "auth": "apiKey",
+      "envVars": [
+        "PINECONE_API_KEY"
+      ]
+    },
+    {
+      "name": "Snyk",
+      "url": "https://kiro.dev/powers/snyk",
+      "description": "Dependency and container scanning for agent runtime images",
+      "tier": "optional",
+      "category": "security",
+      "auth": "apiKey",
+      "envVars": [
+        "SNYK_TOKEN"
+      ]
+    }
+  ]
+}

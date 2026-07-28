@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] - 2026-07-28
+
+### Added
+
+- **New `ai-engineer` preset** (the 9th) — for building production chatbots and AI agents on AWS. Based on the `data-ai` preset (20 agents, 35 skills, 70 commands) with:
+  - **Specialized skills**: `bedrock-agentcore` (Runtime deployment, Harness vs Runtime vs Lambda, Memory tiers, the `0.0.0.0:8000/mcp` streamable-HTTP contract), `agentcore-gateway-mcp` (Lambda/OpenAPI/Smithy → MCP tools, the four outbound auth modes, the IAM SigV4 compatibility matrix, semantic tool discovery via `x_amz_bedrock_agentcore_search`, the `DYNAMIC`-mode gotcha), `mcp-server-hosting` (remote MCP on Lambda/Fargate/Runtime, OAuth via Cognito/Okta/Auth0, the RFC 7235 401 + `WWW-Authenticate` handshake), `strands-agents` (the default framework — model-driven tool loop, MCP clients, multi-agent, streaming, hooks), `bedrock-rag` (Knowledge Bases, chunking, hybrid search, verified citations, contextual grounding), `agent-evaluation` (golden sets, deterministic checks, LLM-as-a-Judge, CI thresholds, drift monitoring).
+  - **Steering**: `aws-native-agents` (AgentCore component map + the Harness/Runtime/Lambda decision tree), `mcp-architecture` (client/server/transport model, hosting choices, the auth decision tree, the two production gotchas), `agent-design-patterns` (escalation ladder, tool-loop invariants, supervisor/worker, memory tiers), `agent-evaluation` (eval as CI gate), `responsible-ai` (guardrails, prompt-injection defence, PII, cost caps), plus `spec-driven-development`.
+  - **Domain native hooks**: Prompt Change Eval, Tool Contract Check, Agent Card Update (replacing the inherited ML-flavoured ones).
+  - **4 example agent specs** (each with `.config.kiro`, enhanced template): AgentCore Support Chatbot (Strands on Runtime + Memory + Gateway tool + Guardrails), MCP Server on Lambda (OAuth-protected, registered as a Gateway 2LO target), RAG Knowledge Assistant (Bedrock Knowledge Bases with evaluation gates), Multi-Agent Orchestrator (supervisor/worker over A2A).
+  - Powers: AWS IaC + Terraform (essential), Context7 + Exa + Hugging Face (recommended), Langfuse/LangSmith/Datadog/Pinecone/Snyk (optional).
+- Wired the new preset name through `PresetNameSchema`, `MCPConfigurator`, `PowerInstaller.POWER_CATALOG`, the structural/property test suites, `sync-preset-manifests.mjs`, and the README preset + example-spec + Powers matrices.
+
+### Fixed
+
+- Corrected stale "6 presets" counts in `README.md`, `docs/architecture.md`, and `docs/how-it-works.md` (now 9).
+
 ## [0.9.0] - 2026-07-28
 
 ### Added

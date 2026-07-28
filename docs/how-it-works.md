@@ -35,7 +35,7 @@ This means:
 npx kiro-kit init
 ```
 
-1. Interactive multi-pick prompt shows all 6 presets.
+1. Interactive multi-pick prompt shows all 9 presets.
 2. User selects one or more presets (space to toggle, `a` for all).
 3. CLI displays file count summary and asks for confirmation.
 4. For each file in the selected presets:
