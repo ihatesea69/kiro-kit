@@ -7,14 +7,7 @@ export function baseOptions(): BaseLayoutProps {
     nav: {
       title: (
         <>
-          <Image
-            src={assetPath('/logo.png')}
-            alt=""
-            width={24}
-            height={24}
-            className="rounded-md"
-            priority
-          />
+          <Image src={assetPath('/logo.png')} alt="" width={24} height={24} priority />
           {appName}
         </>
       ),

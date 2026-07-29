@@ -5,12 +5,14 @@ import { appName, assetPath } from '@/lib/shared';
 export default function HomePage() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center px-4 text-center">
+      {/* The mark is a transparent cut-out, so no rounding or box shadow here —
+          those belong to the purple tile used for the favicon, not to the ghost. */}
       <Image
         src={assetPath('/logo.png')}
         alt=""
-        width={128}
-        height={128}
-        className="mb-6 rounded-3xl shadow-lg"
+        width={144}
+        height={144}
+        className="mb-6"
         priority
       />
       <h1 className="mb-4 text-4xl font-bold tracking-tight">{appName}</h1>
