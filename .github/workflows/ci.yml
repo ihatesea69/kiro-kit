@@ -89,4 +89,4 @@ jobs:
         working-directory: packages/cli
 
       - name: Smoke test the packed CLI
-        run: bash scripts/smoke-linux.sh "$RUNNER_TEMP"/kiro-kit-*.tgz
+        run: bash scripts/smoke-cli.sh "$RUNNER_TEMP"/kiro-kit-*.tgz

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **Cross-platform CLI smoke test** (`scripts/smoke-linux.sh`) plus a `smoke` CI job on `ubuntu-latest` and `macos-latest`. The vitest suite only exercises core modules in-process — it never spawns the binary — so it could not catch the v0.8.1 init hang, and it cannot catch TTY or POSIX file-mode bugs. The smoke job installs the packed tarball and drives the real CLI: multi-preset `init` under a timeout with stdin closed, idempotent rerun, `+x` on shipped `.sh` files, LF shebangs, and `doctor`.
+- **Cross-platform CLI smoke test** (`scripts/smoke-cli.sh`) plus a `smoke` CI job on `ubuntu-latest` and `macos-latest`. The vitest suite only exercises core modules in-process — it never spawns the binary — so it could not catch the v0.8.1 init hang, and it cannot catch TTY or POSIX file-mode bugs. The smoke job installs the packed tarball and drives the real CLI: multi-preset `init` under a timeout with stdin closed, idempotent rerun, `+x` on shipped `.sh` files, LF shebangs, and `doctor`.
 - `.gitattributes` pinning `*.sh` (and other text) to LF in the working tree. Without it, Git's `autocrlf` on Windows checks scripts out with CRLF, and a CRLF shebang fails on macOS/Linux with `bad interpreter: /bin/bash^M`.
 
 ### Fixed

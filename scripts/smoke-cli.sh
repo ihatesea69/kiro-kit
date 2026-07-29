@@ -4,7 +4,7 @@
 # core modules in-process, so it cannot catch hangs or TTY-dependent bugs.
 #
 # Usage (inside a Linux/macOS shell with node + npm on PATH):
-#   scripts/smoke-linux.sh /path/to/kiro-kit-<version>.tgz
+#   scripts/smoke-cli.sh /path/to/kiro-kit-<version>.tgz
 set -euo pipefail
 
 TARBALL="${1:?usage: smoke-linux.sh <tarball.tgz>}"
@@ -14,6 +14,16 @@ TIMEOUT="${SMOKE_TIMEOUT:-180}"
 
 cleanup() { rm -rf "$PREFIX" "$WS"; }
 trap cleanup EXIT
+
+# macOS ships no GNU `timeout` (it lives in coreutils, which is not installed
+# by default), so fall back to gtimeout, then to perl's alarm.
+if command -v timeout >/dev/null 2>&1; then
+  with_timeout() { timeout "$@"; }
+elif command -v gtimeout >/dev/null 2>&1; then
+  with_timeout() { gtimeout "$@"; }
+else
+  with_timeout() { local s="$1"; shift; perl -e 'alarm shift; exec @ARGV' "$s" "$@"; }
+fi
 
 echo "== installing $TARBALL =="
 npm i -g --prefix "$PREFIX" "$TARBALL" >/dev/null
@@ -25,7 +35,7 @@ run_init() {
   # </dev/null is deliberate: if init ever waits for stdin it dies immediately
   # instead of hanging, which is exactly the failure mode we are guarding.
   cd "$WS"
-  timeout "$TIMEOUT" "$BIN" "$@" </dev/null
+  with_timeout "$TIMEOUT" "$BIN" "$@" </dev/null
 }
 
 echo "== 1. multi-preset init (the case that used to hang) =="
