@@ -1,7 +1,17 @@
-# Hand-off: documentation site for Kiro-Kit on Fumadocs + GitHub Pages
+# Documentation site: design record and operating notes
 
-Written for a fresh session with no prior context. Framework choice is **already made
-by the repo owner: Fumadocs** (https://www.fumadocs.dev) — do not re-litigate it.
+> **Status: shipped.** The site is live at https://ihatesea69.github.io/kiro-kit/
+> (built in PR #19, favicon and logo in PR #20). This file began as the build
+> hand-off; it is kept as the design record — why the site is shaped the way it is,
+> and the constraints that still bind anyone editing it. Sections 2–5 remain
+> operating guidance; §6 records what shipped.
+>
+> **The one rule to remember:** everything under `/docs/reference` is generated from
+> `presets/*/manifest.json` at build time and is gitignored. Never hand-edit it —
+> your changes will vanish on the next build. Edit the presets, or the generator at
+> `scripts/generate-docs-reference.mjs`.
+
+Framework choice was made by the repo owner: Fumadocs (https://www.fumadocs.dev).
 Facts below were verified against fumadocs.dev on 2026-07-29; version-sensitive
 details are flagged so they can be re-checked rather than trusted blindly.
 
@@ -149,7 +159,30 @@ apps/docs/content/docs/reference/
 
 Wire it as `predocs:build` and `predocs:dev` so it cannot be skipped.
 
-## 6. Build phases
+## 6. What shipped
+
+All five phases below landed in PR #19 (site) and PR #20 (favicon and logo). Where
+the implementation differs from the plan, the difference is noted. Concretely, on
+`main` today:
+
+| Piece | Where it lives |
+|-------|----------------|
+| Fumadocs app (private, Next.js) | `apps/docs/` |
+| Prose pages | `apps/docs/content/docs/{index,faq}.mdx`, `guide/`, `features/`, `contributing/` |
+| Generated reference (gitignored) | `apps/docs/content/docs/reference/` |
+| Generator | `scripts/generate-docs-reference.mjs` |
+| Build entry points | root `pnpm docs:dev` / `pnpm docs:build` → `@kiro-kit/docs` |
+| Deploy | `.github/workflows/docs.yml`, standalone from `ci.yml` and `publish.yml` |
+
+Two deviations from the plan worth knowing:
+
+- The generator is wired as an explicit `docs:generate` step inside `docs:dev` and
+  `docs:build` rather than the `pre*` hooks §5 suggested. Same guarantee — it cannot
+  be skipped — but it is visible in the script instead of implied by npm.
+- `basePath` is read from `NEXT_PUBLIC_BASE_PATH` and applied only when set, so a
+  local build serves from `/` while the deployed build serves from `/kiro-kit/`.
+
+The original phase plan, kept for the reasoning behind each step:
 
 **Phase 1 — scaffold, local only.** `npm create fumadocs-app` into `apps/docs`
 (Next.js). Add `apps/*` to `pnpm-workspace.yaml` and root `workspaces`. Mark the app
@@ -183,30 +216,29 @@ start, and a link to the site. Move the preset matrix, Powers matrix, and featur
 sections into the site. This removes the duplication that caused the count drift.
 *Exit:* no counts or catalogs remain in the README.
 
-## 7. Risks / decisions
+## 7. Risks / decisions — and how they landed
 
 1. **Node 22 vs the repo's `engines: >=18`.** The docs app needs 22; the CLI must
-   keep supporting 18. Keep the constraint local to `apps/docs/package.json` and out
-   of root scripts. Do not raise the root engine.
+   keep supporting 18. *Resolved as planned:* the constraint stayed local to
+   `apps/docs/`, the root engine was not raised, and the docs workflow pins Node 22
+   independently of `ci.yml`.
 2. **Static search is easy to ship broken.** It fails only in production, only with
-   `basePath`. Verify on the deployed URL as an explicit exit criterion — a green
-   workflow is not evidence.
-3. **i18n (Vietnamese + English) is undecided.** The owner asked about it and no
-   answer was given. Fumadocs supports i18n, but retrofitting is more work than
-   starting with it. **Ask before Phase 2.** Default if no answer: English only,
-   with content laid out so a locale layer can be added later.
-4. **Static-export bundle size.** The static search index covers every page,
-   including ~600 generated reference entries. If the index gets heavy, cut the
-   generated pages out of the index rather than reaching for Algolia.
-5. **Fumadocs moves fast.** These notes are from 2026-07-29. If `create
-   fumadocs-app` produces a structure that disagrees with §2, trust the generator
-   output and the current docs, not this file.
+   `basePath` — a green workflow is not evidence. *Still the standing check:* after
+   any change to `next.config`, `basePath`, or the search wiring, query the deployed
+   site, not localhost.
+3. **i18n (Vietnamese + English).** *Shipped English-only*, no locale layer. Content
+   sits directly under `content/docs/`, so adding i18n later means moving pages into
+   a locale folder — deliberate, but not free.
+4. **Static-export bundle size.** The search index covers every page including the
+   generated reference. If it gets heavy, cut the generated pages out of the index
+   rather than reaching for a hosted search service.
+5. **Fumadocs moves fast.** These notes are from 2026-07-29. If the framework's
+   current docs disagree with §2, trust the framework, not this file.
 
-## 8. Estimated size
+## 8. Effort, as spent
 
-Phase 1–2: one focused session. Phase 3 (the generator) is the substantial one —
-budget most of a session for it plus its failure modes. Phase 4–5: one session,
-most of it spent on the static-search-under-basePath issue.
+Roughly as estimated: the generator (§5) was the substantial piece, and the
+static-search-under-`basePath` issue in Phase 4 took most of the deploy session.
 
 ## Sources
 
