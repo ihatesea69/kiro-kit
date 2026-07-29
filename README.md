@@ -14,11 +14,13 @@
 
 ---
 
-Kiro-Kit bootstraps an engineer-grade [Kiro](https://kiro.dev) workspace in one
-command. Pick a preset for your stack and get agents, skills, commands, hooks,
-MCP server config, Kiro Powers recommendations, and spec scaffolding written
-straight into `.kiro/`. Every preset is self-contained, everything ships in the
-npm tarball, and existing files are never silently overwritten.
+Setting up a [Kiro](https://kiro.dev) workspace means writing a lot of files by
+hand: agents, skills, slash commands, hooks, MCP config, spec templates. Kiro-Kit
+writes them for you.
+
+Pick the preset that matches your stack and it all lands in `.kiro/`. Presets
+don't depend on each other, everything ships inside the npm package so it works
+offline, and nothing you already wrote gets replaced without asking first.
 
 ## Quick Start
 
@@ -26,8 +28,8 @@ npm tarball, and existing files are never silently overwritten.
 npx kiro-kit init
 ```
 
-Pick from the interactive selector — arrow keys to move, Enter to select, Enter
-again to confirm. Your `.kiro/` workspace is ready immediately.
+Arrow keys to move, Enter to select, Enter again to confirm. That's it — the
+workspace is ready when the command exits.
 
 ```bash
 # or install globally
@@ -51,16 +53,16 @@ Full documentation lives at **<https://ihatesea69.github.io/kiro-kit/>**.
 The reference section is generated from the preset manifests on every docs
 build, so its catalogs and counts are always what actually ships.
 
-## Design principles
+## How it behaves
 
-- **Bundled, not fetched** — all presets ship in the npm tarball. Works offline
-  after install.
-- **User-priority merge** — existing user content is never silently overwritten.
-  Conflicts always prompt.
-- **Atomic writes** — temp file plus rename guarantees no partial state on crash
-  or interrupt.
-- **Self-contained presets** — installing one never requires another; removing
-  one has no side effects.
+- Presets ship inside the npm package. Nothing is fetched at install time, so it
+  works offline.
+- Your files win. If a file already exists with different content, you get a
+  prompt, not an overwrite. Backups are written before anything is replaced.
+- Writes go to a temp file and then get renamed, so a crash or Ctrl-C can't
+  leave a half-written file behind.
+- Presets are independent. Installing one never pulls in another, and removing
+  one doesn't break the rest.
 
 ## Privacy
 

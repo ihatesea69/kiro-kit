@@ -17,8 +17,8 @@ export default function HomePage() {
       />
       <h1 className="mb-4 text-4xl font-bold tracking-tight">{appName}</h1>
       <p className="mb-8 max-w-xl text-fd-muted-foreground">
-        Bootstrap an engineer-grade Kiro workspace with one command. Self-contained presets of
-        agents, skills, commands, hooks, and spec templates.
+        A Kiro workspace takes a lot of files to set up. Pick a preset and Kiro-Kit writes the
+        agents, skills, commands, hooks, and spec templates for you.
       </p>
       <pre className="mb-8 rounded-lg border bg-fd-secondary px-4 py-3 text-sm">
         <code>npx kiro-kit init</code>

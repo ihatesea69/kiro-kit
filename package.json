@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "KK-Kiro-Kit monorepo: CLI (npm) + 6 self-contained presets for bootstrapping engineer-grade Kiro workspaces.",
+  "description": "KK-Kiro-Kit monorepo: the kiro-kit npm CLI plus the presets it ships.",
   "engines": {
     "node": ">=18"
   },

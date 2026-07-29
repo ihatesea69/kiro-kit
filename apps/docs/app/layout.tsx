@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: `%s | ${appName}`,
   },
   description:
-    'Bootstrap an engineer-grade Kiro workspace with one command. Self-contained presets of agents, skills, commands, hooks, and spec templates.',
+    'Set up a Kiro workspace with one command. Presets of agents, skills, commands, hooks, and spec templates that write themselves into .kiro/.',
 };
 
 export default function Layout({ children }: LayoutProps<'/'>) {
