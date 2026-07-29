@@ -61,6 +61,33 @@ Exact contents per preset — every command, agent, skill, hook, and example spe
 live in the **[preset reference](https://ihatesea69.github.io/kiro-kit/docs/reference)**,
 generated from the shipped manifests on every docs build.
 
+## Why another Kiro tool
+
+Kiro-Kit is not the first tool that writes into `.kiro/`. Starter templates with
+a scaffolder copy a thin skeleton and overwrite your edits on the second run.
+Settings managers move content between machines but do not give you any. Config
+generators compose configuration, leaving you to write every agent yourself.
+Steering collections are files to copy by hand, with no installer and no way to
+tell what you already took.
+
+What is different here:
+
+- **It ships content, not scaffolding.** A preset is 19–26 agents, 21–37 skills,
+  66–74 commands, hooks, workflows, and worked example specs — written, not
+  stubbed.
+- **Installing twice is safe.** Conflicts prompt instead of overwriting, every
+  run backs up first, writes are atomic, and `restore` rolls back.
+- **The content is tested.** Structural tests hold every preset to minimum
+  thresholds and reject orphaned or broken manifest entries; property-based
+  tests cover the merge and backup invariants. Over 600 tests on three operating
+  systems before anything ships.
+- **The docs cannot drift.** The preset reference is generated from the shipped
+  manifests, so its counts are the real ones.
+
+Where it is the wrong choice: Kiro-Kit is opinionated. If you want to hand-pick
+every file, or you are not on npm, a template repository or a steering
+collection will fit you better.
+
 ## Commands
 
 | Command | What it does |
