@@ -20,7 +20,13 @@ describe('Property 1: Backup-restore round-trip identity', () => {
     fc.assert(
       fc.property(
         fc.string({ minLength: 0, maxLength: 2000 }),
-        fc.string({ minLength: 1, maxLength: 50 }).filter((s) => /^[a-zA-Z0-9._-]+$/.test(s)),
+        // `.` and `..` satisfy the character class but are directory entries,
+        // not filenames: `path.join(kiroDir, '.')` is kiroDir itself, so the
+        // write below hit EISDIR. Only some seeds generated them, which made
+        // this look like CI flake rather than a generator bug.
+        fc
+          .string({ minLength: 1, maxLength: 50 })
+          .filter((s) => /^[a-zA-Z0-9._-]+$/.test(s) && s !== '.' && s !== '..'),
         (content, filename) => {
           const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'kk-prop1-'));
           try {

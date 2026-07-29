@@ -5,14 +5,25 @@ description: How init auto-configures MCP servers and wires up curated Kiro Powe
 
 ## MCP server auto-configuration
 
-Running `kiro-kit init` generates a functional `.mcp.json`:
+Running `kiro-kit init` generates a functional `.mcp.json`. **Nothing that cannot
+start is left enabled** — a fresh workspace should never open with a wall of red
+servers in Kiro's MCP panel.
 
-- Credential-free servers (filesystem, memory, context7, sequential-thinking,
-  playwright) are enabled immediately via `npx`.
-- The official git/fetch servers run via `uvx` (Python) — install
-  [`uv`](https://docs.astral.sh/uv/) to use them.
-- Servers requiring credentials (postgres, github, sentry) are included as
-  `_disabled_` entries with instructions to enable them.
+- Credential-free `npx` servers (filesystem, memory, context7,
+  sequential-thinking, playwright) are enabled immediately.
+- The official git/fetch servers run via `uvx` (Python), so they ship
+  `"disabled": true`. Install [`uv`](https://docs.astral.sh/uv/), then flip the
+  flag.
+- Servers requiring credentials (postgres, github, sentry) ship
+  `"disabled": true` with a `_comment` naming the environment variable to set.
+- `${WORKSPACE_ROOT}` is resolved to the real path at write time rather than
+  left for the IDE to interpolate, and any server with an unresolved `${VAR}` in
+  its `env` ships disabled instead of failing at launch.
+
+Disabling uses Kiro's own `"disabled": true` field. Workspaces created by
+earlier versions used a `_disabled_<name>` key prefix, which Kiro did not
+understand — re-running `init` migrates those to the real server name with the
+flag set. A server you enabled yourself is never switched back off.
 
 The MCP servers each preset configures are listed in the
 [preset reference](/docs/reference).

@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.3] - 2026-07-29
+
+### Fixed
+
+- **MCP servers no longer show up red in a fresh workspace.** `init` wrote server definitions Kiro could not start, so the MCP panel filled with failures on first open. Five distinct causes:
+  - `${WORKSPACE_ROOT}` was written verbatim. Kiro does not interpolate it, so the filesystem server received a literal `${WORKSPACE_ROOT}` path. It is now resolved at write time.
+  - Servers needing credentials were "disabled" by renaming the key to `_disabled_<name>`, which is not a Kiro convention — Kiro saw a server literally named `_disabled_github` and tried to launch it. They now use Kiro's own `"disabled": true` field, with a `_comment` naming the variable to set. Existing `_disabled_*` keys are migrated on the next `init`.
+  - `uvx`-based servers (git, fetch) were enabled by default but need the `uv` Python toolchain, which most machines lack. They now ship disabled with install instructions.
+  - Unresolved `${VAR}` placeholders in a server's `env` now disable that server rather than letting it fail at launch.
+  - MCP auto-configuration was nested inside the "Configuring Powers" task, so `--powers none` silently skipped it and the two write paths disagreed. It is now its own task, and the root `.mcp.json` and `.kiro/settings/mcp.json` are written from the same normalised config.
+- A server the user enabled by hand is never switched back off by a later `init`, and user-defined servers are still never overwritten.
+- **A backup/restore property test generated `.` as a filename**, so `path.join(kiroDir, '.')` resolved to the directory itself and the write failed with EISDIR. Only some seeds produced it, so it read as CI flake rather than a generator bug. `.` and `..` are now excluded.
+- **Documents named after an `Object.prototype` key no longer break the rebrander.** `gray-matter` memoises into a plain object keyed by the raw string, so content of exactly `toString`, `constructor`, `__proto__` (and friends) hit the prototype, were mistaken for a cached result, and parsed to `body: undefined` — crashing the next string operation. Parsing now opts out of that cache. This surfaced as the p04 property test failing on roughly 1 CI job in 9.
+
 ## [0.10.2] - 2026-07-29
 
 > Note: 0.10.1 was tagged but never reached npm, so its fixes ship here too.

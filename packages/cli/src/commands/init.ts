@@ -34,6 +34,7 @@ import * as TrackingStore from '../core/TrackingStore.js';
 import * as MetadataWriter from '../core/MetadataWriter.js';
 import * as StatuslineSelector from '../core/StatuslineSelector.js';
 import { mergeMCP, type MCPConfig } from '../core/merge/mergeMCP.js';
+import { normalizeMCPConfig } from '../core/mcp/normalizeMCP.js';
 import { mergeSettings, type SettingsConfig } from '../core/merge/mergeSettings.js';
 import { showDiff } from '../prompts/DiffViewer.js';
 import { atomicWrite } from '../utils/fs-safe.js';
@@ -344,8 +345,15 @@ function buildInitTasks(
               }
             }
             const merged = mergeMCP(existingMcp, manifest.mcpServers, manifest.name);
+            // Preset manifests carry `${WORKSPACE_ROOT}` placeholders and no
+            // `disabled` flags. Kiro interpolates neither, so normalise before
+            // writing or the MCP panel fills up with servers that cannot start.
+            const normalized = normalizeMCPConfig(
+              merged as unknown as Record<string, unknown>,
+              { workspaceRoot: ctx.workspaceRoot },
+            );
             fs.mkdirSync(path.dirname(mcpPath), { recursive: true });
-            atomicWrite(mcpPath, JSON.stringify(merged, null, 2) + '\n');
+            atomicWrite(mcpPath, JSON.stringify(normalized, null, 2) + '\n');
             ctx.filesWritten++;
           }
 
@@ -398,7 +406,67 @@ function buildInitTasks(
     },
 
     // ------------------------------------------------------------------
-    // Task 4: Configuring Powers
+    // Task 4: Configuring MCP servers
+    //
+    // Deliberately a task of its own. This used to be nested inside
+    // "Configuring Powers", which skips wholesale on `--powers none` — so
+    // opting out of Powers silently opted you out of MCP setup too, and the
+    // workspace was left with whatever the manifest merge happened to write.
+    // MCP servers and Powers are unrelated concerns.
+    // ------------------------------------------------------------------
+    {
+      title: 'Configuring MCP servers',
+      skip: (ctx) => (ctx.confirmMCPWrite ? false : 'declined'),
+      run: async (ctx, helpers) => {
+        try {
+          const presetMCPConfigs = presets.map((p) => getMCPConfig(p.manifest.name));
+          let combinedMCP: Record<string, unknown> | null = null;
+          const mcpJsonPath = path.join(ctx.workspaceRoot, '.mcp.json');
+
+          if (fs.existsSync(mcpJsonPath)) {
+            try {
+              combinedMCP = JSON.parse(
+                fs.readFileSync(mcpJsonPath, 'utf-8'),
+              ) as Record<string, unknown>;
+            } catch {
+              logger.warn('Existing .mcp.json is invalid JSON, will create fresh.');
+              combinedMCP = null;
+            }
+          }
+
+          for (const mcpConfig of presetMCPConfigs) {
+            combinedMCP = mergeMCPConfig(combinedMCP, mcpConfig);
+          }
+
+          if (combinedMCP) {
+            // Normalise once, up front, so both files agree: the root
+            // .mcp.json (Claude/Cursor convention) and .kiro/settings/mcp.json
+            // (what Kiro reads) get identical, startable definitions.
+            combinedMCP = normalizeMCPConfig(combinedMCP, {
+              workspaceRoot: ctx.workspaceRoot,
+            });
+
+            writeMCPConfig(ctx.workspaceRoot, combinedMCP);
+            writeKiroSettingsMCP(ctx.workspaceRoot, combinedMCP);
+
+            const servers =
+              (combinedMCP.mcpServers as Record<string, { disabled?: boolean }>) ?? {};
+            const total = Object.keys(servers).length;
+            const enabled = Object.values(servers).filter((s) => !s.disabled).length;
+            helpers.setTitle(
+              `Configuring MCP servers — ${enabled} enabled, ${total - enabled} disabled`,
+            );
+          }
+        } catch (err) {
+          logger.warn(
+            `MCP configuration failed: ${err instanceof Error ? err.message : String(err)}`,
+          );
+        }
+      },
+    },
+
+    // ------------------------------------------------------------------
+    // Task 5: Configuring Powers
     // ------------------------------------------------------------------
     {
       title: 'Configuring Powers',
@@ -426,43 +494,8 @@ function buildInitTasks(
               ? filterByTier(mergedPowers, promptResult.selectedTiers)
               : [];
 
-          // MCP auto-configuration
-          if (promptResult.confirmMCP) {
-            try {
-              const presetMCPConfigs = presets.map((p) => getMCPConfig(p.manifest.name));
-              let combinedMCP: Record<string, unknown> | null = null;
-              const mcpJsonPath = path.join(ctx.workspaceRoot, '.mcp.json');
-
-              if (fs.existsSync(mcpJsonPath)) {
-                try {
-                  combinedMCP = JSON.parse(
-                    fs.readFileSync(mcpJsonPath, 'utf-8'),
-                  ) as Record<string, unknown>;
-                } catch {
-                  logger.warn('Existing .mcp.json is invalid JSON, will create fresh.');
-                  combinedMCP = null;
-                }
-              }
-
-              for (const mcpConfig of presetMCPConfigs) {
-                combinedMCP = mergeMCPConfig(combinedMCP, mcpConfig);
-              }
-
-              // MCP write confirmation was collected before the runner started
-              if (ctx.confirmMCPWrite && combinedMCP) {
-                writeMCPConfig(ctx.workspaceRoot, combinedMCP);
-                // Also write to the location Kiro IDE reads.
-                writeKiroSettingsMCP(ctx.workspaceRoot, combinedMCP);
-                if (!ctx.opts.quiet) {
-                  helpers.setOutput('MCP servers configured in .mcp.json and .kiro/settings/mcp.json');
-                }
-              }
-            } catch (err) {
-              logger.warn(
-                `MCP configuration failed: ${err instanceof Error ? err.message : String(err)}`,
-              );
-            }
-          }
+          // MCP auto-configuration now lives in its own task (see below) —
+          // nesting it here meant `--powers none` skipped it entirely.
 
           // Display Powers recommendations
           displayPowersRecommendations(filteredPowers, ctx.opts.quiet ?? false);

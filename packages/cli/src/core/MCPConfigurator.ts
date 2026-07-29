@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { KKError, ErrorCodes } from './errors.js';
+import { normalizeMCPConfig } from './mcp/normalizeMCP.js';
 
 /**
  * MCPConfigurator — manages auto-configuration of MCP servers per preset.
@@ -186,9 +187,9 @@ export function mergeMCPConfig(
   const merged: Record<string, unknown> = { ...existingServers };
 
   for (const [name, entry] of Object.entries(incoming.servers)) {
-    const outputKey = entry.requiresCredentials ? `_disabled_${name}` : name;
-
-    // Do not overwrite existing user entries (check both enabled and disabled keys).
+    // Do not overwrite existing user entries. The legacy `_disabled_` key is
+    // still checked so a workspace written by an older version is not given a
+    // duplicate server alongside its migrated one.
     if (merged[name] !== undefined || merged[`_disabled_${name}`] !== undefined) {
       continue;
     }
@@ -200,11 +201,16 @@ export function mergeMCPConfig(
     if (entry.env && Object.keys(entry.env).length > 0) {
       serverObj.env = entry.env;
     }
+    // Kiro's schema has a `disabled` boolean. Renaming the key to
+    // `_disabled_<name>` (the old approach) just produced a server Kiro tried
+    // to launch under that literal name, which is why fresh workspaces showed
+    // red servers. normalizeMCP fills in `disabled` from the credential and
+    // runtime requirements; leave that decision to it.
     if (entry.requiresCredentials) {
-      serverObj._comment = `Requires ${entry.credentialEnvVars?.join(', ') ?? 'credentials'} environment variable. Remove '_disabled_' prefix to enable.`;
+      serverObj._comment = `Needs ${entry.credentialEnvVars?.join(', ') ?? 'credentials'}. Set the variable, then change "disabled" to false.`;
     }
 
-    merged[outputKey] = serverObj;
+    merged[name] = serverObj;
   }
 
   const result: Record<string, unknown> = { ...(existing ?? {}) };
@@ -273,7 +279,13 @@ export function writeKiroSettingsMCP(
     merged[key] = value;
   }
 
-  const result: Record<string, unknown> = { ...existing, mcpServers: merged };
+  // Kiro reads this file directly, so it must be valid Kiro schema: real
+  // `disabled` booleans, no `${WORKSPACE_ROOT}` left to interpolate, and any
+  // legacy `_disabled_*` keys folded back onto their real names.
+  const result: Record<string, unknown> = normalizeMCPConfig(
+    { ...existing, mcpServers: merged },
+    { workspaceRoot },
+  );
   try {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
     fs.writeFileSync(filePath, JSON.stringify(result, null, 2) + '\n', 'utf-8');
