@@ -8,9 +8,13 @@ description: Development workflow for KK-Kiro-Kit repository — build, test, ve
 ## Repository Layout
 
 - `packages/cli/` — npm package `kiro-kit` (TypeScript, ESM, tsup bundler)
-- `presets/{frontend,backend,fullstack,mobile,devops,data-ai}/` — 6 self-contained preset directories
+- `presets/{frontend,backend,fullstack,mobile,devops,data-ai,ai-engineer,sa,kiro-kit-dev}/`
+  — 9 self-contained preset directories
 - `presets/_template/` — skeleton for generating new presets (not published)
-- `scripts/parity-sync/` — maintainer tool for syncing content from reference kit
+- `apps/docs/` — the documentation site; its `/docs/reference` section is
+  generated from preset manifests and gitignored, never hand-edited
+- `scripts/parity-sync/` — dormant maintainer tool from a completed one-off
+  migration; leave it alone unless that migration is being repeated
 - `docs/` — project documentation
 
 ## Build
@@ -53,16 +57,39 @@ chore: bump version to 0.2.4
 
 ## Release Checklist
 
-1. Make changes to `presets/` or `packages/cli/src/`
-2. Build: `cd packages/cli && npx tsup`
-3. Run tests to verify nothing broke
-4. Bump version in `packages/cli/package.json`
-5. Update `CHANGELOG.md` with changes
-6. Commit: `git add -A && git commit -m "feat: description"`
-7. Tag: `git tag v<version>`
-8. Push: `git push origin main --tags`
-9. Publish (manual, needs OTP): `cd packages/cli && npm publish --access public`
-10. Install globally to verify: `npm install -g kiro-kit@latest`
+Releases are published by CI. **Do not run `npm publish` by hand** — a manual
+publish skips provenance and repeats the failure described below.
+
+1. Make changes to `presets/` or `packages/cli/src/` on a branch
+2. Bump the version in `packages/cli/package.json`
+3. Add a `CHANGELOG.md` entry written for the person hitting the bug
+4. Open a pull request; CI runs lint, typecheck, tests, build, and a smoke test
+   that installs the packed tarball on Linux and macOS
+5. Merge to `main`
+6. Tag and push: `git tag -a v<version> -m "..." && git push origin v<version>`
+
+The publish workflow then verifies the tag matches `packages/cli/package.json`,
+skips if that version is already on npm, and publishes with provenance using an
+OIDC identity — there is no npm token in the repository.
+
+### Why it works this way
+
+`npm publish` packs whatever sits in `dist/`. Publishing 0.10.3 by hand shipped
+a `dist/` that was two months old: seven presets instead of ten, none of the
+fixes that release was named for, and 41 stray files. It had to be deprecated.
+
+Two guards exist now, and both matter:
+
+- `packages/cli` runs `prepublishOnly: clean && build`, so a stale `dist/`
+  cannot be published even by hand
+- The workflow refuses to publish when the tag and `package.json` disagree
+
+### Do not rename `publish.yml`
+
+npm pins the workflow filename in the trusted publisher configuration. Renaming
+the file breaks releases until the configuration on npmjs.com is updated to
+match, and npm does not validate that configuration until a publish is
+attempted.
 
 ## After Changes to Presets
 
