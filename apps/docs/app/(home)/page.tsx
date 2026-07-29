@@ -1,9 +1,18 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { appName } from '@/lib/shared';
+import { appName, assetPath } from '@/lib/shared';
 
 export default function HomePage() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center px-4 text-center">
+      <Image
+        src={assetPath('/logo.png')}
+        alt=""
+        width={128}
+        height={128}
+        className="mb-6 rounded-3xl shadow-lg"
+        priority
+      />
       <h1 className="mb-4 text-4xl font-bold tracking-tight">{appName}</h1>
       <p className="mb-8 max-w-xl text-fd-muted-foreground">
         Bootstrap an engineer-grade Kiro workspace with one command. Self-contained presets of
