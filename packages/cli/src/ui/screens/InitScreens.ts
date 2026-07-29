@@ -104,7 +104,7 @@ export async function createInitScreens(ctx: InitContext): Promise<InitScreens> 
       text: 'kiro-kit',
       font: 'Small',
       version: data.cliVersion,
-      subtitle: 'Engineer-grade Kiro presets',
+      subtitle: 'One click · AI coding discipline',
     });
     process.stdout.write(logoStr + '\n');
 

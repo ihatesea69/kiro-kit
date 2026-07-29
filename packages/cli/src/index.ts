@@ -33,7 +33,7 @@ const program = new Command();
 
 program
   .name('kiro-kit')
-  .description('CLI tool for bootstrapping engineer-grade Kiro IDE workspaces.')
+  .description('Set up a Kiro IDE workspace with one command.')
   .version(pkg.version, '-v, --version');
 
 // Global flags

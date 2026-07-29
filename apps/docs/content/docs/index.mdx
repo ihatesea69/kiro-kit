@@ -1,18 +1,19 @@
 ---
 title: Introduction
-description: Bootstrap an engineer-grade Kiro workspace with one command. Self-contained presets of agents, skills, commands, hooks, and spec templates.
+description: Set up a Kiro workspace with one command. Presets of agents, skills, commands, hooks, and spec templates that write themselves into .kiro/.
 ---
 
-Kiro-Kit is a CLI that bootstraps an engineer-grade [Kiro](https://kiro.dev) workspace
-in one command. Pick a preset for your stack and get agents, skills, commands, hooks,
-MCP server config, and spec scaffolding written straight into `.kiro/`.
+Setting up a [Kiro](https://kiro.dev) workspace means writing a lot of files by
+hand: agents, skills, slash commands, hooks, MCP config, spec templates.
+Kiro-Kit writes them for you.
 
 ```bash
 npx kiro-kit init
 ```
 
-Every preset is **self-contained** — installing one never requires another, and
-removing one has no side effects on the rest.
+Pick the preset that matches your stack and it all lands in `.kiro/`. Presets
+are **independent**: installing one never pulls in another, and removing one
+doesn't break the rest.
 
 <Cards>
   <Card title="Quick Start" href="/docs/guide/quick-start" description="Install, pick a preset, and see what lands in your workspace." />
@@ -23,10 +24,10 @@ removing one has no side effects on the rest.
 
 ## Why presets
 
-A preset is a collection of Kiro configuration files targeting one development
-context — frontend, backend, mobile, devops, data/AI, and more. Rather than
-assembling agents and commands by hand, you install a curated set that already
-knows the idioms of your stack.
+A preset is a set of Kiro configuration files for one kind of work: frontend,
+backend, mobile, devops, data and AI, and others. Instead of assembling agents
+and commands yourself, you install a set that already knows the conventions of
+that stack.
 
 The [reference section](/docs/reference) is generated directly from the preset
 manifests in the repository, so the catalog you read here is the catalog that
