@@ -1,7 +1,7 @@
 {
   "name": "data-ai",
   "version": "1.0.0",
-  "description": "Python/ML and AI agent toolkit for data science, machine learning, and AI development",
+  "description": "Python/ML and AI agent toolkit for data science, machine learning, and AI development with 20 agents, 31 skills, and 70 commands",
   "category": "data-ai",
   "files": [
     {

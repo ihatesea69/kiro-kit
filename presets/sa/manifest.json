@@ -1,7 +1,7 @@
 {
   "name": "sa",
   "version": "1.0.0",
-  "description": "Solutions Architect kit for designing and documenting cloud architectures — draw.io + Mermaid diagrams, Word/PowerPoint architecture deliverables, CloudFormation + Terraform IaC, and Well-Architected reviews",
+  "description": "Solutions Architect kit for designing and documenting cloud architectures with 26 agents, 31 skills, 69 commands — draw.io + Mermaid diagrams, Word/PowerPoint deliverables, CloudFormation + Terraform IaC, Well-Architected reviews, and whole-repo deep security scanning",
   "category": "sa",
   "files": [
     {
