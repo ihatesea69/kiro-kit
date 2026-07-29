@@ -909,12 +909,14 @@
     {
       "source": "skills/chrome-devtools/scripts/install-deps.sh",
       "target": ".kiro/skills/chrome-devtools/scripts/install-deps.sh",
-      "type": "other"
+      "type": "other",
+      "executable": true
     },
     {
       "source": "skills/chrome-devtools/scripts/install.sh",
       "target": ".kiro/skills/chrome-devtools/scripts/install.sh",
-      "type": "other"
+      "type": "other",
+      "executable": true
     },
     {
       "source": "skills/chrome-devtools/scripts/lib/browser.js",
@@ -1169,7 +1171,8 @@
     {
       "source": "skills/debugging/scripts/find-polluter.sh",
       "target": ".kiro/skills/debugging/scripts/find-polluter.sh",
-      "type": "other"
+      "type": "other",
+      "executable": true
     },
     {
       "source": "skills/debugging/scripts/find-polluter.test.md",

@@ -914,7 +914,8 @@
     {
       "source": "skills/debugging/scripts/find-polluter.sh",
       "target": ".kiro/skills/debugging/scripts/find-polluter.sh",
-      "type": "other"
+      "type": "other",
+      "executable": true
     },
     {
       "source": "skills/debugging/scripts/find-polluter.test.md",

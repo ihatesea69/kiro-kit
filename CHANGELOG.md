@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **Cross-platform CLI smoke test** (`scripts/smoke-linux.sh`) plus a `smoke` CI job on `ubuntu-latest` and `macos-latest`. The vitest suite only exercises core modules in-process — it never spawns the binary — so it could not catch the v0.8.1 init hang, and it cannot catch TTY or POSIX file-mode bugs. The smoke job installs the packed tarball and drives the real CLI: multi-preset `init` under a timeout with stdin closed, idempotent rerun, `+x` on shipped `.sh` files, LF shebangs, and `doctor`.
+- `.gitattributes` pinning `*.sh` (and other text) to LF in the working tree. Without it, Git's `autocrlf` on Windows checks scripts out with CRLF, and a CRLF shebang fails on macOS/Linux with `bad interpreter: /bin/bash^M`.
+
+### Fixed
+
+- **23 shipped `.sh` files installed without the executable bit on macOS and Linux** (`skills/chrome-devtools/scripts/install.sh`, `install-deps.sh`, `skills/debugging/scripts/find-polluter.sh` across all 9 presets). Their manifest entries were missing `executable: true`, so users had to `chmod +x` by hand. Invisible on Windows, which has no exec bit — found by running the CLI in a Linux container.
+- `sync-preset-manifests.mjs` now sets `executable: true` on new `.sh` declarations, so the drift above cannot silently return.
+
 ## [0.10.1] - 2026-07-29
 
 ### Fixed
