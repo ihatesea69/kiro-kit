@@ -1,0 +1,64 @@
+---
+title: Deep Security Scan
+description: A whole-repository, multi-agent security scan with an adversarial confidence gate and a machine-readable CI contract.
+---
+
+The `backend`, `fullstack`, `devops`, and `sa` presets ship a whole-repository
+security scan:
+
+```bash
+/security:deep-scan [path]
+```
+
+It runs a multi-agent pipeline — recon partitions the attack surface, parallel
+finders trace data flow from user inputs to sensitive sinks, one adversarial
+validator per candidate scores confidence 1–10 (anything below 8 is dropped), a
+serial judge dedups by root cause, and a reporter writes the results.
+
+## Output
+
+A findings workspace under `.kiro/security/scans/<date>-<n>/`:
+
+| Path | Contents |
+|---|---|
+| `report.md` | Human entry point |
+| `findings/<slug>/finding.md` | One file per issue |
+| `hardening/` | Structural recommendations |
+| `scan-manifest.json` | Scan metadata |
+| `findings.json` | The CI contract (machine-readable) |
+| `coverage.json` | What was and wasn't covered |
+
+## CI gate
+
+`findings.json` is machine-readable, and the bundled `check-findings.mjs` (zero
+dependencies) fails a build on any open CRITICAL/HIGH finding, or on a stale
+scan:
+
+```bash
+node .kiro/skills/deep-security-scan/scripts/check-findings.mjs --fail-on HIGH
+```
+
+Copy `assets/deep-scan-gate.yml` for a ready-made GitHub Actions job.
+
+## Re-scans
+
+Re-scans track a finding across its whole life: matched by root cause (so the
+slug stays stable), marked `new` / `persisting` / `regressed`, with a `delta.md`
+per re-scan. A scoped re-scan will never mark a finding outside its scope as
+fixed.
+
+`--semgrep` optionally adds SAST-first candidate generation with LLM triage when
+Semgrep is installed — those candidates still pass through the same adversarial
+gate.
+
+## Scope boundaries
+
+The scopes are deliberately separate:
+
+- `/review:security` — the fast per-diff gate
+- `security-auditor` — infrastructure and compliance
+- `/security:deep-scan` — whole-repo application-code vulnerabilities
+
+Categories with poor signal-to-noise — DoS, rate limiting, resource exhaustion,
+open redirects, and generic input validation without a proven exploit path — are
+never reported.

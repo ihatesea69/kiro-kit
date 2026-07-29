@@ -1,0 +1,57 @@
+---
+title: MCP Servers and Kiro Powers
+description: How init auto-configures MCP servers and wires up curated Kiro Powers, including installing real marketplace Powers.
+---
+
+## MCP server auto-configuration
+
+Running `kiro-kit init` generates a functional `.mcp.json`:
+
+- Credential-free servers (filesystem, memory, context7, sequential-thinking,
+  playwright) are enabled immediately via `npx`.
+- The official git/fetch servers run via `uvx` (Python) — install
+  [`uv`](https://docs.astral.sh/uv/) to use them.
+- Servers requiring credentials (postgres, github, sentry) are included as
+  `_disabled_` entries with instructions to enable them.
+
+The MCP servers each preset configures are listed in the
+[preset reference](/docs/reference).
+
+## Kiro Powers
+
+Each preset recommends curated [Kiro Powers](https://kiro.dev/powers/) organized
+by priority tier. The catalog is metadata-tagged (category, auth type, required
+env vars, and whether the Power is MCP-backed), so `init` can **auto-wire the
+credential-free MCP-backed Powers** and scaffold the credentialed ones disabled.
+
+The full tier breakdown per preset is in the
+[preset reference](/docs/reference#kiro-powers-by-preset).
+
+Running `init` auto-configures MCP servers (credential-free ones enabled,
+credentialed ones as disabled templates), documents required env vars in
+`.env.example`, and generates a `POWERS-SETUP.md` guide.
+
+## Auto-installing Powers
+
+Unlike Steering, Skills, Hooks, and Specs — which are workspace files that appear
+in Kiro immediately — Kiro **Powers** live in `~/.kiro/powers/` (user-global) and
+are managed by the IDE. Kiro-Kit can install the real marketplace Powers for you.
+
+Close Kiro first, because it rewrites its power registry on exit:
+
+```bash
+kiro-kit powers list                       # see installable powers
+kiro-kit powers install --preset backend   # install powers for a preset
+kiro-kit powers install neon postman       # or by name
+```
+
+`init` also offers this as an opt-in prompt (interactive mode only). Powers are
+cloned from their **official** repos (`kirodotdev/powers`,
+`figma/mcp-server-guide`, `supabase-community/kiro-powers`) into
+`~/.kiro/powers/`; `installed.json` is backed up and the operation is reversible.
+
+<Callout type="warn">
+  Context7, Upstash, Snyk, and Sentry are **MCP servers** (configured in
+  `.kiro/settings/mcp.json`), not marketplace Powers. A Kiro org that disables MCP
+  will block the MCP side of any Power.
+</Callout>

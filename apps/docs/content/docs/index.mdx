@@ -1,0 +1,33 @@
+---
+title: Kiro-Kit
+description: Bootstrap an engineer-grade Kiro workspace with one command. Self-contained presets of agents, skills, commands, hooks, and spec templates.
+---
+
+Kiro-Kit is a CLI that bootstraps an engineer-grade [Kiro](https://kiro.dev) workspace
+in one command. Pick a preset for your stack and get agents, skills, commands, hooks,
+MCP server config, and spec scaffolding written straight into `.kiro/`.
+
+```bash
+npx kiro-kit init
+```
+
+Every preset is **self-contained** — installing one never requires another, and
+removing one has no side effects on the rest.
+
+<Cards>
+  <Card title="Quick Start" href="/docs/guide/quick-start" description="Install, pick a preset, and see what lands in your workspace." />
+  <Card title="How It Works" href="/docs/guide/how-it-works" description="The preset model, install lifecycle, merge semantics, and backups." />
+  <Card title="Preset Reference" href="/docs/reference" description="Every preset's commands, agents, and skills — generated from the repo." />
+  <Card title="Creating Presets" href="/docs/guide/creating-presets" description="Author your own preset: manifest schema and conventions." />
+</Cards>
+
+## Why presets
+
+A preset is a collection of Kiro configuration files targeting one development
+context — frontend, backend, mobile, devops, data/AI, and more. Rather than
+assembling agents and commands by hand, you install a curated set that already
+knows the idioms of your stack.
+
+The [reference section](/docs/reference) is generated directly from the preset
+manifests in the repository, so the catalog you read here is the catalog that
+ships.

@@ -1,0 +1,31 @@
+---
+title: Native Kiro Agent Hooks
+description: Event-driven automation that runs inside Kiro, shipped disabled by default in every preset.
+---
+
+Each preset ships **native Kiro Agent Hooks** (`*.kiro.hook` files) — Kiro's own
+event-driven automation format (a `when` trigger plus a `then` action) that runs
+inside the IDE.
+
+Every preset gets four shared hooks plus domain-specific ones:
+
+- **Shared**: Run Tests on Save, Spec Task Sync, Secret Scan Before Write, Docs
+  Drift Guard
+- **Domain-specific**: three or more per preset, tailored to its stack
+
+The exact set for each preset is listed in the
+[preset reference](/docs/reference), read from the preset manifests.
+
+<Callout type="warn">
+  Every native hook ships **disabled** (`"enabled": false`) so a fresh workspace
+  never starts an agent run you didn't ask for.
+</Callout>
+
+Toggle one on in Kiro's Agent Hooks panel, or set `"enabled": true`. Each preset
+also carries a `hooks/native-hooks.md` guide.
+
+## Not the same as the shell hooks
+
+These are distinct from the cross-platform shell notifier scripts
+(`.js` / `.sh` / `.ps1`) that also ship in `hooks/` and are registered in
+`settings.json`. Both are listed separately on each preset's reference page.

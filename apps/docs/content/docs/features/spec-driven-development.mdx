@@ -1,0 +1,34 @@
+---
+title: Spec-Driven Development
+description: Every preset ships a library of worked example specs demonstrating EARS acceptance criteria, scope boundaries, and task traceability.
+---
+
+Each preset ships a **library of worked example specs** as
+`.kiro/specs/example-<feature>/` — each with a `.config.kiro` marker so it shows
+up in Kiro's Specs panel.
+
+These are fully-written `requirements.md` / `design.md` / `tasks.md` trios
+demonstrating:
+
+- EARS acceptance criteria
+- **Out of Scope** boundaries
+- **Files & Interfaces** sections
+- Mermaid diagrams
+- Task-to-requirement traceability
+- An end-to-end verification and documentation task
+
+The full list per preset is in the
+[preset reference](/docs/reference#example-specs-by-preset), generated from the
+presets themselves.
+
+## Steering
+
+A `spec-driven-development.md` steering file teaches the EARS patterns and the
+requirements → design → tasks approval gates.
+
+## Scaffolding your own
+
+```bash
+kiro-kit spec new my-feature            # from the installed template
+kiro-kit spec new my-feature --from backend
+```

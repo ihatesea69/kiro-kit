@@ -2,3 +2,4 @@ packages:
   - "packages/*"
   - "presets/*"
   - "scripts/parity-sync"
+  - "apps/*"

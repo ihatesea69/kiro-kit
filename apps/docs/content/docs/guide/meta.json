@@ -1,0 +1,10 @@
+{
+  "title": "Guide",
+  "pages": [
+    "quick-start",
+    "how-it-works",
+    "cli-reference",
+    "architecture",
+    "creating-presets"
+  ]
+}

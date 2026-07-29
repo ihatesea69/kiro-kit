@@ -1,0 +1,30 @@
+# deps
+/node_modules
+
+# generated content
+.source
+
+# The whole reference section is generated from presets/*/manifest.json by
+# scripts/generate-docs-reference.mjs on every docs build. Never commit it.
+/content/docs/reference/
+
+# test & build
+/coverage
+/.next/
+/out/
+/build
+*.tsbuildinfo
+
+# misc
+.DS_Store
+*.pem
+/.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# others
+.env*.local
+.vercel
+next-env.d.ts

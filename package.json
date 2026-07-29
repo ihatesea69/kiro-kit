@@ -10,14 +10,17 @@
   "packageManager": "pnpm@9.0.0",
   "workspaces": [
     "packages/*",
-    "presets/*"
+    "presets/*",
+    "apps/*"
   ],
   "scripts": {
     "lint": "pnpm -r --if-present run lint",
     "typecheck": "pnpm -r --if-present run typecheck",
     "test": "pnpm -r --if-present run test",
     "build": "pnpm -r --if-present run build",
-    "clean": "pnpm -r --if-present run clean"
+    "clean": "pnpm -r --if-present run clean",
+    "docs:dev": "pnpm --filter @kiro-kit/docs run docs:dev",
+    "docs:build": "pnpm --filter @kiro-kit/docs run docs:build"
   },
   "license": "MIT",
   "repository": {

@@ -1,0 +1,85 @@
+name: Docs
+
+# Builds the Fumadocs site in apps/docs and publishes it to GitHub Pages at
+# https://ihatesea69.github.io/kiro-kit/.
+#
+# Deliberately standalone: it shares no steps, scripts, or jobs with ci.yml or
+# publish.yml so that their failures cannot block a docs deploy (and vice versa).
+#
+# One-time repository setup: Settings -> Pages -> Source must be set to
+# "GitHub Actions" (not a gh-pages branch), otherwise the deploy step fails.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/docs/**'
+      - 'presets/**'
+      - 'docs/**'
+      - 'scripts/generate-docs-reference.mjs'
+      - 'packages/cli/tests/structural/preset-thresholds.test.ts'
+      - '.github/workflows/docs.yml'
+      - 'pnpm-lock.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel a run that is mid-deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # No `version:` here on purpose — pnpm/action-setup@v4 errors out if the
+      # version is declared both here and as `packageManager` in package.json.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      # Fumadocs requires Node 22+. This is scoped to the docs build only; the
+      # CLI still supports Node 18 (see `engines` in the root package.json).
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build docs
+        # The site is served from a subpath on GitHub Pages, so every asset,
+        # link, and the static search index must be prefixed. See next.config.mjs.
+        env:
+          NEXT_PUBLIC_BASE_PATH: /kiro-kit
+        run: pnpm docs:build
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/docs/out
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
