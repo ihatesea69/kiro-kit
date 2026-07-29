@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.7] - 2026-07-29
+
+### Changed
+
+- The npm page now carries the same `Why another Kiro tool` section as the repository README: what the tools that came before it do, where each stops, and where Kiro-Kit is the wrong choice. Someone deciding on npm had no way to answer that without leaving the page.
+
+### Internal
+
+- First release published by CI. Authentication is an OIDC identity minted for the publish workflow and registered as a trusted publisher on npm, so there is no token in the repository to leak or rotate.
+
 ## [0.10.6] - 2026-07-29
 
 ### Changed
