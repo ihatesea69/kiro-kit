@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.4] - 2026-07-29
+
+### Fixed
+
+- **`kiro-kit@0.10.3` on npm shipped a two-month-old build — install 0.10.4 instead.** `npm publish` packs whatever is in `dist/`, and nothing rebuilt it first, so a `dist/` last written on 20 May went out under the 0.10.3 tag. That tarball carries the CLI as it stood before the `kiro-kit-dev`, `sa`, and `ai-engineer` presets existed: `init --preset sa` (and `ai-engineer`, `kiro-kit-dev`) fails on it, none of the 0.10.3 MCP fixes are actually present, and 41 stray `.coverage` files ride along. The published artefact for 0.10.3 never matched its source tag.
+- **A stale `dist/` can no longer be published.** `packages/cli` now runs `prepublishOnly: clean && build`, so `npm publish` always rebuilds from source first.
+
 ## [0.10.3] - 2026-07-29
 
 ### Fixed

@@ -1,6 +1,6 @@
 {
   "name": "kiro-kit",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "CLI tool for bootstrapping engineer-grade Kiro IDE workspaces with curated presets.",
   "type": "module",
   "bin": {
@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "prepublishOnly": "pnpm run clean && pnpm run build",
     "dev": "tsup --watch",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
