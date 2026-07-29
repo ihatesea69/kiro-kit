@@ -28,6 +28,16 @@ jobs:
           node-version: 20
           cache: pnpm
 
+      - name: Check the tag matches packages/cli/package.json
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          pkg="$(node -p "require('./packages/cli/package.json').version")"
+          if [ "$tag" != "$pkg" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package version $pkg"
+            exit 1
+          fi
+          echo "Tag and package agree on $pkg"
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -75,8 +85,22 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      # NPM_TOKEN missing is the single most likely reason this job fails, and
+      # npm only says ENEEDAUTH after uploading the whole tarball. Fail early
+      # and say why.
+      - name: Check the npm token is configured
+        run: |
+          if [ -z "${NPM_TOKEN}" ]; then
+            echo "::error::Repository secret NPM_TOKEN is not set. Create a granular npm token with publish access to kiro-kit and add it under Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # npm rather than pnpm: setup-node writes the auth line for npm, and
+      # pnpm does not always read NODE_AUTH_TOKEN from it.
       - name: Publish to npm
-        run: pnpm publish --no-git-checks --provenance --access public
+        run: npm publish --provenance --access public
         working-directory: packages/cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
