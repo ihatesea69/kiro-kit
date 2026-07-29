@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Unresolved `${VAR}` placeholders in a server's `env` now disable that server rather than letting it fail at launch.
   - MCP auto-configuration was nested inside the "Configuring Powers" task, so `--powers none` silently skipped it and the two write paths disagreed. It is now its own task, and the root `.mcp.json` and `.kiro/settings/mcp.json` are written from the same normalised config.
 - A server the user enabled by hand is never switched back off by a later `init`, and user-defined servers are still never overwritten.
+- **Documents named after an `Object.prototype` key no longer break the rebrander.** `gray-matter` memoises into a plain object keyed by the raw string, so content of exactly `toString`, `constructor`, `__proto__` (and friends) hit the prototype, were mistaken for a cached result, and parsed to `body: undefined` — crashing the next string operation. Parsing now opts out of that cache. This surfaced as the p04 property test failing on roughly 1 CI job in 9.
 
 ## [0.10.2] - 2026-07-29
 

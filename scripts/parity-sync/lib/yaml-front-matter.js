@@ -141,7 +141,14 @@ function parse(content) {
 
   let parsed;
   try {
-    parsed = matter(content);
+    // `matter(str)` memoises into a plain object keyed by the raw string. When
+    // the whole document is a name inherited from Object.prototype
+    // ("toString", "constructor", "__proto__", ...) the cache lookup hits the
+    // prototype, gray-matter treats that function as a cached result, and
+    // returns an object whose `.content` is undefined — so the caller gets
+    // `body: undefined` and blows up on the next string operation.
+    // Passing an options object opts out of the cache entirely.
+    parsed = matter(content, { language: 'yaml' });
   } catch (err) {
     throw makeError(
       'E_FRONTMATTER',
