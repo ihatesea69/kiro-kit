@@ -1,4 +1,7 @@
-# Creating Presets
+---
+title: "Creating Presets"
+description: "Author a new preset: directory structure, manifest schema, file conventions, and validation requirements."
+---
 
 This guide covers how to author a new preset for kiro-kit, including the
 manifest schema, file conventions, and validation requirements.
@@ -197,15 +200,10 @@ must be declared in `manifest.files`. Undeclared files produce error KK013.
 
 ## Minimum Thresholds
 
-Each preset must meet these minimums (enforced by structural tests):
-
-| Artifact | Minimum |
-|----------|---------|
-| Agents | 12 |
-| Skills | 20 |
-| Commands | 25 |
-| Hooks | 6 |
-| Workflows | 4 |
+Each preset must meet minimum artifact counts, enforced by the structural test
+suite. The current minimums are listed in the
+[preset reference](/docs/reference#minimum-thresholds), which reads them straight
+out of the test file so they cannot fall out of date here.
 
 Plus: statusline triple, settings.json, metadata.json, .mcp.json.example,
 .env.example files.

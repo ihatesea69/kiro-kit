@@ -129,8 +129,8 @@ test(property): add merge associativity property
 
 ## Adding a New Preset
 
-See `docs/creating-presets.md` for the manifest schema, file conventions,
-and validation checklist.
+See [Creating Presets](https://ihatesea69.github.io/kiro-kit/docs/guide/creating-presets)
+for the manifest schema, file conventions, and validation checklist.
 
 ## Reporting Issues
 

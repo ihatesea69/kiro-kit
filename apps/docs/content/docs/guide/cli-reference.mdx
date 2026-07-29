@@ -1,0 +1,57 @@
+---
+title: CLI Reference
+description: Every kiro-kit command, the common flags, and the telemetry controls.
+---
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `kiro-kit init` | Interactive preset picker and workspace bootstrap |
+| `kiro-kit add <preset>` | Drop another preset into an existing workspace |
+| `kiro-kit list` | See all presets with artifact counts |
+| `kiro-kit info <preset>` | Detailed preset contents and file targets |
+| `kiro-kit update` | Pull latest preset version into your workspace |
+| `kiro-kit restore` | Roll back from a timestamped backup |
+| `kiro-kit doctor` | Health check, `--fix` auto-repairs |
+| `kiro-kit spec new <name>` | Scaffold a new spec folder from a template |
+| `kiro-kit powers list` | List installable Kiro Powers |
+| `kiro-kit powers install` | Install real Kiro Powers (close Kiro first) |
+| `kiro-kit telemetry` | Manage opt-in usage telemetry (off by default) |
+
+## Common flags
+
+```
+-y, --yes              Skip confirmation prompts
+--force                Overwrite all conflicts (with backup)
+--skip-existing        Skip files that already exist
+--no-color             Disable ANSI output
+--powers <mode>        Powers setup: none, all, or interactive (default)
+--quiet                Suppress non-essential output
+```
+
+## CLI experience
+
+`kiro-kit init` features a polished terminal UI:
+
+- Purple gradient ASCII logo (figlet Small font)
+- Interactive preset selector: arrow keys to move, Enter to select, Enter twice
+  to confirm
+- Live selected-count indicator
+- Task progress list with spinners
+- Success summary box with file counts and next steps
+- Graceful fallback for CI and non-TTY environments
+
+## Privacy and telemetry
+
+Telemetry is **off by default**. No data leaves your machine unless you
+explicitly opt in:
+
+```bash
+kiro-kit telemetry status     # check current state
+kiro-kit telemetry enable     # opt in (anonymous events only)
+kiro-kit telemetry disable    # opt out
+```
+
+Opt-in events include command name, preset selection, OS, and Node version.
+Never file contents, paths, or PII.

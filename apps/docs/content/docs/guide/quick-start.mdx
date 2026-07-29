@@ -1,0 +1,72 @@
+---
+title: Quick Start
+description: Install kiro-kit, pick a preset, and understand what lands in your .kiro/ workspace.
+---
+
+## Requirements
+
+- Node.js 18 or newer
+- A project directory where you want a `.kiro/` workspace
+
+No global install is required.
+
+## Initialize a workspace
+
+```bash
+npx kiro-kit init
+```
+
+The interactive selector lists every available preset. Use the arrow keys to move,
+Enter to select, and Enter again to confirm. Kiro-Kit then writes the selected
+presets' files into `.kiro/`, merging with anything already there rather than
+overwriting it.
+
+To install globally instead:
+
+```bash
+npm install -g kiro-kit
+kiro-kit init
+```
+
+## Non-interactive install
+
+In CI or a script, skip the prompts:
+
+```bash
+npx kiro-kit init --yes --preset backend
+```
+
+## Add a preset later
+
+```bash
+npx kiro-kit add devops
+```
+
+If `.kiro/` does not exist yet, `add` delegates to the full `init` flow.
+
+## Other commands
+
+`list`, `info`, `update`, `restore`, `doctor`, `spec`, `powers`, and `telemetry`
+are covered in the [CLI reference](/docs/guide/cli-reference).
+
+## What gets written
+
+Selected presets contribute files under `.kiro/`:
+
+- `agents/` — AI assistant personas with domain knowledge
+- `skills/` — reusable capability modules
+- `commands/` — slash-command templates
+- `hooks/` — automation scripts plus native Kiro Agent Hooks
+- `workflows/` — always-on steering documents
+- `specs/` — worked example spec and scaffolding
+- `settings.json`, `settings/mcp.json` — merged, never clobbered
+
+Kiro-Kit records what it wrote in `.kiro/.kiro-kit.json`, which is what makes
+`update`, `doctor`, and `restore` possible.
+
+## Next steps
+
+- [How It Works](/docs/guide/how-it-works) — the lifecycle and merge rules in detail
+- [CLI Reference](/docs/guide/cli-reference) — every command and flag
+- [Preset Reference](/docs/reference) — the full catalog for every preset
+- [FAQ](/docs/faq) — common questions and troubleshooting

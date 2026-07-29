@@ -1,4 +1,7 @@
-# Architecture
+---
+title: "Architecture"
+description: "Repository layout, CLI module breakdown, key design decisions, build pipeline, and test architecture."
+---
 
 ## Overview
 
@@ -11,7 +14,7 @@ embedded in the tarball.
 ```
 kk-kiro-kit/
   packages/cli/         CLI source, tests, build config
-  presets/              6 preset directories (bundled into dist at build)
+  presets/              Preset directories (bundled into dist at build)
   docs/                 Project documentation
   .github/              CI workflows, issue/PR templates
 ```
@@ -60,7 +63,7 @@ packages/cli/src/
 
 ### Bundled Presets (Offline-First)
 
-All 9 presets are copied into `dist/presets/` at build time via tsup. The CLI
+Every preset is copied into `dist/presets/` at build time via tsup. The CLI
 reads preset content from its own package directory, requiring no network access
 after `npm install` or `npx` fetch.
 
