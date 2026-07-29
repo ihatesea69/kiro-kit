@@ -2,7 +2,7 @@
  * Unit test: ConflictResolver edge case 12.4 — sidecar idempotency after
  * maintainer review.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Task: tasks.md > 9.6 — "chạy lần 1 sinh sidecar, xoá, chạy lần 2 không
  *       sinh lại".
  *

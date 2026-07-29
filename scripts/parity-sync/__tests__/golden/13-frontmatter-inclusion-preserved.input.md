@@ -1,6 +1,6 @@
 ---
 name: my-agent
 inclusion: manual
-description: Helps with ClaudeKit tasks.
+description: Helps with the upstream kit tasks.
 ---
-Body referencing ClaudeKit.
+Body referencing the upstream kit.

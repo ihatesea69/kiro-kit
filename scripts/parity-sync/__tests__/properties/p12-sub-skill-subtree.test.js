@@ -1,4 +1,4 @@
-// Feature: claudekit-parity-sync, Property 12: Sub-skill Subtree Completeness
+// Feature: upstream-parity-sync, Property 12: Sub-skill Subtree Completeness
 // **Validates: Requirements 4.2, 4.3, 4.4, 4.13, 13.4**
 'use strict';
 

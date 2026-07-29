@@ -1,7 +1,7 @@
 /**
- * Porter for ClaudeKit Parity Sync.
+ * Porter for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 3 / 10.1–10.4 — execute `PortPlan[]`, gọi Rebrander cho text
  *        files, áp ConflictResolver, ghi qua AtomicWriter, track portedFiles
  *        per preset cho rollback, skip file thiếu front-matter hợp lệ
@@ -229,14 +229,14 @@ function makeTriScriptStub(ext, basename) {
     return (
       `// Auto-generated stub for tri-script parity with ${basename}.sh.\n`
       + `// TODO: port shell logic to Node.js. See ${basename}.sh for reference.\n`
-      + `// Spec: .kiro/specs/claudekit-parity-sync/ (Requirement 7.4 — tri-script .js).\n`
+      + `// Spec: .kiro/specs/upstream-parity-sync/ (Requirement 7.4 — tri-script .js).\n`
     );
   }
   if (ext === '.ps1') {
     return (
       `# Auto-generated stub for tri-script parity with ${basename}.sh.\n`
       + `# TODO: port shell logic to PowerShell. See ${basename}.sh for reference.\n`
-      + `# Spec: .kiro/specs/claudekit-parity-sync/ (Requirement 7.4 — tri-script .ps1).\n`
+      + `# Spec: .kiro/specs/upstream-parity-sync/ (Requirement 7.4 — tri-script .ps1).\n`
     );
   }
   // Defensive fallback — không xảy ra với target_paths chuẩn.
@@ -548,7 +548,7 @@ function portDirectoryPlan(plan, sourceFsPath, ctx) {
  * @param {object} options
  * @param {string} options.sourceRoot Absolute path tới thư mục `.claude/`
  *        của source kit (e.g.,
- *        `<workspace>/claudekit-engineer-main/.claude`). PortPlan.source_path
+ *        `<workspace>/the-upstream-kit/.claude`). PortPlan.source_path
  *        đã strip prefix này nên Porter join lại.
  * @param {string} [options.targetRoot] Absolute path workspace root (nơi
  *        chứa `presets/`). Mặc định = `process.cwd()`. Test harness truyền

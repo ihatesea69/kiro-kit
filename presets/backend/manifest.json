@@ -617,11 +617,6 @@
       "type": "doc"
     },
     {
-      "source": "skills/ai-multimodal/scripts/.coverage",
-      "target": ".kiro/skills/ai-multimodal/scripts/.coverage",
-      "type": "other"
-    },
-    {
       "source": "skills/ai-multimodal/scripts/document_converter.py",
       "target": ".kiro/skills/ai-multimodal/scripts/document_converter.py",
       "type": "other"
@@ -639,11 +634,6 @@
     {
       "source": "skills/ai-multimodal/scripts/requirements.txt",
       "target": ".kiro/skills/ai-multimodal/scripts/requirements.txt",
-      "type": "other"
-    },
-    {
-      "source": "skills/ai-multimodal/scripts/tests/.coverage",
-      "target": ".kiro/skills/ai-multimodal/scripts/tests/.coverage",
       "type": "other"
     },
     {
@@ -752,11 +742,6 @@
       "type": "doc"
     },
     {
-      "source": "skills/better-auth/scripts/.coverage",
-      "target": ".kiro/skills/better-auth/scripts/.coverage",
-      "type": "other"
-    },
-    {
       "source": "skills/better-auth/scripts/better_auth_init.py",
       "target": ".kiro/skills/better-auth/scripts/better_auth_init.py",
       "type": "other"
@@ -764,11 +749,6 @@
     {
       "source": "skills/better-auth/scripts/requirements.txt",
       "target": ".kiro/skills/better-auth/scripts/requirements.txt",
-      "type": "other"
-    },
-    {
-      "source": "skills/better-auth/scripts/tests/.coverage",
-      "target": ".kiro/skills/better-auth/scripts/tests/.coverage",
       "type": "other"
     },
     {
@@ -1017,11 +997,6 @@
       "source": "skills/databases/references/postgresql-queries.md",
       "target": ".kiro/skills/databases/references/postgresql-queries.md",
       "type": "doc"
-    },
-    {
-      "source": "skills/databases/scripts/.coverage",
-      "target": ".kiro/skills/databases/scripts/.coverage",
-      "type": "other"
     },
     {
       "source": "skills/databases/scripts/db_backup.py",
@@ -1600,11 +1575,6 @@
       "type": "doc"
     },
     {
-      "source": "skills/repomix/scripts/.coverage",
-      "target": ".kiro/skills/repomix/scripts/.coverage",
-      "type": "other"
-    },
-    {
       "source": "skills/repomix/scripts/README.md",
       "target": ".kiro/skills/repomix/scripts/README.md",
       "type": "doc"
@@ -1735,11 +1705,6 @@
       "type": "doc"
     },
     {
-      "source": "skills/shopify/scripts/.coverage",
-      "target": ".kiro/skills/shopify/scripts/.coverage",
-      "type": "other"
-    },
-    {
       "source": "skills/shopify/scripts/requirements.txt",
       "target": ".kiro/skills/shopify/scripts/requirements.txt",
       "type": "other"
@@ -1747,11 +1712,6 @@
     {
       "source": "skills/shopify/scripts/shopify_init.py",
       "target": ".kiro/skills/shopify/scripts/shopify_init.py",
-      "type": "other"
-    },
-    {
-      "source": "skills/shopify/scripts/tests/.coverage",
-      "target": ".kiro/skills/shopify/scripts/tests/.coverage",
       "type": "other"
     },
     {

@@ -1,7 +1,7 @@
 /**
- * ConflictResolver for ClaudeKit Parity Sync.
+ * ConflictResolver for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 3 / 9.1–9.6 — cây quyết định 4 tier, JSON deep-merge, sidecar
  *        idempotency, ConflictDecision shape, Property 6, edge 12.4.
  *

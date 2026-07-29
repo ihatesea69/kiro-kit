@@ -1,14 +1,14 @@
 /**
- * Path utilities for ClaudeKit Parity Sync.
+ * Path utilities for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Task: Phase 1 / 1.2 — path-utils (normalizeRelPath, stripClaudePrefix,
  *       joinPreset, toOsPath, isInsidePreset).
  *
  * Pipeline path semantics (xem design.md "DeltaDetector > Logic"):
  *   - inventory-source.json dùng path POSIX-style với prefix
- *     "claudekit-engineer-main/.claude/" (ví dụ
- *     "claudekit-engineer-main/.claude/agents/brainstormer.md").
+ *     "the-upstream-kit/.claude/" (ví dụ
+ *     "the-upstream-kit/.claude/agents/brainstormer.md").
  *   - Sau `stripClaudePrefix` -> "agents/brainstormer.md".
  *   - Sau `joinPreset('frontend', ...)` -> "presets/frontend/agents/brainstormer.md"
  *     (POSIX style, khớp với target-files-*.txt format).
@@ -45,7 +45,7 @@ const VALID_PRESETS = Object.freeze([
   '_template',
 ]);
 
-const CLAUDE_KIT_ROOT_PREFIX = 'claudekit-engineer-main/.claude/';
+const CLAUDE_KIT_ROOT_PREFIX = 'the-upstream-kit/.claude/';
 const CLAUDE_DOT_PREFIX = '.claude/';
 
 // Windows drive letter / UNC detection: "C:\foo", "C:/foo", "\\server\share".
@@ -125,10 +125,10 @@ function normalizeRelPath(p) {
 }
 
 /**
- * Loại bỏ prefix ClaudeKit khỏi inventory path.
+ * Loại bỏ prefix the upstream kit khỏi inventory path.
  *
  * Hỗ trợ hai dạng input (idempotent):
- *   - "claudekit-engineer-main/.claude/agents/brainstormer.md" -> "agents/brainstormer.md"
+ *   - "the-upstream-kit/.claude/agents/brainstormer.md" -> "agents/brainstormer.md"
  *   - ".claude/agents/brainstormer.md"                          -> "agents/brainstormer.md"
  *   - "agents/brainstormer.md"                                  -> "agents/brainstormer.md"
  *
@@ -153,7 +153,7 @@ function stripClaudePrefix(p) {
 /**
  * Build target path POSIX-style "presets/<preset>/<relPath>".
  *
- * `relPath` được normalize và (nếu cần) strip prefix ClaudeKit trước khi join.
+ * `relPath` được normalize và (nếu cần) strip prefix the upstream kit trước khi join.
  * Dùng `path.posix.join` để bảo đảm output luôn forward-slash kể cả trên Windows.
  *
  * @param {string} presetName Một trong `VALID_PRESETS`.

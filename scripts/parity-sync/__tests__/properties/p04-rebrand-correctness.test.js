@@ -1,7 +1,7 @@
 /**
  * Property test P4 — Rebrand Correctness.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/design.md > Correctness Properties >
+ * Spec: .kiro/specs/upstream-parity-sync/design.md > Correctness Properties >
  *       Property 4.
  * Task: tasks.md > 7.6 (PBT) Property test P4.
  *
@@ -9,7 +9,7 @@
  *
  * Statement (design.md): For all file đã được Porter ghi ra target (trừ file
  * nằm trong `skills/claude-code/`), nội dung không chứa các pattern
- * `Claude Code`, `ClaudeKit`, hoặc đường dẫn `.claude/`. Mọi URL khớp pattern
+ * `Claude Code`, `the upstream kit`, hoặc đường dẫn `.claude/`. Mọi URL khớp pattern
  * `https://docs.claude.com/...` trong source phải xuất hiện nguyên văn trong
  * target. Basename của file không thay đổi giữa source và target (trừ một
  * rule duy nhất: root file `CLAUDE.md` → `KIRO.md`).
@@ -17,13 +17,13 @@
  * Stage scope: Rebrander là pure-string transform; basename rule (CLAUDE.md
  * → KIRO.md) thuộc về root-level porter (task 17.4), không phải Rebrander.
  * Property này test 3 invariant Rebrander chịu trách nhiệm:
- *   - Pattern leak: output không còn `Claude Code`, `ClaudeKit`, `.claude/`
+ *   - Pattern leak: output không còn `Claude Code`, `the upstream kit`, `.claude/`
  *     khi targetPath KHÔNG nằm trong `skills/claude-code/`.
  *   - URL preservation: mọi URL `https://*.claude.com/...` và
  *     `https://docs.anthropic.com/...` trong source xuất hiện nguyên văn
  *     trong output.
  *   - Skills/claude-code/ exception: khi targetPath match marker, phrase
- *     `Claude Code` được giữ; nhưng `ClaudeKit` và `.claude/` VẪN bị rebrand.
+ *     `Claude Code` được giữ; nhưng `the upstream kit` và `.claude/` VẪN bị rebrand.
  *
  * Generators (xem comment cấu trúc bên dưới):
  *   - `arbBodySegment` — đoạn ngắn ngẫu nhiên có thể là plain text, một
@@ -84,10 +84,10 @@ const arbClaudePath = fc.tuple(
 const arbBodySegment = fc.oneof(
   { weight: 3, arbitrary: arbPlainText },
   { weight: 2, arbitrary: fc.constant('Claude Code') },
-  { weight: 2, arbitrary: fc.constant('ClaudeKit') },
+  { weight: 2, arbitrary: fc.constant('the upstream kit') },
   { weight: 2, arbitrary: arbClaudePath },
   { weight: 1, arbitrary: arbAnthropicUrl },
-  { weight: 1, arbitrary: fc.constant('Use Claude Code with ClaudeKit.') },
+  { weight: 1, arbitrary: fc.constant('Use Claude Code with the upstream kit.') },
 );
 
 // Full body: 0..15 segments joined by space + occasional newline. Lower bound
@@ -126,9 +126,9 @@ function extractUrls(s) {
 // ---------------------------------------------------------------------------
 
 describe('Property 4: Rebrand Correctness — **Validates: Requirements 3.4, 11.1, 11.2, 11.3, 11.4**', () => {
-  // Feature: claudekit-parity-sync, Property 4: Rebrand Correctness
+  // Feature: upstream-parity-sync, Property 4: Rebrand Correctness
 
-  it('4a: pattern leak — non-claude-code targetPath → output không còn ClaudeKit, .claude/, hoặc Claude Code (ngoài URL Anthropic)', () => {
+  it('4a: pattern leak — non-claude-code targetPath → output không còn the upstream kit, .claude/, hoặc Claude Code (ngoài URL Anthropic)', () => {
     fc.assert(
       fc.property(arbBody, arbToken, (body, name) => {
         // Force non-claude-code targetPath (không chứa marker).
@@ -140,7 +140,7 @@ describe('Property 4: Rebrand Correctness — **Validates: Requirements 3.4, 11.
         // không có ".claude/" sequence (URL tiếp theo là "." không phải "/").
         const outWithoutUrls = output.replace(URL_PROTECT_RE, '');
 
-        expect(outWithoutUrls.includes('ClaudeKit')).toBe(false);
+        expect(outWithoutUrls.includes('the upstream kit')).toBe(false);
         expect(outWithoutUrls.includes('.claude/')).toBe(false);
         expect(outWithoutUrls.includes('Claude Code')).toBe(false);
       }),
@@ -169,7 +169,7 @@ describe('Property 4: Rebrand Correctness — **Validates: Requirements 3.4, 11.
     );
   });
 
-  it('4c: skills/claude-code/ exception — Claude Code phrase preserved nhưng ClaudeKit và .claude/ vẫn bị rebrand', () => {
+  it('4c: skills/claude-code/ exception — Claude Code phrase preserved nhưng the upstream kit và .claude/ vẫn bị rebrand', () => {
     fc.assert(
       fc.property(arbBody, arbToken, (body, name) => {
         const targetPath = `presets/frontend/${CLAUDE_CODE_SKILL_MARKER}${name}.md`;
@@ -177,8 +177,8 @@ describe('Property 4: Rebrand Correctness — **Validates: Requirements 3.4, 11.
 
         const outWithoutUrls = output.replace(URL_PROTECT_RE, '');
 
-        // ClaudeKit và .claude/ vẫn phải bị rebrand kể cả trong skill exception.
-        expect(outWithoutUrls.includes('ClaudeKit')).toBe(false);
+        // the upstream kit và .claude/ vẫn phải bị rebrand kể cả trong skill exception.
+        expect(outWithoutUrls.includes('the upstream kit')).toBe(false);
         expect(outWithoutUrls.includes('.claude/')).toBe(false);
 
         // Nếu source có "Claude Code", output cũng phải có "Claude Code"

@@ -1,7 +1,7 @@
 /**
  * Unit test: CATEGORY_RULES no-orphan completeness.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{design,tasks}.md
  * Task: tasks.md > 3.3 — assert mọi source artifact ID trong
  *       inventory-source.json đều có rule (no orphan source).
  *
@@ -24,7 +24,7 @@ const APPENDIX_DIR = path.resolve(
   '..',
   'docs',
   'audits',
-  'claudekit-vs-kirokit',
+  'upstream-parity',
   'appendix',
 );
 const SOURCE_INVENTORY = path.join(APPENDIX_DIR, 'inventory-source.json');

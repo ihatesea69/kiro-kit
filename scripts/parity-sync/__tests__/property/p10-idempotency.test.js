@@ -1,7 +1,7 @@
 /**
  * Property test P10 — Idempotency (Round-trip).
  *
- * Spec: .kiro/specs/claudekit-parity-sync/design.md > Correctness Properties >
+ * Spec: .kiro/specs/upstream-parity-sync/design.md > Correctness Properties >
  *       Property 10.
  * Task: tasks.md > 13.7 (PBT) Property test P10 — chạy 2 lần liên tiếp ra
  *       byte-identical output.
@@ -40,7 +40,7 @@
  *   - Mỗi iteration tạo isolated tmp workspace với:
  *       1. Audit appendix synthetic (inventory-source.json + 7 target-files-*.txt
  *          rỗng/skeleton).
- *       2. claudekit-engineer-main/.claude/ với source file vật lý (cần thật
+ *       2. the-upstream-kit/.claude/ với source file vật lý (cần thật
  *          vì Porter sẽ đọc).
  *       3. presets/<P>/ skeleton trống.
  *   - Run pipeline với `apply=true, skipFinalChecks=true` (tmp workspace
@@ -165,8 +165,8 @@ function makeWorkspace() {
 
 /**
  * Scaffold workspace với:
- *   - claudekit-engineer-main/.claude/ chứa source file vật lý.
- *   - docs/audits/claudekit-vs-kirokit/appendix/ chứa inventory-source.json
+ *   - the-upstream-kit/.claude/ chứa source file vật lý.
+ *   - docs/audits/upstream-parity/appendix/ chứa inventory-source.json
  *     và 7 target-files-*.txt.
  *   - presets/<P>/ rỗng cho mọi preset.
  *
@@ -178,7 +178,7 @@ function makeWorkspace() {
  */
 function scaffoldWorkspace(root, fixture) {
   // 1. Audit appendix.
-  const appendixDir = path.join(root, 'docs/audits/claudekit-vs-kirokit/appendix');
+  const appendixDir = path.join(root, 'docs/audits/upstream-parity/appendix');
   fs.mkdirSync(appendixDir, { recursive: true });
 
   /** @type {object[]} */
@@ -190,7 +190,7 @@ function scaffoldWorkspace(root, fixture) {
       kit: 'source',
       preset: null,
       artifact_type: 'agent',
-      path: `claudekit-engineer-main/.claude/agents/${name}.md`,
+      path: `the-upstream-kit/.claude/agents/${name}.md`,
       basename: `${name}.md`,
       size_lines: 30,
       front_matter: { present: true, fields: { name } },
@@ -203,7 +203,7 @@ function scaffoldWorkspace(root, fixture) {
       kit: 'source',
       preset: null,
       artifact_type: 'command',
-      path: `claudekit-engineer-main/.claude/commands/${name}.md`,
+      path: `the-upstream-kit/.claude/commands/${name}.md`,
       basename: `${name}.md`,
       size_lines: 25,
       front_matter: { present: true, fields: { name } },
@@ -216,7 +216,7 @@ function scaffoldWorkspace(root, fixture) {
       kit: 'source',
       preset: null,
       artifact_type: 'skill',
-      path: `claudekit-engineer-main/.claude/skills/${name}/`,
+      path: `the-upstream-kit/.claude/skills/${name}/`,
       basename: name,
       size_lines: 20,
       front_matter: { present: false, fields: {} },
@@ -242,7 +242,7 @@ function scaffoldWorkspace(root, fixture) {
   }
 
   // 3. Source kit physical files.
-  const claudeRoot = path.join(root, 'claudekit-engineer-main/.claude');
+  const claudeRoot = path.join(root, 'the-upstream-kit/.claude');
   fs.mkdirSync(path.join(claudeRoot, 'agents'), { recursive: true });
   fs.mkdirSync(path.join(claudeRoot, 'commands'), { recursive: true });
   fs.mkdirSync(path.join(claudeRoot, 'skills'), { recursive: true });
@@ -300,7 +300,7 @@ This is the ${name} skill.
  * Walk workspace và snapshot sha256 + size cho mỗi file trong `presets/<P>/`.
  *
  * Per spec Property 10: "git diff(S1, S2) == ∅ cho mọi đường dẫn trong
- * `presets/`". Reports (`docs/audits/claudekit-vs-kirokit/*-report.md`) là
+ * `presets/`". Reports (`docs/audits/upstream-parity/*-report.md`) là
  * audit artifacts mô tả từng run — chúng KHÔNG phải state, mà là log của
  * pipeline execution (run 1 ghi lại các write-new decisions; run 2 toàn
  * no-op). Vì vậy reports KHÔNG nằm trong Property 10 invariant.
@@ -309,7 +309,7 @@ This is the ${name} skill.
  *   - `presets/<P>/manifest.json` (state file của preset) → in scope.
  *   - `presets/<P>/agents/*.md`, `commands/**`, `skills/**`, `hooks/*`,
  *     `workflows/*.md` (ported content) → in scope.
- *   - `docs/audits/claudekit-vs-kirokit/{delta,conflict,parity-sync}-report.md`
+ *   - `docs/audits/upstream-parity/{delta,conflict,parity-sync}-report.md`
  *     → out of scope (audit log, không phải state).
  *
  * @param {string} root Workspace root.
@@ -479,7 +479,7 @@ describe('Property 10: Idempotency — **Validates: Requirements 15.1, 15.2, 15.
           });
           const deltaPath = path.join(
             ws.root,
-            'docs/audits/claudekit-vs-kirokit/delta-report.md',
+            'docs/audits/upstream-parity/delta-report.md',
           );
           const first = fs.readFileSync(deltaPath);
 

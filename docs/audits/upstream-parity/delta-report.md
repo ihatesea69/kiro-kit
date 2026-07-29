@@ -1,0 +1,967 @@
+# the upstream kit Parity Sync — Delta Report
+
+## Summary
+
+| Preset | missing | partial | category-skip | present |
+| ------ | ------- | ------- | ------------- | ------- |
+| frontend | 51 | 18 | 14 | 50 |
+| backend | 50 | 16 | 19 | 48 |
+| fullstack | 59 | 19 | 5 | 50 |
+| mobile | 52 | 17 | 14 | 50 |
+| devops | 45 | 16 | 23 | 49 |
+| data-ai | 47 | 11 | 24 | 51 |
+| _template | 0 | 0 | 133 | 0 |
+
+## Details
+
+### frontend
+
+- [present] .env.example -> presets/frontend/.env.example
+- [present] .mcp.json.example -> presets/frontend/.mcp.json.example
+- [present] agents/brainstormer.md -> presets/frontend/agents/brainstormer.md
+- [present] agents/code-reviewer.md -> presets/frontend/agents/code-reviewer.md
+- [present] agents/copywriter.md -> presets/frontend/agents/copywriter.md
+- [present] agents/database-admin.md -> presets/frontend/agents/database-admin.md
+- [present] agents/debugger.md -> presets/frontend/agents/debugger.md
+- [present] agents/docs-manager.md -> presets/frontend/agents/docs-manager.md
+- [present] agents/git-manager.md -> presets/frontend/agents/git-manager.md
+- [present] agents/journal-writer.md -> presets/frontend/agents/journal-writer.md
+- [present] agents/mcp-manager.md -> presets/frontend/agents/mcp-manager.md
+- [present] agents/planner.md -> presets/frontend/agents/planner.md
+- [present] agents/project-manager.md -> presets/frontend/agents/project-manager.md
+- [present] agents/researcher.md -> presets/frontend/agents/researcher.md
+- [present] agents/scout-external.md -> presets/frontend/agents/scout-external.md
+- [present] agents/scout.md -> presets/frontend/agents/scout.md
+- [present] agents/tester.md -> presets/frontend/agents/tester.md
+- [present] agents/ui-ux-designer.md -> presets/frontend/agents/ui-ux-designer.md
+- [missing] the-upstream-kit/docs/code-standards.md (size_lines=949) -> presets/frontend/the-upstream-kit/docs/code-standards.md
+- [missing] the-upstream-kit/docs/codebase-summary.md (size_lines=342) -> presets/frontend/the-upstream-kit/docs/codebase-summary.md
+- [missing] the-upstream-kit/docs/project-overview-pdr.md (size_lines=606) -> presets/frontend/the-upstream-kit/docs/project-overview-pdr.md
+- [missing] the-upstream-kit/docs/project-roadmap.md (size_lines=401) -> presets/frontend/the-upstream-kit/docs/project-roadmap.md
+- [missing] the-upstream-kit/docs/system-architecture.md (size_lines=906) -> presets/frontend/the-upstream-kit/docs/system-architecture.md
+- [missing] commands/ask.md (size_lines=56) -> presets/frontend/commands/ask.md
+- [present] commands/bootstrap.md -> presets/frontend/commands/bootstrap.md
+- [missing] commands/bootstrap/auto.md (size_lines=115) -> presets/frontend/commands/bootstrap/auto.md
+- [missing] commands/bootstrap/auto/fast.md (size_lines=111) -> presets/frontend/commands/bootstrap/auto/fast.md
+- [missing] commands/brainstorm.md (size_lines=69) -> presets/frontend/commands/brainstorm.md
+- [missing] commands/code.md (size_lines=93) -> presets/frontend/commands/code.md
+- [missing] commands/content/cro.md (size_lines=43) -> presets/frontend/commands/content/cro.md
+- [missing] commands/content/enhance.md (size_lines=14) -> presets/frontend/commands/content/enhance.md
+- [missing] commands/content/fast.md (size_lines=13) -> presets/frontend/commands/content/fast.md
+- [missing] commands/content/good.md (size_lines=16) -> presets/frontend/commands/content/good.md
+- [missing] commands/cook.md (size_lines=105) -> presets/frontend/commands/cook.md
+- [missing] commands/cook/auto.md (size_lines=15) -> presets/frontend/commands/cook/auto.md
+- [missing] commands/cook/auto/fast.md (size_lines=26) -> presets/frontend/commands/cook/auto/fast.md
+- [missing] commands/debug.md (size_lines=13) -> presets/frontend/commands/debug.md
+- [missing] commands/design/3d.md (size_lines=74) -> presets/frontend/commands/design/3d.md
+- [missing] commands/design/describe.md (size_lines=21) -> presets/frontend/commands/design/describe.md
+- [missing] commands/design/fast.md (size_lines=22) -> presets/frontend/commands/design/fast.md
+- [missing] commands/design/good.md (size_lines=26) -> presets/frontend/commands/design/good.md
+- [missing] commands/design/screenshot.md (size_lines=32) -> presets/frontend/commands/design/screenshot.md
+- [missing] commands/design/video.md (size_lines=32) -> presets/frontend/commands/design/video.md
+- [missing] commands/docs/init.md (size_lines=15) -> presets/frontend/commands/docs/init.md
+- [present] commands/docs/summarize.md -> presets/frontend/commands/docs/summarize.md
+- [present] commands/docs/update.md -> presets/frontend/commands/docs/update.md
+- [missing] commands/fix.md (size_lines=12) -> presets/frontend/commands/fix.md
+- [missing] commands/fix/ci.md (size_lines=20) -> presets/frontend/commands/fix/ci.md
+- [missing] commands/fix/fast.md (size_lines=19) -> presets/frontend/commands/fix/fast.md
+- [missing] commands/fix/hard.md (size_lines=43) -> presets/frontend/commands/fix/hard.md
+- [missing] commands/fix/logs.md (size_lines=20) -> presets/frontend/commands/fix/logs.md
+- [missing] commands/fix/test.md (size_lines=20) -> presets/frontend/commands/fix/test.md
+- [missing] commands/fix/types.md (size_lines=9) -> presets/frontend/commands/fix/types.md
+- [missing] commands/fix/ui.md (size_lines=35) -> presets/frontend/commands/fix/ui.md
+- [missing] commands/git/cm.md (size_lines=5) -> presets/frontend/commands/git/cm.md
+- [missing] commands/git/cp.md (size_lines=4) -> presets/frontend/commands/git/cp.md
+- [present] commands/git/pr.md -> presets/frontend/commands/git/pr.md
+- [category-skip] commands/integrate/polar.md (reason: backend+fullstack-only)
+- [category-skip] commands/integrate/sepay.md (reason: backend+fullstack-only)
+- [missing] commands/journal.md (size_lines=5) -> presets/frontend/commands/journal.md
+- [missing] commands/plan.md (size_lines=23) -> presets/frontend/commands/plan.md
+- [missing] commands/plan/ci.md (size_lines=18) -> presets/frontend/commands/plan/ci.md
+- [missing] commands/plan/cro.md (size_lines=56) -> presets/frontend/commands/plan/cro.md
+- [missing] commands/plan/fast.md (size_lines=46) -> presets/frontend/commands/plan/fast.md
+- [missing] commands/plan/hard.md (size_lines=57) -> presets/frontend/commands/plan/hard.md
+- [missing] commands/plan/two.md (size_lines=30) -> presets/frontend/commands/plan/two.md
+- [missing] commands/review/codebase.md (size_lines=49) -> presets/frontend/commands/review/codebase.md
+- [present] commands/scout.md -> presets/frontend/commands/scout.md
+- [present] commands/scout/ext.md -> presets/frontend/commands/scout/ext.md
+- [present] commands/skill/add.md -> presets/frontend/commands/skill/add.md
+- [present] commands/skill/create.md -> presets/frontend/commands/skill/create.md
+- [missing] commands/skill/fix-logs.md (size_lines=21) -> presets/frontend/commands/skill/fix-logs.md
+- [present] commands/skill/optimize.md -> presets/frontend/commands/skill/optimize.md
+- [present] commands/test.md -> presets/frontend/commands/test.md
+- [missing] commands/use-mcp.md (size_lines=34) -> presets/frontend/commands/use-mcp.md
+- [missing] commands/watzup.md (size_lines=8) -> presets/frontend/commands/watzup.md
+- [present] hooks/.env.example -> presets/frontend/hooks/.env.example
+- [present] hooks/README.md -> presets/frontend/hooks/README.md
+- [missing] hooks/discord-hook-setup.md (size_lines=412) -> presets/frontend/hooks/discord-hook-setup.md
+- [category-skip] hooks/discord_notify.sh (reason: merged-into-tri-script)
+- [present] hooks/modularization-hook.js -> presets/frontend/hooks/modularization-hook.js
+- [present] hooks/scout-block.js -> presets/frontend/hooks/scout-block.js
+- [present] hooks/scout-block.ps1 -> presets/frontend/hooks/scout-block.ps1
+- [present] hooks/scout-block.sh -> presets/frontend/hooks/scout-block.sh
+- [category-skip] hooks/send-discord.sh (reason: merged-into-tri-script)
+- [missing] hooks/telegram-hook-setup.md (size_lines=774) -> presets/frontend/hooks/telegram-hook-setup.md
+- [category-skip] hooks/telegram_notify.sh (reason: merged-into-tri-script)
+- [missing] metadata.json (size_lines=15) -> presets/frontend/metadata.json
+- [present] settings.json -> presets/frontend/settings.json
+- [present] skills/.env.example -> presets/frontend/skills/.env.example
+- [present] skills/INSTALLATION.md -> presets/frontend/skills/INSTALLATION.md
+- [present] skills/README.md -> presets/frontend/skills/README.md
+- [present] skills/THIRD_PARTY_NOTICES.md -> presets/frontend/skills/THIRD_PARTY_NOTICES.md
+- [partial] skills/aesthetic (missing references/) -> presets/frontend/skills/aesthetic
+- [present] skills/agent_skills_spec.md -> presets/frontend/skills/agent_skills_spec.md
+- [partial] skills/ai-multimodal (missing references/, scripts/) -> presets/frontend/skills/ai-multimodal
+- [category-skip] skills/backend-development (reason: backend+fullstack+devops-only)
+- [category-skip] skills/better-auth (reason: backend+fullstack-only)
+- [partial] skills/chrome-devtools (missing references/, scripts/) -> presets/frontend/skills/chrome-devtools
+- [missing] skills/claude-code (size_lines=188) -> presets/frontend/skills/claude-code
+- [partial] skills/code-review (missing references/) -> presets/frontend/skills/code-review
+- [missing] skills/common (size_lines=0) -> presets/frontend/skills/common
+- [category-skip] skills/databases (reason: backend+fullstack+devops+data-ai-only)
+- [partial] skills/debugging (missing references/, scripts/) -> presets/frontend/skills/debugging
+- [category-skip] skills/devops (reason: backend+fullstack+devops-only)
+- [partial] skills/docs-seeker (missing references/, scripts/) -> presets/frontend/skills/docs-seeker
+- [category-skip] skills/document-skills (reason: data-ai-only)
+- [partial] skills/frontend-design (missing references/) -> presets/frontend/skills/frontend-design
+- [present] skills/frontend-development -> presets/frontend/skills/frontend-development
+- [category-skip] skills/google-adk-python (reason: data-ai-only)
+- [partial] skills/mcp-builder (missing scripts/) -> presets/frontend/skills/mcp-builder
+- [partial] skills/mcp-management (missing references/, scripts/) -> presets/frontend/skills/mcp-management
+- [partial] skills/media-processing (missing references/, scripts/) -> presets/frontend/skills/media-processing
+- [category-skip] skills/mobile-development (reason: mobile+fullstack-only)
+- [category-skip] skills/payment-integration (reason: backend+fullstack-only)
+- [partial] skills/planning (missing references/) -> presets/frontend/skills/planning
+- [partial] skills/problem-solving (missing references/) -> presets/frontend/skills/problem-solving
+- [partial] skills/repomix (missing references/, scripts/) -> presets/frontend/skills/repomix
+- [present] skills/research -> presets/frontend/skills/research
+- [partial] skills/sequential-thinking (missing references/, scripts/) -> presets/frontend/skills/sequential-thinking
+- [category-skip] skills/shopify (reason: backend+fullstack-only)
+- [partial] skills/skill-creator (missing scripts/) -> presets/frontend/skills/skill-creator
+- [present] skills/template-skill -> presets/frontend/skills/template-skill
+- [partial] skills/threejs (missing references/) -> presets/frontend/skills/threejs
+- [partial] skills/ui-styling (missing references/, scripts/) -> presets/frontend/skills/ui-styling
+- [partial] skills/web-frameworks (missing references/, scripts/) -> presets/frontend/skills/web-frameworks
+- [present] statusline.js -> presets/frontend/statusline.js
+- [present] statusline.ps1 -> presets/frontend/statusline.ps1
+- [present] statusline.sh -> presets/frontend/statusline.sh
+- [present] workflows/development-rules.md -> presets/frontend/workflows/development-rules.md
+- [present] workflows/documentation-management.md -> presets/frontend/workflows/documentation-management.md
+- [present] workflows/orchestration-protocol.md -> presets/frontend/workflows/orchestration-protocol.md
+- [present] workflows/primary-workflow.md -> presets/frontend/workflows/primary-workflow.md
+
+### backend
+
+- [present] .env.example -> presets/backend/.env.example
+- [present] .mcp.json.example -> presets/backend/.mcp.json.example
+- [present] agents/brainstormer.md -> presets/backend/agents/brainstormer.md
+- [present] agents/code-reviewer.md -> presets/backend/agents/code-reviewer.md
+- [present] agents/copywriter.md -> presets/backend/agents/copywriter.md
+- [present] agents/database-admin.md -> presets/backend/agents/database-admin.md
+- [present] agents/debugger.md -> presets/backend/agents/debugger.md
+- [present] agents/docs-manager.md -> presets/backend/agents/docs-manager.md
+- [present] agents/git-manager.md -> presets/backend/agents/git-manager.md
+- [present] agents/journal-writer.md -> presets/backend/agents/journal-writer.md
+- [present] agents/mcp-manager.md -> presets/backend/agents/mcp-manager.md
+- [present] agents/planner.md -> presets/backend/agents/planner.md
+- [present] agents/project-manager.md -> presets/backend/agents/project-manager.md
+- [present] agents/researcher.md -> presets/backend/agents/researcher.md
+- [present] agents/scout-external.md -> presets/backend/agents/scout-external.md
+- [present] agents/scout.md -> presets/backend/agents/scout.md
+- [present] agents/tester.md -> presets/backend/agents/tester.md
+- [missing] agents/ui-ux-designer.md (size_lines=219) -> presets/backend/agents/ui-ux-designer.md
+- [missing] the-upstream-kit/docs/code-standards.md (size_lines=949) -> presets/backend/the-upstream-kit/docs/code-standards.md
+- [missing] the-upstream-kit/docs/codebase-summary.md (size_lines=342) -> presets/backend/the-upstream-kit/docs/codebase-summary.md
+- [missing] the-upstream-kit/docs/project-overview-pdr.md (size_lines=606) -> presets/backend/the-upstream-kit/docs/project-overview-pdr.md
+- [missing] the-upstream-kit/docs/project-roadmap.md (size_lines=401) -> presets/backend/the-upstream-kit/docs/project-roadmap.md
+- [missing] the-upstream-kit/docs/system-architecture.md (size_lines=906) -> presets/backend/the-upstream-kit/docs/system-architecture.md
+- [missing] commands/ask.md (size_lines=56) -> presets/backend/commands/ask.md
+- [present] commands/bootstrap.md -> presets/backend/commands/bootstrap.md
+- [missing] commands/bootstrap/auto.md (size_lines=115) -> presets/backend/commands/bootstrap/auto.md
+- [missing] commands/bootstrap/auto/fast.md (size_lines=111) -> presets/backend/commands/bootstrap/auto/fast.md
+- [missing] commands/brainstorm.md (size_lines=69) -> presets/backend/commands/brainstorm.md
+- [missing] commands/code.md (size_lines=93) -> presets/backend/commands/code.md
+- [missing] commands/content/cro.md (size_lines=43) -> presets/backend/commands/content/cro.md
+- [missing] commands/content/enhance.md (size_lines=14) -> presets/backend/commands/content/enhance.md
+- [missing] commands/content/fast.md (size_lines=13) -> presets/backend/commands/content/fast.md
+- [missing] commands/content/good.md (size_lines=16) -> presets/backend/commands/content/good.md
+- [missing] commands/cook.md (size_lines=105) -> presets/backend/commands/cook.md
+- [missing] commands/cook/auto.md (size_lines=15) -> presets/backend/commands/cook/auto.md
+- [missing] commands/cook/auto/fast.md (size_lines=26) -> presets/backend/commands/cook/auto/fast.md
+- [missing] commands/debug.md (size_lines=13) -> presets/backend/commands/debug.md
+- [category-skip] commands/design/3d.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/describe.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/fast.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/good.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/screenshot.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/video.md (reason: frontend+fullstack+mobile-only)
+- [missing] commands/docs/init.md (size_lines=15) -> presets/backend/commands/docs/init.md
+- [present] commands/docs/summarize.md -> presets/backend/commands/docs/summarize.md
+- [present] commands/docs/update.md -> presets/backend/commands/docs/update.md
+- [missing] commands/fix.md (size_lines=12) -> presets/backend/commands/fix.md
+- [missing] commands/fix/ci.md (size_lines=20) -> presets/backend/commands/fix/ci.md
+- [missing] commands/fix/fast.md (size_lines=19) -> presets/backend/commands/fix/fast.md
+- [missing] commands/fix/hard.md (size_lines=43) -> presets/backend/commands/fix/hard.md
+- [missing] commands/fix/logs.md (size_lines=20) -> presets/backend/commands/fix/logs.md
+- [missing] commands/fix/test.md (size_lines=20) -> presets/backend/commands/fix/test.md
+- [missing] commands/fix/types.md (size_lines=9) -> presets/backend/commands/fix/types.md
+- [missing] commands/fix/ui.md (size_lines=35) -> presets/backend/commands/fix/ui.md
+- [missing] commands/git/cm.md (size_lines=5) -> presets/backend/commands/git/cm.md
+- [missing] commands/git/cp.md (size_lines=4) -> presets/backend/commands/git/cp.md
+- [present] commands/git/pr.md -> presets/backend/commands/git/pr.md
+- [missing] commands/integrate/polar.md (size_lines=28) -> presets/backend/commands/integrate/polar.md
+- [missing] commands/integrate/sepay.md (size_lines=28) -> presets/backend/commands/integrate/sepay.md
+- [missing] commands/journal.md (size_lines=5) -> presets/backend/commands/journal.md
+- [missing] commands/plan.md (size_lines=23) -> presets/backend/commands/plan.md
+- [missing] commands/plan/ci.md (size_lines=18) -> presets/backend/commands/plan/ci.md
+- [missing] commands/plan/cro.md (size_lines=56) -> presets/backend/commands/plan/cro.md
+- [missing] commands/plan/fast.md (size_lines=46) -> presets/backend/commands/plan/fast.md
+- [missing] commands/plan/hard.md (size_lines=57) -> presets/backend/commands/plan/hard.md
+- [missing] commands/plan/two.md (size_lines=30) -> presets/backend/commands/plan/two.md
+- [missing] commands/review/codebase.md (size_lines=49) -> presets/backend/commands/review/codebase.md
+- [present] commands/scout.md -> presets/backend/commands/scout.md
+- [present] commands/scout/ext.md -> presets/backend/commands/scout/ext.md
+- [present] commands/skill/add.md -> presets/backend/commands/skill/add.md
+- [present] commands/skill/create.md -> presets/backend/commands/skill/create.md
+- [missing] commands/skill/fix-logs.md (size_lines=21) -> presets/backend/commands/skill/fix-logs.md
+- [present] commands/skill/optimize.md -> presets/backend/commands/skill/optimize.md
+- [present] commands/test.md -> presets/backend/commands/test.md
+- [missing] commands/use-mcp.md (size_lines=34) -> presets/backend/commands/use-mcp.md
+- [missing] commands/watzup.md (size_lines=8) -> presets/backend/commands/watzup.md
+- [present] hooks/.env.example -> presets/backend/hooks/.env.example
+- [present] hooks/README.md -> presets/backend/hooks/README.md
+- [missing] hooks/discord-hook-setup.md (size_lines=412) -> presets/backend/hooks/discord-hook-setup.md
+- [category-skip] hooks/discord_notify.sh (reason: merged-into-tri-script)
+- [present] hooks/modularization-hook.js -> presets/backend/hooks/modularization-hook.js
+- [present] hooks/scout-block.js -> presets/backend/hooks/scout-block.js
+- [present] hooks/scout-block.ps1 -> presets/backend/hooks/scout-block.ps1
+- [present] hooks/scout-block.sh -> presets/backend/hooks/scout-block.sh
+- [category-skip] hooks/send-discord.sh (reason: merged-into-tri-script)
+- [missing] hooks/telegram-hook-setup.md (size_lines=774) -> presets/backend/hooks/telegram-hook-setup.md
+- [category-skip] hooks/telegram_notify.sh (reason: merged-into-tri-script)
+- [missing] metadata.json (size_lines=15) -> presets/backend/metadata.json
+- [present] settings.json -> presets/backend/settings.json
+- [present] skills/.env.example -> presets/backend/skills/.env.example
+- [present] skills/INSTALLATION.md -> presets/backend/skills/INSTALLATION.md
+- [present] skills/README.md -> presets/backend/skills/README.md
+- [present] skills/THIRD_PARTY_NOTICES.md -> presets/backend/skills/THIRD_PARTY_NOTICES.md
+- [category-skip] skills/aesthetic (reason: frontend+fullstack+mobile-only)
+- [present] skills/agent_skills_spec.md -> presets/backend/skills/agent_skills_spec.md
+- [partial] skills/ai-multimodal (missing references/, scripts/) -> presets/backend/skills/ai-multimodal
+- [partial] skills/backend-development (missing references/) -> presets/backend/skills/backend-development
+- [partial] skills/better-auth (missing references/, scripts/) -> presets/backend/skills/better-auth
+- [partial] skills/chrome-devtools (missing references/, scripts/) -> presets/backend/skills/chrome-devtools
+- [missing] skills/claude-code (size_lines=188) -> presets/backend/skills/claude-code
+- [partial] skills/code-review (missing references/) -> presets/backend/skills/code-review
+- [missing] skills/common (size_lines=0) -> presets/backend/skills/common
+- [partial] skills/databases (missing references/, scripts/) -> presets/backend/skills/databases
+- [partial] skills/debugging (missing references/, scripts/) -> presets/backend/skills/debugging
+- [partial] skills/devops (missing references/, scripts/) -> presets/backend/skills/devops
+- [partial] skills/docs-seeker (missing references/, scripts/) -> presets/backend/skills/docs-seeker
+- [category-skip] skills/document-skills (reason: data-ai-only)
+- [category-skip] skills/frontend-design (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/frontend-development (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/google-adk-python (reason: data-ai-only)
+- [partial] skills/mcp-builder (missing scripts/) -> presets/backend/skills/mcp-builder
+- [partial] skills/mcp-management (missing references/, scripts/) -> presets/backend/skills/mcp-management
+- [category-skip] skills/media-processing (reason: frontend+fullstack+mobile+data-ai-only)
+- [category-skip] skills/mobile-development (reason: mobile+fullstack-only)
+- [missing] skills/payment-integration (size_lines=118) -> presets/backend/skills/payment-integration
+- [partial] skills/planning (missing references/) -> presets/backend/skills/planning
+- [partial] skills/problem-solving (missing references/) -> presets/backend/skills/problem-solving
+- [partial] skills/repomix (missing references/, scripts/) -> presets/backend/skills/repomix
+- [present] skills/research -> presets/backend/skills/research
+- [partial] skills/sequential-thinking (missing references/, scripts/) -> presets/backend/skills/sequential-thinking
+- [missing] skills/shopify (size_lines=319) -> presets/backend/skills/shopify
+- [partial] skills/skill-creator (missing scripts/) -> presets/backend/skills/skill-creator
+- [present] skills/template-skill -> presets/backend/skills/template-skill
+- [category-skip] skills/threejs (reason: frontend+fullstack-only)
+- [category-skip] skills/ui-styling (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/web-frameworks (reason: frontend+fullstack+mobile+devops-only)
+- [present] statusline.js -> presets/backend/statusline.js
+- [present] statusline.ps1 -> presets/backend/statusline.ps1
+- [present] statusline.sh -> presets/backend/statusline.sh
+- [present] workflows/development-rules.md -> presets/backend/workflows/development-rules.md
+- [present] workflows/documentation-management.md -> presets/backend/workflows/documentation-management.md
+- [present] workflows/orchestration-protocol.md -> presets/backend/workflows/orchestration-protocol.md
+- [present] workflows/primary-workflow.md -> presets/backend/workflows/primary-workflow.md
+
+### fullstack
+
+- [present] .env.example -> presets/fullstack/.env.example
+- [present] .mcp.json.example -> presets/fullstack/.mcp.json.example
+- [present] agents/brainstormer.md -> presets/fullstack/agents/brainstormer.md
+- [present] agents/code-reviewer.md -> presets/fullstack/agents/code-reviewer.md
+- [present] agents/copywriter.md -> presets/fullstack/agents/copywriter.md
+- [present] agents/database-admin.md -> presets/fullstack/agents/database-admin.md
+- [present] agents/debugger.md -> presets/fullstack/agents/debugger.md
+- [present] agents/docs-manager.md -> presets/fullstack/agents/docs-manager.md
+- [present] agents/git-manager.md -> presets/fullstack/agents/git-manager.md
+- [present] agents/journal-writer.md -> presets/fullstack/agents/journal-writer.md
+- [present] agents/mcp-manager.md -> presets/fullstack/agents/mcp-manager.md
+- [present] agents/planner.md -> presets/fullstack/agents/planner.md
+- [present] agents/project-manager.md -> presets/fullstack/agents/project-manager.md
+- [present] agents/researcher.md -> presets/fullstack/agents/researcher.md
+- [present] agents/scout-external.md -> presets/fullstack/agents/scout-external.md
+- [present] agents/scout.md -> presets/fullstack/agents/scout.md
+- [present] agents/tester.md -> presets/fullstack/agents/tester.md
+- [present] agents/ui-ux-designer.md -> presets/fullstack/agents/ui-ux-designer.md
+- [missing] the-upstream-kit/docs/code-standards.md (size_lines=949) -> presets/fullstack/the-upstream-kit/docs/code-standards.md
+- [missing] the-upstream-kit/docs/codebase-summary.md (size_lines=342) -> presets/fullstack/the-upstream-kit/docs/codebase-summary.md
+- [missing] the-upstream-kit/docs/project-overview-pdr.md (size_lines=606) -> presets/fullstack/the-upstream-kit/docs/project-overview-pdr.md
+- [missing] the-upstream-kit/docs/project-roadmap.md (size_lines=401) -> presets/fullstack/the-upstream-kit/docs/project-roadmap.md
+- [missing] the-upstream-kit/docs/system-architecture.md (size_lines=906) -> presets/fullstack/the-upstream-kit/docs/system-architecture.md
+- [missing] commands/ask.md (size_lines=56) -> presets/fullstack/commands/ask.md
+- [present] commands/bootstrap.md -> presets/fullstack/commands/bootstrap.md
+- [missing] commands/bootstrap/auto.md (size_lines=115) -> presets/fullstack/commands/bootstrap/auto.md
+- [missing] commands/bootstrap/auto/fast.md (size_lines=111) -> presets/fullstack/commands/bootstrap/auto/fast.md
+- [missing] commands/brainstorm.md (size_lines=69) -> presets/fullstack/commands/brainstorm.md
+- [missing] commands/code.md (size_lines=93) -> presets/fullstack/commands/code.md
+- [missing] commands/content/cro.md (size_lines=43) -> presets/fullstack/commands/content/cro.md
+- [missing] commands/content/enhance.md (size_lines=14) -> presets/fullstack/commands/content/enhance.md
+- [missing] commands/content/fast.md (size_lines=13) -> presets/fullstack/commands/content/fast.md
+- [missing] commands/content/good.md (size_lines=16) -> presets/fullstack/commands/content/good.md
+- [missing] commands/cook.md (size_lines=105) -> presets/fullstack/commands/cook.md
+- [missing] commands/cook/auto.md (size_lines=15) -> presets/fullstack/commands/cook/auto.md
+- [missing] commands/cook/auto/fast.md (size_lines=26) -> presets/fullstack/commands/cook/auto/fast.md
+- [missing] commands/debug.md (size_lines=13) -> presets/fullstack/commands/debug.md
+- [missing] commands/design/3d.md (size_lines=74) -> presets/fullstack/commands/design/3d.md
+- [missing] commands/design/describe.md (size_lines=21) -> presets/fullstack/commands/design/describe.md
+- [missing] commands/design/fast.md (size_lines=22) -> presets/fullstack/commands/design/fast.md
+- [missing] commands/design/good.md (size_lines=26) -> presets/fullstack/commands/design/good.md
+- [missing] commands/design/screenshot.md (size_lines=32) -> presets/fullstack/commands/design/screenshot.md
+- [missing] commands/design/video.md (size_lines=32) -> presets/fullstack/commands/design/video.md
+- [missing] commands/docs/init.md (size_lines=15) -> presets/fullstack/commands/docs/init.md
+- [present] commands/docs/summarize.md -> presets/fullstack/commands/docs/summarize.md
+- [present] commands/docs/update.md -> presets/fullstack/commands/docs/update.md
+- [missing] commands/fix.md (size_lines=12) -> presets/fullstack/commands/fix.md
+- [missing] commands/fix/ci.md (size_lines=20) -> presets/fullstack/commands/fix/ci.md
+- [missing] commands/fix/fast.md (size_lines=19) -> presets/fullstack/commands/fix/fast.md
+- [missing] commands/fix/hard.md (size_lines=43) -> presets/fullstack/commands/fix/hard.md
+- [missing] commands/fix/logs.md (size_lines=20) -> presets/fullstack/commands/fix/logs.md
+- [missing] commands/fix/test.md (size_lines=20) -> presets/fullstack/commands/fix/test.md
+- [missing] commands/fix/types.md (size_lines=9) -> presets/fullstack/commands/fix/types.md
+- [missing] commands/fix/ui.md (size_lines=35) -> presets/fullstack/commands/fix/ui.md
+- [missing] commands/git/cm.md (size_lines=5) -> presets/fullstack/commands/git/cm.md
+- [missing] commands/git/cp.md (size_lines=4) -> presets/fullstack/commands/git/cp.md
+- [present] commands/git/pr.md -> presets/fullstack/commands/git/pr.md
+- [missing] commands/integrate/polar.md (size_lines=28) -> presets/fullstack/commands/integrate/polar.md
+- [missing] commands/integrate/sepay.md (size_lines=28) -> presets/fullstack/commands/integrate/sepay.md
+- [missing] commands/journal.md (size_lines=5) -> presets/fullstack/commands/journal.md
+- [missing] commands/plan.md (size_lines=23) -> presets/fullstack/commands/plan.md
+- [missing] commands/plan/ci.md (size_lines=18) -> presets/fullstack/commands/plan/ci.md
+- [missing] commands/plan/cro.md (size_lines=56) -> presets/fullstack/commands/plan/cro.md
+- [missing] commands/plan/fast.md (size_lines=46) -> presets/fullstack/commands/plan/fast.md
+- [missing] commands/plan/hard.md (size_lines=57) -> presets/fullstack/commands/plan/hard.md
+- [missing] commands/plan/two.md (size_lines=30) -> presets/fullstack/commands/plan/two.md
+- [missing] commands/review/codebase.md (size_lines=49) -> presets/fullstack/commands/review/codebase.md
+- [present] commands/scout.md -> presets/fullstack/commands/scout.md
+- [present] commands/scout/ext.md -> presets/fullstack/commands/scout/ext.md
+- [present] commands/skill/add.md -> presets/fullstack/commands/skill/add.md
+- [present] commands/skill/create.md -> presets/fullstack/commands/skill/create.md
+- [missing] commands/skill/fix-logs.md (size_lines=21) -> presets/fullstack/commands/skill/fix-logs.md
+- [present] commands/skill/optimize.md -> presets/fullstack/commands/skill/optimize.md
+- [present] commands/test.md -> presets/fullstack/commands/test.md
+- [missing] commands/use-mcp.md (size_lines=34) -> presets/fullstack/commands/use-mcp.md
+- [missing] commands/watzup.md (size_lines=8) -> presets/fullstack/commands/watzup.md
+- [present] hooks/.env.example -> presets/fullstack/hooks/.env.example
+- [present] hooks/README.md -> presets/fullstack/hooks/README.md
+- [missing] hooks/discord-hook-setup.md (size_lines=412) -> presets/fullstack/hooks/discord-hook-setup.md
+- [category-skip] hooks/discord_notify.sh (reason: merged-into-tri-script)
+- [present] hooks/modularization-hook.js -> presets/fullstack/hooks/modularization-hook.js
+- [present] hooks/scout-block.js -> presets/fullstack/hooks/scout-block.js
+- [present] hooks/scout-block.ps1 -> presets/fullstack/hooks/scout-block.ps1
+- [present] hooks/scout-block.sh -> presets/fullstack/hooks/scout-block.sh
+- [category-skip] hooks/send-discord.sh (reason: merged-into-tri-script)
+- [missing] hooks/telegram-hook-setup.md (size_lines=774) -> presets/fullstack/hooks/telegram-hook-setup.md
+- [category-skip] hooks/telegram_notify.sh (reason: merged-into-tri-script)
+- [missing] metadata.json (size_lines=15) -> presets/fullstack/metadata.json
+- [present] settings.json -> presets/fullstack/settings.json
+- [present] skills/.env.example -> presets/fullstack/skills/.env.example
+- [present] skills/INSTALLATION.md -> presets/fullstack/skills/INSTALLATION.md
+- [present] skills/README.md -> presets/fullstack/skills/README.md
+- [present] skills/THIRD_PARTY_NOTICES.md -> presets/fullstack/skills/THIRD_PARTY_NOTICES.md
+- [missing] skills/aesthetic (size_lines=121) -> presets/fullstack/skills/aesthetic
+- [present] skills/agent_skills_spec.md -> presets/fullstack/skills/agent_skills_spec.md
+- [partial] skills/ai-multimodal (missing references/, scripts/) -> presets/fullstack/skills/ai-multimodal
+- [partial] skills/backend-development (missing references/) -> presets/fullstack/skills/backend-development
+- [partial] skills/better-auth (missing references/, scripts/) -> presets/fullstack/skills/better-auth
+- [missing] skills/chrome-devtools (size_lines=360) -> presets/fullstack/skills/chrome-devtools
+- [missing] skills/claude-code (size_lines=188) -> presets/fullstack/skills/claude-code
+- [partial] skills/code-review (missing references/) -> presets/fullstack/skills/code-review
+- [missing] skills/common (size_lines=0) -> presets/fullstack/skills/common
+- [partial] skills/databases (missing references/, scripts/) -> presets/fullstack/skills/databases
+- [partial] skills/debugging (missing references/, scripts/) -> presets/fullstack/skills/debugging
+- [partial] skills/devops (missing references/, scripts/) -> presets/fullstack/skills/devops
+- [partial] skills/docs-seeker (missing references/, scripts/) -> presets/fullstack/skills/docs-seeker
+- [category-skip] skills/document-skills (reason: data-ai-only)
+- [partial] skills/frontend-design (missing references/) -> presets/fullstack/skills/frontend-design
+- [present] skills/frontend-development -> presets/fullstack/skills/frontend-development
+- [category-skip] skills/google-adk-python (reason: data-ai-only)
+- [partial] skills/mcp-builder (missing scripts/) -> presets/fullstack/skills/mcp-builder
+- [missing] skills/mcp-management (size_lines=209) -> presets/fullstack/skills/mcp-management
+- [missing] skills/media-processing (size_lines=358) -> presets/fullstack/skills/media-processing
+- [missing] skills/mobile-development (size_lines=212) -> presets/fullstack/skills/mobile-development
+- [partial] skills/payment-integration (missing references/, scripts/) -> presets/fullstack/skills/payment-integration
+- [partial] skills/planning (missing references/) -> presets/fullstack/skills/planning
+- [partial] skills/problem-solving (missing references/) -> presets/fullstack/skills/problem-solving
+- [partial] skills/repomix (missing references/, scripts/) -> presets/fullstack/skills/repomix
+- [present] skills/research -> presets/fullstack/skills/research
+- [partial] skills/sequential-thinking (missing references/, scripts/) -> presets/fullstack/skills/sequential-thinking
+- [partial] skills/shopify (missing references/, scripts/) -> presets/fullstack/skills/shopify
+- [partial] skills/skill-creator (missing scripts/) -> presets/fullstack/skills/skill-creator
+- [present] skills/template-skill -> presets/fullstack/skills/template-skill
+- [missing] skills/threejs (size_lines=89) -> presets/fullstack/skills/threejs
+- [partial] skills/ui-styling (missing references/, scripts/) -> presets/fullstack/skills/ui-styling
+- [partial] skills/web-frameworks (missing references/, scripts/) -> presets/fullstack/skills/web-frameworks
+- [present] statusline.js -> presets/fullstack/statusline.js
+- [present] statusline.ps1 -> presets/fullstack/statusline.ps1
+- [present] statusline.sh -> presets/fullstack/statusline.sh
+- [present] workflows/development-rules.md -> presets/fullstack/workflows/development-rules.md
+- [present] workflows/documentation-management.md -> presets/fullstack/workflows/documentation-management.md
+- [present] workflows/orchestration-protocol.md -> presets/fullstack/workflows/orchestration-protocol.md
+- [present] workflows/primary-workflow.md -> presets/fullstack/workflows/primary-workflow.md
+
+### mobile
+
+- [present] .env.example -> presets/mobile/.env.example
+- [present] .mcp.json.example -> presets/mobile/.mcp.json.example
+- [present] agents/brainstormer.md -> presets/mobile/agents/brainstormer.md
+- [present] agents/code-reviewer.md -> presets/mobile/agents/code-reviewer.md
+- [present] agents/copywriter.md -> presets/mobile/agents/copywriter.md
+- [present] agents/database-admin.md -> presets/mobile/agents/database-admin.md
+- [present] agents/debugger.md -> presets/mobile/agents/debugger.md
+- [present] agents/docs-manager.md -> presets/mobile/agents/docs-manager.md
+- [present] agents/git-manager.md -> presets/mobile/agents/git-manager.md
+- [present] agents/journal-writer.md -> presets/mobile/agents/journal-writer.md
+- [present] agents/mcp-manager.md -> presets/mobile/agents/mcp-manager.md
+- [present] agents/planner.md -> presets/mobile/agents/planner.md
+- [present] agents/project-manager.md -> presets/mobile/agents/project-manager.md
+- [present] agents/researcher.md -> presets/mobile/agents/researcher.md
+- [present] agents/scout-external.md -> presets/mobile/agents/scout-external.md
+- [present] agents/scout.md -> presets/mobile/agents/scout.md
+- [present] agents/tester.md -> presets/mobile/agents/tester.md
+- [present] agents/ui-ux-designer.md -> presets/mobile/agents/ui-ux-designer.md
+- [missing] the-upstream-kit/docs/code-standards.md (size_lines=949) -> presets/mobile/the-upstream-kit/docs/code-standards.md
+- [missing] the-upstream-kit/docs/codebase-summary.md (size_lines=342) -> presets/mobile/the-upstream-kit/docs/codebase-summary.md
+- [missing] the-upstream-kit/docs/project-overview-pdr.md (size_lines=606) -> presets/mobile/the-upstream-kit/docs/project-overview-pdr.md
+- [missing] the-upstream-kit/docs/project-roadmap.md (size_lines=401) -> presets/mobile/the-upstream-kit/docs/project-roadmap.md
+- [missing] the-upstream-kit/docs/system-architecture.md (size_lines=906) -> presets/mobile/the-upstream-kit/docs/system-architecture.md
+- [missing] commands/ask.md (size_lines=56) -> presets/mobile/commands/ask.md
+- [present] commands/bootstrap.md -> presets/mobile/commands/bootstrap.md
+- [missing] commands/bootstrap/auto.md (size_lines=115) -> presets/mobile/commands/bootstrap/auto.md
+- [missing] commands/bootstrap/auto/fast.md (size_lines=111) -> presets/mobile/commands/bootstrap/auto/fast.md
+- [missing] commands/brainstorm.md (size_lines=69) -> presets/mobile/commands/brainstorm.md
+- [missing] commands/code.md (size_lines=93) -> presets/mobile/commands/code.md
+- [missing] commands/content/cro.md (size_lines=43) -> presets/mobile/commands/content/cro.md
+- [missing] commands/content/enhance.md (size_lines=14) -> presets/mobile/commands/content/enhance.md
+- [missing] commands/content/fast.md (size_lines=13) -> presets/mobile/commands/content/fast.md
+- [missing] commands/content/good.md (size_lines=16) -> presets/mobile/commands/content/good.md
+- [missing] commands/cook.md (size_lines=105) -> presets/mobile/commands/cook.md
+- [missing] commands/cook/auto.md (size_lines=15) -> presets/mobile/commands/cook/auto.md
+- [missing] commands/cook/auto/fast.md (size_lines=26) -> presets/mobile/commands/cook/auto/fast.md
+- [missing] commands/debug.md (size_lines=13) -> presets/mobile/commands/debug.md
+- [missing] commands/design/3d.md (size_lines=74) -> presets/mobile/commands/design/3d.md
+- [missing] commands/design/describe.md (size_lines=21) -> presets/mobile/commands/design/describe.md
+- [missing] commands/design/fast.md (size_lines=22) -> presets/mobile/commands/design/fast.md
+- [missing] commands/design/good.md (size_lines=26) -> presets/mobile/commands/design/good.md
+- [missing] commands/design/screenshot.md (size_lines=32) -> presets/mobile/commands/design/screenshot.md
+- [missing] commands/design/video.md (size_lines=32) -> presets/mobile/commands/design/video.md
+- [missing] commands/docs/init.md (size_lines=15) -> presets/mobile/commands/docs/init.md
+- [present] commands/docs/summarize.md -> presets/mobile/commands/docs/summarize.md
+- [present] commands/docs/update.md -> presets/mobile/commands/docs/update.md
+- [missing] commands/fix.md (size_lines=12) -> presets/mobile/commands/fix.md
+- [missing] commands/fix/ci.md (size_lines=20) -> presets/mobile/commands/fix/ci.md
+- [missing] commands/fix/fast.md (size_lines=19) -> presets/mobile/commands/fix/fast.md
+- [missing] commands/fix/hard.md (size_lines=43) -> presets/mobile/commands/fix/hard.md
+- [missing] commands/fix/logs.md (size_lines=20) -> presets/mobile/commands/fix/logs.md
+- [missing] commands/fix/test.md (size_lines=20) -> presets/mobile/commands/fix/test.md
+- [missing] commands/fix/types.md (size_lines=9) -> presets/mobile/commands/fix/types.md
+- [missing] commands/fix/ui.md (size_lines=35) -> presets/mobile/commands/fix/ui.md
+- [missing] commands/git/cm.md (size_lines=5) -> presets/mobile/commands/git/cm.md
+- [missing] commands/git/cp.md (size_lines=4) -> presets/mobile/commands/git/cp.md
+- [present] commands/git/pr.md -> presets/mobile/commands/git/pr.md
+- [category-skip] commands/integrate/polar.md (reason: backend+fullstack-only)
+- [category-skip] commands/integrate/sepay.md (reason: backend+fullstack-only)
+- [missing] commands/journal.md (size_lines=5) -> presets/mobile/commands/journal.md
+- [missing] commands/plan.md (size_lines=23) -> presets/mobile/commands/plan.md
+- [missing] commands/plan/ci.md (size_lines=18) -> presets/mobile/commands/plan/ci.md
+- [missing] commands/plan/cro.md (size_lines=56) -> presets/mobile/commands/plan/cro.md
+- [missing] commands/plan/fast.md (size_lines=46) -> presets/mobile/commands/plan/fast.md
+- [missing] commands/plan/hard.md (size_lines=57) -> presets/mobile/commands/plan/hard.md
+- [missing] commands/plan/two.md (size_lines=30) -> presets/mobile/commands/plan/two.md
+- [missing] commands/review/codebase.md (size_lines=49) -> presets/mobile/commands/review/codebase.md
+- [present] commands/scout.md -> presets/mobile/commands/scout.md
+- [present] commands/scout/ext.md -> presets/mobile/commands/scout/ext.md
+- [present] commands/skill/add.md -> presets/mobile/commands/skill/add.md
+- [present] commands/skill/create.md -> presets/mobile/commands/skill/create.md
+- [missing] commands/skill/fix-logs.md (size_lines=21) -> presets/mobile/commands/skill/fix-logs.md
+- [present] commands/skill/optimize.md -> presets/mobile/commands/skill/optimize.md
+- [present] commands/test.md -> presets/mobile/commands/test.md
+- [missing] commands/use-mcp.md (size_lines=34) -> presets/mobile/commands/use-mcp.md
+- [missing] commands/watzup.md (size_lines=8) -> presets/mobile/commands/watzup.md
+- [present] hooks/.env.example -> presets/mobile/hooks/.env.example
+- [present] hooks/README.md -> presets/mobile/hooks/README.md
+- [missing] hooks/discord-hook-setup.md (size_lines=412) -> presets/mobile/hooks/discord-hook-setup.md
+- [category-skip] hooks/discord_notify.sh (reason: merged-into-tri-script)
+- [present] hooks/modularization-hook.js -> presets/mobile/hooks/modularization-hook.js
+- [present] hooks/scout-block.js -> presets/mobile/hooks/scout-block.js
+- [present] hooks/scout-block.ps1 -> presets/mobile/hooks/scout-block.ps1
+- [present] hooks/scout-block.sh -> presets/mobile/hooks/scout-block.sh
+- [category-skip] hooks/send-discord.sh (reason: merged-into-tri-script)
+- [missing] hooks/telegram-hook-setup.md (size_lines=774) -> presets/mobile/hooks/telegram-hook-setup.md
+- [category-skip] hooks/telegram_notify.sh (reason: merged-into-tri-script)
+- [missing] metadata.json (size_lines=15) -> presets/mobile/metadata.json
+- [present] settings.json -> presets/mobile/settings.json
+- [present] skills/.env.example -> presets/mobile/skills/.env.example
+- [present] skills/INSTALLATION.md -> presets/mobile/skills/INSTALLATION.md
+- [present] skills/README.md -> presets/mobile/skills/README.md
+- [present] skills/THIRD_PARTY_NOTICES.md -> presets/mobile/skills/THIRD_PARTY_NOTICES.md
+- [missing] skills/aesthetic (size_lines=121) -> presets/mobile/skills/aesthetic
+- [present] skills/agent_skills_spec.md -> presets/mobile/skills/agent_skills_spec.md
+- [partial] skills/ai-multimodal (missing references/, scripts/) -> presets/mobile/skills/ai-multimodal
+- [category-skip] skills/backend-development (reason: backend+fullstack+devops-only)
+- [category-skip] skills/better-auth (reason: backend+fullstack-only)
+- [partial] skills/chrome-devtools (missing references/, scripts/) -> presets/mobile/skills/chrome-devtools
+- [missing] skills/claude-code (size_lines=188) -> presets/mobile/skills/claude-code
+- [partial] skills/code-review (missing references/) -> presets/mobile/skills/code-review
+- [missing] skills/common (size_lines=0) -> presets/mobile/skills/common
+- [category-skip] skills/databases (reason: backend+fullstack+devops+data-ai-only)
+- [partial] skills/debugging (missing references/, scripts/) -> presets/mobile/skills/debugging
+- [category-skip] skills/devops (reason: backend+fullstack+devops-only)
+- [partial] skills/docs-seeker (missing references/, scripts/) -> presets/mobile/skills/docs-seeker
+- [category-skip] skills/document-skills (reason: data-ai-only)
+- [partial] skills/frontend-design (missing references/) -> presets/mobile/skills/frontend-design
+- [present] skills/frontend-development -> presets/mobile/skills/frontend-development
+- [category-skip] skills/google-adk-python (reason: data-ai-only)
+- [partial] skills/mcp-builder (missing scripts/) -> presets/mobile/skills/mcp-builder
+- [partial] skills/mcp-management (missing references/, scripts/) -> presets/mobile/skills/mcp-management
+- [partial] skills/media-processing (missing references/, scripts/) -> presets/mobile/skills/media-processing
+- [partial] skills/mobile-development (missing references/) -> presets/mobile/skills/mobile-development
+- [category-skip] skills/payment-integration (reason: backend+fullstack-only)
+- [partial] skills/planning (missing references/) -> presets/mobile/skills/planning
+- [partial] skills/problem-solving (missing references/) -> presets/mobile/skills/problem-solving
+- [partial] skills/repomix (missing references/, scripts/) -> presets/mobile/skills/repomix
+- [present] skills/research -> presets/mobile/skills/research
+- [partial] skills/sequential-thinking (missing references/, scripts/) -> presets/mobile/skills/sequential-thinking
+- [category-skip] skills/shopify (reason: backend+fullstack-only)
+- [partial] skills/skill-creator (missing scripts/) -> presets/mobile/skills/skill-creator
+- [present] skills/template-skill -> presets/mobile/skills/template-skill
+- [category-skip] skills/threejs (reason: frontend+fullstack-only)
+- [partial] skills/ui-styling (missing references/, scripts/) -> presets/mobile/skills/ui-styling
+- [partial] skills/web-frameworks (missing references/, scripts/) -> presets/mobile/skills/web-frameworks
+- [present] statusline.js -> presets/mobile/statusline.js
+- [present] statusline.ps1 -> presets/mobile/statusline.ps1
+- [present] statusline.sh -> presets/mobile/statusline.sh
+- [present] workflows/development-rules.md -> presets/mobile/workflows/development-rules.md
+- [present] workflows/documentation-management.md -> presets/mobile/workflows/documentation-management.md
+- [present] workflows/orchestration-protocol.md -> presets/mobile/workflows/orchestration-protocol.md
+- [present] workflows/primary-workflow.md -> presets/mobile/workflows/primary-workflow.md
+
+### devops
+
+- [present] .env.example -> presets/devops/.env.example
+- [present] .mcp.json.example -> presets/devops/.mcp.json.example
+- [present] agents/brainstormer.md -> presets/devops/agents/brainstormer.md
+- [present] agents/code-reviewer.md -> presets/devops/agents/code-reviewer.md
+- [present] agents/copywriter.md -> presets/devops/agents/copywriter.md
+- [present] agents/database-admin.md -> presets/devops/agents/database-admin.md
+- [present] agents/debugger.md -> presets/devops/agents/debugger.md
+- [present] agents/docs-manager.md -> presets/devops/agents/docs-manager.md
+- [present] agents/git-manager.md -> presets/devops/agents/git-manager.md
+- [present] agents/journal-writer.md -> presets/devops/agents/journal-writer.md
+- [present] agents/mcp-manager.md -> presets/devops/agents/mcp-manager.md
+- [present] agents/planner.md -> presets/devops/agents/planner.md
+- [present] agents/project-manager.md -> presets/devops/agents/project-manager.md
+- [present] agents/researcher.md -> presets/devops/agents/researcher.md
+- [present] agents/scout-external.md -> presets/devops/agents/scout-external.md
+- [present] agents/scout.md -> presets/devops/agents/scout.md
+- [present] agents/tester.md -> presets/devops/agents/tester.md
+- [present] agents/ui-ux-designer.md -> presets/devops/agents/ui-ux-designer.md
+- [missing] the-upstream-kit/docs/code-standards.md (size_lines=949) -> presets/devops/the-upstream-kit/docs/code-standards.md
+- [missing] the-upstream-kit/docs/codebase-summary.md (size_lines=342) -> presets/devops/the-upstream-kit/docs/codebase-summary.md
+- [missing] the-upstream-kit/docs/project-overview-pdr.md (size_lines=606) -> presets/devops/the-upstream-kit/docs/project-overview-pdr.md
+- [missing] the-upstream-kit/docs/project-roadmap.md (size_lines=401) -> presets/devops/the-upstream-kit/docs/project-roadmap.md
+- [missing] the-upstream-kit/docs/system-architecture.md (size_lines=906) -> presets/devops/the-upstream-kit/docs/system-architecture.md
+- [missing] commands/ask.md (size_lines=56) -> presets/devops/commands/ask.md
+- [present] commands/bootstrap.md -> presets/devops/commands/bootstrap.md
+- [missing] commands/bootstrap/auto.md (size_lines=115) -> presets/devops/commands/bootstrap/auto.md
+- [missing] commands/bootstrap/auto/fast.md (size_lines=111) -> presets/devops/commands/bootstrap/auto/fast.md
+- [missing] commands/brainstorm.md (size_lines=69) -> presets/devops/commands/brainstorm.md
+- [missing] commands/code.md (size_lines=93) -> presets/devops/commands/code.md
+- [missing] commands/content/cro.md (size_lines=43) -> presets/devops/commands/content/cro.md
+- [missing] commands/content/enhance.md (size_lines=14) -> presets/devops/commands/content/enhance.md
+- [missing] commands/content/fast.md (size_lines=13) -> presets/devops/commands/content/fast.md
+- [missing] commands/content/good.md (size_lines=16) -> presets/devops/commands/content/good.md
+- [missing] commands/cook.md (size_lines=105) -> presets/devops/commands/cook.md
+- [missing] commands/cook/auto.md (size_lines=15) -> presets/devops/commands/cook/auto.md
+- [missing] commands/cook/auto/fast.md (size_lines=26) -> presets/devops/commands/cook/auto/fast.md
+- [missing] commands/debug.md (size_lines=13) -> presets/devops/commands/debug.md
+- [category-skip] commands/design/3d.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/describe.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/fast.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/good.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/screenshot.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/video.md (reason: frontend+fullstack+mobile-only)
+- [missing] commands/docs/init.md (size_lines=15) -> presets/devops/commands/docs/init.md
+- [present] commands/docs/summarize.md -> presets/devops/commands/docs/summarize.md
+- [present] commands/docs/update.md -> presets/devops/commands/docs/update.md
+- [missing] commands/fix.md (size_lines=12) -> presets/devops/commands/fix.md
+- [missing] commands/fix/ci.md (size_lines=20) -> presets/devops/commands/fix/ci.md
+- [missing] commands/fix/fast.md (size_lines=19) -> presets/devops/commands/fix/fast.md
+- [missing] commands/fix/hard.md (size_lines=43) -> presets/devops/commands/fix/hard.md
+- [missing] commands/fix/logs.md (size_lines=20) -> presets/devops/commands/fix/logs.md
+- [missing] commands/fix/test.md (size_lines=20) -> presets/devops/commands/fix/test.md
+- [missing] commands/fix/types.md (size_lines=9) -> presets/devops/commands/fix/types.md
+- [missing] commands/fix/ui.md (size_lines=35) -> presets/devops/commands/fix/ui.md
+- [missing] commands/git/cm.md (size_lines=5) -> presets/devops/commands/git/cm.md
+- [missing] commands/git/cp.md (size_lines=4) -> presets/devops/commands/git/cp.md
+- [present] commands/git/pr.md -> presets/devops/commands/git/pr.md
+- [category-skip] commands/integrate/polar.md (reason: backend+fullstack-only)
+- [category-skip] commands/integrate/sepay.md (reason: backend+fullstack-only)
+- [missing] commands/journal.md (size_lines=5) -> presets/devops/commands/journal.md
+- [missing] commands/plan.md (size_lines=23) -> presets/devops/commands/plan.md
+- [missing] commands/plan/ci.md (size_lines=18) -> presets/devops/commands/plan/ci.md
+- [missing] commands/plan/cro.md (size_lines=56) -> presets/devops/commands/plan/cro.md
+- [missing] commands/plan/fast.md (size_lines=46) -> presets/devops/commands/plan/fast.md
+- [missing] commands/plan/hard.md (size_lines=57) -> presets/devops/commands/plan/hard.md
+- [missing] commands/plan/two.md (size_lines=30) -> presets/devops/commands/plan/two.md
+- [missing] commands/review/codebase.md (size_lines=49) -> presets/devops/commands/review/codebase.md
+- [present] commands/scout.md -> presets/devops/commands/scout.md
+- [present] commands/scout/ext.md -> presets/devops/commands/scout/ext.md
+- [present] commands/skill/add.md -> presets/devops/commands/skill/add.md
+- [present] commands/skill/create.md -> presets/devops/commands/skill/create.md
+- [missing] commands/skill/fix-logs.md (size_lines=21) -> presets/devops/commands/skill/fix-logs.md
+- [present] commands/skill/optimize.md -> presets/devops/commands/skill/optimize.md
+- [present] commands/test.md -> presets/devops/commands/test.md
+- [missing] commands/use-mcp.md (size_lines=34) -> presets/devops/commands/use-mcp.md
+- [missing] commands/watzup.md (size_lines=8) -> presets/devops/commands/watzup.md
+- [present] hooks/.env.example -> presets/devops/hooks/.env.example
+- [present] hooks/README.md -> presets/devops/hooks/README.md
+- [missing] hooks/discord-hook-setup.md (size_lines=412) -> presets/devops/hooks/discord-hook-setup.md
+- [category-skip] hooks/discord_notify.sh (reason: merged-into-tri-script)
+- [present] hooks/modularization-hook.js -> presets/devops/hooks/modularization-hook.js
+- [present] hooks/scout-block.js -> presets/devops/hooks/scout-block.js
+- [present] hooks/scout-block.ps1 -> presets/devops/hooks/scout-block.ps1
+- [present] hooks/scout-block.sh -> presets/devops/hooks/scout-block.sh
+- [category-skip] hooks/send-discord.sh (reason: merged-into-tri-script)
+- [missing] hooks/telegram-hook-setup.md (size_lines=774) -> presets/devops/hooks/telegram-hook-setup.md
+- [category-skip] hooks/telegram_notify.sh (reason: merged-into-tri-script)
+- [missing] metadata.json (size_lines=15) -> presets/devops/metadata.json
+- [present] settings.json -> presets/devops/settings.json
+- [present] skills/.env.example -> presets/devops/skills/.env.example
+- [present] skills/INSTALLATION.md -> presets/devops/skills/INSTALLATION.md
+- [present] skills/README.md -> presets/devops/skills/README.md
+- [present] skills/THIRD_PARTY_NOTICES.md -> presets/devops/skills/THIRD_PARTY_NOTICES.md
+- [category-skip] skills/aesthetic (reason: frontend+fullstack+mobile-only)
+- [present] skills/agent_skills_spec.md -> presets/devops/skills/agent_skills_spec.md
+- [partial] skills/ai-multimodal (missing references/, scripts/) -> presets/devops/skills/ai-multimodal
+- [partial] skills/backend-development (missing references/) -> presets/devops/skills/backend-development
+- [category-skip] skills/better-auth (reason: backend+fullstack-only)
+- [partial] skills/chrome-devtools (missing references/, scripts/) -> presets/devops/skills/chrome-devtools
+- [missing] skills/claude-code (size_lines=188) -> presets/devops/skills/claude-code
+- [partial] skills/code-review (missing references/) -> presets/devops/skills/code-review
+- [missing] skills/common (size_lines=0) -> presets/devops/skills/common
+- [partial] skills/databases (missing references/, scripts/) -> presets/devops/skills/databases
+- [partial] skills/debugging (missing references/, scripts/) -> presets/devops/skills/debugging
+- [partial] skills/devops (missing references/, scripts/) -> presets/devops/skills/devops
+- [partial] skills/docs-seeker (missing references/, scripts/) -> presets/devops/skills/docs-seeker
+- [category-skip] skills/document-skills (reason: data-ai-only)
+- [category-skip] skills/frontend-design (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/frontend-development (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/google-adk-python (reason: data-ai-only)
+- [partial] skills/mcp-builder (missing scripts/) -> presets/devops/skills/mcp-builder
+- [partial] skills/mcp-management (missing references/, scripts/) -> presets/devops/skills/mcp-management
+- [category-skip] skills/media-processing (reason: frontend+fullstack+mobile+data-ai-only)
+- [category-skip] skills/mobile-development (reason: mobile+fullstack-only)
+- [category-skip] skills/payment-integration (reason: backend+fullstack-only)
+- [partial] skills/planning (missing references/) -> presets/devops/skills/planning
+- [partial] skills/problem-solving (missing references/) -> presets/devops/skills/problem-solving
+- [partial] skills/repomix (missing references/, scripts/) -> presets/devops/skills/repomix
+- [present] skills/research -> presets/devops/skills/research
+- [partial] skills/sequential-thinking (missing references/, scripts/) -> presets/devops/skills/sequential-thinking
+- [category-skip] skills/shopify (reason: backend+fullstack-only)
+- [partial] skills/skill-creator (missing scripts/) -> presets/devops/skills/skill-creator
+- [present] skills/template-skill -> presets/devops/skills/template-skill
+- [category-skip] skills/threejs (reason: frontend+fullstack-only)
+- [category-skip] skills/ui-styling (reason: frontend+fullstack+mobile-only)
+- [partial] skills/web-frameworks (missing references/, scripts/) -> presets/devops/skills/web-frameworks
+- [present] statusline.js -> presets/devops/statusline.js
+- [present] statusline.ps1 -> presets/devops/statusline.ps1
+- [present] statusline.sh -> presets/devops/statusline.sh
+- [present] workflows/development-rules.md -> presets/devops/workflows/development-rules.md
+- [present] workflows/documentation-management.md -> presets/devops/workflows/documentation-management.md
+- [present] workflows/orchestration-protocol.md -> presets/devops/workflows/orchestration-protocol.md
+- [present] workflows/primary-workflow.md -> presets/devops/workflows/primary-workflow.md
+
+### data-ai
+
+- [present] .env.example -> presets/data-ai/.env.example
+- [present] .mcp.json.example -> presets/data-ai/.mcp.json.example
+- [present] agents/brainstormer.md -> presets/data-ai/agents/brainstormer.md
+- [present] agents/code-reviewer.md -> presets/data-ai/agents/code-reviewer.md
+- [present] agents/copywriter.md -> presets/data-ai/agents/copywriter.md
+- [present] agents/database-admin.md -> presets/data-ai/agents/database-admin.md
+- [present] agents/debugger.md -> presets/data-ai/agents/debugger.md
+- [present] agents/docs-manager.md -> presets/data-ai/agents/docs-manager.md
+- [present] agents/git-manager.md -> presets/data-ai/agents/git-manager.md
+- [present] agents/journal-writer.md -> presets/data-ai/agents/journal-writer.md
+- [present] agents/mcp-manager.md -> presets/data-ai/agents/mcp-manager.md
+- [present] agents/planner.md -> presets/data-ai/agents/planner.md
+- [present] agents/project-manager.md -> presets/data-ai/agents/project-manager.md
+- [present] agents/researcher.md -> presets/data-ai/agents/researcher.md
+- [present] agents/scout-external.md -> presets/data-ai/agents/scout-external.md
+- [present] agents/scout.md -> presets/data-ai/agents/scout.md
+- [present] agents/tester.md -> presets/data-ai/agents/tester.md
+- [present] agents/ui-ux-designer.md -> presets/data-ai/agents/ui-ux-designer.md
+- [missing] the-upstream-kit/docs/code-standards.md (size_lines=949) -> presets/data-ai/the-upstream-kit/docs/code-standards.md
+- [missing] the-upstream-kit/docs/codebase-summary.md (size_lines=342) -> presets/data-ai/the-upstream-kit/docs/codebase-summary.md
+- [missing] the-upstream-kit/docs/project-overview-pdr.md (size_lines=606) -> presets/data-ai/the-upstream-kit/docs/project-overview-pdr.md
+- [missing] the-upstream-kit/docs/project-roadmap.md (size_lines=401) -> presets/data-ai/the-upstream-kit/docs/project-roadmap.md
+- [missing] the-upstream-kit/docs/system-architecture.md (size_lines=906) -> presets/data-ai/the-upstream-kit/docs/system-architecture.md
+- [missing] commands/ask.md (size_lines=56) -> presets/data-ai/commands/ask.md
+- [present] commands/bootstrap.md -> presets/data-ai/commands/bootstrap.md
+- [missing] commands/bootstrap/auto.md (size_lines=115) -> presets/data-ai/commands/bootstrap/auto.md
+- [missing] commands/bootstrap/auto/fast.md (size_lines=111) -> presets/data-ai/commands/bootstrap/auto/fast.md
+- [missing] commands/brainstorm.md (size_lines=69) -> presets/data-ai/commands/brainstorm.md
+- [missing] commands/code.md (size_lines=93) -> presets/data-ai/commands/code.md
+- [missing] commands/content/cro.md (size_lines=43) -> presets/data-ai/commands/content/cro.md
+- [missing] commands/content/enhance.md (size_lines=14) -> presets/data-ai/commands/content/enhance.md
+- [missing] commands/content/fast.md (size_lines=13) -> presets/data-ai/commands/content/fast.md
+- [missing] commands/content/good.md (size_lines=16) -> presets/data-ai/commands/content/good.md
+- [missing] commands/cook.md (size_lines=105) -> presets/data-ai/commands/cook.md
+- [missing] commands/cook/auto.md (size_lines=15) -> presets/data-ai/commands/cook/auto.md
+- [missing] commands/cook/auto/fast.md (size_lines=26) -> presets/data-ai/commands/cook/auto/fast.md
+- [missing] commands/debug.md (size_lines=13) -> presets/data-ai/commands/debug.md
+- [category-skip] commands/design/3d.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/describe.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/fast.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/good.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/screenshot.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/video.md (reason: frontend+fullstack+mobile-only)
+- [missing] commands/docs/init.md (size_lines=15) -> presets/data-ai/commands/docs/init.md
+- [present] commands/docs/summarize.md -> presets/data-ai/commands/docs/summarize.md
+- [present] commands/docs/update.md -> presets/data-ai/commands/docs/update.md
+- [missing] commands/fix.md (size_lines=12) -> presets/data-ai/commands/fix.md
+- [missing] commands/fix/ci.md (size_lines=20) -> presets/data-ai/commands/fix/ci.md
+- [missing] commands/fix/fast.md (size_lines=19) -> presets/data-ai/commands/fix/fast.md
+- [missing] commands/fix/hard.md (size_lines=43) -> presets/data-ai/commands/fix/hard.md
+- [missing] commands/fix/logs.md (size_lines=20) -> presets/data-ai/commands/fix/logs.md
+- [missing] commands/fix/test.md (size_lines=20) -> presets/data-ai/commands/fix/test.md
+- [missing] commands/fix/types.md (size_lines=9) -> presets/data-ai/commands/fix/types.md
+- [missing] commands/fix/ui.md (size_lines=35) -> presets/data-ai/commands/fix/ui.md
+- [missing] commands/git/cm.md (size_lines=5) -> presets/data-ai/commands/git/cm.md
+- [missing] commands/git/cp.md (size_lines=4) -> presets/data-ai/commands/git/cp.md
+- [present] commands/git/pr.md -> presets/data-ai/commands/git/pr.md
+- [category-skip] commands/integrate/polar.md (reason: backend+fullstack-only)
+- [category-skip] commands/integrate/sepay.md (reason: backend+fullstack-only)
+- [missing] commands/journal.md (size_lines=5) -> presets/data-ai/commands/journal.md
+- [missing] commands/plan.md (size_lines=23) -> presets/data-ai/commands/plan.md
+- [missing] commands/plan/ci.md (size_lines=18) -> presets/data-ai/commands/plan/ci.md
+- [missing] commands/plan/cro.md (size_lines=56) -> presets/data-ai/commands/plan/cro.md
+- [missing] commands/plan/fast.md (size_lines=46) -> presets/data-ai/commands/plan/fast.md
+- [missing] commands/plan/hard.md (size_lines=57) -> presets/data-ai/commands/plan/hard.md
+- [missing] commands/plan/two.md (size_lines=30) -> presets/data-ai/commands/plan/two.md
+- [missing] commands/review/codebase.md (size_lines=49) -> presets/data-ai/commands/review/codebase.md
+- [present] commands/scout.md -> presets/data-ai/commands/scout.md
+- [present] commands/scout/ext.md -> presets/data-ai/commands/scout/ext.md
+- [present] commands/skill/add.md -> presets/data-ai/commands/skill/add.md
+- [present] commands/skill/create.md -> presets/data-ai/commands/skill/create.md
+- [missing] commands/skill/fix-logs.md (size_lines=21) -> presets/data-ai/commands/skill/fix-logs.md
+- [present] commands/skill/optimize.md -> presets/data-ai/commands/skill/optimize.md
+- [present] commands/test.md -> presets/data-ai/commands/test.md
+- [missing] commands/use-mcp.md (size_lines=34) -> presets/data-ai/commands/use-mcp.md
+- [missing] commands/watzup.md (size_lines=8) -> presets/data-ai/commands/watzup.md
+- [present] hooks/.env.example -> presets/data-ai/hooks/.env.example
+- [present] hooks/README.md -> presets/data-ai/hooks/README.md
+- [missing] hooks/discord-hook-setup.md (size_lines=412) -> presets/data-ai/hooks/discord-hook-setup.md
+- [category-skip] hooks/discord_notify.sh (reason: merged-into-tri-script)
+- [present] hooks/modularization-hook.js -> presets/data-ai/hooks/modularization-hook.js
+- [present] hooks/scout-block.js -> presets/data-ai/hooks/scout-block.js
+- [present] hooks/scout-block.ps1 -> presets/data-ai/hooks/scout-block.ps1
+- [present] hooks/scout-block.sh -> presets/data-ai/hooks/scout-block.sh
+- [category-skip] hooks/send-discord.sh (reason: merged-into-tri-script)
+- [missing] hooks/telegram-hook-setup.md (size_lines=774) -> presets/data-ai/hooks/telegram-hook-setup.md
+- [category-skip] hooks/telegram_notify.sh (reason: merged-into-tri-script)
+- [missing] metadata.json (size_lines=15) -> presets/data-ai/metadata.json
+- [present] settings.json -> presets/data-ai/settings.json
+- [present] skills/.env.example -> presets/data-ai/skills/.env.example
+- [present] skills/INSTALLATION.md -> presets/data-ai/skills/INSTALLATION.md
+- [present] skills/README.md -> presets/data-ai/skills/README.md
+- [present] skills/THIRD_PARTY_NOTICES.md -> presets/data-ai/skills/THIRD_PARTY_NOTICES.md
+- [category-skip] skills/aesthetic (reason: frontend+fullstack+mobile-only)
+- [present] skills/agent_skills_spec.md -> presets/data-ai/skills/agent_skills_spec.md
+- [partial] skills/ai-multimodal (missing references/, scripts/) -> presets/data-ai/skills/ai-multimodal
+- [category-skip] skills/backend-development (reason: backend+fullstack+devops-only)
+- [category-skip] skills/better-auth (reason: backend+fullstack-only)
+- [category-skip] skills/chrome-devtools (reason: frontend+backend+fullstack+mobile+devops-only)
+- [missing] skills/claude-code (size_lines=188) -> presets/data-ai/skills/claude-code
+- [partial] skills/code-review (missing references/) -> presets/data-ai/skills/code-review
+- [missing] skills/common (size_lines=0) -> presets/data-ai/skills/common
+- [missing] skills/databases (size_lines=232) -> presets/data-ai/skills/databases
+- [partial] skills/debugging (missing references/, scripts/) -> presets/data-ai/skills/debugging
+- [category-skip] skills/devops (reason: backend+fullstack+devops-only)
+- [partial] skills/docs-seeker (missing references/, scripts/) -> presets/data-ai/skills/docs-seeker
+- [present] skills/document-skills -> presets/data-ai/skills/document-skills
+- [category-skip] skills/frontend-design (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/frontend-development (reason: frontend+fullstack+mobile-only)
+- [present] skills/google-adk-python -> presets/data-ai/skills/google-adk-python
+- [partial] skills/mcp-builder (missing scripts/) -> presets/data-ai/skills/mcp-builder
+- [partial] skills/mcp-management (missing references/, scripts/) -> presets/data-ai/skills/mcp-management
+- [missing] skills/media-processing (size_lines=358) -> presets/data-ai/skills/media-processing
+- [category-skip] skills/mobile-development (reason: mobile+fullstack-only)
+- [category-skip] skills/payment-integration (reason: backend+fullstack-only)
+- [partial] skills/planning (missing references/) -> presets/data-ai/skills/planning
+- [partial] skills/problem-solving (missing references/) -> presets/data-ai/skills/problem-solving
+- [partial] skills/repomix (missing references/, scripts/) -> presets/data-ai/skills/repomix
+- [present] skills/research -> presets/data-ai/skills/research
+- [partial] skills/sequential-thinking (missing references/, scripts/) -> presets/data-ai/skills/sequential-thinking
+- [category-skip] skills/shopify (reason: backend+fullstack-only)
+- [partial] skills/skill-creator (missing scripts/) -> presets/data-ai/skills/skill-creator
+- [present] skills/template-skill -> presets/data-ai/skills/template-skill
+- [category-skip] skills/threejs (reason: frontend+fullstack-only)
+- [category-skip] skills/ui-styling (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/web-frameworks (reason: frontend+fullstack+mobile+devops-only)
+- [present] statusline.js -> presets/data-ai/statusline.js
+- [present] statusline.ps1 -> presets/data-ai/statusline.ps1
+- [present] statusline.sh -> presets/data-ai/statusline.sh
+- [present] workflows/development-rules.md -> presets/data-ai/workflows/development-rules.md
+- [present] workflows/documentation-management.md -> presets/data-ai/workflows/documentation-management.md
+- [present] workflows/orchestration-protocol.md -> presets/data-ai/workflows/orchestration-protocol.md
+- [present] workflows/primary-workflow.md -> presets/data-ai/workflows/primary-workflow.md
+
+### _template
+
+- [category-skip] .env.example (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] .mcp.json.example (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/brainstormer.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/code-reviewer.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/copywriter.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/database-admin.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/debugger.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/docs-manager.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/git-manager.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/journal-writer.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/mcp-manager.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/planner.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/project-manager.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/researcher.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/scout-external.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/scout.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/tester.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] agents/ui-ux-designer.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] the-upstream-kit/docs/code-standards.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] the-upstream-kit/docs/codebase-summary.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] the-upstream-kit/docs/project-overview-pdr.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] the-upstream-kit/docs/project-roadmap.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] the-upstream-kit/docs/system-architecture.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/ask.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/bootstrap.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/bootstrap/auto.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/bootstrap/auto/fast.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/brainstorm.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/code.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/content/cro.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/content/enhance.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/content/fast.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/content/good.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/cook.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/cook/auto.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/cook/auto/fast.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/debug.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/design/3d.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/describe.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/fast.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/good.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/screenshot.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/design/video.md (reason: frontend+fullstack+mobile-only)
+- [category-skip] commands/docs/init.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/docs/summarize.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/docs/update.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/fix.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/fix/ci.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/fix/fast.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/fix/hard.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/fix/logs.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/fix/test.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/fix/types.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/fix/ui.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/git/cm.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/git/cp.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/git/pr.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/integrate/polar.md (reason: backend+fullstack-only)
+- [category-skip] commands/integrate/sepay.md (reason: backend+fullstack-only)
+- [category-skip] commands/journal.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/plan.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/plan/ci.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/plan/cro.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/plan/fast.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/plan/hard.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/plan/two.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/review/codebase.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/scout.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/scout/ext.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/skill/add.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/skill/create.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/skill/fix-logs.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/skill/optimize.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/test.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/use-mcp.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] commands/watzup.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] hooks/.env.example (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] hooks/README.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] hooks/discord-hook-setup.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] hooks/discord_notify.sh (reason: merged-into-tri-script)
+- [category-skip] hooks/modularization-hook.js (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] hooks/scout-block.js (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] hooks/scout-block.ps1 (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] hooks/scout-block.sh (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] hooks/send-discord.sh (reason: merged-into-tri-script)
+- [category-skip] hooks/telegram-hook-setup.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] hooks/telegram_notify.sh (reason: merged-into-tri-script)
+- [category-skip] metadata.json (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] settings.json (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/.env.example (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/INSTALLATION.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/README.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/THIRD_PARTY_NOTICES.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/aesthetic (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/agent_skills_spec.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/ai-multimodal (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/backend-development (reason: backend+fullstack+devops-only)
+- [category-skip] skills/better-auth (reason: backend+fullstack-only)
+- [category-skip] skills/chrome-devtools (reason: frontend+backend+fullstack+mobile+devops-only)
+- [category-skip] skills/claude-code (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/code-review (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/common (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/databases (reason: backend+fullstack+devops+data-ai-only)
+- [category-skip] skills/debugging (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/devops (reason: backend+fullstack+devops-only)
+- [category-skip] skills/docs-seeker (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/document-skills (reason: data-ai-only)
+- [category-skip] skills/frontend-design (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/frontend-development (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/google-adk-python (reason: data-ai-only)
+- [category-skip] skills/mcp-builder (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/mcp-management (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/media-processing (reason: frontend+fullstack+mobile+data-ai-only)
+- [category-skip] skills/mobile-development (reason: mobile+fullstack-only)
+- [category-skip] skills/payment-integration (reason: backend+fullstack-only)
+- [category-skip] skills/planning (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/problem-solving (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/repomix (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/research (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/sequential-thinking (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/shopify (reason: backend+fullstack-only)
+- [category-skip] skills/skill-creator (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/template-skill (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] skills/threejs (reason: frontend+fullstack-only)
+- [category-skip] skills/ui-styling (reason: frontend+fullstack+mobile-only)
+- [category-skip] skills/web-frameworks (reason: frontend+fullstack+mobile+devops-only)
+- [category-skip] statusline.js (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] statusline.ps1 (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] statusline.sh (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] workflows/development-rules.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] workflows/documentation-management.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] workflows/orchestration-protocol.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)
+- [category-skip] workflows/primary-workflow.md (reason: frontend+backend+fullstack+mobile+devops+data-ai-only)

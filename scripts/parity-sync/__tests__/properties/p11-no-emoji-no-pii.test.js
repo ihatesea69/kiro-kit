@@ -1,4 +1,4 @@
-// Feature: claudekit-parity-sync, Property 11: No Emoji and No PII
+// Feature: upstream-parity-sync, Property 11: No Emoji and No PII
 // **Validates: Requirements 1.6, 11.6, 16.1, 16.2, 16.3, 16.4, 17.4, 19.3**
 'use strict';
 
@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PRESETS_DIR = path.resolve(__dirname, '../../../../presets');
-const AUDITS_DIR = path.resolve(__dirname, '../../../../docs/audits/claudekit-vs-kirokit');
+const AUDITS_DIR = path.resolve(__dirname, '../../../../docs/audits/upstream-parity');
 const PRESETS = ['frontend', 'backend', 'fullstack', 'mobile', 'devops', 'data-ai'];
 
 // Emoji regex — full emoji range U+1F300 to U+1FAFF

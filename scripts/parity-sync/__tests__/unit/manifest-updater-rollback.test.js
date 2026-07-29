@@ -2,7 +2,7 @@
  * Unit test: ManifestUpdater sub-task 11.4 — `validateOrThrow` (throw
  * wrapper) + `rollbackPortedFiles` (best-effort delete helper).
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Task: tasks.md > 11.4 — "Throw E_MANIFEST_INVALID hoặc
  *       E_MANIFEST_NO_ORPHAN với rollback portedFiles nếu fail".
  *

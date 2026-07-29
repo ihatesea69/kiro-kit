@@ -274,7 +274,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- ClaudeKit parity sync: ported 348+ files from reference kit to reach full content parity
+- the upstream kit parity sync: ported 348+ files from reference kit to reach full content parity
 - New commands: ask, brainstorm, code, cook, debug, journal, use-mcp, watzup, and 20+ more per preset
 - New skills with full progressive disclosure (references/ + scripts/ subdirectories)
 - Root-level tooling: .commitlintrc.json, .repomixignore, KIRO.md, GEMINI.md, docs/guide/

@@ -1,7 +1,7 @@
 /**
  * Property test P3 — Category Mapping Correctness.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/design.md > Correctness Properties >
+ * Spec: .kiro/specs/upstream-parity-sync/design.md > Correctness Properties >
  *       Property 3.
  * Task: tasks.md > 5.3 (PBT) Property test P3.
  *
@@ -62,57 +62,57 @@ const { VALID_PRESETS, joinPreset } = require('../../lib/path-utils');
 // basename xuất hiện trong CATEGORY_RULES.
 //
 // Mỗi entry phải:
-//   - Có `path` POSIX với prefix `claudekit-engineer-main/.claude/...`.
+//   - Có `path` POSIX với prefix `the-upstream-kit/.claude/...`.
 //   - idOf(item) chính xác == basename trong CATEGORY_RULES.
 // ---------------------------------------------------------------------------
 
 const KNOWN_TEMPLATES = Object.freeze([
   // ----- Agents (all 6) -----
   { artifact_type: 'agent', basename: 'brainstormer',
-    path: 'claudekit-engineer-main/.claude/agents/brainstormer.md' },
+    path: 'the-upstream-kit/.claude/agents/brainstormer.md' },
   { artifact_type: 'agent', basename: 'planner',
-    path: 'claudekit-engineer-main/.claude/agents/planner.md' },
+    path: 'the-upstream-kit/.claude/agents/planner.md' },
   { artifact_type: 'agent', basename: 'tester',
-    path: 'claudekit-engineer-main/.claude/agents/tester.md' },
+    path: 'the-upstream-kit/.claude/agents/tester.md' },
 
   // ----- Skills (subsets) -----
   // ai-multimodal -> ALL 6
   { artifact_type: 'skill', basename: 'ai-multimodal',
-    path: 'claudekit-engineer-main/.claude/skills/ai-multimodal/' },
+    path: 'the-upstream-kit/.claude/skills/ai-multimodal/' },
   // threejs -> frontend, fullstack
   { artifact_type: 'skill', basename: 'threejs',
-    path: 'claudekit-engineer-main/.claude/skills/threejs/' },
+    path: 'the-upstream-kit/.claude/skills/threejs/' },
   // shopify -> backend, fullstack
   { artifact_type: 'skill', basename: 'shopify',
-    path: 'claudekit-engineer-main/.claude/skills/shopify/' },
+    path: 'the-upstream-kit/.claude/skills/shopify/' },
   // devops -> backend, fullstack, devops
   { artifact_type: 'skill', basename: 'devops',
-    path: 'claudekit-engineer-main/.claude/skills/devops/' },
+    path: 'the-upstream-kit/.claude/skills/devops/' },
   // aesthetic -> frontend, fullstack, mobile
   { artifact_type: 'skill', basename: 'aesthetic',
-    path: 'claudekit-engineer-main/.claude/skills/aesthetic/' },
+    path: 'the-upstream-kit/.claude/skills/aesthetic/' },
   // media-processing -> frontend, fullstack, mobile, data-ai
   { artifact_type: 'skill', basename: 'media-processing',
-    path: 'claudekit-engineer-main/.claude/skills/media-processing/' },
+    path: 'the-upstream-kit/.claude/skills/media-processing/' },
   // google-adk-python -> data-ai only
   { artifact_type: 'skill', basename: 'google-adk-python',
-    path: 'claudekit-engineer-main/.claude/skills/google-adk-python/' },
+    path: 'the-upstream-kit/.claude/skills/google-adk-python/' },
 
   // ----- Commands -----
   // ask -> ALL 6
   { artifact_type: 'command', basename: 'ask',
-    path: 'claudekit-engineer-main/.claude/commands/ask.md' },
+    path: 'the-upstream-kit/.claude/commands/ask.md' },
   // integrate/polar -> backend, fullstack
   { artifact_type: 'command', basename: 'integrate/polar',
-    path: 'claudekit-engineer-main/.claude/commands/integrate/polar.md' },
+    path: 'the-upstream-kit/.claude/commands/integrate/polar.md' },
   // design/3d -> frontend, fullstack, mobile
   { artifact_type: 'command', basename: 'design/3d',
-    path: 'claudekit-engineer-main/.claude/commands/design/3d.md' },
+    path: 'the-upstream-kit/.claude/commands/design/3d.md' },
 
   // ----- Hooks with empty target_presets (merged at target) -----
   // discord_notify.sh -> [] (Req 7.2 — already merged into discord-notify tri-script)
   { artifact_type: 'hook', basename: 'discord_notify.sh',
-    path: 'claudekit-engineer-main/.claude/hooks/discord_notify.sh' },
+    path: 'the-upstream-kit/.claude/hooks/discord_notify.sh' },
 ]);
 
 // ---------------------------------------------------------------------------
@@ -190,7 +190,7 @@ const arbNoRuleSourceItem = fc
     id: `src.unknown.${name}.${uniq}`,
     kit: 'source',
     artifact_type: 'agent',
-    path: `claudekit-engineer-main/.claude/agents/zzz-${name}-unk-${uniq}.md`,
+    path: `the-upstream-kit/.claude/agents/zzz-${name}-unk-${uniq}.md`,
     size_lines: 30,
   }))
   .filter((item) => {
@@ -242,7 +242,7 @@ const arbTargetInventoryFor = (items) =>
         for (let ii = 0; ii < items.length; ii++) {
           if (!modes[ii]) continue;
           const item = items[ii];
-          const PREFIX = 'claudekit-engineer-main/.claude/';
+          const PREFIX = 'the-upstream-kit/.claude/';
           const stripped = item.path.startsWith(PREFIX)
             ? item.path.slice(PREFIX.length)
             : item.path;

@@ -8,7 +8,7 @@
  * `pnpm --filter @kirokit/parity-sync test` picks up the parity-sync tests
  * without polluting the monorepo defaults.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{design,tasks}.md
  */
 
 'use strict';

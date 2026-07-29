@@ -1,7 +1,7 @@
 /**
  * Golden-file tests for Rebrander.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/design.md > Testing Strategy >
+ * Spec: .kiro/specs/upstream-parity-sync/design.md > Testing Strategy >
  *       "Golden-file tests cho Rebrander".
  * Task: tasks.md > 7.5 — 15 fixture pairs `<n>-<name>.input.md` +
  *       `<n>-<name>.expected.md`.

@@ -1,4 +1,4 @@
-// Feature: claudekit-parity-sync, Property 9: Tri-script Completeness
+// Feature: upstream-parity-sync, Property 9: Tri-script Completeness
 // **Validates: Requirements 7.2, 7.4, 9.1, 19.4**
 'use strict';
 

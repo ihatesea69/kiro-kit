@@ -1,7 +1,7 @@
 /**
- * ClaudeKit Parity Sync — CLI entry point.
+ * the upstream kit Parity Sync — CLI entry point.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 5 / 13.1–13.7 — wire full pipeline end-to-end.
  *
  *   13.1 Pipeline tuần tự: InventoryReader -> DeltaDetector -> CategoryMapper
@@ -14,7 +14,7 @@
  *        MIN_SKILLS=28, MIN_COMMANDS=40, MIN_HOOKS=6, MIN_WORKFLOWS=4.
  *        Chỉ chạy ở --apply (dry-run không có future state để enforce).
  *   13.6 Final rebrand-leak check (Property 4): scan presets/<P>/ cho
- *        pattern `Claude Code` | `ClaudeKit` | `.claude/` (loại trừ
+ *        pattern `Claude Code` | `the upstream kit` | `.claude/` (loại trừ
  *        `skills/claude-code/`). Chỉ chạy ở --apply.
  *   13.7 PBT Property 10 (Idempotency) — file riêng:
  *        `__tests__/property/p10-idempotency.test.js`.
@@ -103,18 +103,18 @@ const STAGE_CHECK = 'CHECK';
 /**
  * Default appendix directory (POSIX-style relative to workspace root).
  */
-const DEFAULT_APPENDIX_DIR = 'docs/audits/claudekit-vs-kirokit/appendix';
+const DEFAULT_APPENDIX_DIR = 'docs/audits/upstream-parity/appendix';
 
 /**
- * Default source root: `claudekit-engineer-main/.claude/`. Porter joins
+ * Default source root: `the-upstream-kit/.claude/`. Porter joins
  * `plan.source_path` (đã strip prefix qua DeltaDetector) với root này.
  */
-const DEFAULT_SOURCE_ROOT = 'claudekit-engineer-main/.claude';
+const DEFAULT_SOURCE_ROOT = 'the-upstream-kit/.claude';
 
 /**
  * Default output directory cho 3 file report (relative to workspace root).
  */
-const DEFAULT_OUTPUT_DIR = 'docs/audits/claudekit-vs-kirokit';
+const DEFAULT_OUTPUT_DIR = 'docs/audits/upstream-parity';
 
 /**
  * Threshold tối thiểu per preset (Property 8, Req 14.1–14.5).
@@ -171,12 +171,12 @@ const REBRAND_SCAN_EXTS = Object.freeze(
  *
  * Pattern là alternation đơn giản:
  *   - `Claude Code` (whitespace nguyên văn)
- *   - `ClaudeKit`
+ *   - `the upstream kit`
  *   - `.claude/` (đường dẫn workspace cũ)
  *
  * @type {RegExp}
  */
-const REBRAND_LEAK_RE = /Claude Code|ClaudeKit|\.claude\//;
+const REBRAND_LEAK_RE = /Claude Code|the upstream kit|\.claude\//;
 
 // ---------------------------------------------------------------------------
 // Logger (stderr only — Req 15.2: KHÔNG ghi log/timestamp vào file artifact)
@@ -204,7 +204,7 @@ const logger = {
 
 function printUsage() {
   const lines = [
-    'ClaudeKit Parity Sync — port content từ claudekit-engineer-main vào presets/',
+    'the upstream kit Parity Sync — port content từ the-upstream-kit vào presets/',
     '',
     'Usage:',
     '  node scripts/parity-sync/run.js [options]',
@@ -220,7 +220,7 @@ function printUsage() {
     '  0 success | 2 arg/inventory error | 3 atomic-write fail |',
     '  4 manifest invalid/orphan | 5 threshold fail | 6 rebrand leak',
     '',
-    'Spec: .kiro/specs/claudekit-parity-sync/design.md',
+    'Spec: .kiro/specs/upstream-parity-sync/design.md',
   ];
   process.stdout.write(lines.join('\n') + '\n');
 }
@@ -549,7 +549,7 @@ function checkThresholds(args) {
 
 /**
  * Rebrand-leak check (Property 4): scan presets/<P>/ sau apply, fail nếu còn
- * pattern `Claude Code` | `ClaudeKit` | `.claude/` ngoài exception.
+ * pattern `Claude Code` | `the upstream kit` | `.claude/` ngoài exception.
  *
  * Exception (Req 11.1):
  *   - File nằm trong `skills/claude-code/` (read-only docs về Claude Code
@@ -647,13 +647,13 @@ function checkRebrandLeak(args) {
  * @property {string} [workspaceRoot]      Absolute OS path. Default cwd.
  * @property {string} [appendixDir]        POSIX relative đến workspace root
  *                                         hoặc absolute. Default
- *                                         `docs/audits/claudekit-vs-kirokit/appendix`.
+ *                                         `docs/audits/upstream-parity/appendix`.
  * @property {string} [sourceRoot]         Absolute OS path tới `.claude/` của
  *                                         source kit. Default
- *                                         `<workspaceRoot>/claudekit-engineer-main/.claude`.
+ *                                         `<workspaceRoot>/the-upstream-kit/.claude`.
  * @property {string} [outputDir]          POSIX relative đến workspace root
  *                                         hoặc absolute. Default
- *                                         `docs/audits/claudekit-vs-kirokit`.
+ *                                         `docs/audits/upstream-parity`.
  * @property {boolean} [skipFinalChecks]   Skip threshold + leak check (test
  *                                         harness only). Mặc định false.
  * @property {string} [ranAt]              ISO 8601 timestamp override cho

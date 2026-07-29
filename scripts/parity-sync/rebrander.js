@@ -1,7 +1,7 @@
 /**
- * Rebrander for ClaudeKit Parity Sync.
+ * Rebrander for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 3 / 7.1–7.7 — string substitution + URL guard + npx-warning
  *        prepend + front-matter preserve + golden tests + Property 4 + 5.
  *
@@ -9,7 +9,7 @@
  *
  *   Stateless, pure-string transform áp dụng theo thứ tự:
  *     1. `.claude/`   → `.kiro/`
- *     2. `ClaudeKit`  → `KiroKit`
+ *     2. `the upstream kit`  → `KiroKit`
  *     3. `Claude Code` → `Kiro`  (TRỪ KHI target path nằm trong
  *        `skills/claude-code/` — file đó document Claude Code product nên
  *        phải giữ tên gốc, Req 11.2.)
@@ -202,7 +202,7 @@ function restorePlaceholders(input, placeholders) {
  *
  * Thứ tự (deterministic):
  *   1. Path:    `.claude/`   → `.kiro/`
- *   2. Brand:   `ClaudeKit`  → `KiroKit`
+ *   2. Brand:   `the upstream kit`  → `KiroKit`
  *   3. Phrase:  `Claude Code` → `Kiro` (skip nếu inClaudeCodeSkill = true)
  *
  * Note: regex `/\.claude\//g` không match `.claude.com/` vì pattern yêu cầu
@@ -218,7 +218,7 @@ function applySubstitutions(input, inClaudeCodeSkill) {
   const { protectedString, placeholders } = extractUrls(input);
 
   let out = protectedString.replace(/\.claude\//g, '.kiro/');
-  out = out.replace(/ClaudeKit/g, 'KiroKit');
+  out = out.replace(/the upstream kit/g, 'KiroKit');
   if (!inClaudeCodeSkill) {
     out = out.replace(/Claude Code/g, 'Kiro');
   }
@@ -343,7 +343,7 @@ function transformValue(value, inClaudeCodeSkill) {
  * @throws {TypeError} Nếu `content` không phải string.
  *
  * @example
- *   rebrand('Use ClaudeKit.', {});
+ *   rebrand('Use the upstream kit.', {});
  *   // => 'Use KiroKit.'
  *
  *   rebrand('---\nname: claude-code\n---\nbody', { targetPath: 'skills/claude-code/SKILL.md' });

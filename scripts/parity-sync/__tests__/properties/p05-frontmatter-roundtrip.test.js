@@ -1,7 +1,7 @@
 /**
  * Property test P5 — Front-matter Round-trip.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/design.md > Correctness Properties >
+ * Spec: .kiro/specs/upstream-parity-sync/design.md > Correctness Properties >
  *       Property 5.
  * Task: tasks.md > 7.7 (PBT) Property test P5.
  *
@@ -24,13 +24,13 @@
  *   5c Other-field rebrand      — field KHÔNG nằm trong preserve list
  *                                 (ví dụ `description`) bị áp substitutions
  *                                 (positive: source description chứa
- *                                 "ClaudeKit" → target description chứa
+ *                                 "the upstream kit" → target description chứa
  *                                 "KiroKit").
  *
  * Generators:
  *   - `arbName`           — alnum + hyphen token, hoặc literal "claude-code".
  *   - `arbInclusion`      — enum {manual, always, fileMatch} (giá trị
- *                            phổ biến trong KiroKit/ClaudeKit front-matter).
+ *                            phổ biến trong KiroKit/the upstream kit front-matter).
  *   - `arbArgumentHint`   — `<...>` template string.
  *   - `arbFrontMatter`    — record với 0..n fields, luôn có ít nhất một
  *                            preserve field.
@@ -76,7 +76,7 @@ const arbArgumentHint = fc.array(arbToken, { minLength: 1, maxLength: 3 }).map(
 
 // Description có thể chứa pattern để test 5c (rebrand non-preserve fields).
 const arbDescription = fc.oneof(
-  fc.constant('Helps with ClaudeKit tasks.'),
+  fc.constant('Helps with the upstream kit tasks.'),
   fc.constant('Use Claude Code to bootstrap.'),
   fc.constant('Edit .claude/agents/x.md to configure.'),
   fc.constant('A simple agent.'),
@@ -105,7 +105,7 @@ const arbFrontMatter = fc.record({
 // Body: text random có thể chứa pattern. Giữ ngắn cho perf.
 const arbBody = fc.oneof(
   fc.constant('Plain markdown body.\n'),
-  fc.constant('Use ClaudeKit to plan.\n'),
+  fc.constant('Use the upstream kit to plan.\n'),
   fc.constant('See .claude/skills/x/SKILL.md.\n'),
   fc.constant('Claude Code reference.\n'),
   fc.constant(''),
@@ -140,7 +140,7 @@ function buildSource(data, body) {
 // ---------------------------------------------------------------------------
 
 describe('Property 5: Front-matter Round-trip — **Validates: Requirements 3.5, 6.5, 11.2**', () => {
-  // Feature: claudekit-parity-sync, Property 5: Front-matter Round-trip
+  // Feature: upstream-parity-sync, Property 5: Front-matter Round-trip
 
   it('5a: name, inclusion, argument-hint preserved nguyên văn sau rebrand', () => {
     fc.assert(
@@ -201,14 +201,14 @@ describe('Property 5: Front-matter Round-trip — **Validates: Requirements 3.5,
     );
   });
 
-  it('5c: non-preserve fields — description chứa ClaudeKit ⇒ target description chứa KiroKit', () => {
+  it('5c: non-preserve fields — description chứa the upstream kit ⇒ target description chứa KiroKit', () => {
     fc.assert(
       fc.property(
         arbName,
         fc.constantFrom(
-          'Helps with ClaudeKit tasks.',
-          'A KiroKit-style helper for ClaudeKit users.',
-          'Use ClaudeKit, not anything else.',
+          'Helps with the upstream kit tasks.',
+          'A KiroKit-style helper for the upstream kit users.',
+          'Use the upstream kit, not anything else.',
         ),
         arbBody,
         (name, description, body) => {
@@ -222,9 +222,9 @@ describe('Property 5: Front-matter Round-trip — **Validates: Requirements 3.5,
           // Field name vẫn preserved.
           expect(reparsed.data.name).toBe(name);
 
-          // Description đã bị rebrand: không còn "ClaudeKit", có "KiroKit".
+          // Description đã bị rebrand: không còn "the upstream kit", có "KiroKit".
           expect(typeof reparsed.data.description).toBe('string');
-          expect(reparsed.data.description.includes('ClaudeKit')).toBe(false);
+          expect(reparsed.data.description.includes('the upstream kit')).toBe(false);
           expect(reparsed.data.description.includes('KiroKit')).toBe(true);
         },
       ),

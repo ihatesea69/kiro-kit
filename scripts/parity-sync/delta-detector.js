@@ -1,7 +1,7 @@
 /**
- * Delta Detector for ClaudeKit Parity Sync.
+ * Delta Detector for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 2 / 4.1, 4.2 — pairwise compare mỗi source artifact với mỗi
  *        preset target, sinh DeltaEntry với status `present|missing|partial`
  *        (chưa áp category — CategoryMapper ở task 5 mới đổi thành
@@ -9,7 +9,7 @@
  *
  * Trách nhiệm (design.md > Components and Interfaces > DeltaDetector):
  *   - Với mỗi srcItem × mỗi preset trong VALID_PRESETS (6 chính + `_template`):
- *     - Strip prefix `claudekit-engineer-main/.claude/` → relPath.
+ *     - Strip prefix `the-upstream-kit/.claude/` → relPath.
  *     - target_path = `presets/<preset>/<relPath>` (POSIX style).
  *     - Non-skill artifact: kiểm tra trực tiếp set membership.
  *     - Skill artifact (folder): check sự tồn tại của `<target_path>/SKILL.md`

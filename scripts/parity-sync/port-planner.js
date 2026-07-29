@@ -1,7 +1,7 @@
 /**
- * Port Planner for ClaudeKit Parity Sync.
+ * Port Planner for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 2 / 6.1, 6.2, 6.3, 6.4, 6.5, 6.6 — convert filtered
  *        `DeltaEntry[]` thành `PortPlan[]` mô tả I/O cụ thể.
  *

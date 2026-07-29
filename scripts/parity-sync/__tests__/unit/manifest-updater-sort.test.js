@@ -3,7 +3,7 @@
  * ascending, serialize 2-space indent + trailing newline, atomic write
  * qua AtomicWriter.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{design,tasks}.md
  * Task: tasks.md > 11.2 — "Sort entries theo `target` ascending, atomic
  *       write qua AtomicWriter".
  *

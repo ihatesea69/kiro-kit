@@ -1,1 +1,1 @@
-Use ClaudeKit to bootstrap your workspace.
+Use the upstream kit to bootstrap your workspace.

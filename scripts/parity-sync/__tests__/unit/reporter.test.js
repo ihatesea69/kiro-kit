@@ -3,7 +3,7 @@
  * parity-sync-report.md; Property 11 final check (no emoji + no PII);
  * idempotency snapshot equality.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: tasks.md > 12.1, 12.2, 12.3, 12.4, 12.5
  *
  * Strategy:
@@ -219,7 +219,7 @@ describe('renderDeltaReport (task 12.1)', () => {
   it('returns markdown string with title + Summary + Details sections', () => {
     const out = reporter.renderDeltaReport(buildDeltaFixture());
     expect(typeof out).toBe('string');
-    expect(out).toMatch(/^# ClaudeKit Parity Sync — Delta Report\n/);
+    expect(out).toMatch(/^# the upstream kit Parity Sync — Delta Report\n/);
     expect(out).toContain('## Summary');
     expect(out).toContain('## Details');
     expect(out.endsWith('\n')).toBe(true);
@@ -324,7 +324,7 @@ describe('renderDeltaReport (task 12.1)', () => {
 describe('renderConflictLog (task 12.2)', () => {
   it('returns markdown with title + entry per loggable decision', () => {
     const out = reporter.renderConflictLog(buildDecisionsFixture());
-    expect(out).toMatch(/^# ClaudeKit Parity Sync — Conflict Log\n/);
+    expect(out).toMatch(/^# the upstream kit Parity Sync — Conflict Log\n/);
     expect(out.endsWith('\n')).toBe(true);
   });
 
@@ -391,7 +391,7 @@ describe('renderConflictLog (task 12.2)', () => {
 
   it('renders "(no conflicts logged)" when input is empty', () => {
     const out = reporter.renderConflictLog([]);
-    expect(out).toContain('# ClaudeKit Parity Sync — Conflict Log');
+    expect(out).toContain('# the upstream kit Parity Sync — Conflict Log');
     expect(out).toContain('(no conflicts logged)');
   });
 
@@ -589,19 +589,19 @@ describe('writeReports orchestrator', () => {
     const conflictContent = fs.readFileSync(result.conflict.path, 'utf8');
     const runContent = fs.readFileSync(result.run.path, 'utf8');
 
-    expect(deltaContent).toContain('# ClaudeKit Parity Sync — Delta Report');
-    expect(conflictContent).toContain('# ClaudeKit Parity Sync — Conflict Log');
-    expect(runContent).toContain('# ClaudeKit Parity Sync — Run Report');
+    expect(deltaContent).toContain('# the upstream kit Parity Sync — Delta Report');
+    expect(conflictContent).toContain('# the upstream kit Parity Sync — Conflict Log');
+    expect(runContent).toContain('# the upstream kit Parity Sync — Run Report');
   });
 
-  it('uses default outputDir docs/audits/claudekit-vs-kirokit', () => {
+  it('uses default outputDir docs/audits/upstream-parity', () => {
     const result = reporter.writeReports({
       deltas: buildDeltaFixture(),
       decisions: buildDecisionsFixture(),
       runResult: buildRunResultFixture(),
       workspaceRoot,
     });
-    expect(result.delta.path).toContain(path.join('docs', 'audits', 'claudekit-vs-kirokit', 'delta-report.md'));
+    expect(result.delta.path).toContain(path.join('docs', 'audits', 'upstream-parity', 'delta-report.md'));
   });
 
   it('produces byte-stable output across two writes (idempotency, Property 10)', () => {
@@ -613,14 +613,14 @@ describe('writeReports orchestrator', () => {
     };
 
     reporter.writeReports(args);
-    const a1 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/claudekit-vs-kirokit/delta-report.md'));
-    const c1 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/claudekit-vs-kirokit/conflict-log.md'));
-    const r1 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/claudekit-vs-kirokit/parity-sync-report.md'));
+    const a1 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/upstream-parity/delta-report.md'));
+    const c1 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/upstream-parity/conflict-log.md'));
+    const r1 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/upstream-parity/parity-sync-report.md'));
 
     reporter.writeReports(args);
-    const a2 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/claudekit-vs-kirokit/delta-report.md'));
-    const c2 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/claudekit-vs-kirokit/conflict-log.md'));
-    const r2 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/claudekit-vs-kirokit/parity-sync-report.md'));
+    const a2 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/upstream-parity/delta-report.md'));
+    const c2 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/upstream-parity/conflict-log.md'));
+    const r2 = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/upstream-parity/parity-sync-report.md'));
 
     expect(a1.equals(a2)).toBe(true);
     expect(c1.equals(c2)).toBe(true);
@@ -636,7 +636,7 @@ describe('writeReports orchestrator', () => {
     });
     const files = ['delta-report.md', 'conflict-log.md', 'parity-sync-report.md'];
     for (const fname of files) {
-      const buf = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/claudekit-vs-kirokit', fname));
+      const buf = fs.readFileSync(path.join(workspaceRoot, 'docs/audits/upstream-parity', fname));
       expect(buf.includes('\r\n')).toBe(false);
     }
   });
@@ -680,7 +680,7 @@ describe('snapshot equality (task 12.5) — exact bytes for fixed fixtures', () 
   it('delta-report snapshot matches expected string', () => {
     const out = reporter.renderDeltaReport(buildDeltaFixture());
     const expected = [
-      '# ClaudeKit Parity Sync — Delta Report',
+      '# the upstream kit Parity Sync — Delta Report',
       '',
       '## Summary',
       '',
@@ -733,7 +733,7 @@ describe('snapshot equality (task 12.5) — exact bytes for fixed fixtures', () 
   it('conflict-log snapshot matches expected string', () => {
     const out = reporter.renderConflictLog(buildDecisionsFixture());
     const expected = [
-      '# ClaudeKit Parity Sync — Conflict Log',
+      '# the upstream kit Parity Sync — Conflict Log',
       '',
       '## backend/settings.json',
       '',
@@ -772,7 +772,7 @@ describe('snapshot equality (task 12.5) — exact bytes for fixed fixtures', () 
       `ranAt: ${FIXED_TIMESTAMP}`,
       '---',
       '',
-      '# ClaudeKit Parity Sync — Run Report',
+      '# the upstream kit Parity Sync — Run Report',
       '',
       '## Totals',
       '',

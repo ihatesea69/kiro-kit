@@ -682,11 +682,6 @@
       "type": "doc"
     },
     {
-      "source": "skills/ai-multimodal/scripts/.coverage",
-      "target": ".kiro/skills/ai-multimodal/scripts/.coverage",
-      "type": "other"
-    },
-    {
       "source": "skills/ai-multimodal/scripts/document_converter.py",
       "target": ".kiro/skills/ai-multimodal/scripts/document_converter.py",
       "type": "other"
@@ -704,11 +699,6 @@
     {
       "source": "skills/ai-multimodal/scripts/requirements.txt",
       "target": ".kiro/skills/ai-multimodal/scripts/requirements.txt",
-      "type": "other"
-    },
-    {
-      "source": "skills/ai-multimodal/scripts/tests/.coverage",
-      "target": ".kiro/skills/ai-multimodal/scripts/tests/.coverage",
       "type": "other"
     },
     {
@@ -1225,11 +1215,6 @@
       "type": "other"
     },
     {
-      "source": "skills/media-processing/scripts/tests/.coverage",
-      "target": ".kiro/skills/media-processing/scripts/tests/.coverage",
-      "type": "other"
-    },
-    {
       "source": "skills/media-processing/scripts/tests/requirements.txt",
       "target": ".kiro/skills/media-processing/scripts/tests/requirements.txt",
       "type": "other"
@@ -1338,11 +1323,6 @@
       "source": "skills/repomix/references/usage-patterns.md",
       "target": ".kiro/skills/repomix/references/usage-patterns.md",
       "type": "doc"
-    },
-    {
-      "source": "skills/repomix/scripts/.coverage",
-      "target": ".kiro/skills/repomix/scripts/.coverage",
-      "type": "other"
     },
     {
       "source": "skills/repomix/scripts/README.md",
@@ -2015,11 +1995,6 @@
       "type": "doc"
     },
     {
-      "source": "skills/ui-styling/scripts/.coverage",
-      "target": ".kiro/skills/ui-styling/scripts/.coverage",
-      "type": "other"
-    },
-    {
       "source": "skills/ui-styling/scripts/requirements.txt",
       "target": ".kiro/skills/ui-styling/scripts/requirements.txt",
       "type": "other"
@@ -2098,11 +2073,6 @@
       "source": "skills/web-frameworks/references/turborepo-setup.md",
       "target": ".kiro/skills/web-frameworks/references/turborepo-setup.md",
       "type": "doc"
-    },
-    {
-      "source": "skills/web-frameworks/scripts/.coverage",
-      "target": ".kiro/skills/web-frameworks/scripts/.coverage",
-      "type": "other"
     },
     {
       "source": "skills/web-frameworks/scripts/__init__.py",

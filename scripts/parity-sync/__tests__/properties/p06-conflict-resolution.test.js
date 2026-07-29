@@ -1,7 +1,7 @@
 /**
  * Property test P6 — Conflict Resolution Decision Tree.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/design.md > Correctness Properties >
+ * Spec: .kiro/specs/upstream-parity-sync/design.md > Correctness Properties >
  *       Property 6.
  * Task: tasks.md > 9.5 (PBT) Property test P6.
  *
@@ -161,7 +161,7 @@ function arbTier4Target(sourceLines) {
 // ---------------------------------------------------------------------------
 
 describe('Property 6: Conflict Resolution Decision Tree — **Validates: Requirements 3.2, 6.9, 9.2, 12.1, 12.2, 12.5**', () => {
-  // Feature: claudekit-parity-sync, Property 6: Conflict Resolution Decision Tree
+  // Feature: upstream-parity-sync, Property 6: Conflict Resolution Decision Tree
 
   it('6a Tier 1 — target_lines > 1.5 × source_lines ⇒ decision === "kept-target"', () => {
     fc.assert(

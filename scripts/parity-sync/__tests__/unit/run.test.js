@@ -2,7 +2,7 @@
  * Unit tests: run.js — CLI orchestration (parseArgs + runPipeline +
  * threshold/leak final checks + --preset filter).
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: tasks.md > 13.1–13.6
  *
  * Strategy:
@@ -26,7 +26,7 @@
  *   5. **checkRebrandLeak.** Unit test với synthetic preset chứa file
  *      pattern leak:
  *        - Pristine content → pass.
- *        - File chứa "ClaudeKit" / ".claude/" / "Claude Code" → throw
+ *        - File chứa "the upstream kit" / ".claude/" / "Claude Code" → throw
  *          E_REBRAND_LEAK với details.
  *        - File trong skills/claude-code/ subtree → exception, không fail.
  *
@@ -52,7 +52,7 @@ const run = require('../../run');
 /**
  * Tạo isolated tmp workspace với layout cơ bản:
  *   <root>/
- *     docs/audits/claudekit-vs-kirokit/appendix/
+ *     docs/audits/upstream-parity/appendix/
  *     presets/<P>/                  (rỗng skeleton cho 6 + _template)
  *
  * @returns {{ root: string, cleanup: () => void }}
@@ -60,7 +60,7 @@ const run = require('../../run');
 function makeWorkspace() {
   const id = crypto.randomBytes(8).toString('hex');
   const root = path.join(os.tmpdir(), `parity-run-${process.pid}-${id}`);
-  fs.mkdirSync(path.join(root, 'docs/audits/claudekit-vs-kirokit/appendix'), {
+  fs.mkdirSync(path.join(root, 'docs/audits/upstream-parity/appendix'), {
     recursive: true,
   });
   for (const preset of run.VALID_PRESETS) {
@@ -86,7 +86,7 @@ function makeWorkspace() {
  * @param {string} root Workspace root.
  */
 function writeMinimalInventory(root) {
-  const appendix = path.join(root, 'docs/audits/claudekit-vs-kirokit/appendix');
+  const appendix = path.join(root, 'docs/audits/upstream-parity/appendix');
   // Source: 1 agent + 1 generic skill + 1 generic command — đủ để có ít
   // nhất 1 entry mỗi status enum trong delta-report summary.
   const source = [
@@ -95,7 +95,7 @@ function writeMinimalInventory(root) {
       kit: 'source',
       preset: null,
       artifact_type: 'agent',
-      path: 'claudekit-engineer-main/.claude/agents/brainstormer.md',
+      path: 'the-upstream-kit/.claude/agents/brainstormer.md',
       basename: 'brainstormer.md',
       size_lines: 50,
       front_matter: { present: true, fields: { name: 'brainstormer' } },
@@ -106,7 +106,7 @@ function writeMinimalInventory(root) {
       kit: 'source',
       preset: null,
       artifact_type: 'command',
-      path: 'claudekit-engineer-main/.claude/commands/ask.md',
+      path: 'the-upstream-kit/.claude/commands/ask.md',
       basename: 'ask.md',
       size_lines: 30,
       front_matter: { present: true, fields: {} },
@@ -117,7 +117,7 @@ function writeMinimalInventory(root) {
       kit: 'source',
       preset: null,
       artifact_type: 'skill',
-      path: 'claudekit-engineer-main/.claude/skills/common/',
+      path: 'the-upstream-kit/.claude/skills/common/',
       basename: 'common',
       size_lines: 20,
       front_matter: { present: false, fields: {} },
@@ -286,18 +286,18 @@ describe('runPipeline — dry-run mode', () => {
     // delta-report.md tồn tại.
     const deltaPath = path.join(
       ws.root,
-      'docs/audits/claudekit-vs-kirokit/delta-report.md',
+      'docs/audits/upstream-parity/delta-report.md',
     );
     expect(fs.existsSync(deltaPath)).toBe(true);
 
     // conflict-log.md + parity-sync-report.md KHÔNG tồn tại trong dry-run.
     const conflictPath = path.join(
       ws.root,
-      'docs/audits/claudekit-vs-kirokit/conflict-log.md',
+      'docs/audits/upstream-parity/conflict-log.md',
     );
     const runPath = path.join(
       ws.root,
-      'docs/audits/claudekit-vs-kirokit/parity-sync-report.md',
+      'docs/audits/upstream-parity/parity-sync-report.md',
     );
     expect(fs.existsSync(conflictPath)).toBe(false);
     expect(fs.existsSync(runPath)).toBe(false);
@@ -310,10 +310,10 @@ describe('runPipeline — dry-run mode', () => {
       workspaceRoot: ws.root,
     });
     const deltaContent = fs.readFileSync(
-      path.join(ws.root, 'docs/audits/claudekit-vs-kirokit/delta-report.md'),
+      path.join(ws.root, 'docs/audits/upstream-parity/delta-report.md'),
       'utf8',
     );
-    expect(deltaContent).toContain('# ClaudeKit Parity Sync — Delta Report');
+    expect(deltaContent).toContain('# the upstream kit Parity Sync — Delta Report');
     expect(deltaContent).toContain('## Summary');
     expect(deltaContent).toContain('| frontend |');
     expect(deltaContent).toContain('| backend |');
@@ -329,7 +329,7 @@ describe('runPipeline — dry-run mode', () => {
     });
     const deltaPath = path.join(
       ws.root,
-      'docs/audits/claudekit-vs-kirokit/delta-report.md',
+      'docs/audits/upstream-parity/delta-report.md',
     );
     const first = fs.readFileSync(deltaPath);
 
@@ -465,12 +465,12 @@ describe('checkRebrandLeak', () => {
     ).not.toThrow();
   });
 
-  it('fail với E_REBRAND_LEAK khi gặp "ClaudeKit"', () => {
+  it('fail với E_REBRAND_LEAK khi gặp "the upstream kit"', () => {
     const presetDir = path.join(ws.root, 'presets', 'frontend');
     fs.mkdirSync(path.join(presetDir, 'agents'), { recursive: true });
     fs.writeFileSync(
       path.join(presetDir, 'agents', 'leaky.md'),
-      '# Leaky\n\nThis is ClaudeKit branding.\n',
+      '# Leaky\n\nThis is the upstream kit branding.\n',
     );
 
     try {
@@ -482,7 +482,7 @@ describe('checkRebrandLeak', () => {
       expect(err.details).toHaveLength(1);
       expect(err.details[0].file).toBe('presets/frontend/agents/leaky.md');
       expect(err.details[0].lineNumber).toBe(3);
-      expect(err.details[0].match).toBe('ClaudeKit');
+      expect(err.details[0].match).toBe('the upstream kit');
     }
   });
 
@@ -516,7 +516,7 @@ describe('checkRebrandLeak', () => {
     fs.mkdirSync(claudeCodeDir, { recursive: true });
     fs.writeFileSync(
       path.join(claudeCodeDir, 'SKILL.md'),
-      '# Claude Code Skill\n\nThis docs about Claude Code, ClaudeKit, .claude/ paths.\n',
+      '# Claude Code Skill\n\nThis docs about Claude Code, the upstream kit, .claude/ paths.\n',
     );
     expect(() =>
       run.checkRebrandLeak({ presets: ['frontend'], workspaceRoot: ws.root }),
@@ -528,7 +528,7 @@ describe('checkRebrandLeak', () => {
     fs.mkdirSync(path.join(presetDir, 'assets'), { recursive: true });
     fs.writeFileSync(
       path.join(presetDir, 'assets', 'logo.svg'),
-      '<svg>ClaudeKit</svg>',
+      '<svg>the upstream kit</svg>',
     );
     expect(() =>
       run.checkRebrandLeak({ presets: ['frontend'], workspaceRoot: ws.root }),
@@ -540,7 +540,7 @@ describe('checkRebrandLeak', () => {
     fs.mkdirSync(path.join(presetDir, 'commands'), { recursive: true });
     fs.writeFileSync(
       path.join(presetDir, 'commands', 'multi.md'),
-      'line1\nline2 ClaudeKit\nline3 .claude/foo\nline4\n',
+      'line1\nline2 the upstream kit\nline3 .claude/foo\nline4\n',
     );
     try {
       run.checkRebrandLeak({ presets: ['devops'], workspaceRoot: ws.root });

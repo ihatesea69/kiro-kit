@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "commonjs",
-  "description": "Maintainer-time tool: port content từ claudekit-engineer-main vào presets/. Xem .kiro/specs/claudekit-parity-sync/.",
+  "description": "Maintainer-time tool: port content từ the-upstream-kit vào presets/. Xem .kiro/specs/upstream-parity-sync/.",
   "scripts": {
     "test": "vitest run",
     "start": "node run.js"

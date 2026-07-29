@@ -1,7 +1,7 @@
 /**
- * Inventory Reader for ClaudeKit Parity Sync.
+ * Inventory Reader for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 2 / 2.1, 2.2, 2.3 — đọc inventory-source.json + 7 file
  *        target-files-*.txt, validate schema, throw InventoryError với hướng
  *        dẫn rebuild khi file thiếu/rỗng.
@@ -29,7 +29,7 @@
  *   const { readSource, readTarget, readAll, InventoryError } =
  *     require('./inventory-reader');
  *   try {
- *     const { items } = readSource('docs/audits/claudekit-vs-kirokit/appendix');
+ *     const { items } = readSource('docs/audits/upstream-parity/appendix');
  *     console.log(items.length); // 133
  *   } catch (err) {
  *     if (err.code === 'E_INV_MISSING') {
@@ -74,7 +74,7 @@ function targetListFilename(presetName) {
  * Error Handling table.
  */
 const REBUILD_HINT =
-  'Rebuild bằng `node docs/audits/claudekit-vs-kirokit/appendix/_build-inventory-source.cjs`'
+  'Rebuild bằng `node docs/audits/upstream-parity/appendix/_build-inventory-source.cjs`'
   + ' và `_build-inventory-target.cjs`.';
 
 /**
@@ -315,15 +315,15 @@ function resolveAppendixDir(appendixDir) {
  * front_matter, extras) được pass-through nếu có.
  *
  * Path trong field `path` được normalize qua `normalizeRelPath` để bảo đảm
- * POSIX-style xuyên suốt pipeline; KHÔNG strip prefix `claudekit-engineer-main/`
+ * POSIX-style xuyên suốt pipeline; KHÔNG strip prefix `the-upstream-kit/`
  * ở stage này (để DeltaDetector quyết định khi nào strip).
  *
- * @param {string} appendixDir Đường dẫn tới `docs/audits/claudekit-vs-kirokit/appendix/`.
+ * @param {string} appendixDir Đường dẫn tới `docs/audits/upstream-parity/appendix/`.
  * @returns {{ items: import('./types').SourceItem[] }}
  * @throws {InventoryError}
  *
  * @example
- *   const { items } = readSource('docs/audits/claudekit-vs-kirokit/appendix');
+ *   const { items } = readSource('docs/audits/upstream-parity/appendix');
  *   console.log(items.length); // 133
  */
 function readSource(appendixDir) {
@@ -396,7 +396,7 @@ function readSource(appendixDir) {
  * @throws {InventoryError}
  *
  * @example
- *   const { byPreset } = readTarget('docs/audits/claudekit-vs-kirokit/appendix');
+ *   const { byPreset } = readTarget('docs/audits/upstream-parity/appendix');
  *   console.log(byPreset.frontend.length); // ~110
  */
 function readTarget(appendixDir) {

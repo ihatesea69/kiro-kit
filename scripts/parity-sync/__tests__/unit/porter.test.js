@@ -1,7 +1,7 @@
 /**
  * Unit test: Porter — fixture with 5 PortPlan covering conflict mix.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{design,tasks}.md
  * Task: tasks.md > 10.4 — "fixture với 5 PortPlan có conflict mix → assert
  *       đúng decision per file".
  *

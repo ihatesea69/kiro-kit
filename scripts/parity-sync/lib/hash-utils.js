@@ -1,7 +1,7 @@
 /**
- * Hash utilities for ClaudeKit Parity Sync.
+ * Hash utilities for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Task: Phase 1 / 1.3 — hash-utils (sha256 file content cho idempotency check).
  *
  * Vai trò trong pipeline:
@@ -69,7 +69,7 @@ function assertString(value, paramName) {
  * Tính sha256 của một Buffer hoặc string, trả về hex digest lowercase.
  *
  * String được encode UTF-8 trước khi hash (mặc định của `crypto.update(string)`).
- * Đây là behavior ổn định cross-platform vì source files của ClaudeKit đều UTF-8.
+ * Đây là behavior ổn định cross-platform vì source files của the upstream kit đều UTF-8.
  *
  * @param {Buffer | string} buf
  * @returns {string} Hex digest 64 ký tự, lowercase.

@@ -1,7 +1,7 @@
 /**
- * Reporter for ClaudeKit Parity Sync.
+ * Reporter for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 4 / 12.1–12.5 — sinh ba file output:
  *
  *   - `delta-report.md`         (task 12.1) — bảng tổng kết per-preset +
@@ -59,7 +59,7 @@
  *
  * Output paths (mặc định, design.md > Định vị tool trong repo):
  *
- *   docs/audits/claudekit-vs-kirokit/
+ *   docs/audits/upstream-parity/
  *     delta-report.md
  *     conflict-log.md
  *     parity-sync-report.md
@@ -141,7 +141,7 @@ const MANUAL_REVIEW_TOP_N = 20;
  *
  * @type {string}
  */
-const DEFAULT_OUTPUT_DIR = 'docs/audits/claudekit-vs-kirokit';
+const DEFAULT_OUTPUT_DIR = 'docs/audits/upstream-parity';
 
 /**
  * Tên file output cố định.
@@ -454,7 +454,7 @@ function buildFrontMatter(timestamp, ranAt) {
  *
  * Output format (deterministic, không timestamp — Req 15.2 idempotency):
  *
- *   # ClaudeKit Parity Sync — Delta Report
+ *   # the upstream kit Parity Sync — Delta Report
  *
  *   ## Summary
  *
@@ -500,7 +500,7 @@ function renderDeltaReport(deltas) {
 
   /** @type {string[]} */
   const lines = [];
-  lines.push('# ClaudeKit Parity Sync — Delta Report');
+  lines.push('# the upstream kit Parity Sync — Delta Report');
   lines.push('');
   lines.push('## Summary');
   lines.push('');
@@ -553,7 +553,7 @@ function renderDeltaReport(deltas) {
  *
  * Output format:
  *
- *   # ClaudeKit Parity Sync — Conflict Log
+ *   # the upstream kit Parity Sync — Conflict Log
  *
  *   ## frontend/agents/code-reviewer.md
  *
@@ -593,7 +593,7 @@ function renderConflictLog(decisions) {
 
   /** @type {string[]} */
   const lines = [];
-  lines.push('# ClaudeKit Parity Sync — Conflict Log');
+  lines.push('# the upstream kit Parity Sync — Conflict Log');
   lines.push('');
 
   if (loggable.length === 0) {
@@ -637,7 +637,7 @@ function renderConflictLog(decisions) {
  *   ranAt: 2026-XX-XXTXX:XX:XXZ
  *   ---
  *
- *   # ClaudeKit Parity Sync — Run Report
+ *   # the upstream kit Parity Sync — Run Report
  *
  *   ## Totals
  *
@@ -711,7 +711,7 @@ function renderParitySyncReport(runResult) {
   lines.push(buildFrontMatter(runResult.ranAt, runResult.ranAt).trimEnd());
   lines.push('');
 
-  lines.push('# ClaudeKit Parity Sync — Run Report');
+  lines.push('# the upstream kit Parity Sync — Run Report');
   lines.push('');
 
   lines.push('## Totals');
@@ -759,7 +759,7 @@ function renderParitySyncReport(runResult) {
  * `code === 'E_REPORTER_EMOJI_OR_PII'` nếu match được.
  *
  * Property 11 (design.md): "không file output `.md`, `.json`, hoặc script
- * trong `presets/` và `docs/audits/claudekit-vs-kirokit/` chứa emoji hoặc
+ * trong `presets/` và `docs/audits/upstream-parity/` chứa emoji hoặc
  * PII pattern".
  *
  * Patterns được check:
@@ -848,7 +848,7 @@ function assertNoEmojiNoPII(content, opts) {
  *   5. Ghi atomic vào `<workspaceRoot>/<outputDir>/<filename>`.
  *
  * Defaults:
- *   - `outputDir`: `'docs/audits/claudekit-vs-kirokit'` (design.md > Định
+ *   - `outputDir`: `'docs/audits/upstream-parity'` (design.md > Định
  *     vị tool trong repo).
  *   - `workspaceRoot`: `process.cwd()`.
  *
@@ -865,7 +865,7 @@ function assertNoEmojiNoPII(content, opts) {
  * @param {ParityRunResult} args.runResult
  * @param {string} [args.outputDir]      POSIX-style relative tới
  *                                       `workspaceRoot`. Default
- *                                       `'docs/audits/claudekit-vs-kirokit'`.
+ *                                       `'docs/audits/upstream-parity'`.
  * @param {string} [args.workspaceRoot]  OS-native absolute. Default
  *                                       `process.cwd()`.
  * @returns {{

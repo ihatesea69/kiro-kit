@@ -1,7 +1,7 @@
 /**
- * YAML front-matter utilities for ClaudeKit Parity Sync.
+ * YAML front-matter utilities for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Task: Phase 1 / 1.4 — yaml-front-matter (parse + serialize, dùng `gray-matter`).
  *
  * Vai trò trong pipeline:

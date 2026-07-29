@@ -1,7 +1,7 @@
 /**
- * Atomic Writer for ClaudeKit Parity Sync.
+ * Atomic Writer for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 3 / 8.1–8.3 — writeAtomic via tmp + rename, fallback copyFile
  *        + unlink khi Windows file lock (retry 3 lần), unit test với fs mock
  *        cho ENOENT/EACCES retry behavior.

@@ -1,7 +1,7 @@
 /**
  * Unit test: PortPlanner — sub-skill-split + tri-script-extend.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{design,tasks}.md
  * Task: tasks.md > 6.7 — fixture sub-skill → 4 PortPlan; fixture .sh hook →
  *       tri-script-extend đúng.
  *
@@ -44,7 +44,7 @@ const { plan, transformsFor } = require('../../port-planner');
  * @returns {object}
  */
 function buildDelta(src, preset, status) {
-  const PREFIX = 'claudekit-engineer-main/.claude/';
+  const PREFIX = 'the-upstream-kit/.claude/';
   const sourcePath = src.path.startsWith(PREFIX)
     ? src.path.slice(PREFIX.length)
     : src.path;
@@ -77,7 +77,7 @@ describe('PortPlanner — sub-skill-split (task 6.7)', () => {
     kit: 'source',
     preset: null,
     artifact_type: 'skill',
-    path: 'claudekit-engineer-main/.claude/skills/document-skills/',
+    path: 'the-upstream-kit/.claude/skills/document-skills/',
     basename: 'document-skills',
     size_lines: 0,
     front_matter: { present: false, fields: null },
@@ -152,7 +152,7 @@ describe('PortPlanner — tri-script-extend (task 6.7)', () => {
     kit: 'source',
     preset: null,
     artifact_type: 'hook',
-    path: 'claudekit-engineer-main/.claude/hooks/discord_notify.sh',
+    path: 'the-upstream-kit/.claude/hooks/discord_notify.sh',
     basename: 'discord_notify',
     size_lines: 221,
     front_matter: { present: false, fields: null },
@@ -203,7 +203,7 @@ describe('PortPlanner — tri-script-extend (task 6.7)', () => {
       kit: 'source',
       preset: null,
       artifact_type: 'hook',
-      path: 'claudekit-engineer-main/.claude/hooks/scout-block.sh',
+      path: 'the-upstream-kit/.claude/hooks/scout-block.sh',
       basename: 'scout-block',
       size_lines: 51,
       extras: {
@@ -232,7 +232,7 @@ describe('PortPlanner — skip rules', () => {
     id: 'src.agent.brainstormer',
     kit: 'source',
     artifact_type: 'agent',
-    path: 'claudekit-engineer-main/.claude/agents/brainstormer.md',
+    path: 'the-upstream-kit/.claude/agents/brainstormer.md',
     basename: 'brainstormer',
     size_lines: 50,
     front_matter: { present: true, fields: { name: 'brainstormer' } },
@@ -269,7 +269,7 @@ describe('PortPlanner — frontmatter-keep / json-merge / env-merge transforms',
     const agent = {
       id: 'src.agent.planner',
       artifact_type: 'agent',
-      path: 'claudekit-engineer-main/.claude/agents/planner.md',
+      path: 'the-upstream-kit/.claude/agents/planner.md',
       front_matter: { present: true, fields: { name: 'planner' } },
       size_lines: 80,
     };
@@ -280,7 +280,7 @@ describe('PortPlanner — frontmatter-keep / json-merge / env-merge transforms',
     const settings = {
       id: 'src.settings.settings.json',
       artifact_type: 'settings',
-      path: 'claudekit-engineer-main/.claude/settings.json',
+      path: 'the-upstream-kit/.claude/settings.json',
       size_lines: 30,
     };
     const t = transformsFor(settings);
@@ -293,7 +293,7 @@ describe('PortPlanner — frontmatter-keep / json-merge / env-merge transforms',
     const meta = {
       id: 'src.metadata.metadata.json',
       artifact_type: 'metadata',
-      path: 'claudekit-engineer-main/.claude/metadata.json',
+      path: 'the-upstream-kit/.claude/metadata.json',
       size_lines: 12,
     };
     expect(transformsFor(meta)).toContain('json-merge');
@@ -303,7 +303,7 @@ describe('PortPlanner — frontmatter-keep / json-merge / env-merge transforms',
     const mcp = {
       id: 'src.mcp.mcp.json.example',
       artifact_type: 'mcp_template',
-      path: 'claudekit-engineer-main/.claude/.mcp.json.example',
+      path: 'the-upstream-kit/.claude/.mcp.json.example',
       size_lines: 20,
     };
     expect(transformsFor(mcp)).toContain('json-merge');
@@ -313,7 +313,7 @@ describe('PortPlanner — frontmatter-keep / json-merge / env-merge transforms',
     const env = {
       id: 'src.env.env',
       artifact_type: 'env_example',
-      path: 'claudekit-engineer-main/.claude/.env.example',
+      path: 'the-upstream-kit/.claude/.env.example',
       size_lines: 5,
     };
     expect(transformsFor(env)).toContain('env-merge');
@@ -323,7 +323,7 @@ describe('PortPlanner — frontmatter-keep / json-merge / env-merge transforms',
     const env = {
       id: 'src.env.hooks.env',
       artifact_type: 'env_example',
-      path: 'claudekit-engineer-main/.claude/hooks/.env.example',
+      path: 'the-upstream-kit/.claude/hooks/.env.example',
       size_lines: 8,
     };
     expect(transformsFor(env)).toContain('env-merge');
@@ -333,7 +333,7 @@ describe('PortPlanner — frontmatter-keep / json-merge / env-merge transforms',
     const item = {
       id: 'x',
       artifact_type: 'agent',
-      path: 'claudekit-engineer-main/.claude/agents/x.md',
+      path: 'the-upstream-kit/.claude/agents/x.md',
       front_matter: { present: true, fields: {} },
     };
     const a = transformsFor(item);

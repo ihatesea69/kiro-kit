@@ -1,7 +1,7 @@
 /**
- * Category Mapper for ClaudeKit Parity Sync.
+ * Category Mapper for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 2 / 5.1, 5.2 — áp `CATEGORY_RULES` lên `DeltaEntry[]`, đổi
  *        status `present|missing|partial → category-skip` khi `target_preset`
  *        không nằm trong `rule.target_presets`; sinh reason string đi kèm.

@@ -1,7 +1,7 @@
 /**
  * Property test P2 — Delta Status Totality.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/design.md > Correctness Properties >
+ * Spec: .kiro/specs/upstream-parity-sync/design.md > Correctness Properties >
  *       Property 2.
  * Task: tasks.md > 4.3 (PBT) Property test P2.
  *
@@ -68,7 +68,7 @@ const arbFileArtifactType = fc.constantFrom(
   'agent', 'command', 'hook', 'workflow', 'statusline',
 );
 
-// "claudekit-engineer-main/.claude/<category>/<seg1>/<seg2>.md"
+// "the-upstream-kit/.claude/<category>/<seg1>/<seg2>.md"
 const arbFileSourcePath = fc
   .tuple(
     fc.constantFrom('agents', 'commands', 'hooks', 'workflows'),
@@ -76,7 +76,7 @@ const arbFileSourcePath = fc
     arbToken,
   )
   .map(([cat, mid, base]) =>
-    `claudekit-engineer-main/.claude/${cat}/${mid}/${base}.md`,
+    `the-upstream-kit/.claude/${cat}/${mid}/${base}.md`,
   );
 
 const arbFileSourceItem = fc.record({
@@ -95,14 +95,14 @@ const arbSkillSourceItem = fc
     id: `src.skill.${name}`,
     kit: 'source',
     artifact_type: 'skill',
-    path: `claudekit-engineer-main/.claude/skills/${name}/`,
+    path: `the-upstream-kit/.claude/skills/${name}/`,
     basename: name,
     size_lines: lines,
     extras: {
       is_sub_skill_container: false,
       subdirs,
       cross_platform_group: null,
-      skill_md_path: `claudekit-engineer-main/.claude/skills/${name}/SKILL.md`,
+      skill_md_path: `the-upstream-kit/.claude/skills/${name}/SKILL.md`,
     },
   }));
 
@@ -157,7 +157,7 @@ function buildPathsFor(item, preset, mode) {
 
   // Strip prefix manually để tương đương stripClaudePrefix nhưng KHÔNG dùng
   // delta-detector nội bộ (giữ test độc lập với production code path).
-  const PREFIX = 'claudekit-engineer-main/.claude/';
+  const PREFIX = 'the-upstream-kit/.claude/';
   const stripped = item.path.startsWith(PREFIX)
     ? item.path.slice(PREFIX.length)
     : item.path;
@@ -242,7 +242,7 @@ const arbInputPair = arbSourceInventory.chain((source) =>
 // ---------------------------------------------------------------------------
 
 function stripPrefix(p) {
-  const PREFIX = 'claudekit-engineer-main/.claude/';
+  const PREFIX = 'the-upstream-kit/.claude/';
   return p.startsWith(PREFIX) ? p.slice(PREFIX.length) : p;
 }
 
@@ -316,7 +316,7 @@ describe('Property 2: Delta Status Totality — **Validates: Requirements 1.2, 1
       fc.property(arbInputPair, ({ source, target }) => {
         const deltas = detect(source, { byPreset: target.byPreset });
         for (const d of deltas) {
-          expect(d.source_path.startsWith('claudekit-engineer-main/')).toBe(false);
+          expect(d.source_path.startsWith('the-upstream-kit/')).toBe(false);
           expect(d.source_path.startsWith('.claude/')).toBe(false);
           // Skill path có trailing slash sau strip ("skills/foo/"); joinPreset
           // dùng path.posix.join nên trailing slash bị normalize → so sánh

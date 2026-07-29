@@ -1,7 +1,7 @@
 /**
- * Category Rules for ClaudeKit Parity Sync (data-only module).
+ * Category Rules for the upstream kit Parity Sync (data-only module).
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 1 / 3.1, 3.2 — định nghĩa CATEGORY_RULES khớp 1:1 với
  *        "Bảng phân loại" trong design.md, expose `lookupRule` O(1).
  *
@@ -276,8 +276,8 @@ function idOf(item) {
   } catch (_e) {
     return null;
   }
-  // Strip outer wrapper "claudekit-engineer-main/" — leaves ".claude/..." or "docs/...".
-  const ENGINEER = 'claudekit-engineer-main/';
+  // Strip outer wrapper "the-upstream-kit/" — leaves ".claude/..." or "docs/...".
+  const ENGINEER = 'the-upstream-kit/';
   if (p.startsWith(ENGINEER)) p = p.slice(ENGINEER.length);
 
   switch (item.artifact_type) {

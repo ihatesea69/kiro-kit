@@ -1,7 +1,7 @@
 /**
  * Property test P1 — InventoryReader Soundness.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/design.md > Correctness Properties >
+ * Spec: .kiro/specs/upstream-parity-sync/design.md > Correctness Properties >
  *       Property 1.
  * Task: tasks.md > 2.4 (PBT) Property test P1.
  *
@@ -71,12 +71,12 @@ const arbSourceCategory = fc.constantFrom(
 );
 
 // Build a clean POSIX-style source path, e.g.:
-//   "claudekit-engineer-main/.claude/agents/foo/bar.md"
+//   "the-upstream-kit/.claude/agents/foo/bar.md"
 // Always 4 segments to keep paths recognisable; 2 random tokens prevent
 // collisions across runs.
 const arbSourcePath = fc
   .tuple(arbSourceCategory, arbToken, arbToken)
-  .map(([cat, mid, base]) => `claudekit-engineer-main/.claude/${cat}/${mid}/${base}.md`);
+  .map(([cat, mid, base]) => `the-upstream-kit/.claude/${cat}/${mid}/${base}.md`);
 
 // Source artifact_type — kept narrow on purpose; reader only requires non-empty
 // string, but constraining here helps the property assert real data shapes.

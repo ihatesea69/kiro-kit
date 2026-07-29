@@ -2,7 +2,7 @@
  * Unit test: AtomicWriter — happy path, mkdir auto, retry on lock,
  * copyFile fallback, error cleanup.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{design,tasks}.md
  * Task: tasks.md > 8.3 — "mock fs, simulate ENOENT/EACCES, verify retry
  *       behavior".
  *

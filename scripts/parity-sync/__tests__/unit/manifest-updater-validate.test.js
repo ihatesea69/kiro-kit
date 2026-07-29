@@ -6,7 +6,7 @@
  *   2. Mọi entry.source phải tồn tại trên đĩa                         (Req 19.7)
  *   3. Mọi file vật lý (trừ manifest.json + README.md) phải có entry  (Req 13.3)
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Task: tasks.md > 11.3 — "Validate: round-trip JSON.parse → JSON.stringify,
  *       no orphan, no broken link".
  *

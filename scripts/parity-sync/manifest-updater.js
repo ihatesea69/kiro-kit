@@ -1,7 +1,7 @@
 /**
- * Manifest Updater for ClaudeKit Parity Sync.
+ * Manifest Updater for the upstream kit Parity Sync.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/{requirements,design,tasks}.md
+ * Spec: .kiro/specs/upstream-parity-sync/{requirements,design,tasks}.md
  * Tasks: Phase 4 / 11.1–11.5 — append entries cho file mới với 3 field
  *        `source`, `target`, `type`; sort theo `target` ascending; atomic
  *        write qua AtomicWriter; validate (round-trip JSON, no orphan,

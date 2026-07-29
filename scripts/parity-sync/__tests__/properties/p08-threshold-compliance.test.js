@@ -1,4 +1,4 @@
-// Feature: claudekit-parity-sync, Property 8: Threshold Compliance
+// Feature: upstream-parity-sync, Property 8: Threshold Compliance
 // **Validates: Requirements 3.1, 3.6, 4.1, 4.11, 6.7, 7.1, 7.6, 14.1, 14.2, 14.3, 14.4, 14.5, 14.6, 19.1, 19.8**
 'use strict';
 

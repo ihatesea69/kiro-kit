@@ -1,2 +1,2 @@
-Welcome to ClaudeKit. Claude Code is bundled. Edit .claude/settings.json to configure.
+Welcome to the upstream kit. Claude Code is bundled. Edit .claude/settings.json to configure.
 See https://docs.claude.com/en/api for details.

@@ -1,7 +1,7 @@
 /**
  * Property test P7 — Manifest Coverage and Closure.
  *
- * Spec: .kiro/specs/claudekit-parity-sync/design.md > Correctness Properties >
+ * Spec: .kiro/specs/upstream-parity-sync/design.md > Correctness Properties >
  *       Property 7.
  * Task: tasks.md > 11.5 (PBT) Property test P7.
  *
@@ -308,7 +308,7 @@ function assertNoOrphanNoBrokenLink(workspaceRoot, preset, declaredSources) {
 // ---------------------------------------------------------------------------
 
 describe('Property 7: Manifest Coverage and Closure — **Validates: Requirements 13.1, 13.2, 13.3, 13.5, 18.2, 19.2, 19.6, 19.7**', () => {
-  // Feature: claudekit-parity-sync, Property 7: Manifest Coverage and Closure.
+  // Feature: upstream-parity-sync, Property 7: Manifest Coverage and Closure.
 
   it('7a: lockstep manifest+filesystem ⇒ validate.ok === true (3 invariants đồng thời)', () => {
     fc.assert(
