@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.5] - 2026-07-29
+
+### Changed
+
+- **The npm package page was showing a README from the v0.3.x era.** It advertised "6 curated presets" (there are 9 — `ai-engineer`, `sa`, and `kiro-kit-dev` were missing), carried per-preset artifact counts that had drifted out of date, described MCP credentialed servers as `_disabled_` entries — the exact behaviour 0.10.3 fixed — and led with a screenshot of the v0.3.8 selector. Rewritten against what actually ships, with the new banner.
+- The README no longer hand-writes per-preset counts or catalogs. Those live in the [preset reference](https://ihatesea69.github.io/kiro-kit/docs/reference), which is generated from the shipped manifests, so this page cannot drift the same way again.
+- Corrected the documented flags: `-v` is `--version`, not `--verbose`, and `--quiet` has no `-q` shorthand. Added `--preset` and `kiro-kit spec new`, which were missing.
+- npm now picks up the current package description and the plainer copy introduced in the docs refresh.
+
 ## [0.10.4] - 2026-07-29
 
 ### Fixed
