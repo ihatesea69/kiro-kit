@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The README no longer hand-writes per-preset counts or catalogs. Those live in the [preset reference](https://ihatesea69.github.io/kiro-kit/docs/reference), which is generated from the shipped manifests, so this page cannot drift the same way again.
 - Corrected the documented flags: `-v` is `--version`, not `--verbose`, and `--quiet` has no `-q` shorthand. Added `--preset` and `kiro-kit spec new`, which were missing.
 - npm now picks up the current package description and the plainer copy introduced in the docs refresh.
+- Added a demo GIF of `init` running inside Kiro at the top of the page.
 
 ## [0.10.4] - 2026-07-29
 

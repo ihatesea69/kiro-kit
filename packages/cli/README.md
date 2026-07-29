@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="https://raw.githubusercontent.com/ihatesea69/kiro-kit/main/assets/demo.gif" alt="Installing kiro-kit and running init inside Kiro" width="100%" />
+
 <img src="https://raw.githubusercontent.com/ihatesea69/kiro-kit/main/assets/banner.png" alt="kiro-kit" width="100%" />
 
 [![npm version](https://img.shields.io/npm/v/kiro-kit?style=flat-square)](https://www.npmjs.com/package/kiro-kit)
