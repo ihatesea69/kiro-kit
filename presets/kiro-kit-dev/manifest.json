@@ -1,7 +1,7 @@
 {
   "name": "kiro-kit-dev",
   "version": "1.0.0",
-  "description": "Preset for developing the Kiro-Kit CLI itself — TypeScript ESM monorepo, tsup build, vitest (unit/property/structural), preset authoring, and CLI architecture.",
+  "description": "Preset for developing the Kiro-Kit CLI itself with 19 agents, 22 skills, 66 commands — TypeScript ESM monorepo, tsup build, vitest (unit/property/structural), preset authoring, and CLI architecture.",
   "category": "kiro-kit-dev",
   "files": [
     {

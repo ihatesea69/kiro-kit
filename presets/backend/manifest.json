@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Comprehensive kit for Node.js/Python/Go API development with 19 agents, 20 skills, and backend-specific tooling",
+  "description": "Comprehensive kit for Node.js/Python/Go API development with 25 agents, 23 skills, 67 commands, and whole-repo deep security scanning",
   "category": "backend",
   "files": [
     {

@@ -1,7 +1,7 @@
 {
   "name": "ai-engineer",
   "version": "1.0.0",
-  "description": "AI Engineer kit for building production chatbots and agents on AWS — Amazon Bedrock AgentCore (Runtime, Gateway, Memory), MCP server hosting, Strands Agents, Bedrock Knowledge Bases RAG, guardrails, and agent evaluation",
+  "description": "AI Engineer kit for building production chatbots and agents on AWS with 20 agents, 37 skills, 70 commands — Amazon Bedrock AgentCore (Runtime, Gateway, Memory), MCP server hosting, Strands Agents, Bedrock Knowledge Bases RAG, guardrails, and agent evaluation",
   "category": "ai-engineer",
   "files": [
     {

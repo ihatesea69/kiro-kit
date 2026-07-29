@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "Comprehensive kit for React/Next.js + TypeScript frontend development with 20 agents, 21 skills, and frontend-specific tooling",
+  "description": "Comprehensive kit for React/Next.js + TypeScript frontend development with 20 agents, 21 skills, 71 commands, and frontend-specific tooling",
   "category": "frontend",
   "files": [
     {

@@ -1,7 +1,7 @@
 {
   "name": "mobile",
   "version": "1.0.0",
-  "description": "Comprehensive kit for Flutter and React Native mobile development with 23 agents, 25 skills, and mobile-specific tooling",
+  "description": "Comprehensive kit for Flutter and React Native mobile development with 23 agents, 26 skills, 71 commands, and mobile-specific tooling",
   "category": "mobile",
   "files": [
     {
