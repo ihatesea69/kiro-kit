@@ -62,7 +62,9 @@ describe('rebrander — Object.prototype key collisions', () => {
   }
 
   it('rebrands normally when a prototype name sits next to a target pattern', () => {
-    const out = rebrand('toString ClaudeKit', { targetPath: 'presets/frontend/a/b.md' });
+    const out = rebrand('toString the upstream kit', {
+      targetPath: 'presets/frontend/a/b.md',
+    });
     expect(out).toBe('toString KiroKit');
   });
 });
