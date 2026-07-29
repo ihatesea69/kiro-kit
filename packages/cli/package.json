@@ -1,6 +1,6 @@
 {
   "name": "kiro-kit",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "CLI tool for bootstrapping engineer-grade Kiro IDE workspaces with curated presets.",
   "type": "module",
   "bin": {
