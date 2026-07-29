@@ -22,10 +22,10 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Check the tag matches packages/cli/package.json
@@ -72,10 +72,10 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
@@ -85,22 +85,28 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      # NPM_TOKEN missing is the single most likely reason this job fails, and
-      # npm only says ENEEDAUTH after uploading the whole tarball. Fail early
-      # and say why.
-      - name: Check the npm token is configured
-        run: |
-          if [ -z "${NPM_TOKEN}" ]; then
-            echo "::error::Repository secret NPM_TOKEN is not set. Create a granular npm token with publish access to kiro-kit and add it under Settings -> Secrets and variables -> Actions."
-            exit 1
-          fi
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # Trusted publishing needs npm 11.5.1 or later; Node 22 ships npm 10.
+      - name: Upgrade npm for trusted publishing
+        run: npm install -g npm@latest
 
-      # npm rather than pnpm: setup-node writes the auth line for npm, and
-      # pnpm does not always read NODE_AUTH_TOKEN from it.
+      # Publishing a version that already exists is a hard error, which would
+      # make tagging an already-released version fail the workflow. Skip.
+      - name: Skip if this version is already on npm
+        id: published
+        run: |
+          version="$(node -p "require('./packages/cli/package.json').version")"
+          if npm view "kiro-kit@$version" version >/dev/null 2>&1; then
+            echo "already=true" >> "$GITHUB_OUTPUT"
+            echo "kiro-kit@$version is already published — nothing to do"
+          else
+            echo "already=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # No token anywhere: authentication is the OIDC identity GitHub mints for
+      # this workflow, registered as a trusted publisher on npmjs.com. The
+      # trusted publisher config pins this filename, so renaming this file
+      # breaks publishing until npm is updated to match.
       - name: Publish to npm
+        if: steps.published.outputs.already == 'false'
         run: npm publish --provenance --access public
         working-directory: packages/cli
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
