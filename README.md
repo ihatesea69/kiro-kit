@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./assets/demo.gif" alt="Installing kiro-kit and running init inside Kiro" width="100%" />
+
 <img src="./assets/banner.png" alt="kiro-kit" width="100%" />
 
 [![CI](https://img.shields.io/github/actions/workflow/status/ihatesea69/kiro-kit/ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/ihatesea69/kiro-kit/actions/workflows/ci.yml)
