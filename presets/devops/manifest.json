@@ -1,7 +1,7 @@
 {
   "name": "devops",
   "version": "1.0.0",
-  "description": "Comprehensive kit for Docker/Kubernetes/Terraform infrastructure engineering with 20 agents, 21 skills, and DevOps-specific tooling",
+  "description": "Comprehensive kit for Docker/Kubernetes/Terraform infrastructure engineering with 26 agents, 25 skills, 66 commands, and whole-repo deep security scanning",
   "category": "devops",
   "files": [
     {

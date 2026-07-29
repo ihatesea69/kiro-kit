@@ -1,7 +1,7 @@
 {
   "name": "fullstack",
   "version": "1.0.0",
-  "description": "Comprehensive kit for Next.js/T3 stack fullstack development with 20 agents, 22 skills, payment integration, and Shopify support",
+  "description": "Comprehensive kit for Next.js/T3 stack fullstack development with 26 agents, 29 skills, 74 commands, payment integration, Shopify support, and whole-repo deep security scanning",
   "category": "fullstack",
   "files": [
     {

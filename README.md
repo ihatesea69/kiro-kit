@@ -30,15 +30,15 @@ kiro-kit init
 
 | Preset | Stack | What you get |
 |--------|-------|--------------|
-| `frontend` | React, Next.js, TypeScript | 20 agents, 23 skills, 71 commands tailored for component architecture, accessibility, and performance |
-| `backend` | Node, Python, Go APIs | 25 agents, 25 skills, 67 commands for API design, database management, auth, deployment patterns, deep security scanning |
-| `fullstack` | Next.js, T3 stack | 26 agents, 31 skills, 74 commands covering frontend plus backend, payment integration, e-commerce, deep security scanning |
-| `mobile` | Flutter, React Native | 23 agents, 28 skills, 71 commands for mobile-first patterns, ai-multimodal, ui-styling |
-| `devops` | Docker, Kubernetes, Terraform | 26 agents, 27 skills, 66 commands for CI checks, container scanning, infrastructure as code, deep security scanning |
-| `data-ai` | Python, ML, AI agents | 20 agents, 30 skills, 70 commands for Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
-| `kiro-kit-dev` | TypeScript CLI, pnpm monorepo | 19 agents, 24 skills, 66 commands for developing Kiro-Kit itself — preset authoring, CLI architecture, vitest testing, spec library |
-| `sa` | Cloud architecture, draw.io, IaC | 26 agents, 28 skills, 69 commands for architecture diagrams (draw.io + Mermaid), SAD documents (.docx), decks (.pptx), CloudFormation + Terraform, Well-Architected reviews |
-| `ai-engineer` | AWS agents, MCP, Bedrock | 20 agents, 35 skills, 70 commands for chatbots and agents on Bedrock AgentCore — Runtime/Gateway/Memory, MCP server hosting, Strands Agents, Knowledge Bases RAG, guardrails, agent evaluation |
+| `frontend` | React, Next.js, TypeScript | 20 agents, 21 skills, 71 commands tailored for component architecture, accessibility, and performance |
+| `backend` | Node, Python, Go APIs | 25 agents, 23 skills, 67 commands for API design, database management, auth, deployment patterns, deep security scanning |
+| `fullstack` | Next.js, T3 stack | 26 agents, 29 skills, 74 commands covering frontend plus backend, payment integration, e-commerce, deep security scanning |
+| `mobile` | Flutter, React Native | 23 agents, 26 skills, 71 commands for mobile-first patterns, ai-multimodal, ui-styling |
+| `devops` | Docker, Kubernetes, Terraform | 26 agents, 25 skills, 66 commands for CI checks, container scanning, infrastructure as code, deep security scanning |
+| `data-ai` | Python, ML, AI agents | 20 agents, 31 skills, 70 commands for Pandas, PyTorch, TensorFlow, Jupyter, Google ADK, document processing |
+| `kiro-kit-dev` | TypeScript CLI, pnpm monorepo | 19 agents, 22 skills, 66 commands for developing Kiro-Kit itself — preset authoring, CLI architecture, vitest testing, spec library |
+| `sa` | Cloud architecture, draw.io, IaC | 26 agents, 31 skills, 69 commands for architecture diagrams (draw.io + Mermaid), SAD documents (.docx), decks (.pptx), CloudFormation + Terraform, Well-Architected reviews |
+| `ai-engineer` | AWS agents, MCP, Bedrock | 20 agents, 37 skills, 70 commands for chatbots and agents on Bedrock AgentCore — Runtime/Gateway/Memory, MCP server hosting, Strands Agents, Knowledge Bases RAG, guardrails, agent evaluation |
 
 Every preset is **self-contained** with 16+ agents, 22+ skills, 40+ commands, 9+ cross-platform hooks (including 3 domain-specific), 7+ native Kiro Agent Hooks, a worked example spec, MCP server auto-config, an enriched Powers catalog, and spec scaffolding.
 

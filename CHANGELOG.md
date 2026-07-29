@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.1] - 2026-07-29
+
+### Fixed
+
+- **Preset descriptions in the `init` selector were years out of date** — `backend` advertised 19 agents / 20 skills when it ships 25 / 23, and none of the four presets carrying `deep-security-scan` mentioned it, so the feature looked missing from the picker even though it installs correctly. All 9 `manifest.json` descriptions now carry real agent/skill/command counts, and `backend`, `fullstack`, `devops`, `sa` say "whole-repo deep security scanning".
+- Corrected the same stale counts in the README preset matrix (every row was off in at least one column).
+
 ## [0.10.0] - 2026-07-28
 
 ### Added
