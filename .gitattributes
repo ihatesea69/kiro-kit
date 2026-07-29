@@ -1,0 +1,19 @@
+# Normalize text in the repo, but keep POSIX-executed files LF in the working
+# tree on every platform. A shell script checked out with CRLF fails at exec
+# time on macOS/Linux with "bad interpreter: /bin/bash^M".
+* text=auto
+
+*.sh   text eol=lf
+*.bash text eol=lf
+*.mjs  text eol=lf
+*.js   text eol=lf
+*.ts   text eol=lf
+*.json text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.tgz binary

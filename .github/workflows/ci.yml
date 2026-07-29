@@ -52,3 +52,41 @@ jobs:
 
       - name: Structural tests
         run: pnpm -r --if-present run test:structural
+
+  # The vitest suite exercises core modules in-process only — it never spawns
+  # the real binary, so it cannot catch hangs, TTY-dependent prompts, or POSIX
+  # file-mode bugs. This job installs the packed tarball and drives the actual
+  # CLI on Linux and macOS.
+  smoke:
+    name: CLI smoke (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # No `version:` here on purpose — see the note in the verify job.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Pack CLI tarball
+        run: npm pack --pack-destination "$RUNNER_TEMP"
+        working-directory: packages/cli
+
+      - name: Smoke test the packed CLI
+        run: bash scripts/smoke-cli.sh "$RUNNER_TEMP"/kiro-kit-*.tgz

@@ -77,9 +77,13 @@ for (const preset of PRESETS) {
     continue;
   }
 
-  const newEntries = missing
-    .sort()
-    .map((source) => ({ source, target: `.kiro/${source}`, type: inferType(source) }));
+  const newEntries = missing.sort().map((source) => {
+    const entry = { source, target: `.kiro/${source}`, type: inferType(source) };
+    // Shell scripts need the +x bit on macOS/Linux. Windows has no exec bit, so
+    // a missing flag here is invisible locally and only breaks POSIX users.
+    if (source.endsWith('.sh')) entry.executable = true;
+    return entry;
+  });
 
   manifest.files.push(...newEntries);
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf-8');
