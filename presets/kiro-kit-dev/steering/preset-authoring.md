@@ -56,3 +56,15 @@ starting with `_`), so no registration is needed there.
 
 `pnpm typecheck && pnpm build && pnpm test:structural`, then
 `kiro-kit init --preset <name> --yes` into a temp dir and `kiro-kit doctor`.
+
+Also add it to the `PRESETS` array in `scripts/sync-preset-manifests.mjs` and
+run that script, or the new preset's files become orphans and the no-orphan
+test fails.
+
+## Contributing one upstream
+
+A preset is a few hundred files. Open a **preset request** issue before writing
+it, so the overlap question gets settled first — `GOVERNANCE.md` states the bar:
+it must meet the thresholds above, ship at least one complete worked example
+spec, and cover a stack the existing nine do not. Finding out afterwards that it
+duplicates `fullstack` is an expensive way to spend a weekend.
