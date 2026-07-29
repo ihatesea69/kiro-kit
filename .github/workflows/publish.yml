@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   verify:
-    name: Verify (ubuntu-latest / Node 20)
+    name: Verify (ubuntu-latest / Node 22)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
