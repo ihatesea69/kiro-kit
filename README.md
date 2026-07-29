@@ -39,6 +39,38 @@ npm install -g kiro-kit
 kiro-kit init
 ```
 
+## Why another Kiro tool
+
+Kiro-Kit is not the first tool to write files into `.kiro/`, and the ones that
+came before it are worth knowing about:
+
+| Tool | What it does | Where it stops |
+|---|---|---|
+| Starter templates with an `npx` scaffolder | Copy a skeleton of steering docs and hooks into a new project | The skeleton is thin — a handful of files per stack — and copying is one-way: rerun it on a live workspace and your edits are the cost |
+| Settings and bundle managers | Move existing skills, steering, and hooks between machines | They move content around. They don't give you any |
+| Config generators with inheritance | Compose agent configuration from layered config files | Configuration, not content: you still write every agent and skill yourself |
+| Community steering collections | Curated steering documents to copy by hand | No installer, no versioning, no way to tell what you already took |
+
+What Kiro-Kit does differently:
+
+- **It ships content, not scaffolding.** A preset is 19–26 agents, 21–37 skills,
+  66–74 commands, cross-platform hooks, workflows, and worked example specs —
+  written, not stubbed. The whole catalog is in the
+  [preset reference](https://ihatesea69.github.io/kiro-kit/docs/reference).
+- **Installing twice is safe.** Existing files are never silently replaced:
+  conflicts prompt, every run backs up first, and writes are atomic, so an
+  interrupt cannot leave half a workspace. `restore` rolls back.
+- **The content is tested, not just published.** Structural tests hold every
+  preset to minimum thresholds and reject orphaned or broken manifest entries;
+  property-based tests cover the merge, backup, and round-trip invariants. Over
+  600 tests run on three operating systems before anything ships.
+- **The docs cannot drift.** The reference section is generated from the shipped
+  manifests on every build, so its counts are the real ones.
+
+Where it is the wrong choice: Kiro-Kit is opinionated. If you want to hand-pick
+every file, or you are not on npm, a template repository or a steering
+collection will fit you better.
+
 ## Documentation
 
 Full documentation lives at **<https://ihatesea69.github.io/kiro-kit/>**.
