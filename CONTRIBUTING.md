@@ -132,6 +132,33 @@ test(property): add merge associativity property
 See [Creating Presets](https://ihatesea69.github.io/kiro-kit/docs/guide/creating-presets)
 for the manifest schema, file conventions, and validation checklist.
 
+Open a [preset request](https://github.com/ihatesea69/kiro-kit/issues/new?template=preset-request.yml)
+first. A preset is a few hundred files, and the overlap question is better
+settled before you write them than after — the bar is in
+[GOVERNANCE.md](./GOVERNANCE.md).
+
+## Changing How the Project Works
+
+`presets/kiro-kit-dev/` is the preset for developing Kiro-Kit itself, and it
+ships to npm like any other. That makes it public documentation of this
+repository's build, test, and release process — and it goes stale silently,
+because nothing breaks when it does.
+
+It has drifted twice: it listed six presets when there were nine, and it kept
+telling people to run `npm publish` by hand for months after releases moved to
+CI. Someone following that second one publishes without provenance, which is
+how `0.10.3` shipped a two-month-old build and had to be deprecated.
+
+So: **if you change how the project is built, tested, or released, update
+`presets/kiro-kit-dev/` in the same pull request.** Its steering files
+(`kiro-kit-development.md`, `preset-authoring.md`, `testing-strategy.md`) and
+`commands/release.md` are the usual places.
+
+`tests/structural/kiro-kit-dev-currency.test.ts` catches the mechanical half —
+a preset added without updating the layout section, or a step that tells you to
+publish by hand. It cannot tell whether the rest of the prose is still true.
+That part is on you.
+
 ## Reporting Issues
 
 - Bugs: use the bug report issue template

@@ -23,6 +23,9 @@
 - [ ] I have updated documentation where applicable
 - [ ] My changes do not introduce breaking changes (or they are documented above)
 - [ ] Structural tests pass (preset thresholds, front-matter validation)
+- [ ] If this changes how the project is built, tested, or released, I updated
+      `presets/kiro-kit-dev/` to match — it is shipped documentation of that
+      process, and it goes stale silently
 
 ## Related Issues
 
