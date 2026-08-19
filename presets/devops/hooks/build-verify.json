@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Build Verify",
+      "description": "Runs the build before a tool call that could ship broken output.",
+      "enabled": true,
+      "trigger": "PreToolUse",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/hooks/build-verify.js"
+      },
+      "timeout": 120
+    }
+  ]
+}

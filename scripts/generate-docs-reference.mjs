@@ -310,9 +310,11 @@ async function loadPreset(name) {
     .filter((f) => f.type === 'hook' && f.source.endsWith('.js'))
     .map((f) => ({ id: path.basename(f.source, '.js'), link: linkOf(f) }));
 
+  // Native hooks use the v1 schema: `hooks/*.json` holding {version:"v1", hooks:[...]}.
+  // Excludes the .js notifier scripts (rendered separately) and native-hooks.md.
   const nativeHooks = files
-    .filter((f) => f.source.endsWith('.kiro.hook'))
-    .map((f) => ({ id: path.basename(f.source, '.kiro.hook'), link: linkOf(f) }));
+    .filter((f) => f.type === 'hook' && f.source.endsWith('.json'))
+    .map((f) => ({ id: path.basename(f.source, '.json'), link: linkOf(f) }));
 
   // Every declared file must exist, not just the ones we render.
   for (const file of files) {
@@ -466,26 +468,32 @@ ${table(
   workflows.map((w) => [`[\`${cell(w.id)}\`](${w.link})`]),
 )}`);
 
+  // Legacy `settings.json` registration (0.x). Kiro 1.0 reads hooks only from
+  // `.kiro/hooks/*.json`, so presets no longer declare this — render only if a
+  // third-party manifest still carries it.
   const hookRows = Object.entries(hookEvents).flatMap(([event, names]) =>
     (Array.isArray(names) ? names : []).map((hook) => [`\`${cell(event)}\``, `\`${cell(hook)}\``]),
   );
+  const legacyHookSection = hookRows.length
+    ? `Registered in \`settings.json\` (legacy 0.x):
+
+${table(['Event', 'Hook'], hookRows)}`
+    : '';
   sections.push(`## Hooks
 
-Registered in \`settings.json\`:
+Native Kiro Agent Hooks (v1 schema, \`.kiro/hooks/*.json\`). Agent hooks ship
+disabled — enable them in Kiro's Agent Hooks panel; script hooks ship enabled:
 
-${table(['Event', 'Hook'], hookRows)}
+${table(
+  ['Native hook'],
+  nativeHooks.map((h) => [`[\`${cell(h.id)}\`](${h.link})`]),
+)}
 Hook scripts shipped with this preset:
 
 ${table(
   ['Script'],
   hookFiles.map((h) => [`[\`${cell(h.id)}\`](${h.link})`]),
-)}
-Native Kiro Agent Hooks (ship disabled; enable them in Kiro's Agent Hooks panel):
-
-${table(
-  ['Native hook'],
-  nativeHooks.map((h) => [`[\`${cell(h.id)}\`](${h.link})`]),
-)}`);
+)}${legacyHookSection}`);
 
   sections.push(`## MCP servers
 

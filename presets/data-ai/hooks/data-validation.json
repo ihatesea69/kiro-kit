@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Data Validation",
+      "description": "When a new dataset or loader is added, generate a schema/validation check.",
+      "enabled": false,
+      "trigger": "PostFileCreate",
+      "matcher": "(/data/.+\\.(csv|parquet|json)|/(loaders|datasets)/.+\\.py)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A new dataset or data loader was added. Generate a validation check (e.g. pandera/great_expectations or explicit assertions) for expected columns, dtypes, null rates, ranges, and class balance, so schema drift is caught early. Wire it into the pipeline's validation step."
+      }
+    }
+  ]
+}

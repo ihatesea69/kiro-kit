@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Type Sync",
+      "description": "When an API route changes, regenerate shared client types so frontend and backend stay in lockstep.",
+      "enabled": false,
+      "trigger": "PostFileSave",
+      "matcher": "/(api|server|routers)/.+\\.(ts|tsx)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A server API route or router changed. Update the shared TypeScript types (and any generated client) consumed by the frontend so request/response shapes stay in sync. Flag any frontend call site now type-incompatible. Only edit types and generated clients."
+      }
+    }
+  ]
+}

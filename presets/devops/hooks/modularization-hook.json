@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Modularization Hook",
+      "description": "Warns when an edited file grows past the 200-line guideline.",
+      "enabled": true,
+      "trigger": "PostToolUse",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/hooks/modularization-hook.js"
+      },
+      "timeout": 10
+    }
+  ]
+}

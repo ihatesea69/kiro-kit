@@ -2187,43 +2187,8 @@
       "type": "doc"
     },
     {
-      "source": "hooks/asset-optimization.kiro.hook",
-      "target": ".kiro/hooks/asset-optimization.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/docs-drift-guard.kiro.hook",
-      "target": ".kiro/hooks/docs-drift-guard.kiro.hook",
-      "type": "hook"
-    },
-    {
       "source": "hooks/native-hooks.md",
       "target": ".kiro/hooks/native-hooks.md",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/platform-parity-check.kiro.hook",
-      "target": ".kiro/hooks/platform-parity-check.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/release-checklist.kiro.hook",
-      "target": ".kiro/hooks/release-checklist.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/run-tests-on-save.kiro.hook",
-      "target": ".kiro/hooks/run-tests-on-save.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/secret-scan-on-save.kiro.hook",
-      "target": ".kiro/hooks/secret-scan-on-save.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/spec-task-sync.kiro.hook",
-      "target": ".kiro/hooks/spec-task-sync.kiro.hook",
       "type": "hook"
     },
     {
@@ -2250,6 +2215,61 @@
       "source": "specs/example-offline-first-notes/.config.kiro",
       "target": ".kiro/specs/example-offline-first-notes/.config.kiro",
       "type": "spec"
+    },
+    {
+      "source": "hooks/asset-optimization.json",
+      "target": ".kiro/hooks/asset-optimization.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/docs-drift-guard.json",
+      "target": ".kiro/hooks/docs-drift-guard.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/platform-parity-check.json",
+      "target": ".kiro/hooks/platform-parity-check.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/run-tests-on-save.json",
+      "target": ".kiro/hooks/run-tests-on-save.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/secret-scan-on-save.json",
+      "target": ".kiro/hooks/secret-scan-on-save.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/spec-task-sync.json",
+      "target": ".kiro/hooks/spec-task-sync.json",
+      "type": "hook"
+    },
+    {
+      "source": "steering/release-checklist.md",
+      "target": ".kiro/steering/release-checklist.md",
+      "type": "steering"
+    },
+    {
+      "source": "hooks/discord-notify.json",
+      "target": ".kiro/hooks/discord-notify.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/modularization-hook.json",
+      "target": ".kiro/hooks/modularization-hook.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/scout-block.json",
+      "target": ".kiro/hooks/scout-block.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/telegram-notify.json",
+      "target": ".kiro/hooks/telegram-notify.json",
+      "type": "hook"
     }
   ],
   "mcpServers": {
@@ -2281,18 +2301,6 @@
         "mcp-server-fetch"
       ]
     }
-  },
-  "hooks": {
-    "PreToolUse": [
-      "scout-block"
-    ],
-    "PostToolUse": [
-      "modularization-hook"
-    ],
-    "agentStop": [
-      "discord-notify",
-      "telegram-notify"
-    ]
   },
   "tags": [
     "flutter",

@@ -4,16 +4,18 @@ Cross-platform hook scripts for Kiro IDE automation.
 
 ## Available Hooks
 
-| Hook | Trigger | Description |
-|------|---------|-------------|
-| scout-block | PreToolUse | Blocks dangerous commands (rm -rf, drop database, etc.) |
-| build-verify | PreToolUse | Verifies build artifacts exist before deployment commands |
-| modularization-hook | PostToolUse | Warns when files exceed 200 lines |
-| image-scan | PostToolUse | Reminds to scan container images after docker build |
-| discord-notify | agentStop | Sends notification via Discord webhook |
-| telegram-notify | agentStop | Sends notification via Telegram bot |
-| pre-commit-lint | PreToolUse | Runs linter before commit |
-| git-status-tracker | PostToolUse | Logs git working tree status summary |
+| Hook | Trigger | Registered | Description |
+|------|---------|-----------|-------------|
+| scout-block | `PreToolUse` | `scout-block.json` | Blocks dangerous commands (rm -rf, drop database, etc.) |
+| modularization-hook | `PostToolUse` | `modularization-hook.json` | Warns when files exceed 200 lines |
+| discord-notify | `Stop` | `discord-notify.json` | Sends notification via Discord webhook |
+| telegram-notify | `Stop` | `telegram-notify.json` | Sends notification via Telegram bot |
+| pre-commit-lint | `PreToolUse` | not registered | Runs linter before commit — wire it up yourself |
+| git-status-tracker | `PostToolUse` | not registered | Logs git working tree status summary |
+
+Each registered script has a matching v1 hook file in this directory that Kiro reads
+at session start. Kiro 1.0 no longer reads a `hooks` key from `settings.json`, so
+that is where registration lives now — see `native-hooks.md`.
 
 ## Platform Support
 

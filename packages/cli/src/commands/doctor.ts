@@ -308,6 +308,22 @@ function checkMetadataJson(workspaceRoot: string): CheckReport {
   }
 }
 
+/** A single hook entry in the v1 schema. */
+interface V1HookEntry {
+  name?: unknown;
+  trigger?: unknown;
+  action?: { type?: unknown; command?: unknown; prompt?: unknown };
+}
+
+/** Validate one v1 hook entry: name, trigger, and an action with its required payload. */
+function isValidV1Hook(h: V1HookEntry): boolean {
+  if (typeof h.name !== 'string' || typeof h.trigger !== 'string') return false;
+  const type = h.action?.type;
+  if (type === 'agent') return typeof h.action?.prompt === 'string';
+  if (type === 'command') return typeof h.action?.command === 'string';
+  return false;
+}
+
 function checkNativeHooks(workspaceRoot: string): CheckReport {
   const hooksDir = path.join(workspaceRoot, '.kiro/hooks');
   if (!fs.existsSync(hooksDir)) {
@@ -315,6 +331,7 @@ function checkNativeHooks(workspaceRoot: string): CheckReport {
   }
 
   const invalid: string[] = [];
+  const legacy: string[] = [];
   let checked = 0;
 
   const walkDir = (dir: string): void => {
@@ -326,42 +343,58 @@ function checkNativeHooks(workspaceRoot: string): CheckReport {
       const fullPath = path.join(dir, entry.name);
       if (entry.isDirectory()) {
         walkDir(fullPath);
-      } else if (entry.isFile() && entry.name.endsWith('.kiro.hook')) {
-        checked++;
-        try {
-          const parsed = JSON.parse(fs.readFileSync(fullPath, 'utf-8')) as {
-            name?: unknown;
-            when?: { type?: unknown };
-            then?: { type?: unknown };
-          };
-          const ok =
-            typeof parsed.name === 'string' &&
-            typeof parsed.when?.type === 'string' &&
-            typeof parsed.then?.type === 'string';
-          if (!ok) invalid.push(entry.name);
-        } catch {
-          invalid.push(entry.name);
-        }
+        continue;
+      }
+      if (!entry.isFile()) continue;
+
+      // Retired 0.x format — won't execute in Kiro IDE 1.0. Flag for migration
+      // rather than validating against a schema Kiro no longer reads.
+      if (entry.name.endsWith('.kiro.hook')) {
+        legacy.push(entry.name);
+        continue;
+      }
+      if (!entry.name.endsWith('.json')) continue;
+
+      checked++;
+      try {
+        const parsed = JSON.parse(fs.readFileSync(fullPath, 'utf-8')) as {
+          hooks?: unknown;
+        };
+        const hooks = parsed.hooks;
+        const ok =
+          Array.isArray(hooks) &&
+          hooks.length > 0 &&
+          hooks.every((h) => isValidV1Hook(h as V1HookEntry));
+        if (!ok) invalid.push(entry.name);
+      } catch {
+        invalid.push(entry.name);
       }
     }
   };
 
   walkDir(hooksDir);
 
+  if (invalid.length > 0) {
+    return {
+      name: 'native-hooks',
+      result: 'FAIL',
+      message: `${invalid.length} native hook(s) invalid: ${invalid.slice(0, 3).join(', ')}${invalid.length > 3 ? '...' : ''}`,
+    };
+  }
+  if (legacy.length > 0) {
+    return {
+      name: 'native-hooks',
+      result: 'WARN',
+      message: `${legacy.length} hook(s) use the retired 0.x .kiro.hook format and will not run in Kiro IDE 1.0: ${legacy.slice(0, 3).join(', ')}${legacy.length > 3 ? '...' : ''}. Re-run \`kiro-kit init\` to install the v1 hooks, then delete them.`,
+    };
+  }
   if (checked === 0) {
     return { name: 'native-hooks', result: 'PASS', message: 'No native hooks to check' };
   }
-  if (invalid.length === 0) {
-    return {
-      name: 'native-hooks',
-      result: 'PASS',
-      message: `All ${checked} native hook(s) are valid`,
-    };
-  }
   return {
     name: 'native-hooks',
-    result: 'FAIL',
-    message: `${invalid.length} native hook(s) invalid: ${invalid.slice(0, 3).join(', ')}${invalid.length > 3 ? '...' : ''}`,
+    result: 'PASS',
+    message: `All ${checked} native hook(s) are valid`,
   };
 }
 

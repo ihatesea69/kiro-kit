@@ -1754,43 +1754,8 @@
       "type": "doc"
     },
     {
-      "source": "hooks/container-scan.kiro.hook",
-      "target": ".kiro/hooks/container-scan.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/cost-estimate.kiro.hook",
-      "target": ".kiro/hooks/cost-estimate.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/docs-drift-guard.kiro.hook",
-      "target": ".kiro/hooks/docs-drift-guard.kiro.hook",
-      "type": "hook"
-    },
-    {
       "source": "hooks/native-hooks.md",
       "target": ".kiro/hooks/native-hooks.md",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/run-tests-on-save.kiro.hook",
-      "target": ".kiro/hooks/run-tests-on-save.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/secret-scan-on-save.kiro.hook",
-      "target": ".kiro/hooks/secret-scan-on-save.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/spec-task-sync.kiro.hook",
-      "target": ".kiro/hooks/spec-task-sync.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/terraform-plan-review.kiro.hook",
-      "target": ".kiro/hooks/terraform-plan-review.kiro.hook",
       "type": "hook"
     },
     {
@@ -1909,11 +1874,6 @@
       "type": "command"
     },
     {
-      "source": "hooks/deep-scan-stale.kiro.hook",
-      "target": ".kiro/hooks/deep-scan-stale.kiro.hook",
-      "type": "hook"
-    },
-    {
       "source": "skills/deep-security-scan/SKILL.md",
       "target": ".kiro/skills/deep-security-scan/SKILL.md",
       "type": "skill"
@@ -1962,6 +1922,76 @@
       "source": "skills/deep-security-scan/scripts/check-findings.mjs",
       "target": ".kiro/skills/deep-security-scan/scripts/check-findings.mjs",
       "type": "skill"
+    },
+    {
+      "source": "hooks/container-scan.json",
+      "target": ".kiro/hooks/container-scan.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/docs-drift-guard.json",
+      "target": ".kiro/hooks/docs-drift-guard.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/run-tests-on-save.json",
+      "target": ".kiro/hooks/run-tests-on-save.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/secret-scan-on-save.json",
+      "target": ".kiro/hooks/secret-scan-on-save.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/spec-task-sync.json",
+      "target": ".kiro/hooks/spec-task-sync.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/terraform-plan-review.json",
+      "target": ".kiro/hooks/terraform-plan-review.json",
+      "type": "hook"
+    },
+    {
+      "source": "steering/cost-estimate.md",
+      "target": ".kiro/steering/cost-estimate.md",
+      "type": "steering"
+    },
+    {
+      "source": "steering/deep-scan-stale.md",
+      "target": ".kiro/steering/deep-scan-stale.md",
+      "type": "steering"
+    },
+    {
+      "source": "hooks/build-verify.json",
+      "target": ".kiro/hooks/build-verify.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/discord-notify.json",
+      "target": ".kiro/hooks/discord-notify.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/image-scan.json",
+      "target": ".kiro/hooks/image-scan.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/modularization-hook.json",
+      "target": ".kiro/hooks/modularization-hook.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/scout-block.json",
+      "target": ".kiro/hooks/scout-block.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/telegram-notify.json",
+      "target": ".kiro/hooks/telegram-notify.json",
+      "type": "hook"
     }
   ],
   "mcpServers": {
@@ -1993,20 +2023,6 @@
         "mcp-server-fetch"
       ]
     }
-  },
-  "hooks": {
-    "PreToolUse": [
-      "scout-block",
-      "build-verify"
-    ],
-    "PostToolUse": [
-      "modularization-hook",
-      "image-scan"
-    ],
-    "agentStop": [
-      "discord-notify",
-      "telegram-notify"
-    ]
   },
   "tags": [
     "docker",

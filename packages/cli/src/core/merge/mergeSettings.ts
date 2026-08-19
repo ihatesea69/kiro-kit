@@ -7,9 +7,16 @@ export interface HookRef {
 
 export interface SettingsConfig {
   statusLine?: { type?: string; command?: string; [key: string]: unknown };
+  /**
+   * @deprecated Kiro 1.0 reads hooks only from `.kiro/hooks/*.json`; `settings.json`
+   * has no `hooks` key. Kit presets no longer ship one — script hooks are now v1
+   * `command` hooks. Retained so a merge into a workspace that still carries a 0.x
+   * `hooks` block preserves it instead of dropping the user's entries.
+   */
   hooks?: {
     PreToolUse?: HookRef[];
     PostToolUse?: HookRef[];
+    /** @deprecated 0.x name; v1 calls this trigger `Stop`. */
     agentStop?: HookRef[];
     [key: string]: unknown;
   };
@@ -22,6 +29,9 @@ export interface SettingsConfig {
  * - Array fields (hooks.PreToolUse, hooks.PostToolUse, etc.): concat-dedupe by `command`
  * - Non-array fields: last-write-wins with warning
  * - Preserves user-added fields not in preset
+ *
+ * The hooks branch is legacy passthrough: presets stopped shipping `settings.json`
+ * hooks in the v1 migration, so it only fires for a workspace that already had them.
  */
 export function mergeSettings(
   existing: SettingsConfig | null,

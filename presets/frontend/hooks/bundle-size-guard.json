@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Bundle Size Guard",
+      "description": "When app code changes, flag heavy or duplicate imports that could bloat the bundle.",
+      "enabled": false,
+      "trigger": "PostFileSave",
+      "matcher": "^(src|app)/.+\\.(ts|tsx)$",
+      "action": {
+        "type": "agent",
+        "prompt": "App code changed. Inspect new imports for bundle-size risks: full-library imports that should be tree-shaken or deep-imported, heavy dependencies (moment, lodash, large icon sets), and duplicate functionality already present. Report each risk with a lighter alternative. Do not refactor automatically."
+      }
+    }
+  ]
+}

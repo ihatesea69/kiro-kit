@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "API Contract Sync",
+      "description": "When a route/handler changes, update the OpenAPI spec to match.",
+      "enabled": false,
+      "trigger": "PostFileSave",
+      "matcher": "/(routes|controllers|api)/.+\\.(ts|js|py|go)$",
+      "action": {
+        "type": "agent",
+        "prompt": "An API route or handler changed. Update the OpenAPI/Swagger definition (paths, params, request/response schemas, status codes, error shapes) to match the new behavior. If no OpenAPI file exists, note that and propose creating one. Only edit the API contract and its docs."
+      }
+    }
+  ]
+}

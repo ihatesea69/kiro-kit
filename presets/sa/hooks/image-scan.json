@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Image Scan",
+      "description": "Scans container images for known vulnerabilities after a tool call.",
+      "enabled": true,
+      "trigger": "PostToolUse",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/hooks/image-scan.js"
+      },
+      "timeout": 120
+    }
+  ]
+}

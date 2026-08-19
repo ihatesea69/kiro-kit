@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Terraform Plan Review",
+      "description": "When Terraform changes, summarize the plan risks before apply.",
+      "enabled": false,
+      "trigger": "PostFileSave",
+      "matcher": "\\.(tf|tfvars)$",
+      "action": {
+        "type": "agent",
+        "prompt": "Terraform configuration changed. Summarize the likely plan impact and flag risky changes: resource replacement/destruction, security-group or IAM widening, public exposure, and unversioned/unpinned providers or modules. Report each risk with the safer approach. Do not run apply."
+      }
+    }
+  ]
+}
