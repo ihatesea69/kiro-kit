@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run Tests on Save",
+      "description": "When a test file is saved, run its suite and surface failures. Disabled by default (agent actions use credits).",
+      "enabled": false,
+      "trigger": "PostFileSave",
+      "matcher": "(\\.(test|spec)\\.[^/]+|_test\\.[^/]+|(^|/)test_[^/]+\\.py)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A test file was just saved. Run the test suite that covers this file. If any tests fail, summarize the failures and propose the minimal fix. Report a concise pass/fail result — do not modify unrelated files."
+      }
+    }
+  ]
+}

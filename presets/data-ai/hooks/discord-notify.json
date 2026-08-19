@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Discord Notify",
+      "description": "Sends a Discord notification when the agent finishes. No-ops unless DISCORD_WEBHOOK_URL is set.",
+      "enabled": true,
+      "trigger": "Stop",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/hooks/discord-notify.js"
+      },
+      "timeout": 15
+    }
+  ]
+}

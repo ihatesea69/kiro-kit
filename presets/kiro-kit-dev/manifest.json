@@ -1817,43 +1817,8 @@
       "type": "doc"
     },
     {
-      "source": "hooks/api-contract-sync.kiro.hook",
-      "target": ".kiro/hooks/api-contract-sync.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/docs-drift-guard.kiro.hook",
-      "target": ".kiro/hooks/docs-drift-guard.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/endpoint-test-coverage.kiro.hook",
-      "target": ".kiro/hooks/endpoint-test-coverage.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/migration-safety-review.kiro.hook",
-      "target": ".kiro/hooks/migration-safety-review.kiro.hook",
-      "type": "hook"
-    },
-    {
       "source": "hooks/native-hooks.md",
       "target": ".kiro/hooks/native-hooks.md",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/run-tests-on-save.kiro.hook",
-      "target": ".kiro/hooks/run-tests-on-save.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/secret-scan-on-save.kiro.hook",
-      "target": ".kiro/hooks/secret-scan-on-save.kiro.hook",
-      "type": "hook"
-    },
-    {
-      "source": "hooks/spec-task-sync.kiro.hook",
-      "target": ".kiro/hooks/spec-task-sync.kiro.hook",
       "type": "hook"
     },
     {
@@ -1945,6 +1910,61 @@
       "source": "steering/typescript-cli-conventions.md",
       "target": ".kiro/steering/typescript-cli-conventions.md",
       "type": "steering"
+    },
+    {
+      "source": "hooks/api-contract-sync.json",
+      "target": ".kiro/hooks/api-contract-sync.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/docs-drift-guard.json",
+      "target": ".kiro/hooks/docs-drift-guard.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/endpoint-test-coverage.json",
+      "target": ".kiro/hooks/endpoint-test-coverage.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/migration-safety-review.json",
+      "target": ".kiro/hooks/migration-safety-review.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/run-tests-on-save.json",
+      "target": ".kiro/hooks/run-tests-on-save.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/secret-scan-on-save.json",
+      "target": ".kiro/hooks/secret-scan-on-save.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/spec-task-sync.json",
+      "target": ".kiro/hooks/spec-task-sync.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/discord-notify.json",
+      "target": ".kiro/hooks/discord-notify.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/modularization-hook.json",
+      "target": ".kiro/hooks/modularization-hook.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/scout-block.json",
+      "target": ".kiro/hooks/scout-block.json",
+      "type": "hook"
+    },
+    {
+      "source": "hooks/telegram-notify.json",
+      "target": ".kiro/hooks/telegram-notify.json",
+      "type": "hook"
     }
   ],
   "mcpServers": {
@@ -1976,18 +1996,6 @@
         "mcp-server-fetch"
       ]
     }
-  },
-  "hooks": {
-    "PreToolUse": [
-      "scout-block"
-    ],
-    "PostToolUse": [
-      "modularization-hook"
-    ],
-    "agentStop": [
-      "discord-notify",
-      "telegram-notify"
-    ]
   },
   "tags": [
     "nodejs",

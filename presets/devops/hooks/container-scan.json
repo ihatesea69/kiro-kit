@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Container Scan",
+      "description": "When a Dockerfile changes, review it for security and efficiency issues.",
+      "enabled": false,
+      "trigger": "PostFileSave",
+      "matcher": "(Dockerfile[^/]*|\\.dockerfile)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A Dockerfile changed. Review for security and efficiency: unpinned base images, running as root, secrets in layers, missing multi-stage build, unnecessary packages, and cache-busting layer order. Report each finding with the fix."
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Migration Safety Review",
+      "description": "When a DB migration is created, generate the down migration and review for unsafe operations.",
+      "enabled": false,
+      "trigger": "PostFileCreate",
+      "matcher": "(/migrations?/.+\\.(sql|ts|js|py)|/migrate/.+\\.(sql|ts))$",
+      "action": {
+        "type": "agent",
+        "prompt": "A new database migration was created. Verify it has a correct reversible down migration (generate one if missing), and review for unsafe operations: dropping columns/tables with data, non-concurrent index creation on large tables, NOT NULL additions without defaults, and locking DDL. Report risks with safer alternatives."
+      }
+    }
+  ]
+}

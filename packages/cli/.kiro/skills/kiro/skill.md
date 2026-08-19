@@ -80,8 +80,8 @@ Load these references when needed for detailed guidance:
   - mcp.json configuration, common servers, auto-approve, troubleshooting
 
 - **Hooks**: `references/hooks.md`
-  - Event types (fileEdited, preToolUse, postToolUse, promptSubmit, etc.)
-  - Actions (askAgent, runCommand), hook schema, examples
+  - v1 schema (`.kiro/hooks/*.json`), triggers (PostFileSave, PreToolUse, Stop, etc.)
+  - Actions (command, agent), matcher regex, exit codes, 0.x migration mapping
 
 ### Advanced Usage
 - **Autonomy Modes**: `references/autonomy-modes.md`
@@ -115,17 +115,20 @@ Your conventions here...
 
 ### Hook Configuration
 ```json
+// .kiro/hooks/lint-on-save.json
 {
-  "name": "Lint on Save",
-  "version": "1.0.0",
-  "when": {
-    "type": "fileEdited",
-    "patterns": ["*.ts", "*.tsx"]
-  },
-  "then": {
-    "type": "runCommand",
-    "command": "npm run lint"
-  }
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Lint on Save",
+      "trigger": "PostFileSave",
+      "matcher": "\\.tsx?$",
+      "action": {
+        "type": "command",
+        "command": "npm run lint"
+      }
+    }
+  ]
 }
 ```
 

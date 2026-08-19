@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Tool Contract Check",
+      "description": "When an agent tool or MCP tool definition is added, check its schema, description, and error contract.",
+      "enabled": false,
+      "trigger": "PostFileCreate",
+      "matcher": "(/(tools|mcp)/.+\\.(py|ts)|_tool\\.py)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A new agent or MCP tool was added. Review it against this workspace's tool contract: (1) the description states what it does AND when NOT to use it — it is read by a retriever and a model, not a human; (2) every argument is typed with a clear description; (3) errors are returned as data with an error message and a retryable flag, never raised into the tool loop; (4) results are truncated at the boundary so a large payload is not re-paid on every subsequent turn; (5) the IAM permissions it needs are scoped to this tool alone. Report gaps and propose the fix."
+      }
+    }
+  ]
+}

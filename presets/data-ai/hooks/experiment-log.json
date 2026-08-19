@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Experiment Log",
+      "description": "When a notebook or training script changes, append a structured experiment log entry.",
+      "enabled": false,
+      "trigger": "PostFileSave",
+      "matcher": "(\\.ipynb|/train[^/]*\\.py|/experiments/.+\\.py)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A notebook or training script changed. Append a structured entry to the experiment log (experiments/EXPERIMENTS.md or similar): date, hypothesis, dataset/version, key hyperparameters, metrics, and a one-line conclusion. Only edit the experiment log."
+      }
+    }
+  ]
+}

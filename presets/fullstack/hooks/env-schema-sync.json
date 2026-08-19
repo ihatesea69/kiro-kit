@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Env Schema Sync",
+      "description": "When .env.example changes, update the runtime env validation schema.",
+      "enabled": false,
+      "trigger": "PostFileSave",
+      "matcher": "(^|/)\\.env\\.example$",
+      "action": {
+        "type": "agent",
+        "prompt": "The .env.example changed. Update the runtime environment validation schema (e.g. a Zod env schema in env.ts) to add/remove the corresponding variables with correct types and required/optional status, and note any code that reads a now-removed variable."
+      }
+    }
+  ]
+}

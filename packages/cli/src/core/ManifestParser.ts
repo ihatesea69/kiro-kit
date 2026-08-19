@@ -44,6 +44,12 @@ const ManifestSchema = z.object({
   files: z.array(FileEntrySchema).min(1),
   dependencies: z.array(PresetNameSchema).optional(),
   mcpServers: z.record(MCPServerDefSchema).optional(),
+  /**
+   * @deprecated Legacy `settings.json` hook registration. Kiro 1.0 reads hooks only
+   * from `.kiro/hooks/*.json`, so kit presets no longer declare this — script hooks
+   * ship as v1 `command` hooks instead. Kept optional so third-party presets built
+   * against 0.x still parse.
+   */
   hooks: z.object({
     PreToolUse: z.array(HookEntrySchema).optional(),
     PostToolUse: z.array(HookEntrySchema).optional(),

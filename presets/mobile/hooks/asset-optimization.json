@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Asset Optimization",
+      "description": "When an image/asset is added, verify it is optimized and has correct density variants.",
+      "enabled": false,
+      "trigger": "PostFileCreate",
+      "matcher": "/assets/.+\\.(png|jpg|jpeg|webp)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A new image asset was added. Verify it is reasonably sized and compressed, has the required density variants (@2x/@3x or drawable buckets), and is referenced through the asset index. Report any missing variant or oversized file with the recommended target size."
+      }
+    }
+  ]
+}

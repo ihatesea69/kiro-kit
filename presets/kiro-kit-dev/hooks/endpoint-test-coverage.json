@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Endpoint Test Coverage",
+      "description": "When a new endpoint is added, scaffold integration tests for its success and error paths.",
+      "enabled": false,
+      "trigger": "PostFileCreate",
+      "matcher": "/(routes|controllers)/.+\\.(ts|js|py|go)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A new endpoint was added. Scaffold integration tests covering the happy path plus auth failures, validation errors, and not-found cases, asserting status codes and response shapes. Use the project's existing test framework and helpers."
+      }
+    }
+  ]
+}

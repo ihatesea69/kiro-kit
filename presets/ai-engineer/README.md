@@ -32,7 +32,7 @@ ai-engineer/
                          mcp-server-hosting, strands-agents, bedrock-rag,
                          agent-evaluation, mcp-builder, ...)
   commands/              40+ command files
-  hooks/                 Cross-platform hook scripts (7 native .kiro.hook files)
+  hooks/                 Cross-platform hook scripts + 10 native v1 hooks (*.json)
   steering/              AWS-native agents, MCP architecture, agent design patterns,
                          agent evaluation, responsible AI, spec-driven development
   workflows/             4 workflow files

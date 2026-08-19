@@ -1,31 +1,65 @@
 ---
 title: Native Kiro Agent Hooks
-description: Event-driven automation that runs inside Kiro, shipped disabled by default in every preset.
+description: Event-driven automation that runs inside Kiro, using the v1 hook schema.
 ---
 
-Each preset ships **native Kiro Agent Hooks** (`*.kiro.hook` files) — Kiro's own
-event-driven automation format (a `when` trigger plus a `then` action) that runs
-inside the IDE.
+Each preset ships **native Kiro Agent Hooks** — Kiro's own event-driven automation
+that runs inside the IDE. They use the **v1 schema** introduced in Kiro IDE 1.0 /
+CLI 3.0: `.json` files in `.kiro/hooks/` with a PascalCase `trigger`, an optional
+regex `matcher`, and an `action`.
+
+```json
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run Tests on Save",
+      "enabled": false,
+      "trigger": "PostFileSave",
+      "matcher": "\\.(test|spec)\\.[^/]+$",
+      "action": { "type": "agent", "prompt": "..." }
+    }
+  ]
+}
+```
 
 Every preset gets four shared hooks plus domain-specific ones:
 
-- **Shared**: Run Tests on Save, Spec Task Sync, Secret Scan Before Write, Docs
-  Drift Guard
-- **Domain-specific**: three or more per preset, tailored to its stack
+- **Shared**: Run Tests on Save, Spec Task Sync, Secret Scan on Save, Docs Drift Guard
+- **Domain-specific**: two or more per preset, tailored to its stack
+- **Script hooks**: Scout Block, Modularization Hook, Discord Notify, Telegram Notify
 
 The exact set for each preset is listed in the
 [preset reference](/docs/reference), read from the preset manifests.
 
 <Callout type="warn">
-  Every native hook ships **disabled** (`"enabled": false`) so a fresh workspace
-  never starts an agent run you didn't ask for.
+  Every **agent** hook ships **disabled** (`"enabled": false`) so a fresh workspace
+  never starts an agent run you didn't ask for. `action.type: "agent"` consumes
+  credits; `action.type: "command"` does not.
 </Callout>
 
 Toggle one on in Kiro's Agent Hooks panel, or set `"enabled": true`. Each preset
 also carries a `hooks/native-hooks.md` guide.
 
-## Not the same as the shell hooks
+## Script hooks
 
-These are distinct from the cross-platform shell notifier scripts
-(`.js` / `.sh` / `.ps1`) that also ship in `hooks/` and are registered in
-`settings.json`. Both are listed separately on each preset's reference page.
+The cross-platform notifier and guard scripts (`.js` / `.sh` / `.ps1`) still ship in
+`hooks/`. They are now registered as v1 `command` hooks rather than through
+`settings.json`, and ship **enabled** — they cost no credits and no-op when their
+environment variables are unset. Both kinds are listed separately on each preset's
+reference page.
+
+## Upgrading from an earlier kit
+
+Hooks installed by kit versions before this release use the retired 0.x `.kiro.hook`
+format and **will not run** in Kiro IDE 1.0. Re-run `kiro-kit init` to install the v1
+hooks, then delete any leftover `.kiro.hook` files — `kiro-kit doctor` warns about
+ones it finds.
+
+Two 0.x behaviours changed shape:
+
+- **`userTriggered` hooks** no longer exist. On-demand automation now installs as
+  manual steering files in `.kiro/steering/`, invoked as `/<name>` slash commands —
+  for example `/cost-estimate` or `/deep-scan-stale`.
+- **`settings.json` hook registration** is no longer read by Kiro. Presets no longer
+  ship a `hooks` key there; a pre-existing one in your workspace is left untouched.

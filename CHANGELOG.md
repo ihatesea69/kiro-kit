@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] - 2026-08-19
+
+### Changed
+
+- **Every native hook now uses the v1 schema and requires Kiro IDE 1.0 / CLI 3.0.** Kiro retired the `.kiro.hook` format: hooks are `.json` files in `.kiro/hooks/` holding `{version:"v1", hooks:[...]}`, triggers are PascalCase (`fileEdited` became `PostFileSave`), `when`/`then` became `trigger`/`matcher`/`action`, `askAgent`/`runCommand` became `action.type` `agent`/`command`, and the `when.patterns` glob array became a single `matcher` regex. All 71 hooks the kit shipped across 9 presets were migrated; nothing on 0.x is left. On IDE 1.0 the old files showed an upgrade badge and did not run, so a workspace installed from 0.10.x had silently inert hooks.
+- **`userTriggered` hooks became manual steering files.** That trigger no longer exists in v1. The 10 on-demand hooks now install as `.kiro/steering/*.md` with `inclusion: manual`, which Kiro surfaces as slash commands — `/cost-estimate`, `/deep-scan-stale`, `/release-checklist`, `/deployment-readiness`, `/model-card-update`, `/agent-card-update`. Same prompts, invoked by name instead of a panel button.
+- **The shell scripts moved out of `settings.json`.** `scout-block`, `modularization-hook`, the Discord/Telegram notifiers, and devops/sa's `build-verify` and `image-scan` were registered under a `hooks` key in `settings.json` with a camelCase `agentStop`. Kiro 1.0 reads hooks only from `.kiro/hooks/*.json`, so that registration was dead config — the guard and the notifiers had stopped firing. They now ship as v1 `command` hooks, enabled, with explicit timeouts. Presets no longer write a `hooks` key; one already in your `settings.json` is left alone.
+
+### Fixed
+
+- **The hook generator only covered 6 of the 9 presets.** `ai-engineer`, `kiro-kit-dev`, and `sa` were absent from every list in `scripts/generate-native-hooks.mjs`, so their hooks were hand-placed and drifted from the generated set. All nine are now generated, and a re-run reproduces exactly what ships.
+- `kiro-kit doctor` validated hooks against the 0.x `when`/`then` shape, so it would have called every migrated hook invalid. It now validates the v1 schema and warns — with the file names — when it finds leftover `.kiro.hook` files.
+
+### Upgrading
+
+Re-run `kiro-kit init` to install the v1 hooks, then delete any `.kiro.hook` files left in `.kiro/hooks/`; `kiro-kit doctor` lists them. If you had customised a hook, port the prompt across — the trigger mapping is in `.kiro/skills/kiro/references/hooks.md`. Staying on Kiro IDE 0.x means staying on `kiro-kit@0.10.7`.
+
 ## [0.10.7] - 2026-07-29
 
 ### Changed

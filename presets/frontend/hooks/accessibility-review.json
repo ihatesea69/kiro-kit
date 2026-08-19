@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Accessibility Review",
+      "description": "When a component changes, audit it against WCAG 2.1 AA and report violations.",
+      "enabled": false,
+      "trigger": "PostFileSave",
+      "matcher": "/components/.+\\.(tsx|jsx)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A component changed. Audit it for WCAG 2.1 AA issues: semantic elements, ARIA correctness, keyboard operability, focus management, color-contrast risks, and alt text. Report concrete violations with the exact fix. Only apply low-risk, obviously-correct fixes."
+      }
+    }
+  ]
+}
